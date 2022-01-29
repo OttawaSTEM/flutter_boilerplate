@@ -1,6 +1,9 @@
+
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:flutter_boilerplate/providers/counter.dart';
+import 'package:flutter_boilerplate/data/local/counter.dart';
+import 'package:flutter_boilerplate/data/network/api.dart';
+
 
 class HomePage extends StatelessWidget {
   const HomePage({Key? key}) : super(key: key);
@@ -21,6 +24,7 @@ class HomePage extends StatelessWidget {
             const Count(),
             ElevatedButton(
               onPressed: () {
+                // HttpService.get();
                 Navigator.pushNamed(context, '/second');
               },
               child: const Text('Launch screen'),

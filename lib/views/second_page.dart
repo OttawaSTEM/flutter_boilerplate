@@ -2,11 +2,11 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
-import 'package:flutter_boilerplate/providers/counter.dart';
-import 'package:flutter_boilerplate/providers/shopping_cart.dart';
+import 'package:flutter_boilerplate/data/local/counter.dart';
+import 'package:flutter_boilerplate/data/local/shopping_cart.dart';
 
-class SecondScreen extends StatelessWidget {
-  const SecondScreen({Key? key}) : super(key: key);
+class SecondPage extends StatelessWidget {
+  const SecondPage({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {

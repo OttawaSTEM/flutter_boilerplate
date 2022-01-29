@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
-import 'package:flutter_boilerplate/providers/counter.dart';
-import 'package:flutter_boilerplate/providers/shopping_cart.dart';
+import 'package:flutter_boilerplate/data/local/counter.dart';
+import 'package:flutter_boilerplate/data/local/shopping_cart.dart';
 
-import 'package:flutter_boilerplate/pages/home.dart';
-import 'package:flutter_boilerplate/pages/second_screen.dart';
+import 'package:flutter_boilerplate/views/home.dart';
+import 'package:flutter_boilerplate/views/second_page.dart';
 
 void main() {
   // runApp(const MyApp());
@@ -31,7 +31,7 @@ class MyApp extends StatelessWidget {
       initialRoute: '/',
       routes: {
         '/': (context) => const HomePage(),
-        '/second': (context) => SecondScreen(),
+        '/second': (context) => const SecondPage(),
       },
     );
   }
