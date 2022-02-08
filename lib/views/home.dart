@@ -2,7 +2,7 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:flutter_boilerplate/data/local/counter.dart';
-import 'package:flutter_boilerplate/data/network/api.dart';
+// import 'package:flutter_boilerplate/data/network/api.dart';
 
 
 class HomePage extends StatelessWidget {
@@ -29,6 +29,19 @@ class HomePage extends StatelessWidget {
               },
               child: const Text('Launch screen'),
             ),
+            const SizedBox(height: 30),
+            SizedBox(
+              // width: double.infinity,
+              // width: 200,
+              // height: 35,
+              child: ElevatedButton(
+                onPressed: () {
+                  // HttpService.get();
+                  Navigator.pushNamed(context, '/user');
+                },
+                child: const Text('User'),
+              ),
+            ),
           ],
         ),
       ),
@@ -36,6 +49,7 @@ class HomePage extends StatelessWidget {
         mainAxisAlignment: MainAxisAlignment.end,
         children: [
           FloatingActionButton(
+            heroTag: null,
             key: const Key('decrement_floatingActionButton'),
             onPressed: () => context.read<Counter>().decrement(),
             tooltip: 'Decrement',
@@ -45,6 +59,7 @@ class HomePage extends StatelessWidget {
             width: 10.0,
           ),
           FloatingActionButton(
+            heroTag: null,
             key: const Key('reset_floatingActionButton'),
             onPressed: () => context.read<Counter>().reset(),
             tooltip: 'Reset',
@@ -54,6 +69,7 @@ class HomePage extends StatelessWidget {
             width: 10.0,
           ),
           FloatingActionButton(
+            heroTag: null,
             key: const Key('increment_floatingActionButton'),
             onPressed: () => context.read<Counter>().increment(),
             tooltip: 'Increment',
