@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_boilerplate/data/local/user.dart';
+import 'package:flutter_boilerplate/models/user.dart';
 import 'package:provider/provider.dart';
 
 import 'package:flutter_boilerplate/data/local/counter.dart';

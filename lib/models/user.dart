@@ -1,54 +1,43 @@
-// import 'dart:convert';
+import 'package:flutter/material.dart';
+import 'package:http/http.dart' as http;
+import 'dart:convert';
 
-class User {
-  final int id;
-  final String name;
-  final String username;
-  final String email;
+class User with ChangeNotifier {
+  List<dynamic> _jsonData = [];
+  bool _error = false;
+  String _errorMessage = '';
 
-  const User({
-    required this.id, 
-    required this.name, 
-    required this.username, 
-    required this.email
-  });
+  List get jsonData => _jsonData;
+  bool get error => _error;
+  String get errorMessage => _errorMessage;
 
-  // User.fromJson(Map<String, dynamic> json) {
-  //   id = json['id'];
-  //   name = json['name'];
-  //   username = json['username'];
-  //   email = json['email'];
-  // }
+  Future<void> get fetchData async {
+    var response = await http.get(
+      // Uri.parse('https://api.json-generator.com/templates/-eZlCwfKSpqC/data?access_token=60p9v6l4cvb874bi65k6vze2bbxuz4e81yyurvym'),
+      Uri.parse('https://ottawastem-flutter-backend.herokuapp.com/api/user/'),
+    );
 
-  // static User? fromMap(Map<String, dynamic> map) {
-  //   if (map == null) 
-  //     return null;
-
-  //   return User(
-  //     id: map['id'],
-  //     name: map['name'],
-  //     username: map['username'],
-  //     email: map['email'],
-  //   );
-  // }
-  
-  Map<String, dynamic> toMap() {
-    return {
-      'id': id,
-      'name': name,
-      'username': username,
-      'email': email
-    };
+    print(response.body);
+    if (response.statusCode == 200) {
+      try {
+        _jsonData = jsonDecode(response.body);
+      } catch (e) {
+        _error = true;
+        _errorMessage = e.toString();
+        _jsonData = [];
+      }
+    } else {
+      _error = true;
+      _errorMessage = 'Error: internet error';
+      _jsonData = [];
+    }
+    notifyListeners();
   }
 
-  // String toJson() => json.encode(toMap());
-
-
-
-  // @override
-  // String toString() {
-  //   return 'CatPhoto(id: $id, name: $name, username: $username, email: $email)';
-  // }
-
-
+  void initialValues() {
+    _jsonData = [];
+    _error = false;
+    _errorMessage = '';
+    notifyListeners();
+  }
 }

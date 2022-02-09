@@ -2,7 +2,7 @@ import 'dart:async';
 
 import 'package:path/path.dart';
 import 'package:sqflite/sqflite.dart';
-import 'package:flutter_boilerplate/models/user.dart';
+// import 'package:flutter_boilerplate/models/user.dart';
 
 class Sqlite {
   static const String _databaseName = 'database.db';
@@ -31,10 +31,10 @@ class Sqlite {
     _db = await _initDatabase();
   }
 
-  Future<void> insertUser(User user) async {
-    await _db.insert(tableUser, user.toMap(),
-        conflictAlgorithm: ConflictAlgorithm.replace);
-  }
+  // Future<void> insertUser(User user) async {
+  //   await _db.insert(tableUser, user.toMap(),
+  //       conflictAlgorithm: ConflictAlgorithm.replace);
+  // }
 
   Future<void> deleteUser() async {
     await _db.delete(tableUser);
