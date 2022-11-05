@@ -1,56 +1,44 @@
-import 'package:dio/dio.dart';
+import 'package:http/http.dart' as http;
 import 'package:logger/logger.dart';
+import 'dart:convert';
+import 'package:flutter/foundation.dart' show kDebugMode;
 
 final logger = Logger();
 
-class DioClient {
-  final Dio _dio;
+class HTTPClient {
+  var client = http.Client();
 
-  DioClient(this._dio);
-
-  Future<dynamic> get(
-      String uri, {
-        Map<String, dynamic>? queryParameters,
-        Options? options,
-        CancelToken? cancelToken,
-        ProgressCallback? onReceiveProgress,
-      }) async {
+  Future<Map> get() async {
     try {
-      final Response response = await _dio.get(
-        uri,
-        queryParameters: queryParameters,
-        options: options,
-        cancelToken: cancelToken,
-        onReceiveProgress: onReceiveProgress,
-      );
-      return response.data;
+      var response = await client.post(Uri.https('example.com', 'whatsit/create'), body: {'name': 'doodle', 'color': 'blue'});
+      var decodedResponse = jsonDecode(utf8.decode(response.bodyBytes)) as Map;
+      var uri = Uri.parse(decodedResponse['uri'] as String);
+      return {'uri': uri};
+      // print(await client.get(uri));
     } catch (e) {
-      logger.e(e.toString());
+      if (kDebugMode) {
+        logger.e(e.toString());
+      }
+      return {};
+    } finally {
+      client.close();
     }
   }
 
-  Future<dynamic> post(
-      String uri, {
-        data,
-        Map<String, dynamic>? queryParameters,
-        Options? options,
-        CancelToken? cancelToken,
-        ProgressCallback? onSendProgress,
-        ProgressCallback? onReceiveProgress,
-      }) async {
+  Future<Map> post() async {
     try {
-      final Response response = await _dio.post(
-        uri,
-        data: data,
-        queryParameters: queryParameters,
-        options: options,
-        cancelToken: cancelToken,
-        onSendProgress: onSendProgress,
-        onReceiveProgress: onReceiveProgress,
-      );
-      return response.data;
+      var response = await client.post(Uri.https('example.com', 'whatsit/create'), body: {'name': 'doodle', 'color': 'blue'});
+      var decodedResponse = jsonDecode(utf8.decode(response.bodyBytes)) as Map;
+      var uri = Uri.parse(decodedResponse['uri'] as String);
+      return {'uri': uri};
+      // print(await client.get(uri));
     } catch (e) {
-      logger.e(e.toString());
+      if (kDebugMode) {
+        logger.e(e.toString());
+      }
+      return {};
+    } finally {
+      client.close();
     }
   }
 }

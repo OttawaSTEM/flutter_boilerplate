@@ -1,9 +1,8 @@
-
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:flutter_boilerplate/data/local/counter.dart';
-// import 'package:flutter_boilerplate/data/network/api.dart';
 
+import '../data/network/api.dart';
 
 class HomePage extends StatelessWidget {
   const HomePage({Key? key}) : super(key: key);
@@ -19,8 +18,7 @@ class HomePage extends StatelessWidget {
           mainAxisSize: MainAxisSize.min,
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
-            Text(
-                'You have pushed the button this many times: ${context.watch<Counter>().count}'),
+            Text('You have pushed the button this many times: ${context.watch<Counter>().count}'),
             const Count(),
             ElevatedButton(
               onPressed: () {
@@ -86,7 +84,6 @@ class Count extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Text('${context.watch<Counter>().count}',
-        key: const Key('counterState'), style: Theme.of(context).textTheme.headline4);
+    return Text('${context.watch<Counter>().count}', key: const Key('counterState'), style: Theme.of(context).textTheme.headline4);
   }
 }

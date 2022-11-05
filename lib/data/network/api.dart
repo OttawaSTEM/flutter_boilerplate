@@ -1,17 +1,13 @@
-import 'package:dio/dio.dart';
+import 'package:http/http.dart' as http;
 import 'package:logger/logger.dart';
-// import 'dart:convert';
 
-
-class HttpService{
+class HttpService {
   final logger = Logger();
-  var dio = Dio();
-
-  final String baseUrl = 'https://api.json-generator.com/templates/-eZlCwfKSpqC/data?access_token=60p9v6l4cvb874bi65k6vze2bbxuz4e81yyurvym';
 
   void get() async {
+    const String url = 'https://api.json-generator.com/templates/-eZlCwfKSpqC/data?access_token=60p9v6l4cvb874bi65k6vze2bbxuz4e81yyurvym';
     try {
-      var response = await dio.get(baseUrl);
+      final response = await http.get(Uri.parse(url));
       logger.i(response);
     } catch (e) {
       logger.i(e);
@@ -57,5 +53,5 @@ class HttpService{
   //       return handler.next(options);
   //     }
   //   },
-  //  ); 
+  //  );
 }
