@@ -1,35 +1,34 @@
+import 'dart:convert';
+import 'package:flutter/foundation.dart';
 import 'package:http/http.dart' as http;
 import 'package:logger/logger.dart';
 
 class HttpService {
   final logger = Logger();
 
-  void get() async {
+  // void get() async {
+  //   const String url = 'https://api.json-generator.com/templates/-eZlCwfKSpqC/data?access_token=60p9v6l4cvb874bi65k6vze2bbxuz4e81yyurvym';
+  //   try {
+  //     final response = await http.get(Uri.parse(url));
+  //     logger.i(response);
+  //   } catch (e) {
+  //     logger.i(e);
+  //   }
+  // }
+
+  Future fetchUsers() async {
+    var data = [];
     const String url = 'https://api.json-generator.com/templates/-eZlCwfKSpqC/data?access_token=60p9v6l4cvb874bi65k6vze2bbxuz4e81yyurvym';
     try {
       final response = await http.get(Uri.parse(url));
-      logger.i(response);
+      data = json.decode(response.body);
     } catch (e) {
-      logger.i(e);
+      if (kDebugMode) {
+        logger.e(e.toString());
+      }
     }
+    return data;
   }
-
-  // Future<Map> get() async {
-  //   try {
-  //     var response = await client.post(Uri.https('example.com', 'whatsit/create'), body: {'name': 'doodle', 'color': 'blue'});
-  //     var decodedResponse = jsonDecode(utf8.decode(response.bodyBytes)) as Map;
-  //     var uri = Uri.parse(decodedResponse['uri'] as String);
-  //     return {'uri': uri};
-  //     // print(await client.get(uri));
-  //   } catch (e) {
-  //     if (kDebugMode) {
-  //       logger.e(e.toString());
-  //     }
-  //     return {};
-  //   } finally {
-  //     client.close();
-  //   }
-  // }
 
 // Future<List<User>> fetchUsers() async {
 // try {

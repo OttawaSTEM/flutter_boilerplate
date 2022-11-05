@@ -6,7 +6,7 @@ import 'package:flutter_boilerplate/views/user_page.dart';
 
 Map<String, Widget Function(BuildContext)> appRoutes = {
   // Pages
-  '/': (context) => const HomePage(),
+  '/': (context) => const HomePage(title: 'Home Page Title'),
   '/second': (context) => const SecondPage(),
   '/user': (context) => const UserPage(),
 
