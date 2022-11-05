@@ -36,7 +36,6 @@ dependencies:
   provider: ^6.0.0
   sqflite: ^2.0.2
   path: ^1.8.1
-  # dio: ^4.0.6
   logger: ^1.1.0
   http: ^0.13.4
 
@@ -54,11 +53,12 @@ dev_dependencies:
 # For information on the generic Dart part of this file, see the
 # following page: https://dart.dev/tools/pub/pubspec
 
-# flutter pub run flutter_native_splash:remove
-# flutter clean && flutter pub get && flutter pub run flutter_native_splash:create
+# For update splash
+# flutter pub run flutter_native_splash:create
 flutter_native_splash:
   color: "#ffffff"
-  color_dark: "#000000"
+  color_dark: "#121212"     # For OS dark mode
+  # color_dark: "#ffffff"     # For OS dark mode
   image: assets/images/logo.png
   image_dark: assets/images/logo.png
   android: true

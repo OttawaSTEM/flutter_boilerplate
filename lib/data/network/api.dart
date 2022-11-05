@@ -14,6 +14,23 @@ class HttpService {
     }
   }
 
+  // Future<Map> get() async {
+  //   try {
+  //     var response = await client.post(Uri.https('example.com', 'whatsit/create'), body: {'name': 'doodle', 'color': 'blue'});
+  //     var decodedResponse = jsonDecode(utf8.decode(response.bodyBytes)) as Map;
+  //     var uri = Uri.parse(decodedResponse['uri'] as String);
+  //     return {'uri': uri};
+  //     // print(await client.get(uri));
+  //   } catch (e) {
+  //     if (kDebugMode) {
+  //       logger.e(e.toString());
+  //     }
+  //     return {};
+  //   } finally {
+  //     client.close();
+  //   }
+  // }
+
 // Future<List<User>> fetchUsers() async {
 // try {
 //     Response response = await Dio().get(‘https://jsonplaceholder.typicode.com/users’);

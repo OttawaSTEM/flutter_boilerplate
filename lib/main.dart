@@ -1,28 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_boilerplate/models/user.dart';
-import 'package:provider/provider.dart';
+import 'routes/index.dart';
 
-import 'package:flutter_boilerplate/data/local/counter.dart';
-import 'package:flutter_boilerplate/data/local/shopping_cart.dart';
-
-import 'package:flutter_boilerplate/views/home.dart';
-import 'package:flutter_boilerplate/views/second_page.dart';
-import 'package:flutter_boilerplate/views/user_page.dart';
-
-void main() {
-  // runApp(const MyApp());
-  runApp(
-    MultiProvider(
-      providers: [
-        ChangeNotifierProvider(create: (_) => Counter()),
-        ChangeNotifierProvider(create: (_) => ShoppingCart()),
-        ChangeNotifierProvider(create: (_) => User()),
-      ],
-      child: const MyApp(),
-    ),
-  );
-
-}
+void main() => runApp(const MyApp());
 
 class MyApp extends StatelessWidget {
   const MyApp({Key? key}) : super(key: key);
@@ -32,11 +11,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       initialRoute: '/',
-      routes: {
-        '/': (context) => const HomePage(),
-        '/second': (context) => const SecondPage(),
-        '/user': (context) => const UserPage(),
-      },
+      routes: appRoutes,
     );
   }
 }
