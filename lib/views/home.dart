@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import '../data/network/api.dart';
+import 'package:flutter_boilerplate/data/network/api.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key, required this.title});
