@@ -33,7 +33,7 @@ class _HomePageState extends State<HomePage> {
                   Map user = users[index];
                   return ListTile(
                     title: Text('${user['name']}'),
-                    subtitle: Text('${user['about']}'),
+                    subtitle: Text('${user['age']}'),
                     // onTap: () {
                     //   Navigator.of(context).push(MaterialPageRoute(builder: (context) => PostDetails(thisItem['id'].toString())));
                     // },

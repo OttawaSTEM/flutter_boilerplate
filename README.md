@@ -1,22 +1,19 @@
 # flutter_boilerplate
 
-# Setup splash in pubspec.yaml (flutter_native_splash)
-## If you have a flavor called production you would do this:
-flutter pub run flutter_native_splash:create --flavor production
+# Local http request
+Add '--disable-web-security' in the chrome web configuration.
+1. Go to flutter\bin\cache and remove a file named: flutter_tools.stamp
+2. Go to flutter\packages\flutter_tools\lib\src\web and open the file chrome.dart.
+3. Find '--disable-extensions'
+4. Add '--disable-web-security',            # !!! Including ,(comma)
 
-## For a flavor with a name staging you would provide it's name like so:
-flutter pub run flutter_native_splash:create --flavor staging
+# Flutter http: api vs client - ??? Django auth session ???
+api: Single http request
+client: Multiple requests and a persistent connection
 
-## And if you have a local version for devs you could do that:
-flutter pub run flutter_native_splash:create --flavor development
 
 # Flutter MVC+S Design Pattern
 Model:      lib\models
 View:       lib\ui
 Controller: lib\providers
 Services:   lib\services
-
-
-# api vs client
-api: Single http request
-client: Multiple requests and a persistent connection
