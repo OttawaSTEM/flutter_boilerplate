@@ -4,7 +4,8 @@ class Common {
   // App content
   static String appName = "Flutter Boilerplate";
   static String contactEmail = "support@acelords.space";
-  static String appAbout = "Using this app will improve your project deliverability and sharpen your understanding of Flutter"
+  static String appAbout =
+      "Using this app will improve your project deliverability and sharpen your understanding of Flutter"
       "and BLoC pattern in no time. Build Flutter apps like a pro!";
 
   // Images
