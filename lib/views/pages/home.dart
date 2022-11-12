@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 
+import 'package:flutter_boilerplate/views/partials/drawer.dart';
 import 'package:flutter_boilerplate/data/network/api.dart';
 
 class HomePage extends StatefulWidget {
@@ -20,6 +21,7 @@ class _HomePageState extends State<HomePage> {
       appBar: AppBar(
         title: Text(widget.title),
       ),
+      drawer: const NavigationDrawer(),
       body: FutureBuilder(
         future: _users,
         builder: (BuildContext context, AsyncSnapshot snapshot) {
