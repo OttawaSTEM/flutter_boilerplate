@@ -1,1 +1,1 @@
-const String appLogo = "images/logo.png";
+const String appLogo = "assets/images/logo.png";
