@@ -17,7 +17,7 @@ class User with ChangeNotifier {
       Uri.parse('https://ottawastem-flutter-backend.herokuapp.com/api/user/'),
     );
 
-    print(response.body);
+    // kDebugMode ? print(response.body) : null;
     if (response.statusCode == 200) {
       try {
         _jsonData = jsonDecode(response.body);

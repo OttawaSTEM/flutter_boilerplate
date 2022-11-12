@@ -10,7 +10,7 @@ class HttpService {
 
   Future fetchUsers() async {
     var data = [];
-    String url = HttpReq.apiBaseUrl;
+    String url = apiBaseUrl;
     try {
       final response = await http.get(Uri.parse(url));
       data = json.decode(response.body);

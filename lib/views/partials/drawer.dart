@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_boilerplate/constants/assets.dart';
-import 'package:flutter_boilerplate/constants/common.dart';
 import 'package:flutter_boilerplate/constants/colors.dart';
+import 'package:flutter_boilerplate/constants/strings.dart';
 
 import 'package:flutter_boilerplate/views/pages/home.dart';
+import 'package:flutter_boilerplate/views/pages/login.dart';
 import 'package:flutter_boilerplate/views/pages/second_page.dart';
 // import 'package:material_design_icons_flutter/material_design_icons_flutter.dart';
 // import 'package:flutter_boilerplate/utils/styles.dart';
@@ -26,7 +27,7 @@ class NavigationDrawer extends StatelessWidget {
 
   Widget drawerHeader(BuildContext context) => Material(
         // color: Colors.black54,
-        color: AppColors.dividerColor,
+        color: dividerColor,
         child: InkWell(
             onTap: () {},
             child: Container(
@@ -36,11 +37,11 @@ class NavigationDrawer extends StatelessWidget {
                 bottom: 24,
               ),
               child: Column(children: const [
-                // CircleAvatar(
-                //   radius: 52,
-                //   // backgroundImage: AssetImage(Assets.appLogo),
-                //   backgroundImage: AssetImage('assets/images/logo.png'),
-                // ),
+                CircleAvatar(
+                  radius: 52,
+                  // backgroundImage: AssetImage(Assets.appLogo),
+                  backgroundImage: AssetImage(appLogo),
+                ),
                 SizedBox(height: 12),
                 Text('Ottawa STEM Club', style: TextStyle(fontSize: 28)),
                 Text('ottawastem@gmail.com', style: TextStyle(fontSize: 16)),
@@ -55,7 +56,7 @@ class NavigationDrawer extends StatelessWidget {
             ListTile(
               leading: const Icon(Icons.home_outlined),
               title: const Text('Home'),
-              onTap: () => Navigator.of(context).pushReplacement(MaterialPageRoute(builder: (context) => HomePage(title: Common.appName))),
+              onTap: () => Navigator.of(context).pushReplacement(MaterialPageRoute(builder: (context) => const HomePage(title: appName))),
             ),
             ListTile(
                 leading: const Icon(Icons.workspaces_outlined),
@@ -69,10 +70,27 @@ class NavigationDrawer extends StatelessWidget {
                   ));
                 }),
             ListTile(
-              leading: const Icon(Icons.update),
-              title: const Text('Updates'),
-              onTap: () {},
-            ),
+                leading: const Icon(Icons.login_outlined),
+                title: const Text('Login'),
+                onTap: () {
+                  // Close navigation drawer first
+                  Navigator.pop(context);
+                  Navigator.of(context).push(MaterialPageRoute(
+                    // < Menu
+                    builder: (context) => const LoginPage(),
+                  ));
+                }),
+            ListTile(
+                leading: const Icon(Icons.update),
+                title: const Text('Updates'),
+                onTap: () {
+                  // Close navigation drawer first
+                  Navigator.pop(context);
+                  Navigator.of(context).push(MaterialPageRoute(
+                    // < Menu
+                    builder: (context) => const SecondPage(),
+                  ));
+                }),
             // const Divider(color: AppColors.dividerColor),
             const Divider(color: Colors.black54),
             ListTile(
