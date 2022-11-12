@@ -17,15 +17,16 @@ class NavigationDrawer extends StatelessWidget {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.stretch,
             children: <Widget>[
-              DrawerHeader(context),
-              DrawerMenuItems(context),
+              drawerHeader(context),
+              drawerMenuItems(context),
             ],
           ),
         ),
       );
 
-  Widget DrawerHeader(BuildContext context) => Material(
-        color: Colors.black54,
+  Widget drawerHeader(BuildContext context) => Material(
+        // color: Colors.black54,
+        color: AppColors.dividerColor,
         child: InkWell(
             onTap: () {},
             child: Container(
@@ -35,10 +36,11 @@ class NavigationDrawer extends StatelessWidget {
                 bottom: 24,
               ),
               child: Column(children: const [
-                CircleAvatar(
-                  radius: 52,
-                  backgroundImage: AssetImage(Assets.appLogo),
-                ),
+                // CircleAvatar(
+                //   radius: 52,
+                //   // backgroundImage: AssetImage(Assets.appLogo),
+                //   backgroundImage: AssetImage('assets/images/logo.png'),
+                // ),
                 SizedBox(height: 12),
                 Text('Ottawa STEM Club', style: TextStyle(fontSize: 28)),
                 Text('ottawastem@gmail.com', style: TextStyle(fontSize: 16)),
@@ -46,18 +48,14 @@ class NavigationDrawer extends StatelessWidget {
             )),
       );
 
-  Widget DrawerMenuItems(BuildContext context) => Container(
+  Widget drawerMenuItems(BuildContext context) => Container(
         padding: const EdgeInsets.all(24),
         child: Wrap(
           children: [
             ListTile(
               leading: const Icon(Icons.home_outlined),
               title: const Text('Home'),
-              onTap: () =>
-                  Navigator.of(context).pushReplacement(MaterialPageRoute(
-                      builder: (context) =>
-                          // const HomePage(title: Common.appName))),
-                          const HomePage(title: 'title'))),
+              onTap: () => Navigator.of(context).pushReplacement(MaterialPageRoute(builder: (context) => HomePage(title: Common.appName))),
             ),
             ListTile(
                 leading: const Icon(Icons.workspaces_outlined),

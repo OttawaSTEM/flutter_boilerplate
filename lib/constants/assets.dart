@@ -1,4 +1,6 @@
 class Assets {
   // splash screen assets
-  static const String appLogo = "assets/images/logo.png";
+  static String appLogo = "assets/images/logo.png";
+
+  Assets(String appLogo);
 }
