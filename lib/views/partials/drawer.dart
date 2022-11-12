@@ -59,7 +59,7 @@ class NavigationDrawer extends StatelessWidget {
             ),
             ListTile(
                 leading: const Icon(Icons.workspaces_outlined),
-                title: const Text('Workflow'),
+                title: const Text('Second Page'),
                 onTap: () {
                   // Close navigation drawer first
                   Navigator.pop(context);
