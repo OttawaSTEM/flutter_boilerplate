@@ -9,6 +9,12 @@ const String appAbout =
 
 const String txtEmail = 'Email';
 const String txtPassword = 'Password';
+const String txtForgetPassword = 'Forgot Password?';
+const String txtLogin = 'Login';
+const String txtSigninGoogle = 'Sign in with Google';
+const String txtNoAccount = 'Don\'t have an account? ';
+const String txtSignUp = 'Sign up';
+const String txtOR = 'OR';
 
 // Images
 const String logoImage = 'assets/images/logo.png';
