@@ -20,6 +20,7 @@ class LoginHeader extends StatelessWidget {
           image: const AssetImage(appLogo),
           height: screenSize.height * 0.1,
         ),
+        const SizedBox(height: 20),
         Text(appName, style: Theme.of(context).textTheme.headline5),
         Text(appName, style: Theme.of(context).textTheme.bodyText1),
         const SizedBox(height: 30),

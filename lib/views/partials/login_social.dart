@@ -15,10 +15,14 @@ class LoginSocial extends StatelessWidget {
       children: [
         const Text(
           txtOR,
-          style: TextStyle(height: 2, fontSize: 16),
+          style: TextStyle(height: 3, fontSize: 16),
+        ),
+        const SizedBox(
+          height: 10,
         ),
         SizedBox(
           width: double.infinity,
+          height: 50,
           child: OutlinedButton.icon(
             icon: const Image(
               image: AssetImage(googleLogo),
@@ -35,6 +39,7 @@ class LoginSocial extends StatelessWidget {
             TextSpan(
                 text: txtNoAccount,
                 style: Theme.of(context).textTheme.bodyText1,
+                // style: TextStyle(height: 3, fontSize: 16),
                 children: const [
                   TextSpan(
                     text: txtSignUp,

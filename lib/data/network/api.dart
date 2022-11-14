@@ -12,6 +12,7 @@ class HttpService {
     var data = [];
     String url = apiBaseUrl;
     try {
+      // final response = await http.get(Uri.parse(url));
       final response = await http.get(Uri.parse(url));
       data = json.decode(response.body);
     } catch (e) {
