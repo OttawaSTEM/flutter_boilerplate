@@ -17,3 +17,10 @@ Model:      lib\models
 View:       lib\ui
 Controller: lib\providers
 Services:   lib\services
+
+
+# Tools
+[QuickType - Convert JSON to Class](https://quicktype.io/)
+## Vscode Extensions
+Bloc
+Dart Data Class Generator

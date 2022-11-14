@@ -41,3 +41,31 @@ class User with ChangeNotifier {
     notifyListeners();
   }
 }
+
+
+
+// import 'dart:convert';
+
+// List<Welcome> welcomeFromJson(String str) => List<Welcome>.from(json.decode(str).map((x) => Welcome.fromJson(x)));
+
+// String welcomeToJson(List<Welcome> data) => json.encode(List<dynamic>.from(data.map((x) => x.toJson())));
+
+// class Welcome {
+//     Welcome({
+//         this.name,
+//         this.age,
+//     });
+
+//     String name;
+//     int age;
+
+//     factory Welcome.fromJson(Map<String, dynamic> json) => Welcome(
+//         name: json["name"],
+//         age: json["age"],
+//     );
+
+//     Map<String, dynamic> toJson() => {
+//         "name": name,
+//         "age": age,
+//     };
+// }

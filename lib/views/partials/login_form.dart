@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
 
-import 'package:flutter_boilerplate/constants/assets.dart';
-import 'package:flutter_boilerplate/constants/sizes.dart';
 import 'package:flutter_boilerplate/constants/strings.dart';
 
 class LoginForm extends StatelessWidget {
