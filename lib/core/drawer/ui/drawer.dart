@@ -3,7 +3,7 @@ import 'package:flutter_boilerplate/constants/assets.dart';
 import 'package:flutter_boilerplate/constants/colors.dart';
 import 'package:flutter_boilerplate/constants/strings.dart';
 
-import 'package:flutter_boilerplate/modules/home/home.dart';
+import 'package:flutter_boilerplate/modules/home/ui/home.dart';
 import 'package:flutter_boilerplate/core/auth/ui/login.dart';
 import 'package:flutter_boilerplate/modules/second_page/ui/second_page.dart';
 // import 'package:material_design_icons_flutter/material_design_icons_flutter.dart';
