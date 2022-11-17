@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import 'package:flutter_boilerplate/views/partials/drawer.dart';
+import 'package:flutter_boilerplate/core/drawer/ui/drawer.dart';
 import 'package:flutter_boilerplate/data/network/api.dart';
 
 class HomePage extends StatefulWidget {

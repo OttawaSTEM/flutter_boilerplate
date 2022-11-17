@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 
-import 'package:flutter_boilerplate/views/partials/login_header.dart';
-import 'package:flutter_boilerplate/views/partials/login_form.dart';
-import 'package:flutter_boilerplate/views/partials/login_social.dart';
+import 'package:flutter_boilerplate/core/auth/ui/login_header.dart';
+import 'package:flutter_boilerplate/core/auth/ui/login_form.dart';
+import 'package:flutter_boilerplate/core/auth/ui/login_social.dart';
 
 class LoginPage extends StatelessWidget {
   const LoginPage({Key? key}) : super(key: key);

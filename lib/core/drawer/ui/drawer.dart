@@ -3,9 +3,9 @@ import 'package:flutter_boilerplate/constants/assets.dart';
 import 'package:flutter_boilerplate/constants/colors.dart';
 import 'package:flutter_boilerplate/constants/strings.dart';
 
-import 'package:flutter_boilerplate/views/pages/home.dart';
-import 'package:flutter_boilerplate/views/pages/login.dart';
-import 'package:flutter_boilerplate/views/pages/second_page.dart';
+import 'package:flutter_boilerplate/modules/home/home.dart';
+import 'package:flutter_boilerplate/core/auth/ui/login.dart';
+import 'package:flutter_boilerplate/modules/second_page/ui/second_page.dart';
 // import 'package:material_design_icons_flutter/material_design_icons_flutter.dart';
 // import 'package:flutter_boilerplate/utils/styles.dart';
 
@@ -56,7 +56,9 @@ class NavigationDrawer extends StatelessWidget {
             ListTile(
               leading: const Icon(Icons.home_outlined),
               title: const Text('Home'),
-              onTap: () => Navigator.of(context).pushReplacement(MaterialPageRoute(builder: (context) => const HomePage(title: appName))),
+              onTap: () => Navigator.of(context).pushReplacement(
+                  MaterialPageRoute(
+                      builder: (context) => const HomePage(title: appName))),
             ),
             ListTile(
                 leading: const Icon(Icons.workspaces_outlined),
