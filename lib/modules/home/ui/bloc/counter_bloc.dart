@@ -12,27 +12,14 @@ part 'counter_state.dart';
 //   }
 // }
 
-class CounterBloc extends Bloc<CounterEvent, CounterState> {
-  int count;
+class CounterBlocs extends Bloc<CounterEvents, CounterStates> {
+  CounterBlocs() : super(CounterInitial()) {
+    on<IncrementCounterEvent>((event, emit) {
+      emit(CounterStates(counter: state.counter + 1));
+    });
 
-  CounterBloc({this.count = 0}) : super(InitialCounterState(count));
-
-  @override
-  Stream<CounterState> mapEventToState(CounterEvent event) async* {
-    if (event is IncrementCounterEvent) {
-      this.count = this.count + 1;
-      yield UpdatedCounterState(this.count);
-    } else if (event is DecrementCounterEvent) {
-      this.count = this.count - 1;
-      yield UpdatedCounterState(this.count);
-    } else {
-      throw UnknownEventException();
-    }
+    on<DecrementCounterEvent>((event, emit) {
+      emit(CounterStates(counter: state.counter - 1));
+    });
   }
-}
-
-class UnknownEventException extends Equatable implements Exception {
-  const UnknownEventException();
-  @override
-  List<Object> get props => [];
 }

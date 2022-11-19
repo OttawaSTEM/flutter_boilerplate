@@ -1,33 +1,18 @@
 part of 'counter_bloc.dart';
 
 // abstract class CounterState extends Equatable {
-//   const CounterState();
-
+//   int counter;
+//   const CounterStates({required this.counter});
+// }
 //   @override
 //   List<Object> get props => [];
 // }
 
-// class CounterInitial extends CounterState {}
-
-abstract class CounterState extends Equatable {
-  final int count;
-  const CounterState(this.count);
-
-  @override
-  List<Object> get props => [count];
+class CounterStates {
+  int counter;
+  CounterStates({required this.counter});
 }
 
-class InitialCounterState extends CounterState {
-  const InitialCounterState(int count) : super(count);
-
-  @override
-  String toString() => "InitialCounterState with count:${count.toString()}";
-}
-
-class UpdatedCounterState extends CounterState {
-  const UpdatedCounterState(int count) : super(count);
-
-  @override
-  String toString() =>
-      "UpdatedCounterState with count:${count.toString()}"; // For testing
+class CounterInitial extends CounterStates {
+  CounterInitial() : super(counter: 0);
 }

@@ -4,12 +4,10 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 // import 'package:flutter_boilerplate/core/drawer/ui/drawer.dart';
 // import 'package:flutter_boilerplate/data/network/api.dart';
 
-
 import 'package:flutter_boilerplate/modules/home/ui/bloc/counter_bloc.dart';
-import 'package:flutter_boilerplate/modules/home/ui/bloc/counter_event.dart';
 // import 'package:flutter_boilerplate/modules/home/ui/bloc/counter_event.dart';
 // import 'package:flutter_boilerplate/modules/home/ui/bloc/counter_state.dart';
-
+// import 'package:flutter_boilerplate/modules/home/ui/bloc/counter_event.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key, required this.title});
@@ -30,58 +28,58 @@ class _HomePageState extends State<HomePage> {
         title: Text(widget.title),
       ),
       // drawer: const NavigationDrawer(),
-body: Center(
-        child: Column(
+      body: BlocBuilder<CounterBlocs, CounterStates>(builder: (context, state) {
+        return Column(
+          //crossAxisAlignment: CrossAxisAlignment.center,
           mainAxisAlignment: MainAxisAlignment.center,
-          children: <Widget>[
-            const Text(
-              'You have pushed the button this many times:',
+          children: [
+            Text(
+              state.counter.toString(),
+              style: const TextStyle(fontSize: 30),
             ),
-            BlocBuilder<CounterBloc, CounterState>(
-              builder: (context, state) {
-                return Text(
-                  state.count.toString(),
-                  style: Theme.of(context).textTheme.headline4,
-                );
-              },
+            Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                ElevatedButton(
+                    onPressed: () => BlocProvider.of<CounterBlocs>(context)
+                        .add(IncrementCounterEvent()),
+                    child: const Icon(Icons.add)),
+                const SizedBox(
+                  width: 10,
+                ),
+                ElevatedButton(
+                    onPressed: () => BlocProvider.of<CounterBlocs>(context)
+                        .add(DecrementCounterEvent()),
+                    child: const Icon(Icons.remove))
+              ],
             ),
+            const SizedBox(
+              height: 10,
+            ),
+            // InkWell(
+            //   onTap: () {
+            //     Navigator.push(
+            //         context,
+            //         MaterialPageRoute(
+            //             builder: (context) => const SecondPage()));
+            //   },
+            //   child: Container(
+            //     width: 138,
+            //     height: 35,
+            //     decoration: BoxDecoration(
+            //       borderRadius: BorderRadius.circular(5),
+            //       color: Colors.grey,
+            //     ),
+            //     child: const Center(
+            //         child: Text(
+            //       "click",
+            //       style: TextStyle(color: Colors.white),
+            //     )),
+            //   ),
+            // )
           ],
-        ),
-      ),
-      floatingActionButton: Column(
-        mainAxisAlignment: MainAxisAlignment.end,
-        children: <Widget>[
-          FloatingActionButton(
-            heroTag: 'IncrementButton',
-            onPressed: () {
-              BlocProvider.of<CounterBloc>(context)
-                  .add(IncrementCounterEvent());
-            },
-            tooltip: 'Increment',
-            child: Icon(Icons.add),
-          ),
-          const SizedBox(
-            height: 10,
-          ),
-          FloatingActionButton(
-            heroTag: 'DecrementButton',
-            onPressed: () {
-              BlocProvider.of<CounterBloc>(context)
-                  .add(DecrementCounterEvent());
-            },
-            tooltip: 'Decrement',
-            child: Icon(Icons.remove),
-          ),
-        ],
-      ), // 
-    ),
-
-
-
-
-
-
-
+        );
+      }),
 
       // body: FutureBuilder(
       //   future: _users,
@@ -106,7 +104,7 @@ body: Center(
       //       return const Center(child: CircularProgressIndicator());
       //     }
       //   },
-      ),
+      // ),
     );
   }
 }
