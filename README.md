@@ -24,3 +24,8 @@ Services:   lib\services
 ## Vscode Extensions
 Bloc
 Dart Data Class Generator
+
+# Bloc Shortcut
+Click the light bulb
+Windows: Crtl + .
+Mac OS:  Command + .

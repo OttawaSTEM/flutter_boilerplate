@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'routes/routes.dart';
+
+import 'package:flutter_boilerplate/modules/home/cubit/counter_cubit.dart';
 
 void main() => runApp(const App());
 
@@ -8,10 +11,19 @@ class App extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      initialRoute: '/',
-      // initialRoute: '/login',
-      routes: appRoutes,
+    // return MaterialApp(
+    //   initialRoute: '/',
+    //   // initialRoute: '/login',
+    //   routes: appRoutes,
+    // );
+
+    return BlocProvider(
+      create: (context) => CounterCubit(),
+      child: MaterialApp(
+        initialRoute: '/',
+        // initialRoute: '/login',
+        routes: appRoutes,
+      ),
     );
   }
 }
