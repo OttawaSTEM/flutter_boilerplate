@@ -1,17 +1,13 @@
 import 'package:flutter/material.dart';
 import 'routes/routes.dart';
 
-void main() => runApp(const MyApp());
+void main() => runApp(const App());
 
-class MyApp extends StatelessWidget {
-  const MyApp({Key? key}) : super(key: key);
+class App extends StatelessWidget {
+  const App({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-
-
-
-    
     return MaterialApp(
       initialRoute: '/',
       // initialRoute: '/login',
