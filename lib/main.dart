@@ -3,6 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'routes/routes.dart';
 
 import '../modules/counter/cubit/counter_cubit.dart';
+// import '../modules/weather/cubit/weather_cubit.dart';
 
 void main() => runApp(const App());
 
@@ -19,6 +20,7 @@ class App extends StatelessWidget {
 
     return BlocProvider(
       create: (context) => CounterCubit(),
+      // create: (context) => WeatherCubit(),
       child: MaterialApp(
         initialRoute: '/',
         routes: appRoutes,

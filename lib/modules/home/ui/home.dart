@@ -37,9 +37,9 @@ class _HomePageState extends State<HomePage> {
               height: 40,
               child: (Center(
                 child: (ElevatedButton(
-                  child: const Text('Counter Page'),
+                  child: const Text('Weather Page'),
                   onPressed: () {
-                    Navigator.of(context).pushNamed('/counter');
+                    Navigator.of(context).pushNamed('/weather');
                   },
                 )),
               )),

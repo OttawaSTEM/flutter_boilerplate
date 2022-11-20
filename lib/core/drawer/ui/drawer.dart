@@ -5,7 +5,6 @@ import 'package:flutter_boilerplate/constants/strings.dart';
 
 import 'package:flutter_boilerplate/modules/home/ui/home.dart';
 import 'package:flutter_boilerplate/core/auth/ui/login.dart';
-import 'package:flutter_boilerplate/modules/second_page/ui/second_page.dart';
 // import 'package:material_design_icons_flutter/material_design_icons_flutter.dart';
 // import 'package:flutter_boilerplate/utils/styles.dart';
 
@@ -60,17 +59,17 @@ class NavigationDrawer extends StatelessWidget {
                   MaterialPageRoute(
                       builder: (context) => const HomePage(title: appName))),
             ),
-            ListTile(
-                leading: const Icon(Icons.workspaces_outlined),
-                title: const Text('Second Page'),
-                onTap: () {
-                  // Close navigation drawer first
-                  Navigator.pop(context);
-                  Navigator.of(context).push(MaterialPageRoute(
-                    // < Menu
-                    builder: (context) => const SecondPage(),
-                  ));
-                }),
+            // ListTile(
+            //     leading: const Icon(Icons.workspaces_outlined),
+            //     title: const Text('Second Page'),
+            //     onTap: () {
+            //       // Close navigation drawer first
+            //       Navigator.pop(context);
+            //       Navigator.of(context).push(MaterialPageRoute(
+            //         // < Menu
+            //         builder: (context) => const SecondPage(),
+            //       ));
+            //     }),
             ListTile(
                 leading: const Icon(Icons.login_outlined),
                 title: const Text('Login'),
@@ -82,17 +81,17 @@ class NavigationDrawer extends StatelessWidget {
                     builder: (context) => const LoginPage(),
                   ));
                 }),
-            ListTile(
-                leading: const Icon(Icons.update),
-                title: const Text('Updates'),
-                onTap: () {
-                  // Close navigation drawer first
-                  Navigator.pop(context);
-                  Navigator.of(context).push(MaterialPageRoute(
-                    // < Menu
-                    builder: (context) => const SecondPage(),
-                  ));
-                }),
+            // ListTile(
+            //     leading: const Icon(Icons.update),
+            //     title: const Text('Updates'),
+            //     onTap: () {
+            //       // Close navigation drawer first
+            //       Navigator.pop(context);
+            //       Navigator.of(context).push(MaterialPageRoute(
+            //         // < Menu
+            //         builder: (context) => const SecondPage(),
+            //       ));
+            //     }),
             // const Divider(color: AppColors.dividerColor),
             const Divider(color: Colors.black54),
             ListTile(
