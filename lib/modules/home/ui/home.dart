@@ -1,8 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
-
-import '../../../routes/routes.dart';
-import '../../counter/ui/counter.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key, required this.title});
@@ -25,17 +21,14 @@ class _HomePageState extends State<HomePage> {
       // drawer: const NavigationDrawer(),
       body: SafeArea(
         child: Column(
-          children: <Widget>[
-            ElevatedButton(
-              child: const Text('Open route'),
-              onPressed: () {
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                      builder: (context) =>
-                          const CounterPage(title: 'Counter Page')),
-                );
-              },
+          children: [
+            Center(
+              child: (ElevatedButton(
+                child: const Text('Counter Page'),
+                onPressed: () {
+                  Navigator.of(context).pushNamed('/counter');
+                },
+              )),
             ),
           ],
         ),

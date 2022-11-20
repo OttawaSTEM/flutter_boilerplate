@@ -31,6 +31,7 @@ class _CounterPageState extends State<CounterPage> {
               builder: (context, state) {
                 return Text(
                   state.counterValue.toString(),
+                  style: Theme.of(context).textTheme.headline4,
                 );
               },
             ),
@@ -40,18 +41,16 @@ class _CounterPageState extends State<CounterPage> {
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: [
-                FloatingActionButton(
+                ElevatedButton(
                   onPressed: () {
                     BlocProvider.of<CounterCubit>(context).decrement();
                   },
-                  tooltip: 'Decrement',
                   child: const Icon(Icons.remove),
                 ),
-                FloatingActionButton(
+                ElevatedButton(
                   onPressed: () {
                     BlocProvider.of<CounterCubit>(context).increment();
                   },
-                  tooltip: 'Increment',
                   child: const Icon(Icons.add),
                 ),
               ],
