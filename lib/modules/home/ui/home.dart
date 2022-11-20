@@ -22,12 +22,26 @@ class _HomePageState extends State<HomePage> {
       body: SafeArea(
         child: Column(
           children: [
-            Center(
-              child: (ElevatedButton(
-                child: const Text('Counter Page'),
-                onPressed: () {
-                  Navigator.of(context).pushNamed('/counter');
-                },
+            SizedBox(
+              height: 80,
+              child: (Center(
+                child: (ElevatedButton(
+                  child: const Text('Counter Page'),
+                  onPressed: () {
+                    Navigator.of(context).pushNamed('/counter');
+                  },
+                )),
+              )),
+            ),
+            SizedBox(
+              height: 40,
+              child: (Center(
+                child: (ElevatedButton(
+                  child: const Text('Counter Page'),
+                  onPressed: () {
+                    Navigator.of(context).pushNamed('/counter');
+                  },
+                )),
               )),
             ),
           ],
