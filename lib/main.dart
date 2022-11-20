@@ -20,9 +20,7 @@ class App extends StatelessWidget {
     return BlocProvider(
       create: (context) => CounterCubit(),
       child: MaterialApp(
-        initialRoute: '/counter',
-        // initialRoute: '/',
-        // initialRoute: '/login',
+        initialRoute: '/',
         routes: appRoutes,
       ),
     );

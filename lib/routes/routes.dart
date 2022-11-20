@@ -9,11 +9,8 @@ import '../modules/second_page/ui/second_page.dart';
 // import 'package:flutter_boilerplate/views/pages/user_page.dart';
 
 Map<String, Widget Function(BuildContext)> appRoutes = {
-  // Bloc Test
-  '/counter': (context) => const CounterPage(title: 'Counter'),
-
   // Pages
-  '/': (context) => const HomePage(title: appName),
+  '/': (context) => const HomePage(title: 'Home Page'),
   '/login': (context) => const LoginPage(),
 
   '/second': (context) => const SecondPage(),
@@ -22,4 +19,7 @@ Map<String, Widget Function(BuildContext)> appRoutes = {
   // Auth
 
   // Backend
+
+  // Bloc Test
+  '/counter': (context) => const CounterPage(title: 'Counter'),
 };
