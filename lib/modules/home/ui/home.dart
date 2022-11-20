@@ -1,15 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-import '../cubit/counter_cubit.dart';
-// part '../cubit/counter_state.dart';
-
-// import 'package:flutter_boilerplate/core/drawer/ui/drawer.dart';
-// import 'package:flutter_boilerplate/data/network/api.dart';
-
-// import 'package:flutter_boilerplate/modules/home/cubit/counter_cubit.dart';
-// part 'home/cubit/counter_state.dart';
-
 class HomePage extends StatefulWidget {
   const HomePage({super.key, required this.title});
 
@@ -31,61 +22,11 @@ class _HomePageState extends State<HomePage> {
       // drawer: const NavigationDrawer(),
       body: SafeArea(
         child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: <Widget>[
-            const Text('Pushed button:'),
-            BlocBuilder<CounterCubit, CounterState>(
-              builder: (context, state) {
-                return Text(
-                  state.counterValue.toString(),
-                );
-              },
-            ),
-            const SizedBox(
-              height: 24,
-            ),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-              children: [
-                FloatingActionButton(
-                  onPressed: () {
-                    BlocProvider.of<CounterCubit>(context).decrement();
-                    // context.bloc<CounterCubit>().decrement();
-                  },
-                  tooltip: 'Decrement',
-                  child: const Icon(Icons.remove),
-                ),
-                FloatingActionButton(
-                  onPressed: () {
-                    BlocProvider.of<CounterCubit>(context).increment();
-                    // context.bloc<CounterCubit>().increment();
-                  },
-                  tooltip: 'Increment',
-                  child: const Icon(Icons.add),
-                ),
-              ],
-            ),
+          children: const <Widget>[
+            Text('Home Page'),
           ],
         ),
       ),
-      // floatingActionButton: Column(
-      //   mainAxisAlignment: MainAxisAlignment.end,
-      //   crossAxisAlignment: CrossAxisAlignment.end,
-      //   children: <Widget>[
-      //     FloatingActionButton(
-      //       key: const Key('counterView_increment_floatingActionButton'),
-      //       child: const Icon(Icons.add),
-      //       onPressed: () => context.read<CounterCubit>().increment(),
-      //     ),
-      //     const SizedBox(height: 8),
-      //     FloatingActionButton(
-      //       key: const Key('counterView_decrement_floatingActionButton'),
-      //       child: const Icon(Icons.remove),
-      //       onPressed: () => context.read<CounterCubit>().decrement(),
-      //     ),
-      //   ],
-      // ),
-
       // body: FutureBuilder(
       //   future: _users,
       //   builder: (BuildContext context, AsyncSnapshot snapshot) {

@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'routes/routes.dart';
 
-import 'package:flutter_boilerplate/modules/home/cubit/counter_cubit.dart';
+import '../modules/counter/cubit/counter_cubit.dart';
 
 void main() => runApp(const App());
 
@@ -20,7 +20,8 @@ class App extends StatelessWidget {
     return BlocProvider(
       create: (context) => CounterCubit(),
       child: MaterialApp(
-        initialRoute: '/',
+        initialRoute: '/counter',
+        // initialRoute: '/',
         // initialRoute: '/login',
         routes: appRoutes,
       ),
