@@ -1,19 +1,18 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-// import '../cubit/weather_cubit.dart';
-import '../../counter1/cubit/counter1_cubit.dart';
+import '../cubit/counter1_cubit.dart';
 
-class WeatherPage extends StatefulWidget {
-  const WeatherPage({super.key, required this.title});
+class Counter1Page extends StatefulWidget {
+  const Counter1Page({super.key, required this.title});
 
   final String title;
 
   @override
-  State<WeatherPage> createState() => _WeatherPageState();
+  State<Counter1Page> createState() => _Counter1PageState();
 }
 
-class _WeatherPageState extends State<WeatherPage> {
+class _Counter1PageState extends State<Counter1Page> {
   // final Future _users = HttpService().fetchUsers();
 
   @override
@@ -77,55 +76,6 @@ class _WeatherPageState extends State<WeatherPage> {
                 ),
               ],
             ),
-            // BlocConsumer<WeatherCubit, WeatherState>(
-            //   listener: (context, state) {
-            //     if (state.incremented) {
-            //       ScaffoldMessenger.of(context).showSnackBar(SnackBar(
-            //         content: const Text('Incremented'),
-            //         duration: const Duration(seconds: 1),
-            //         action: SnackBarAction(
-            //           label: 'ACTION',
-            //           onPressed: () {},
-            //         ),
-            //       ));
-            //     } else {
-            //       ScaffoldMessenger.of(context).showSnackBar(SnackBar(
-            //         content: const Text('Dencremented'),
-            //         duration: const Duration(seconds: 1),
-            //         action: SnackBarAction(
-            //           label: 'ACTION',
-            //           onPressed: () {},
-            //         ),
-            //       ));
-            //     }
-            //   },
-            //   builder: (context, state) {
-            //     return Text(
-            //       state.counterValue.toString(),
-            //       style: Theme.of(context).textTheme.headline4,
-            //     );
-            //   },
-            // ),
-            // const SizedBox(
-            //   height: 24,
-            // ),
-            // Row(
-            //   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-            //   children: [
-            //     ElevatedButton(
-            //       onPressed: () {
-            //         BlocProvider.of<WeatherCubit>(context).decrement();
-            //       },
-            //       child: const Icon(Icons.remove),
-            //     ),
-            //     ElevatedButton(
-            //       onPressed: () {
-            //         BlocProvider.of<WeatherCubit>(context).increment();
-            //       },
-            //       child: const Icon(Icons.add),
-            //     ),
-            //   ],
-            // ),
           ],
         ),
       ),

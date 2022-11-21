@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import '../modules/home/ui/home.dart';
 import '../core/auth/ui/login.dart';
 
-import '../modules/counter/ui/counter.dart';
+import '../modules/counter1/ui/counter1.dart';
 import '../modules/weather/ui/weather.dart';
 
 Map<String, Widget Function(BuildContext)> appRoutes = {
@@ -17,6 +17,6 @@ Map<String, Widget Function(BuildContext)> appRoutes = {
   // Backend
 
   // Bloc Test
-  '/counter': (context) => const CounterPage(title: 'Counter'),
+  '/counter': (context) => const Counter1Page(title: 'Counter'),
   '/weather': (context) => const WeatherPage(title: 'Weather'),
 };
