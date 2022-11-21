@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-import '../cubit/counter2_cubit.dart';
+import '../bloc/counter2_bloc.dart';
 
 class Counter2Page extends StatefulWidget {
   const Counter2Page({super.key, required this.title});
@@ -9,10 +9,10 @@ class Counter2Page extends StatefulWidget {
   final String title;
 
   @override
-  State<Counter2Page> createState() => _Counter1PageState();
+  State<Counter2Page> createState() => _Counter2PageState();
 }
 
-class _Counter1PageState extends State<Counter2Page> {
+class _Counter2PageState extends State<Counter2Page> {
   // final Future _users = HttpService().fetchUsers();
 
   @override
@@ -27,32 +27,32 @@ class _Counter1PageState extends State<Counter2Page> {
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
             const Text('Pushed button:'),
-            BlocBuilder<Counter2Cubit, int>(
-              // BlocConsumer<Counter2Cubit, Counter2State>(
-              // listener: (context, state) {
-              //   if (state.incremented) {
-              //     ScaffoldMessenger.of(context).showSnackBar(SnackBar(
-              //       content: const Text('Incremented'),
-              //       duration: const Duration(seconds: 1),
-              //       action: SnackBarAction(
-              //         label: 'ACTION',
-              //         onPressed: () {},
-              //       ),
-              //     ));
-              //   } else {
-              //     ScaffoldMessenger.of(context).showSnackBar(SnackBar(
-              //       content: const Text('Dencremented'),
-              //       duration: const Duration(seconds: 1),
-              //       action: SnackBarAction(
-              //         label: 'ACTION',
-              //         onPressed: () {},
-              //       ),
-              //     ));
-              //   }
-              // },
+            BlocConsumer<Counter2Bloc, Counter2State>(
+              listener: (context, state) {
+                if (state.counter2Incremented) {
+                  ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+                    content: const Text('Incremented'),
+                    duration: const Duration(seconds: 1),
+                    action: SnackBarAction(
+                      label: 'ACTION',
+                      onPressed: () {},
+                    ),
+                  ));
+                } else {
+                  ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+                    content: const Text('Dencremented'),
+                    duration: const Duration(seconds: 1),
+                    action: SnackBarAction(
+                      label: 'ACTION',
+                      onPressed: () {},
+                    ),
+                  ));
+                }
+              },
               builder: (context, state) {
                 return Text(
-                  '$state',
+                  // state.counter2Value.toString(),
+                  'Counter 2 Vaule: ${state.counter2Value}',
                   style: Theme.of(context).textTheme.headline4,
                 );
               },
@@ -65,13 +65,13 @@ class _Counter1PageState extends State<Counter2Page> {
               children: [
                 ElevatedButton(
                   onPressed: () {
-                    BlocProvider.of<Counter2Cubit>(context).decrement();
+                    context.read<Counter2Bloc>().add(Counter2DecrementEvent());
                   },
                   child: const Icon(Icons.remove),
                 ),
                 ElevatedButton(
                   onPressed: () {
-                    BlocProvider.of<Counter2Cubit>(context).increment();
+                    context.read<Counter2Bloc>().add(Counter2IncrementEvent());
                   },
                   child: const Icon(Icons.add),
                 ),

@@ -7,15 +7,15 @@
 
 import 'package:bloc_test/bloc_test.dart';
 import 'package:flutter_test/flutter_test.dart';
-import '../../../lib/modules/counter/cubit/counter_cubit.dart';
+import '../../../lib/modules/counter1/cubit/counter1_cubit.dart';
 import 'package:flutter_boilerplate/main.dart';
 
 void main() {
   group('CounterCubit', () {
-    late CounterCubit counterCubit;
+    late Counter1Cubit counter1Cubit;
 
     setUp(() {
-      counterCubit = CounterCubit();
+      counter1Cubit = Counter1Cubit();
     });
 
     // blocTest(description, build: build)
