@@ -1,3 +1,8 @@
+# VSCode extensions for Flutter
+* Dart
+* Dart Data Class generator
+* Bloc  
+
 # flutter_boilerplate
 
 # Local http request

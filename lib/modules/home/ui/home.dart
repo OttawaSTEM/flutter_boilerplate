@@ -48,6 +48,17 @@ class _HomePageState extends State<HomePage> {
               height: 80,
               child: (Center(
                 child: (ElevatedButton(
+                  child: const Text('Counter3 Page'),
+                  onPressed: () {
+                    Navigator.of(context).pushNamed('/counter3');
+                  },
+                )),
+              )),
+            ),
+            SizedBox(
+              height: 80,
+              child: (Center(
+                child: (ElevatedButton(
                   child: const Text('Weather Page'),
                   onPressed: () {
                     Navigator.of(context).pushNamed('/weather');
