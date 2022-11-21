@@ -27,6 +27,14 @@ class _Counter2PageState extends State<Counter2Page> {
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
             const Text('Pushed button:'),
+            // BlocBuilder<Counter2Bloc, Counter2State>(
+            //   builder: (context, state) {
+            //     return Text(
+            //       'Counter 2 Vaule: ${state.counter2Value}',
+            //       style: Theme.of(context).textTheme.headline4,
+            //     );
+            //   },
+            // ),
             BlocConsumer<Counter2Bloc, Counter2State>(
               listener: (context, state) {
                 if (state.counter2Incremented) {
