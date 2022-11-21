@@ -26,15 +26,26 @@ class _HomePageState extends State<HomePage> {
               height: 80,
               child: (Center(
                 child: (ElevatedButton(
-                  child: const Text('Counter Page'),
+                  child: const Text('Counter1 Page'),
                   onPressed: () {
-                    Navigator.of(context).pushNamed('/counter');
+                    Navigator.of(context).pushNamed('/counter1');
                   },
                 )),
               )),
             ),
             SizedBox(
               height: 40,
+              child: (Center(
+                child: (ElevatedButton(
+                  child: const Text('Counter2 Page'),
+                  onPressed: () {
+                    Navigator.of(context).pushNamed('/counter2');
+                  },
+                )),
+              )),
+            ),
+            SizedBox(
+              height: 80,
               child: (Center(
                 child: (ElevatedButton(
                   child: const Text('Weather Page'),
