@@ -19,8 +19,7 @@ class App extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return       // create: (context) => WeatherCubit(),
-(
+    return MultiBlocProvider(
       providers: [
         BlocProvider<Counter1Cubit>(
           create: (context) => Counter1Cubit(),
