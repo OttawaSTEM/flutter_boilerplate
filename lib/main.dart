@@ -14,10 +14,16 @@ import '../modules/counter3/bloc/counter3_bloc.dart';
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
 
-  // final storage = await HydratedStorage.build(
-  //     storageDirectory: await getApplicationDocumentsDirectory());
+  HydratedBloc.storage = await HydratedStorage.build(
+    storageDirectory: kIsWeb
+        ? HydratedStorage.webStorageDirectory
+        // : await getTemporaryDirectory(),
+        : await getApplicationDocumentsDirectory(),
+  );
 
-  if (kDebugMode) Bloc.observer = GlobalObserver();
+  if (kDebugMode) {
+    Bloc.observer = GlobalObserver();
+  }
   runApp(const App());
 }
 

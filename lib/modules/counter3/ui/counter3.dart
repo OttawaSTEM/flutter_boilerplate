@@ -30,14 +30,14 @@ class _Counter3PageState extends State<Counter3Page> {
             // BlocBuilder<Counter3Bloc, Counter3State>(
             //   builder: (context, state) {
             //     return Text(
-            //       'Counter 2 Vaule: ${state.counter2Value}',
+            //       'Counter 2 Vaule: ${state.counter3Value}',
             //       style: Theme.of(context).textTheme.headline4,
             //     );
             //   },
             // ),
             BlocConsumer<Counter3Bloc, Counter3State>(
               listener: (context, state) {
-                if (state.counter2Incremented) {
+                if (state.counter3Incremented) {
                   ScaffoldMessenger.of(context).showSnackBar(SnackBar(
                     content: const Text('Incremented'),
                     duration: const Duration(seconds: 1),
@@ -59,8 +59,8 @@ class _Counter3PageState extends State<Counter3Page> {
               },
               builder: (context, state) {
                 return Text(
-                  // state.counter2Value.toString(),
-                  'Counter 3 Vaule: ${state.counter2Value}',
+                  // state.counter3Value.toString(),
+                  'Counter 3 Vaule: ${state.counter3Value}',
                   style: Theme.of(context).textTheme.headline4,
                 );
               },
