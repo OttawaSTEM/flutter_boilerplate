@@ -19,16 +19,13 @@ class App extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    // return MaterialApp(
-    //   initialRoute: '/',
-    //   // initialRoute: '/login',
-    //   routes: appRoutes,
-    // );
-
-    return BlocProvider(
-      create: (context) => Counter1Cubit(),
-      // create: (context) => Counter2Cubit(),
-      // create: (context) => WeatherCubit(),
+    return       // create: (context) => WeatherCubit(),
+(
+      providers: [
+        BlocProvider<Counter1Cubit>(
+          create: (context) => Counter1Cubit(),
+        ),
+      ],
       child: MaterialApp(
         initialRoute: '/',
         routes: appRoutes,
