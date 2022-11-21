@@ -3,13 +3,14 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'routes/routes.dart';
 
 import '../modules/counter1/cubit/counter1_cubit.dart';
-import '../modules/counter2/cubit/counter2_cubit.dart';
-import '../modules/counter2/cubit/counter2_observer.dart';
+import 'core/observer/observer.dart';
+// import '../modules/counter2/cubit/counter2_cubit.dart';
+// import '../modules/counter2/cubit/counter2_observer.dart';
 // import '../modules/weather/cubit/weather_cubit.dart';
 
 // void main() => runApp(const App());
 void main() {
-  Bloc.observer = Counter2Observer();
+  Bloc.observer = GlobalObserver();
   runApp(const App());
 }
 
@@ -25,8 +26,8 @@ class App extends StatelessWidget {
     // );
 
     return BlocProvider(
-      // create: (context) => Counter1Cubit(),
-      create: (context) => Counter2Cubit(),
+      create: (context) => Counter1Cubit(),
+      // create: (context) => Counter2Cubit(),
       // create: (context) => WeatherCubit(),
       child: MaterialApp(
         initialRoute: '/',
