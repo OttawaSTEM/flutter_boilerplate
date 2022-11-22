@@ -1,4 +1,3 @@
-// ignore_for_file: public_member_api_docs, sort_constructors_first
 part of 'counter3_bloc.dart';
 
 class Counter3State extends Equatable {
