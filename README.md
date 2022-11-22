@@ -5,6 +5,12 @@
 
 # flutter_boilerplate
 
+# Flutter Launcher Icons
+flutter pub run flutter_launcher_icons
+
+# Flutter splach
+flutter pub run flutter_native_splash:create
+
 # Local http request
 Add '--disable-web-security' in the chrome web configuration.
 1. Go to flutter\bin\cache and remove a file named: flutter_tools.stamp
