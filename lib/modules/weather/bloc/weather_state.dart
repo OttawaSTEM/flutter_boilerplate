@@ -1,5 +1,4 @@
-import 'package:equatable/equatable.dart';
-import '../model/weather_model.dart';
+part of 'weather_bloc.dart';
 
 class WeatherState extends Equatable {
   @override

@@ -32,6 +32,13 @@ class App extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    // return BlocProvider(
+    //   create: (context) => Counter1Cubit(),
+    // )
+    // return BlocProvider(
+    //   create: (context) => Counter2Bloc(),
+    // )
+
     return MultiBlocProvider(
       providers: [
         BlocProvider<Counter1Cubit>(

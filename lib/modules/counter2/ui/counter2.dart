@@ -35,6 +35,7 @@ class _Counter2PageState extends State<Counter2Page> {
             //     );
             //   },
             // ),
+
             BlocConsumer<Counter2Bloc, Counter2State>(
               listener: (context, state) {
                 if (state.counter2Incremented) {
