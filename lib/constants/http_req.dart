@@ -2,7 +2,8 @@ import 'package:flutter/foundation.dart';
 
 // api routes
 const String apiBaseUrl = kDebugMode
-    ? 'http://192.168.1.51:8000/api/users/'
+    // ? 'http://192.168.1.51:8000/api/users/'
+    ? 'http://192.168.1.60:8000/api/users/'
     : 'https://api.json-generator.com/templates/-eZlCwfKSpqC/data?access_token=60p9v6l4cvb874bi65k6vze2bbxuz4e81yyurvym';
 
 // api keys

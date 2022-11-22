@@ -59,6 +59,17 @@ class _HomePageState extends State<HomePage> {
               height: 80,
               child: (Center(
                 child: (ElevatedButton(
+                  child: const Text('API JSON Page'),
+                  onPressed: () {
+                    Navigator.of(context).pushNamed('/api_json');
+                  },
+                )),
+              )),
+            ),
+            SizedBox(
+              height: 40,
+              child: (Center(
+                child: (ElevatedButton(
                   child: const Text('Weather Page'),
                   onPressed: () {
                     Navigator.of(context).pushNamed('/weather');
@@ -72,29 +83,3 @@ class _HomePageState extends State<HomePage> {
     );
   }
 }
-
-
-// body: FutureBuilder(
-      //   future: _users,
-      //   builder: (BuildContext context, AsyncSnapshot snapshot) {
-      //     if (snapshot.hasError) {
-      //       return Center(child: Text('Some error occurred ${snapshot.error}'));
-      //     } else if (snapshot.hasData) {
-      //       final users = snapshot.data;
-      //       return ListView.builder(
-      //           itemCount: users.length,
-      //           itemBuilder: (context, index) {
-      //             Map user = users[index];
-      //             return ListTile(
-      //               title: Text('${user['name']}'),
-      //               subtitle: Text('${user['age']}'),
-      //               // onTap: () {
-      //               //   Navigator.of(context).push(MaterialPageRoute(builder: (context) => PostDetails(thisItem['id'].toString())));
-      //               // },
-      //             );
-      //           });
-      //     } else {
-      //       return const Center(child: CircularProgressIndicator());
-      //     }
-      //   },
-      // ),

@@ -6,6 +6,7 @@ import '../core/auth/ui/login.dart';
 import '../modules/counter1/ui/counter1.dart';
 import '../modules/counter2/ui/counter2.dart';
 import '../modules/counter3/ui/counter3.dart';
+import '../modules/api_json/ui/api_json.dart';
 import '../modules/weather/ui/weather.dart';
 
 Map<String, Widget Function(BuildContext)> appRoutes = {
@@ -22,5 +23,6 @@ Map<String, Widget Function(BuildContext)> appRoutes = {
   '/counter1': (context) => const Counter1Page(title: 'Counter 1'),
   '/counter2': (context) => const Counter2Page(title: 'Counter 2'),
   '/counter3': (context) => const Counter3Page(title: 'Counter 3'),
+  '/api_json': (context) => const APIJsonPage(title: 'Simple API JSON'),
   '/weather': (context) => const WeatherPage(title: 'Weather'),
 };
