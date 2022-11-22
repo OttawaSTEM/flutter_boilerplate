@@ -26,7 +26,7 @@ class _HomePageState extends State<HomePage> {
               height: 80,
               child: (Center(
                 child: (ElevatedButton(
-                  child: const Text('Counter1 Page'),
+                  child: const Text('Counter1 Cubit'),
                   onPressed: () {
                     Navigator.of(context).pushNamed('/counter1');
                   },
@@ -37,7 +37,7 @@ class _HomePageState extends State<HomePage> {
               height: 40,
               child: (Center(
                 child: (ElevatedButton(
-                  child: const Text('Counter2 Page'),
+                  child: const Text('Counter2 Bloc'),
                   onPressed: () {
                     Navigator.of(context).pushNamed('/counter2');
                   },
@@ -48,7 +48,7 @@ class _HomePageState extends State<HomePage> {
               height: 80,
               child: (Center(
                 child: (ElevatedButton(
-                  child: const Text('Counter3 Page'),
+                  child: const Text('Counter3 Persistent State'),
                   onPressed: () {
                     Navigator.of(context).pushNamed('/counter3');
                   },
@@ -69,31 +69,6 @@ class _HomePageState extends State<HomePage> {
           ],
         ),
       ),
-
-      // body: FutureBuilder(
-      //   future: _users,
-      //   builder: (BuildContext context, AsyncSnapshot snapshot) {
-      //     if (snapshot.hasError) {
-      //       return Center(child: Text('Some error occurred ${snapshot.error}'));
-      //     } else if (snapshot.hasData) {
-      //       final users = snapshot.data;
-      //       return ListView.builder(
-      //           itemCount: users.length,
-      //           itemBuilder: (context, index) {
-      //             Map user = users[index];
-      //             return ListTile(
-      //               title: Text('${user['name']}'),
-      //               subtitle: Text('${user['age']}'),
-      //               // onTap: () {
-      //               //   Navigator.of(context).push(MaterialPageRoute(builder: (context) => PostDetails(thisItem['id'].toString())));
-      //               // },
-      //             );
-      //           });
-      //     } else {
-      //       return const Center(child: CircularProgressIndicator());
-      //     }
-      //   },
-      // ),
     );
   }
 }
