@@ -10,6 +10,7 @@ import 'core/observer/observer.dart';
 import '../modules/counter1/cubit/counter1_cubit.dart';
 import '../modules/counter2/bloc/counter2_bloc.dart';
 import '../modules/counter3/bloc/counter3_bloc.dart';
+import '../modules/weather/bloc/weather_bloc.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -50,11 +51,19 @@ class App extends StatelessWidget {
         BlocProvider<Counter3Bloc>(
           create: (context) => Counter3Bloc(),
         ),
+        BlocProvider<WeatherBloc>(
+          create: (context) => WeatherBloc(),
+        ),
       ],
       child: MaterialApp(
         initialRoute: '/',
         routes: appRoutes,
       ),
     );
+
+    // return MaterialApp(
+    //   initialRoute: '/',
+    //   routes: appRoutes,
+    // );
   }
 }

@@ -7,10 +7,12 @@ abstract class WeatherEvent extends Equatable {
   List<Object> get props => [];
 }
 
-class GetWeatherData extends WeatherEvent {
-  @override
-  List<Object> get props => [];
-}
+class GetWeatherDataEvent extends WeatherEvent {}
+
+// class GetWeatherData extends WeatherEvent {
+//   @override
+//   List<Object> get props => [];
+// }
 
 
 
