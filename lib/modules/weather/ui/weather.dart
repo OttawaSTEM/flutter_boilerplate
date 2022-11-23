@@ -63,7 +63,9 @@ class _WeatherPageState extends State<WeatherPage> {
                     height: 50.0,
                     width: double.infinity,
                     child: ElevatedButton(
-                      onPressed: () {},
+                      onPressed: () {
+                        context.read<WeatherBloc>().add(GetWeatherData());
+                      },
                       child: const Text(
                         "Search",
                         style: TextStyle(fontSize: 20),

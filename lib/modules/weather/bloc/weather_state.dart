@@ -7,17 +7,26 @@ class WeatherState extends Equatable {
 
 class WeatherInitial extends WeatherState {}
 
-class NotSearchingState extends WeatherState {}
+class WeatherLoaded extends WeatherState {
+  final double temprature;
 
-class SearchingState extends WeatherState {}
-
-class SearchedWeatherState extends WeatherState {
-  final WeatherModel weatherModel;
-
-  SearchedWeatherState(
-    this.weatherModel,
-  );
+  WeatherLoaded(this.temprature);
 
   @override
-  List<Object> get props => [weatherModel];
+  List<Object> get props => [];
 }
+
+// class NotSearchingState extends WeatherState {}
+
+// class SearchingState extends WeatherState {}
+
+// class SearchedWeatherState extends WeatherState {
+//   final WeatherModel weatherModel;
+
+//   SearchedWeatherState(
+//     this.weatherModel,
+//   );
+
+//   @override
+//   List<Object> get props => [weatherModel];
+// }

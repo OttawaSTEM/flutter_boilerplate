@@ -1,22 +1,21 @@
-import 'dart:convert';
-
 import 'package:bloc/bloc.dart';
 import 'package:equatable/equatable.dart';
 
-import '../model/weather_model.dart';
+import '../../../data/network/api.dart';
 
 part 'weather_event.dart';
 part 'weather_state.dart';
 
 class WeatherBloc extends Bloc<WeatherEvent, WeatherState> {
   WeatherBloc() : super(WeatherInitial()) {
-    // on<GetWeatherData>(_getWeatherData);
+    on<GetWeatherData>(_getWeatherData);
   }
 
-  // Future<void> _getWeatherData(event, emit) async {
-  //   emit(WeatherState(
-  //     counter2Value: state.counter2Value + 1,
-  //     counter2Incremented: true,
-  //   ));
-  // }
+  final url =
+      'http://api.openweathermap.org/data/2.5/weather?q=ottawa&appid=d885aa1d783fd13a55050afeef620fcb';
+
+  Future _getWeatherData(event, emit) async {
+    final data = await HttpService().get(url);
+    emit(WeatherLoaded(data.main.temp));
+  }
 }
