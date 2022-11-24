@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_boilerplate/modules/weather/repository/weather_repository.dart';
 
 import '../bloc/weather_bloc.dart';
 import '../model/weather_model.dart';
@@ -81,10 +80,11 @@ class _WeatherPageState extends State<WeatherPage> {
                   height: 30.0,
                 ),
                 BlocBuilder<WeatherBloc, WeatherState>(
-                  // WeatherModel weather,
                   builder: (context, state) {
                     return Text(
-                      "Temprature: ${state.props[0].temp}",
+                      "Temprature: ${state.props}",
+                      // "Temprature: ${state.weatherModel.temprature}",
+                      // "Temprature: ${state.props[0].temp}",
                       // "Temprature: ${state.temprature}",
                       style: const TextStyle(
                         fontSize: 25,
