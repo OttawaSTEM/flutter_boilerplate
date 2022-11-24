@@ -83,13 +83,7 @@ class _WeatherPageState extends State<WeatherPage> {
                   builder: (context, state) {
                     final data = state.props[0] as Map;
                     return Text(
-                      '${data['temp']}',
-                      // '${state.props[0]}',
-                      // "Temprature: ${state.props[0]['']}",
-                      // 'Temprature: ${state.props[0]}',
-                      // "Temprature: ${state.weatherModel.temprature}",
-                      // "Temprature: ${state.props[0].temp}",
-                      // "Temprature: ${state.temprature}",
+                      'Temprature: ${data['temp']}',
                       style: const TextStyle(
                         fontSize: 25,
                       ),
