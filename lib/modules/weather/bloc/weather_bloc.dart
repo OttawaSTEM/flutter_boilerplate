@@ -1,5 +1,7 @@
 import 'package:bloc/bloc.dart';
 import 'package:equatable/equatable.dart';
+import 'package:http/http.dart' as http;
+import 'dart:convert';
 
 import '../model/weather_model.dart';
 import '../repository/weather_repository.dart';
@@ -18,7 +20,7 @@ class WeatherBloc extends Bloc<WeatherEvent, WeatherState> {
     on<GetWeatherDataEvent>(_getWeatherData);
   }
 
-  Future<void> _getWeatherData(event, emit) async {
+  Future<WeatherModel> _getWeatherData(event, emit) async {
     // WeatherModel weatherModel =
     //     await WeatherRepository().getWeatherData(event.cityName);
 
@@ -26,13 +28,24 @@ class WeatherBloc extends Bloc<WeatherEvent, WeatherState> {
     // dynamic weatherModel =
     //     await WeatherRepository().getWeatherData(event.cityName);
 
-    // print(weatherModel);
-    WeatherModel weatherModel = await Future.delayed(
-      const Duration(milliseconds: 300),
-      () => WeatherModel(temprature: 200),
-    );
+    // WeatherModel weatherModel = await Future.delayed(
+    //   const Duration(milliseconds: 300),
+    //   () => const WeatherModel(temprature: 200),
+    // );
 
-    emit(WeatherIsLoaded(weatherModel));
+    final response = await http.Client().get(Uri.parse(
+        'http://api.openweathermap.org/data/2.5/weather?q=Ottawa&appid=d885aa1d783fd13a55050afeef620fcb'));
+    final responseData = json.decode(response.body);
+    final weatherData = responseData["main"];
+    return (WeatherModel.fromJson(weatherData));
+    // emit(WeatherIsLoaded(WeatherModel.fromJson(weatherData)));
+    // } else {
+    //   emit(WeatherIsLoading);
+    //   throw Exception();
+    //   // return parsedJson(result.body);
+
+    //   // emit(WeatherI÷sLoaded(weatherModel));
+    // }
   }
 }
 

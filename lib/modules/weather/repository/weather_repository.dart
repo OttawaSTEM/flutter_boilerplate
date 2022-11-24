@@ -14,6 +14,7 @@ class WeatherRepository {
 
       final jsonDecodedData = jsonDecode(response.body);
       // return jsonDecodedData;
+      print(jsonDecodedData['main']);
       return WeatherModel.fromJson(jsonDecodedData['main']);
     } finally {
       client.close();

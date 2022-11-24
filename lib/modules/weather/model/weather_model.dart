@@ -8,33 +8,45 @@ enum WeatherCondition {
 
 class WeatherModel extends Equatable {
   final double temprature;
-  // final double minTemprature;
-  // final double maxTemprature;
-  // final int humidity;
+  final double feelsLike;
+  final double minTemprature;
+  final double maxTemprature;
+  final int pressure;
+  final int humidity;
 
-  double get getTemprature => temprature - 272.5;
+  const WeatherModel({
+    required this.temprature,
+    required this.feelsLike,
+    required this.minTemprature,
+    required this.maxTemprature,
+    required this.pressure,
+    required this.humidity,
+  });
 
-  WeatherModel({
-    this.temprature,
-    // required this.minTemprature,
-    // required this.maxTemprature,
-    // required this.humidity,
-  }) : super([
-          temprature,
-        ]);
+  @override
+  List<Object> get props => [
+        temprature,
+        feelsLike,
+        minTemprature,
+        maxTemprature,
+        pressure,
+        humidity,
+      ];
 
-  WeatherModel.fromJson(dynamic json) : temprature = json['temp'];
-  // minTemprature = json['temp_min'],
-  // maxTemprature = json['temp_max'],
-  // humidity = json['humidity'];
+  // double get temp => temprature;
 
-  // Map<String, dynamic> toJson() => {
-  //   'temp' = temprature,
-  //   'temp_min' = minTemprature,
-  //   'temp_max' = maxTemprature,
-  //   'humidity' = humidity,
-  // };
+  factory WeatherModel.fromJson(dynamic json) {
+    return WeatherModel(
+      temprature: json['temp'],
+      feelsLike: json['feels_like'],
+      minTemprature: json['temp_min'],
+      maxTemprature: json['temp_max'],
+      pressure: json['pressure'],
+      humidity: json['humidity'],
+    );
+  }
 }
+
 
 
   // double get getTemprature => temprature - 272.5;

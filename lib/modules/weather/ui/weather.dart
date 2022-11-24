@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_boilerplate/modules/weather/repository/weather_repository.dart';
 
 import '../bloc/weather_bloc.dart';
 import '../model/weather_model.dart';
@@ -64,9 +65,11 @@ class _WeatherPageState extends State<WeatherPage> {
                   width: double.infinity,
                   child: ElevatedButton(
                     onPressed: () {
-                      context
-                          .read<WeatherBloc>()
-                          .add(GetWeatherDataEvent(controller.text));
+                      // context
+                      //     .read<WeatherBloc>()
+                      //     .add(GetWeatherDataEvent(controller.text));
+                      RepositoryProvider.of<WeatherRepository>(context)
+                          .getWeatherData(controller.text);
                     },
                     child: const Text(
                       "Search",
@@ -81,7 +84,7 @@ class _WeatherPageState extends State<WeatherPage> {
                   // WeatherModel weather,
                   builder: (context, state) {
                     return Text(
-                      "Temprature: ${state.props.}",
+                      "Temprature: ${state}",
                       // "Temprature: ${state.temprature}",
                       style: const TextStyle(
                         fontSize: 25,
