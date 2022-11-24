@@ -81,8 +81,12 @@ class _WeatherPageState extends State<WeatherPage> {
                 ),
                 BlocBuilder<WeatherBloc, WeatherState>(
                   builder: (context, state) {
+                    final data = state.props[0] as Map;
                     return Text(
-                      "Temprature: ${state.props}",
+                      '${data['temp']}',
+                      // '${state.props[0]}',
+                      // "Temprature: ${state.props[0]['']}",
+                      // 'Temprature: ${state.props[0]}',
                       // "Temprature: ${state.weatherModel.temprature}",
                       // "Temprature: ${state.props[0].temp}",
                       // "Temprature: ${state.temprature}",

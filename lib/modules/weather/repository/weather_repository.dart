@@ -15,6 +15,7 @@ class WeatherRepository {
       // return jsonDecodedData;
       // print(jsonDecodedData['main']);
       return jsonDecodedData['main'];
+      // return jsonDecodedData;
       // return WeatherModel(temprature: jsonDecodedData['main']['temp']);
     } catch (e) {
       throw Exception(e);
