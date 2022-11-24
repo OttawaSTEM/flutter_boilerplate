@@ -5,6 +5,8 @@ class WeatherState extends Equatable {
 
   @override
   List<Object> get props => [];
+
+  // get weatherModel => null;
 }
 
 class WeatherIsNotLoaded extends WeatherState {}
@@ -14,15 +16,25 @@ class WeatherIsLoading extends WeatherState {}
 class WeatherIsNotSearched extends WeatherState {}
 
 class WeatherIsLoaded extends WeatherState {
-  final WeatherModel weatherModel;
+  final dynamic weatherData;
 
-  const WeatherIsLoaded(this.weatherModel);
+  const WeatherIsLoaded(this.weatherData);
 
-  // WeatherModel get getWeather => _weather;
+  // WeatherModel get getWeather => weatherModel;
 
   @override
-  List<Object> get props => [weatherModel];
+  List<Object> get props => [weatherData];
 }
+// class WeatherIsLoaded extends WeatherState {
+//   final WeatherModel weatherModel;
+
+//   const WeatherIsLoaded(this.weatherModel);
+
+//   // WeatherModel get getWeather => weatherModel;
+
+//   @override
+//   List<Object> get props => [weatherModel];
+// }
 
 
 // class WeatherState extends Equatable {

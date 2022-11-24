@@ -14,14 +14,32 @@ class WeatherRepository {
 
       final jsonDecodedData = jsonDecode(response.body);
       // return jsonDecodedData;
-      print(jsonDecodedData['main']);
-      return WeatherModel.fromJson(jsonDecodedData['main']);
+      return jsonDecodedData['main'];
+      // return WeatherModel(temprature: jsonDecodedData['temp']);
+    } catch (e) {
+      throw Exception(e);
     } finally {
       client.close();
-      print('jsonDecodedData');
-      throw Exception();
     }
   }
+
+  // Future<WeatherModel> getWeatherData(String cityName) async {
+  //   var client = http.Client();
+  //   try {
+  //     final String url =
+  //         'https://api.openweathermap.org/data/2.5/weather?q=$cityName&appid=43ea6baaad7663dc17637e22ee6f78f2';
+  //     final response = await client.get(Uri.parse(url));
+
+  //     final jsonDecodedData = jsonDecode(response.body);
+  //     // return jsonDecodedData;
+  //     print(jsonDecodedData['main']);
+  //     return WeatherModel.fromJson(jsonDecodedData['main']);
+  //   } finally {
+  //     client.close();
+  //     print('jsonDecodedData');
+  //     throw Exception();
+  //   }
+  // }
 
   // WeatherModel parsedJson(final response) {
   //   final jsonDecodedData = jsonDecode(response);

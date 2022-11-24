@@ -65,11 +65,11 @@ class _WeatherPageState extends State<WeatherPage> {
                   width: double.infinity,
                   child: ElevatedButton(
                     onPressed: () {
-                      // context
-                      //     .read<WeatherBloc>()
-                      //     .add(GetWeatherDataEvent(controller.text));
-                      RepositoryProvider.of<WeatherRepository>(context)
-                          .getWeatherData(controller.text);
+                      context
+                          .read<WeatherBloc>()
+                          .add(GetWeatherDataEvent(controller.text));
+                      // RepositoryProvider.of<WeatherRepository>(context)
+                      // .getWeatherData(controller.text);
                     },
                     child: const Text(
                       "Search",
@@ -84,7 +84,7 @@ class _WeatherPageState extends State<WeatherPage> {
                   // WeatherModel weather,
                   builder: (context, state) {
                     return Text(
-                      "Temprature: ${state}",
+                      "Temprature: ${state.props[0].temp}",
                       // "Temprature: ${state.temprature}",
                       style: const TextStyle(
                         fontSize: 25,

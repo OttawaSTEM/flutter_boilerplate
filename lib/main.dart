@@ -53,6 +53,7 @@ class App extends StatelessWidget {
           create: (context) => Counter3Bloc(),
         ),
         BlocProvider<WeatherBloc>(
+          // create: (context) => WeatherBloc(),
           create: (context) => WeatherBloc(WeatherRepository()),
         ),
       ],
