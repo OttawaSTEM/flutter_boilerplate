@@ -1,21 +1,27 @@
 part of 'weather_bloc.dart';
 
 class WeatherState extends Equatable {
-  final double temprature;
-
-  const WeatherState({
-    required this.temprature,
-  });
+  const WeatherState();
 
   @override
-  List<Object> get props => [temprature];
+  List<Object> get props => [];
 }
 
-class WeatherInitial extends WeatherState {
-  const WeatherInitial()
-      : super(
-          temprature: 0,
-        );
+class WeatherIsNotLoaded extends WeatherState {}
+
+class WeatherIsLoading extends WeatherState {}
+
+class WeatherIsNotSearched extends WeatherState {}
+
+class WeatherIsLoaded extends WeatherState {
+  final WeatherModel weatherModel;
+
+  const WeatherIsLoaded(this.weatherModel);
+
+  // WeatherModel get getWeather => _weather;
+
+  @override
+  List<Object> get props => [weatherModel];
 }
 
 

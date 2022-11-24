@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../bloc/weather_bloc.dart';
+import '../model/weather_model.dart';
 
 class WeatherPage extends StatefulWidget {
   const WeatherPage({super.key, required this.title});
@@ -13,7 +14,7 @@ class WeatherPage extends StatefulWidget {
 }
 
 class _WeatherPageState extends State<WeatherPage> {
-  // TextEditingController controller = TextEditingController();
+  TextEditingController controller = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
@@ -48,7 +49,7 @@ class _WeatherPageState extends State<WeatherPage> {
                 //   height: 20.0,
                 // ),
                 TextFormField(
-                  // controller: controller,
+                  controller: controller,
                   keyboardType: TextInputType.text,
                   decoration: const InputDecoration(
                       prefixIcon: Icon(Icons.search),
@@ -63,7 +64,9 @@ class _WeatherPageState extends State<WeatherPage> {
                   width: double.infinity,
                   child: ElevatedButton(
                     onPressed: () {
-                      context.read<WeatherBloc>().add(GetWeatherDataEvent());
+                      context
+                          .read<WeatherBloc>()
+                          .add(GetWeatherDataEvent(controller.text));
                     },
                     child: const Text(
                       "Search",
@@ -75,9 +78,11 @@ class _WeatherPageState extends State<WeatherPage> {
                   height: 30.0,
                 ),
                 BlocBuilder<WeatherBloc, WeatherState>(
+                  // WeatherModel weather,
                   builder: (context, state) {
                     return Text(
-                      "Temprature: ${state.temprature}",
+                      "Temprature: ${state.props.}",
+                      // "Temprature: ${state.temprature}",
                       style: const TextStyle(
                         fontSize: 25,
                       ),

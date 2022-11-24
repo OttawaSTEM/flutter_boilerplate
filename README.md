@@ -40,3 +40,6 @@ Dart Data Class Generator
 Click the light bulb
 Windows: Crtl + .
 Mac OS:  Command + .
+
+# JSON to Dart
+[JSON to Dart](https://javiercbk.github.io/json_to_dart/)

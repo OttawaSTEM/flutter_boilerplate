@@ -1,12 +1,46 @@
 import 'package:http/http.dart' as http;
-import 'package:logger/logger.dart';
+import 'dart:convert';
 
 import '../model/weather_model.dart';
 
 class WeatherRepository {
-  final logger = Logger();
-  final url =
-      'http://api.openweathermap.org/data/2.5/weather?&appid=d885aa1d783fd13a55050afeef620fcb';
+  // Future<WeatherModel> getWeatherData(String cityName) async {
+  Future<dynamic> getWeatherData(String cityName) async {
+    var client = http.Client();
+    try {
+      final String url =
+          'https://api.openweathermap.org/data/2.5/weather?q=$cityName&appid=43ea6baaad7663dc17637e22ee6f78f2';
+      final response = await client.get(Uri.parse(url));
+
+      final jsonDecodedData = jsonDecode(response.body);
+      // return jsonDecodedData;
+      return WeatherModel.fromJson(jsonDecodedData['main']);
+    } finally {
+      client.close();
+      print('jsonDecodedData');
+      throw Exception();
+    }
+  }
+
+  // WeatherModel parsedJson(final response) {
+  //   final jsonDecodedData = jsonDecode(response);
+
+  //   return WeatherModel.fromJson(jsonDecodedData);
+  // }
+}
+
+
+
+
+// import 'package:http/http.dart' as http;
+// import 'package:logger/logger.dart';
+
+// import '../model/weather_model.dart';
+
+// class WeatherRepository {
+//   final logger = Logger();
+//   final url =
+//       'http://api.openweathermap.org/data/2.5/weather?&appid=d885aa1d783fd13a55050afeef620fcb';
   // 'http://api.openweathermap.org/data/2.5/weather?q=$cityName&appid=d885aa1d783fd13a55050afeef620fcb';
 
   // final result = await http.Client().get(url      );
@@ -34,4 +68,4 @@ class WeatherRepository {
   //   }
   //   return data;
   // }
-}
+// }
