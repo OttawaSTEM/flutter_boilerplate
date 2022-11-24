@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../bloc/weather_bloc.dart';
-import '../model/weather_model.dart';
 
 class WeatherPage extends StatefulWidget {
   const WeatherPage({super.key, required this.title});
@@ -81,9 +80,12 @@ class _WeatherPageState extends State<WeatherPage> {
                 ),
                 BlocBuilder<WeatherBloc, WeatherState>(
                   builder: (context, state) {
-                    final data = state.props[0] as Map;
+                    // final data = state.props[0] as Map;
                     return Text(
-                      'Temprature: ${data['temp']}',
+                      (state.data != null)
+                          ? 'Temprature: ${state.data['temp']}'
+                          : 'Temprature: ',
+                      // 'Temprature: ${data['temp']}',
                       style: const TextStyle(
                         fontSize: 25,
                       ),

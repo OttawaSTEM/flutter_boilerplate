@@ -1,8 +1,5 @@
 import 'dart:async';
 
-import 'package:flutter_boilerplate/core/auth/models/user_model.dart';
-import 'package:uuid/uuid.dart';
-
 enum AuthenticationStatus { unknown, authenticated, unauthenticated }
 
 class UserRepository {

@@ -34,12 +34,18 @@ class App extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    // return MaterialApp(
+    //   initialRoute: '/',
+    //   routes: appRoutes,
+    // );
+
     // return BlocProvider(
     //   create: (context) => Counter1Cubit(),
-    // )
-    // return BlocProvider(
-    //   create: (context) => Counter2Bloc(),
-    // )
+    //   child: MaterialApp(
+    //     initialRoute: '/',
+    //     routes: appRoutes,
+    //   ),
+    // );
 
     return MultiBlocProvider(
       providers: [
@@ -53,7 +59,6 @@ class App extends StatelessWidget {
           create: (context) => Counter3Bloc(),
         ),
         BlocProvider<WeatherBloc>(
-          // create: (context) => WeatherBloc(),
           create: (context) => WeatherBloc(WeatherRepository()),
         ),
       ],
@@ -62,10 +67,5 @@ class App extends StatelessWidget {
         routes: appRoutes,
       ),
     );
-
-    // return MaterialApp(
-    //   initialRoute: '/',
-    //   routes: appRoutes,
-    // );
   }
 }
