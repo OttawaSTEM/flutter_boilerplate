@@ -3,7 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../../constants/strings.dart';
 
-import '../bloc/auth_bloc.dart';
+import '../../../core/auth/bloc/auth_bloc.dart';
 
 class LoginForm extends StatelessWidget {
   LoginForm({
@@ -64,6 +64,17 @@ class LoginForm extends StatelessWidget {
               },
               child: const Text(txtLogin),
             ),
+          ),
+          BlocBuilder<AuthBloc, AuthState>(
+            builder: (context, state) {
+              // final data = state.props[0] as Map;
+              return Text(
+                (state.token != null) ? state.token.toString() : '',
+                style: const TextStyle(
+                  fontSize: 25,
+                ),
+              );
+            },
           ),
         ],
       ),

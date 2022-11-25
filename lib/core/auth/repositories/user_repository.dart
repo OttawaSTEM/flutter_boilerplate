@@ -7,7 +7,7 @@ class UserRepository {
   Future<dynamic> getAuthData(String userName, String userPassword) async {
     var client = http.Client();
     try {
-      const String url = 'http://localhost:8000/api/auth/login/';
+      const String url = 'http://192.168.1.60:8000/api/auth/login/';
 
       const dynamic headers = {
         'Accept': '*/*',
@@ -18,12 +18,14 @@ class UserRepository {
 
       final body = jsonEncode({
         'username': '',
-        'email': 'admin@gmail.com',
-        'password': 'admin',
+        'email': userName,
+        'password': userPassword,
       });
 
       final response =
           await client.post(Uri.parse(url), headers: headers, body: body);
+      print(response.body);
+      print(response.statusCode);
       final jsonDecodedData = jsonDecode(response.body);
       return jsonDecodedData;
     } catch (e) {
