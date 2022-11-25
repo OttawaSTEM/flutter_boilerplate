@@ -1,33 +1,46 @@
 part of 'auth_bloc.dart';
 
 abstract class AuthEvent extends Equatable {
-  const AuthEvent(Object list);
+  const AuthEvent();
 
   @override
   List<Object> get props => [];
 }
 
-class AppStarted extends AuthEvent {
-  const AppStarted(super.list);
+class UserLoginEvent extends AuthEvent {
+  final String userName;
+  final String userPassword;
+
+  const UserLoginEvent(
+    this.userName,
+    this.userPassword,
+  );
 
   @override
-  String toString() => 'AppStarted';
+  List<Object> get props => [userName, userPassword];
 }
 
-class LoggedIn extends AuthEvent {
-  final String token;
+// class AppStarted extends AuthEvent {
+//   const AppStarted(super.list);
 
-  const LoggedIn(super.list, this.token);
-  // LoggedIn({required this.token}) : super([token]);
+//   @override
+//   String toString() => 'AppStarted';
+// }
 
-  @override
-  String toString() => 'LoggedIn { token: $token }';
-  // String toString() => 'LoggedIn';
-}
+// class LoggedIn extends AuthEvent {
+//   final String token;
 
-class LoggedOut extends AuthEvent {
-  const LoggedOut(super.list);
+//   const LoggedIn(super.list, this.token);
+//   // LoggedIn({required this.token}) : super([token]);
 
-  @override
-  String toString() => 'LoggedOut';
-}
+//   @override
+//   String toString() => 'LoggedIn { token: $token }';
+//   // String toString() => 'LoggedIn';
+// }
+
+// class LoggedOut extends AuthEvent {
+//   const LoggedOut(super.list);
+
+//   @override
+//   String toString() => 'LoggedOut';
+// }

@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 
+import '../../../core/drawer/ui/drawer.dart';
+
 class HomePage extends StatefulWidget {
   const HomePage({super.key, required this.title});
 
@@ -18,7 +20,7 @@ class _HomePageState extends State<HomePage> {
       appBar: AppBar(
         title: Text(widget.title),
       ),
-      // drawer: const NavigationDrawer(),
+      drawer: const NavigationDrawer(),
       body: SafeArea(
         child: Column(
           children: [
@@ -73,6 +75,17 @@ class _HomePageState extends State<HomePage> {
                   child: const Text('Weather Page'),
                   onPressed: () {
                     Navigator.of(context).pushNamed('/weather');
+                  },
+                )),
+              )),
+            ),
+            SizedBox(
+              height: 80,
+              child: (Center(
+                child: (ElevatedButton(
+                  child: const Text('Login Page'),
+                  onPressed: () {
+                    Navigator.of(context).pushNamed('/login');
                   },
                 )),
               )),

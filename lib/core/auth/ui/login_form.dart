@@ -3,9 +3,13 @@ import 'package:flutter/material.dart';
 import 'package:flutter_boilerplate/constants/strings.dart';
 
 class LoginForm extends StatelessWidget {
-  const LoginForm({
+  LoginForm({
     Key? key,
   }) : super(key: key);
+
+  // TextEditingController controller = TextEditingController();
+  TextEditingController usernameController = TextEditingController();
+  final passwordController = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
@@ -14,6 +18,8 @@ class LoginForm extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           TextFormField(
+            controller: usernameController,
+            keyboardType: TextInputType.text,
             decoration: const InputDecoration(
                 prefixIcon: Icon(Icons.person_outline_outlined),
                 labelText: txtEmail,
@@ -22,6 +28,8 @@ class LoginForm extends StatelessWidget {
           ),
           const SizedBox(height: 20),
           TextFormField(
+            controller: passwordController,
+            keyboardType: TextInputType.text,
             decoration: const InputDecoration(
               prefixIcon: Icon(Icons.fingerprint),
               labelText: txtPassword,

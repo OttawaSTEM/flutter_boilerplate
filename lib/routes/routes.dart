@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 
-import '../modules/home/ui/home.dart';
 import '../core/auth/ui/login.dart';
 
+import '../modules/home/ui/home.dart';
 import '../modules/counter1/ui/counter1.dart';
 import '../modules/counter2/ui/counter2.dart';
 import '../modules/counter3/ui/counter3.dart';
