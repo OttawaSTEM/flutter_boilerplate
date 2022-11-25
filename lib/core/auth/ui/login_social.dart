@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
-import 'package:flutter_boilerplate/constants/assets.dart';
-import 'package:flutter_boilerplate/constants/strings.dart';
+import '../../../constants/assets.dart';
+import '../../../constants/strings.dart';
 
 class LoginSocial extends StatelessWidget {
   const LoginSocial({

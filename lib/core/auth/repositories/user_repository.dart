@@ -7,18 +7,32 @@ class UserRepository {
   Future<dynamic> getAuthData(String userName, String userPassword) async {
     var client = http.Client();
     try {
-      final String url =
-          'https://api.openweathermap.org/data/2.5/weather?q=$cityName&appid=43ea6baaad7663dc17637e22ee6f78f2';
-      final response = await client.get(Uri.parse(url));
+      const String url = 'http://localhost:8000/api/auth/login/';
 
+      const dynamic headers = {
+        'Accept': '*/*',
+        'User-Agent':
+            'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/107.0.0.0 Safari/537.36',
+        'Content-Type': 'application/json',
+      };
+
+      final body = jsonEncode({
+        'username': '',
+        'email': 'admin@gmail.com',
+        'password': 'admin',
+      });
+
+      final response =
+          await client.post(Uri.parse(url), headers: headers, body: body);
       final jsonDecodedData = jsonDecode(response.body);
-      return jsonDecodedData['main'];
+      return jsonDecodedData;
     } catch (e) {
       throw Exception(e);
     } finally {
       client.close();
     }
   }
+}
 
 
 
@@ -46,5 +60,4 @@ class UserRepository {
   //   /// read from keystore/keychain
   //   await Future.delayed(const Duration(seconds: 1));
   //   return false;
-  }
-}
+  // }

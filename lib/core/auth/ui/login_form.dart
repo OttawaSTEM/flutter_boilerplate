@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
-import 'package:flutter_boilerplate/constants/strings.dart';
+import '../../../constants/strings.dart';
+
+import '../bloc/auth_bloc.dart';
 
 class LoginForm extends StatelessWidget {
   LoginForm({
@@ -8,7 +11,9 @@ class LoginForm extends StatelessWidget {
   }) : super(key: key);
 
   // TextEditingController controller = TextEditingController();
-  TextEditingController usernameController = TextEditingController();
+  // TextEditingController usernameController = TextEditingController();
+  // TextEditingController passwordController = TextEditingController();
+  final usernameController = TextEditingController();
   final passwordController = TextEditingController();
 
   @override
@@ -53,7 +58,10 @@ class LoginForm extends StatelessWidget {
             width: double.infinity,
             height: 50,
             child: ElevatedButton(
-              onPressed: () {},
+              onPressed: () {
+                context.read<AuthBloc>().add(UserLoginEvent(
+                    usernameController.text, passwordController.text));
+              },
               child: const Text(txtLogin),
             ),
           ),

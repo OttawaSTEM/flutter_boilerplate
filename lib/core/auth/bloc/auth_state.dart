@@ -1,7 +1,7 @@
 part of 'auth_bloc.dart';
 
-abstract class AuthState extends Equatable {
-  final dynamic token;
+class AuthState extends Equatable {
+  final String? token;
 
   const AuthState({
     this.token,

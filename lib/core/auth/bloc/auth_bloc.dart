@@ -15,9 +15,9 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
 
   Future _userAuth(event, emit) async {
     try {
-      dynamic weatherData =
-          await _userRepository.getWeatherData(event.cityName);
-      emit(AuthState(data: weatherData));
+      dynamic authData =
+          await _userRepository.getAuthData(event.userName, event.userPassword);
+      emit(AuthState(token: authData['key']));
     } catch (e) {
       throw Exception(e);
     }

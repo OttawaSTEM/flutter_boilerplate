@@ -1,13 +1,16 @@
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_boilerplate/modules/weather/repository/weather_repository.dart';
 import 'package:hydrated_bloc/hydrated_bloc.dart';
 import 'package:path_provider/path_provider.dart';
 
 import 'routes/routes.dart';
 
+import 'modules/weather/repository/weather_repository.dart';
+import 'core/auth/repositories/user_repository.dart';
+
 import 'core/observer/observer.dart';
+import '../core/auth/bloc/auth_bloc.dart';
 import '../modules/counter1/cubit/counter1_cubit.dart';
 import '../modules/counter2/bloc/counter2_bloc.dart';
 import '../modules/counter3/bloc/counter3_bloc.dart';
@@ -60,6 +63,9 @@ class App extends StatelessWidget {
         ),
         BlocProvider<WeatherBloc>(
           create: (context) => WeatherBloc(WeatherRepository()),
+        ),
+        BlocProvider<AuthBloc>(
+          create: (context) => AuthBloc(UserRepository()),
         ),
       ],
       child: MaterialApp(
