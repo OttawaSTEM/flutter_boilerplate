@@ -60,16 +60,18 @@ class LoginForm extends StatelessWidget {
             child: ElevatedButton(
               onPressed: () {
                 context.read<AuthBloc>().add(UserLoginEvent(
-                    usernameController.text, passwordController.text));
+                      usernameController.text,
+                      passwordController.text,
+                    ));
               },
               child: const Text(txtLogin),
             ),
           ),
           BlocBuilder<AuthBloc, AuthState>(
             builder: (context, state) {
-              // final data = state.props[0] as Map;
               return Text(
-                (state.token != null) ? state.token.toString() : '',
+                state.token.toString(),
+                // (state.token != null) ? state.token.toString() : '',
                 style: const TextStyle(
                   fontSize: 25,
                 ),

@@ -24,8 +24,6 @@ class UserRepository {
 
       final response =
           await client.post(Uri.parse(url), headers: headers, body: body);
-      print(response.body);
-      print(response.statusCode);
       final jsonDecodedData = jsonDecode(response.body);
       return jsonDecodedData;
     } catch (e) {

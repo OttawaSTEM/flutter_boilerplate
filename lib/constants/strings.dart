@@ -15,6 +15,8 @@ const String txtSigninGoogle = 'Sign in with Google';
 const String txtNoAccount = 'Don\'t have an account? ';
 const String txtSignUp = 'Sign up';
 const String txtOR = 'OR';
+const String txtEnterUserName = 'Please enter your username';
+const String txtEnterUserPassword = 'Please enter your password';
 
 // Images
 const String logoImage = 'assets/images/logo.png';
