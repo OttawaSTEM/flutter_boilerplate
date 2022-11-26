@@ -10,26 +10,33 @@ class LoginForm extends StatelessWidget {
     Key? key,
   }) : super(key: key);
 
-  // TextEditingController controller = TextEditingController();
-  // TextEditingController usernameController = TextEditingController();
-  // TextEditingController passwordController = TextEditingController();
   final usernameController = TextEditingController();
   final passwordController = TextEditingController();
+  final _formGlobalKey = GlobalKey<FormState>();
 
   @override
   Widget build(BuildContext context) {
     return Form(
+      key: _formGlobalKey,
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           TextFormField(
             controller: usernameController,
             keyboardType: TextInputType.text,
+            // autovalidateMode: AutovalidateMode.onUserInteraction,
             decoration: const InputDecoration(
-                prefixIcon: Icon(Icons.person_outline_outlined),
-                labelText: txtEmail,
-                hintText: txtEmail,
-                border: OutlineInputBorder()),
+              prefixIcon: Icon(Icons.mail),
+              labelText: txtEmail,
+              hintText: txtEmail,
+              border: OutlineInputBorder(),
+            ),
+            validator: (value) {
+              if (value == null || value.isEmpty) {
+                return txtEnterEmail;
+              }
+              return null;
+            },
           ),
           const SizedBox(height: 20),
           TextFormField(
@@ -45,6 +52,12 @@ class LoginForm extends StatelessWidget {
                 icon: Icon(Icons.remove_red_eye_sharp),
               ),
             ),
+            validator: (value) {
+              if (value == null || value.isEmpty) {
+                return txtEnterUserPassword;
+              }
+              return null;
+            },
           ),
           const SizedBox(height: 20),
           Align(
@@ -59,10 +72,12 @@ class LoginForm extends StatelessWidget {
             height: 50,
             child: ElevatedButton(
               onPressed: () {
-                context.read<AuthBloc>().add(UserLoginEvent(
-                      usernameController.text,
-                      passwordController.text,
-                    ));
+                if (_formKey.currentState!.validate()) {
+                  context.read<AuthBloc>().add(UserLoginEvent(
+                        usernameController.text,
+                        passwordController.text,
+                      ));
+                }
               },
               child: const Text(txtLogin),
             ),

@@ -7,7 +7,8 @@ class UserRepository {
   Future<dynamic> getAuthData(String userName, String userPassword) async {
     var client = http.Client();
     try {
-      const String url = 'http://192.168.1.60:8000/api/auth/login/';
+      // const String url = 'http://192.168.1.60:8000/api/auth/login/';
+      const String url = 'http://192.168.1.51:8000/api/auth/login/';
 
       const dynamic headers = {
         'Accept': '*/*',
