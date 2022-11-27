@@ -72,7 +72,7 @@ class LoginForm extends StatelessWidget {
             height: 50,
             child: ElevatedButton(
               onPressed: () {
-                if (_formKey.currentState!.validate()) {
+                if (_formGlobalKey.currentState!.validate()) {
                   context.read<AuthBloc>().add(UserLoginEvent(
                         usernameController.text,
                         passwordController.text,

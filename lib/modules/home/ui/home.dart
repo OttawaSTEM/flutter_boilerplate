@@ -28,6 +28,17 @@ class _HomePageState extends State<HomePage> {
               height: 80,
               child: (Center(
                 child: (ElevatedButton(
+                  child: const Text('Counter 0'),
+                  onPressed: () {
+                    Navigator.of(context).pushNamed('/counter0');
+                  },
+                )),
+              )),
+            ),
+            SizedBox(
+              height: 80,
+              child: (Center(
+                child: (ElevatedButton(
                   child: const Text('Counter1 Cubit'),
                   onPressed: () {
                     Navigator.of(context).pushNamed('/counter1');
@@ -39,7 +50,7 @@ class _HomePageState extends State<HomePage> {
               height: 40,
               child: (Center(
                 child: (ElevatedButton(
-                  child: const Text('Counter2 Bloc'),
+                  child: const Text('Counter 2 Bloc'),
                   onPressed: () {
                     Navigator.of(context).pushNamed('/counter2');
                   },
@@ -50,7 +61,7 @@ class _HomePageState extends State<HomePage> {
               height: 80,
               child: (Center(
                 child: (ElevatedButton(
-                  child: const Text('Counter3 Persistent State'),
+                  child: const Text('Counter 3 Persistent State'),
                   onPressed: () {
                     Navigator.of(context).pushNamed('/counter3');
                   },

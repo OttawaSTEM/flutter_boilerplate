@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import '../core/auth/ui/login.dart';
 
 import '../modules/home/ui/home.dart';
+import '../modules/counter0/ui/counter0.dart';
 import '../modules/counter1/ui/counter1.dart';
 import '../modules/counter2/ui/counter2.dart';
 import '../modules/counter3/ui/counter3.dart';
@@ -20,6 +21,7 @@ Map<String, Widget Function(BuildContext)> appRoutes = {
   // Backend
 
   // Bloc Test
+  '/counter0': (context) => const Counter0Page(title: 'Counter 0'),
   '/counter1': (context) => const Counter1Page(title: 'Counter 1'),
   '/counter2': (context) => const Counter2Page(title: 'Counter 2'),
   '/counter3': (context) => const Counter3Page(title: 'Counter 3'),

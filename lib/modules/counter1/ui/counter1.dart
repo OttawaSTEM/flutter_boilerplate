@@ -13,8 +13,6 @@ class Counter1Page extends StatefulWidget {
 }
 
 class _Counter1PageState extends State<Counter1Page> {
-  // final Future _users = HttpService().fetchUsers();
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
