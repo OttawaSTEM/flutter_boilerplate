@@ -20,7 +20,7 @@ class _Counter1PageState extends State<Counter1Page> {
         title: Text(widget.title),
       ),
       // drawer: const NavigationDrawer(),
-      body: SafeArea(
+      body: Center(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[

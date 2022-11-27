@@ -24,7 +24,7 @@ class _WeatherPageState extends State<WeatherPage> {
       appBar: AppBar(
         title: Text(widget.title),
       ),
-      body: SafeArea(
+      body: Center(
         child: Padding(
           padding: const EdgeInsets.all(8.0),
           child: Center(

@@ -10,7 +10,7 @@ class LoginPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final screenSize = MediaQuery.of(context).size;
-    return SafeArea(
+    return Center(
       child: Scaffold(
         body: SingleChildScrollView(
           child: Container(

@@ -13,8 +13,6 @@ class Counter3Page extends StatefulWidget {
 }
 
 class _Counter3PageState extends State<Counter3Page> {
-  // final Future _users = HttpService().fetchUsers();
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -22,7 +20,7 @@ class _Counter3PageState extends State<Counter3Page> {
         title: Text(widget.title),
       ),
       // drawer: const NavigationDrawer(),
-      body: SafeArea(
+      body: Center(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
