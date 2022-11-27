@@ -37,10 +37,10 @@ class App extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    // return MaterialApp(
-    //   initialRoute: '/',
-    //   routes: appRoutes,
-    // );
+    return MaterialApp(
+      initialRoute: '/',
+      routes: appRoutes,
+    );
 
     // return BlocProvider(
     //   create: (context) => Counter1Cubit(),
@@ -50,28 +50,28 @@ class App extends StatelessWidget {
     //   ),
     // );
 
-    return MultiBlocProvider(
-      providers: [
-        BlocProvider<Counter1Cubit>(
-          create: (context) => Counter1Cubit(),
-        ),
-        BlocProvider<Counter2Bloc>(
-          create: (context) => Counter2Bloc(),
-        ),
-        BlocProvider<Counter3Bloc>(
-          create: (context) => Counter3Bloc(),
-        ),
-        BlocProvider<WeatherBloc>(
-          create: (context) => WeatherBloc(WeatherRepository()),
-        ),
-        BlocProvider<AuthBloc>(
-          create: (context) => AuthBloc(UserRepository()),
-        ),
-      ],
-      child: MaterialApp(
-        initialRoute: '/',
-        routes: appRoutes,
-      ),
-    );
+    // return MultiBlocProvider(
+    //   providers: [
+    //     BlocProvider<Counter1Cubit>(
+    //       create: (context) => Counter1Cubit(),
+    //     ),
+    //     BlocProvider<Counter2Bloc>(
+    //       create: (context) => Counter2Bloc(),
+    //     ),
+    //     BlocProvider<Counter3Bloc>(
+    //       create: (context) => Counter3Bloc(),
+    //     ),
+    //     BlocProvider<WeatherBloc>(
+    //       create: (context) => WeatherBloc(WeatherRepository()),
+    //     ),
+    //     BlocProvider<AuthBloc>(
+    //       create: (context) => AuthBloc(UserRepository()),
+    //     ),
+    //   ],
+    //   child: MaterialApp(
+    //     initialRoute: '/',
+    //     routes: appRoutes,
+    //   ),
+    // );
   }
 }
