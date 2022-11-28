@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class Counter0Page extends StatefulWidget {
   const Counter0Page({super.key, required this.title});
@@ -12,10 +13,31 @@ class Counter0Page extends StatefulWidget {
 class _Counter0PageState extends State<Counter0Page> {
   int _counter = 0;
 
-  void _incrementCounter() {
+  // void _incrementCounter() {
+  //   setState(() {
+  //     _counter++;
+  //   });
+  // }
+
+  void _incrementCounter() async {
+    SharedPreferences prefs = await SharedPreferences.getInstance();
     setState(() {
-      _counter++;
+      _counter = ((prefs.getInt('counter') ?? 0) + 1);
+      prefs.setInt('counter', _counter);
     });
+  }
+
+  void loadCounter() async {
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    setState(() {
+      _counter = prefs.getInt('counter') ?? 0;
+    });
+  }
+
+  @override
+  void initState() {
+    super.initState();
+    loadCounter();
   }
 
   @override
@@ -35,13 +57,17 @@ class _Counter0PageState extends State<Counter0Page> {
               '$_counter',
               style: Theme.of(context).textTheme.headline4,
             ),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+              children: [
+                ElevatedButton(
+                  onPressed: _incrementCounter,
+                  child: const Icon(Icons.add),
+                ),
+              ],
+            ),
           ],
         ),
-      ),
-      floatingActionButton: FloatingActionButton(
-        onPressed: _incrementCounter,
-        tooltip: 'Increment',
-        child: const Icon(Icons.add),
       ),
     );
   }
