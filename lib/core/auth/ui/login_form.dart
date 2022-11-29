@@ -12,19 +12,16 @@ class LoginForm extends StatelessWidget {
 
   final usernameController = TextEditingController();
   final passwordController = TextEditingController();
-  final _formGlobalKey = GlobalKey<FormState>();
+  static final GlobalKey<FormState> _formGlobalKey = GlobalKey<FormState>();
 
   @override
   Widget build(BuildContext context) {
     return Form(
       key: _formGlobalKey,
       child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           TextFormField(
             controller: usernameController,
-            keyboardType: TextInputType.text,
-            // autovalidateMode: AutovalidateMode.onUserInteraction,
             decoration: const InputDecoration(
               prefixIcon: Icon(Icons.mail),
               labelText: txtEmail,
@@ -41,7 +38,6 @@ class LoginForm extends StatelessWidget {
           const SizedBox(height: 20),
           TextFormField(
             controller: passwordController,
-            keyboardType: TextInputType.text,
             decoration: const InputDecoration(
               prefixIcon: Icon(Icons.fingerprint),
               labelText: txtPassword,
@@ -81,17 +77,6 @@ class LoginForm extends StatelessWidget {
               },
               child: const Text(txtLogin),
             ),
-          ),
-          BlocBuilder<AuthBloc, AuthState>(
-            builder: (context, state) {
-              return Text(
-                state.token.toString(),
-                // (state.token != null) ? state.token.toString() : '',
-                style: const TextStyle(
-                  fontSize: 25,
-                ),
-              );
-            },
           ),
         ],
       ),
