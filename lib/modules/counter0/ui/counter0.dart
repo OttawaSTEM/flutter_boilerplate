@@ -12,8 +12,6 @@ class Counter0Page extends StatefulWidget {
 }
 
 class _Counter0PageState extends State<Counter0Page> {
-  // final _counterModel = Counter0Model();
-
   @override
   Widget build(BuildContext context) {
     return ChangeNotifierProvider<Counter0Model>(
@@ -46,7 +44,7 @@ class _Counter0PageState extends State<Counter0Page> {
                       child: const Icon(Icons.refresh),
                     ),
                     ElevatedButton(
-                      onPressed: () => model.counter++,
+                      onPressed: () => model.increment(),
                       child: const Icon(Icons.add),
                     ),
                   ],

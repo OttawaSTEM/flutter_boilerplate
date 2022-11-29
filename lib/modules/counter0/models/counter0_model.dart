@@ -11,4 +11,9 @@ class Counter0Model with ChangeNotifier {
       notifyListeners();
     }
   }
+
+  void increment() {
+    _counter += 5;
+    notifyListeners();
+  }
 }
