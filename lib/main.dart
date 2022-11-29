@@ -11,9 +11,9 @@ import '../core/auth/repositories/user_repository.dart';
 
 import '../core/observer/observer.dart';
 import '../core/auth/bloc/auth_bloc.dart';
-import '../modules/counter1/cubit/counter1_cubit.dart';
-import '../modules/counter2/bloc/counter2_bloc.dart';
-import '../modules/counter3/bloc/counter3_bloc.dart';
+import '../modules/counter10/cubit/counter10_cubit.dart';
+import '../modules/counter20/bloc/counter20_bloc.dart';
+import '../modules/counter30/bloc/counter30_bloc.dart';
 import '../modules/weather/bloc/weather_bloc.dart';
 
 void main() async {
@@ -52,14 +52,14 @@ class App extends StatelessWidget {
 
     return MultiBlocProvider(
       providers: [
-        BlocProvider<Counter1Cubit>(
-          create: (context) => Counter1Cubit(),
+        BlocProvider<Counter10Cubit>(
+          create: (context) => Counter10Cubit(),
         ),
-        BlocProvider<Counter2Bloc>(
-          create: (context) => Counter2Bloc(),
+        BlocProvider<Counter20Bloc>(
+          create: (context) => Counter20Bloc(),
         ),
-        BlocProvider<Counter3Bloc>(
-          create: (context) => Counter3Bloc(),
+        BlocProvider<Counter30Bloc>(
+          create: (context) => Counter30Bloc(),
         ),
         BlocProvider<WeatherBloc>(
           create: (context) => WeatherBloc(WeatherRepository()),

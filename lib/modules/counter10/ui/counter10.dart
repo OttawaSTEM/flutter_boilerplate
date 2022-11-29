@@ -1,18 +1,18 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-import '../bloc/counter3_bloc.dart';
+import '../cubit/counter10_cubit.dart';
 
-class Counter3Page extends StatefulWidget {
-  const Counter3Page({super.key, required this.title});
+class Counter10Page extends StatefulWidget {
+  const Counter10Page({super.key, required this.title});
 
   final String title;
 
   @override
-  State<Counter3Page> createState() => _Counter3PageState();
+  State<Counter10Page> createState() => _Counter10PageState();
 }
 
-class _Counter3PageState extends State<Counter3Page> {
+class _Counter10PageState extends State<Counter10Page> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -25,17 +25,9 @@ class _Counter3PageState extends State<Counter3Page> {
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
             const Text('Pushed button:'),
-            // BlocBuilder<Counter3Bloc, Counter3State>(
-            //   builder: (context, state) {
-            //     return Text(
-            //       'Counter 2 Vaule: ${state.counter3Value}',
-            //       style: Theme.of(context).textTheme.headline4,
-            //     );
-            //   },
-            // ),
-            BlocConsumer<Counter3Bloc, Counter3State>(
+            BlocConsumer<Counter10Cubit, Counter10State>(
               listener: (context, state) {
-                if (state.counter3Incremented) {
+                if (state.incremented) {
                   ScaffoldMessenger.of(context).showSnackBar(SnackBar(
                     content: const Text('Incremented'),
                     duration: const Duration(seconds: 1),
@@ -57,8 +49,7 @@ class _Counter3PageState extends State<Counter3Page> {
               },
               builder: (context, state) {
                 return Text(
-                  // state.counter3Value.toString(),
-                  'Counter 3 Vaule: ${state.counter3Value}',
+                  state.counterValue.toString(),
                   style: Theme.of(context).textTheme.headline4,
                 );
               },
@@ -71,13 +62,13 @@ class _Counter3PageState extends State<Counter3Page> {
               children: [
                 ElevatedButton(
                   onPressed: () {
-                    context.read<Counter3Bloc>().add(Counter3DecrementEvent());
+                    BlocProvider.of<Counter10Cubit>(context).decrement();
                   },
                   child: const Icon(Icons.remove),
                 ),
                 ElevatedButton(
                   onPressed: () {
-                    context.read<Counter3Bloc>().add(Counter3IncrementEvent());
+                    BlocProvider.of<Counter10Cubit>(context).increment();
                   },
                   child: const Icon(Icons.add),
                 ),

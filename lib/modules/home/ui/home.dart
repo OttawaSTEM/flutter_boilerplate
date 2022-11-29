@@ -12,8 +12,6 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
-  // final Future _users = HttpService().fetchUsers();
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -28,9 +26,20 @@ class _HomePageState extends State<HomePage> {
               height: 80,
               child: (Center(
                 child: (ElevatedButton(
-                  child: const Text('Counter 0'),
+                  child: const Text('Counter 0 ChangeNotifier'),
                   onPressed: () {
                     Navigator.of(context).pushNamed('/counter0');
+                  },
+                )),
+              )),
+            ),
+            SizedBox(
+              height: 40,
+              child: (Center(
+                child: (ElevatedButton(
+                  child: const Text('Counter 1 Shared Perferences'),
+                  onPressed: () {
+                    Navigator.of(context).pushNamed('/counter1');
                   },
                 )),
               )),
@@ -41,7 +50,7 @@ class _HomePageState extends State<HomePage> {
                 child: (ElevatedButton(
                   child: const Text('Counter1 Cubit'),
                   onPressed: () {
-                    Navigator.of(context).pushNamed('/counter1');
+                    Navigator.of(context).pushNamed('/counter10');
                   },
                 )),
               )),
@@ -52,7 +61,7 @@ class _HomePageState extends State<HomePage> {
                 child: (ElevatedButton(
                   child: const Text('Counter 2 Bloc'),
                   onPressed: () {
-                    Navigator.of(context).pushNamed('/counter2');
+                    Navigator.of(context).pushNamed('/counter20');
                   },
                 )),
               )),
@@ -63,7 +72,7 @@ class _HomePageState extends State<HomePage> {
                 child: (ElevatedButton(
                   child: const Text('Counter 3 Bloc (Persistent State)'),
                   onPressed: () {
-                    Navigator.of(context).pushNamed('/counter3');
+                    Navigator.of(context).pushNamed('/counter30');
                   },
                 )),
               )),

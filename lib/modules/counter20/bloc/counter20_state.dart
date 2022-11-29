@@ -1,10 +1,10 @@
-part of 'counter2_bloc.dart';
+part of 'counter20_bloc.dart';
 
-class Counter2State extends Equatable {
+class Counter20State extends Equatable {
   final int counter2Value;
   final bool counter2Incremented;
 
-  const Counter2State({
+  const Counter20State({
     required this.counter2Value,
     required this.counter2Incremented,
   });
@@ -13,8 +13,8 @@ class Counter2State extends Equatable {
   List<Object> get props => [counter2Value, counter2Incremented];
 }
 
-class Counter2Initial extends Counter2State {
-  const Counter2Initial()
+class Counter20Initial extends Counter20State {
+  const Counter20Initial()
       : super(
           counter2Value: 0,
           counter2Incremented: false,

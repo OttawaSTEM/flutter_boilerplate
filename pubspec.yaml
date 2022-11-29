@@ -41,6 +41,7 @@ dependencies:
   flutter_launcher_icons: ^0.11.0
   flutter_localization: ^0.1.9
   flutter_native_splash: ^1.3.3
+  # flutter_secure_storage: ^6.1.0      # Replace shared_preferences in production
   http: ^0.13.5
   hydrated_bloc: ^9.0.0
   intl: ^0.17.0

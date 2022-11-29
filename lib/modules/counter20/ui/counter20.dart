@@ -1,18 +1,18 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-import '../bloc/counter2_bloc.dart';
+import '../bloc/counter20_bloc.dart';
 
-class Counter2Page extends StatefulWidget {
-  const Counter2Page({super.key, required this.title});
+class Counter20Page extends StatefulWidget {
+  const Counter20Page({super.key, required this.title});
 
   final String title;
 
   @override
-  State<Counter2Page> createState() => _Counter2PageState();
+  State<Counter20Page> createState() => _Counter20PageState();
 }
 
-class _Counter2PageState extends State<Counter2Page> {
+class _Counter20PageState extends State<Counter20Page> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -25,7 +25,7 @@ class _Counter2PageState extends State<Counter2Page> {
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
             const Text('Pushed button:'),
-            // BlocBuilder<Counter2Bloc, Counter2State>(
+            // BlocBuilder<Counter20Bloc, Counter20State>(
             //   builder: (context, state) {
             //     return Text(
             //       'Counter 2 Vaule: ${state.counter2Value}',
@@ -34,7 +34,7 @@ class _Counter2PageState extends State<Counter2Page> {
             //   },
             // ),
 
-            BlocConsumer<Counter2Bloc, Counter2State>(
+            BlocConsumer<Counter20Bloc, Counter20State>(
               listener: (context, state) {
                 if (state.counter2Incremented) {
                   ScaffoldMessenger.of(context).showSnackBar(SnackBar(
@@ -72,13 +72,13 @@ class _Counter2PageState extends State<Counter2Page> {
               children: [
                 ElevatedButton(
                   onPressed: () {
-                    context.read<Counter2Bloc>().add(Counter2DecrementEvent());
+                    context.read<Counter20Bloc>().add(Counter20DecrementEvent());
                   },
                   child: const Icon(Icons.remove),
                 ),
                 ElevatedButton(
                   onPressed: () {
-                    context.read<Counter2Bloc>().add(Counter2IncrementEvent());
+                    context.read<Counter20Bloc>().add(Counter20IncrementEvent());
                   },
                   child: const Icon(Icons.add),
                 ),

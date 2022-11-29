@@ -1,11 +1,11 @@
-part of 'counter1_cubit.dart';
+part of 'counter10_cubit.dart';
 
-class Counter1State {
+class Counter10State {
   int counterValue;
   bool incremented;
   // bool? incremented;
 
-  Counter1State({
+  Counter10State({
     required this.counterValue,
     required this.incremented,
     // this.incremented,
