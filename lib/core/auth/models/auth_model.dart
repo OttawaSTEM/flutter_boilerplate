@@ -28,13 +28,9 @@ class AuthModel with ChangeNotifier {
     }
   }
 
-  Future<void> login(
-      {required String username, required String password}) async {
+  Future<void> login({required String username, required String password}) async {
     var client = http.Client();
     try {
-      // const String url = 'http://192.168.1.60:8000/api/auth/login/';
-      const String url = 'http://192.168.1.51:8000/api/auth/login/';
-
       const dynamic headers = {
         'Accept': '*/*',
         'User-Agent':
@@ -48,8 +44,7 @@ class AuthModel with ChangeNotifier {
         'password': password,
       });
 
-      final response =
-          await client.post(Uri.parse(url), headers: headers, body: body);
+      final response = await client.post(Uri.parse(authUrl), headers: headers, body: body);
 
       final data = jsonDecode(response.body);
       if (data['key'] != null) {

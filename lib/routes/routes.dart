@@ -8,7 +8,6 @@ import '../modules/counter1/ui/counter1.dart';
 import '../modules/counter10/ui/counter10.dart';
 import '../modules/counter20/ui/counter20.dart';
 import '../modules/counter30/ui/counter30.dart';
-import '../modules/api_json/ui/api_json.dart';
 import '../modules/weather/ui/weather.dart';
 
 Map<String, Widget Function(BuildContext)> appRoutes = {
@@ -28,6 +27,5 @@ Map<String, Widget Function(BuildContext)> appRoutes = {
   '/counter10': (context) => const Counter10Page(title: 'Counter 10 Cubit'),
   '/counter20': (context) => const Counter20Page(title: 'Counter 20 Bloc'),
   '/counter30': (context) => const Counter30Page(title: 'Counter 30 Bloc Persistent'),
-  '/api_json': (context) => const APIJsonPage(title: 'Simple API JSON'),
   '/weather': (context) => const WeatherPage(title: 'Weather'),
 };
