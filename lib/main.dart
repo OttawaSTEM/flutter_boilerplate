@@ -62,9 +62,9 @@ class App extends StatelessWidget {
         BlocProvider<WeatherBloc>(
           create: (context) => WeatherBloc(WeatherRepository()),
         ),
-        BlocProvider<AuthBloc>(
-          create: (context) => AuthBloc(UserRepository()),
-        ),
+        // BlocProvider<AuthBloc>(
+        //   create: (context) => AuthBloc(UserRepository()),
+        // ),
       ],
       child: MaterialApp(
         initialRoute: '/',

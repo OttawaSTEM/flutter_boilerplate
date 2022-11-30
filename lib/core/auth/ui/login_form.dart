@@ -69,12 +69,20 @@ class LoginForm extends StatelessWidget {
                 width: double.infinity,
                 height: 50,
                 child: ElevatedButton(
-                  onPressed: () => model.login(
-                    username: usernameController.text,
-                    password: passwordController.text,
-                  ),
+                  onPressed: () {
+                    if (_formGlobalKey.currentState!.validate()) {
+                      model.login(
+                        username: usernameController.text,
+                        password: passwordController.text,
+                      );
+                    }
+                  },
                   child: const Text(txtLogin),
                 ),
+              ),
+              Text(
+                model.token,
+                style: const TextStyle(height: 3, fontSize: 16),
               ),
             ],
           ),
