@@ -7,10 +7,8 @@ import 'package:path_provider/path_provider.dart';
 import '../routes/routes.dart';
 
 import '../modules/weather/repository/weather_repository.dart';
-import '../core/auth/repositories/user_repository.dart';
 
 import '../core/observer/observer.dart';
-import '../core/auth/bloc/auth_bloc.dart';
 import '../modules/counter10/cubit/counter10_cubit.dart';
 import '../modules/counter20/bloc/counter20_bloc.dart';
 import '../modules/counter30/bloc/counter30_bloc.dart';
