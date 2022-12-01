@@ -4,11 +4,13 @@ import 'package:http/http.dart' as http;
 import 'package:logger/logger.dart';
 
 import '../../../constants/http_req.dart';
+import '../../../constants/strings.dart';
 
 class AuthModel with ChangeNotifier {
   final logger = Logger();
-  // final Logger logger;
-  // AuthModel(this.logger);
+
+  String _authMessage = '';
+  String get authMessage => _authMessage;
 
   String _token = '';
   String get token => _token;
@@ -19,16 +21,8 @@ class AuthModel with ChangeNotifier {
     }
   }
 
-  bool _authStatus = false;
-  bool get authStatus => _authStatus;
-  set authStatus(bool value) {
-    if (value != _authStatus) {
-      _authStatus = value;
-      notifyListeners();
-    }
-  }
-
   Future<void> login({required String username, required String password}) async {
+    _token = '';
     var client = http.Client();
     try {
       const dynamic headers = {
@@ -45,19 +39,18 @@ class AuthModel with ChangeNotifier {
       });
 
       final response = await client.post(Uri.parse(authUrl), headers: headers, body: body);
-
       final data = jsonDecode(response.body);
       if (data['key'] != null) {
-        logger.i(data['key']);
         _token = data['key'];
+        _authMessage = txtLoginSucess;
       } else if (data['email'] != null) {
-        logger.i(data);
+        _authMessage = txtLoginValidEmail;
       } else if (data['non_field_errors'] != null) {
-        logger.i(data);
+        _authMessage = txtLoginFailed;
       }
-      logger.i(data);
+      notifyListeners();
     } catch (e) {
-      logger.e(e.toString());
+      _token = '';
     } finally {
       client.close();
     }
