@@ -1,4 +1,5 @@
 import 'dart:convert';
+import 'dart:io';
 import 'package:flutter/foundation.dart';
 import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
@@ -15,9 +16,12 @@ class UserController extends GetxController {
     var data = [];
     String? token = storage.read('token');
     logger.i(token);
+    logger.i(token);
 
     try {
-      final response = await http.get(Uri.parse(userUrl));
+      final response = await http.get(Uri.parse(userUrl), headers: {
+        HttpHeaders.authorizationHeader: 'Token $token',
+      });
       data = json.decode(response.body);
     } catch (e) {
       if (kDebugMode) {

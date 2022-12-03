@@ -7,6 +7,8 @@ import 'package:logger/logger.dart';
 import '../../../constants/http_req.dart';
 import '../../../constants/strings.dart';
 
+import '../../../modules/home/ui/home.dart';
+
 class AuthController extends GetxController {
   final storage = GetStorage();
   final logger = Logger();
@@ -38,6 +40,7 @@ class AuthController extends GetxController {
         storage.write("token", data['key']);
         _authMessage = txtLoginSucess;
         _authStatus = true;
+        Get.to(const HomePage(title: 'Home Page'));
       } else if (data['email'] != null) {
         storage.remove('token');
         _authMessage = txtLoginValidEmail;

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
 import '../../../constants/strings.dart';
 import '../controller/auth_controller.dart';
@@ -14,6 +15,7 @@ class LoginForm extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final AuthController authController = Get.put(AuthController());
     return Form(
       key: _formGlobalKey,
       child: Column(
@@ -67,10 +69,10 @@ class LoginForm extends StatelessWidget {
             child: ElevatedButton(
               onPressed: () {
                 if (_formGlobalKey.currentState!.validate()) {
-                  // model.login(
-                  //   username: usernameController.text,
-                  //   password: passwordController.text,
-                  // );
+                  authController.login(
+                    username: usernameController.text,
+                    password: passwordController.text,
+                  );
                 }
               },
               child: const Text(txtLogin),
