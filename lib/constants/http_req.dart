@@ -8,11 +8,17 @@ import 'package:flutter/foundation.dart';
 
 // api routes
 // ? 'http://192.168.1.51:8000/api/auth/login/'
-const String authUrl =
-    kDebugMode ? 'http://192.168.1.60:8000/api/auth/login/' : 'https://domain.com/api/auth/login';
+const String authUrl = kDebugMode
+    ? 'http://192.168.1.60:8000/api/auth/login/'
+    : 'https://domain.com/api/auth/login';
+
+const String userUrl = kDebugMode
+    ? 'http://192.168.1.51:8000/api/users/'
+    : 'https://domain.com/api/users/';
 
 // api keys
-const String moviesApiKey = 'API_KEY'; // e.g. 'bff708fnwFwef9832ed927da1d'; or Env.moviesApiKey;
+const String moviesApiKey =
+    'API_KEY'; // e.g. 'bff708fnwFwef9832ed927da1d'; or Env.moviesApiKey;
 
 // http headers
 const Object apiHeaders = {

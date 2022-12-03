@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import '../core/auth/ui/login.dart';
 
 import '../modules/home/ui/home.dart';
+import '../modules/users/ui/users.dart';
 import '../modules/counter0/ui/counter0.dart';
 import '../modules/counter1/ui/counter1.dart';
 import '../modules/counter10/ui/counter10.dart';
@@ -16,16 +17,19 @@ Map<String, Widget Function(BuildContext)> appRoutes = {
   '/login': (context) => const LoginPage(),
 
   // Auth
-  // '/user': (context) => const UserPage(),
+  '/users': (context) => const UserPage(title: 'Users Page'),
 
   // Backend
 
-  '/counter0': (context) => const Counter0Page(title: 'Counter 0 ChangeNotifier'),
-  '/counter1': (context) => const Counter1Page(title: 'Counter 1 Shared Preferences'),
+  '/counter0': (context) =>
+      const Counter0Page(title: 'Counter 0 ChangeNotifier'),
+  '/counter1': (context) =>
+      const Counter1Page(title: 'Counter 1 Shared Preferences'),
 
   // Bloc Test
   '/counter10': (context) => const Counter10Page(title: 'Counter 10 Cubit'),
   '/counter20': (context) => const Counter20Page(title: 'Counter 20 Bloc'),
-  '/counter30': (context) => const Counter30Page(title: 'Counter 30 Bloc Persistent'),
+  '/counter30': (context) =>
+      const Counter30Page(title: 'Counter 30 Bloc Persistent'),
   '/weather': (context) => const WeatherPage(title: 'Weather'),
 };

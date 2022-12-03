@@ -74,17 +74,9 @@ class LoginForm extends StatelessWidget {
                       password: passwordController.text,
                     );
                   }
-                  ScaffoldMessenger.of(context).showSnackBar(SnackBar(
-                    content: Text(model.authStatus ? model.token : model.authMessage),
-                    duration: const Duration(seconds: 1),
-                  ));
                 },
                 child: const Text(txtLogin),
               ),
-            ),
-            Text(
-              model.token,
-              style: const TextStyle(height: 3, fontSize: 16),
             ),
           ],
         ),

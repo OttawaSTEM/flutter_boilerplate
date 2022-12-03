@@ -81,9 +81,9 @@ class _HomePageState extends State<HomePage> {
               height: 80,
               child: (Center(
                 child: (ElevatedButton(
-                  child: const Text('API JSON Page'),
+                  child: const Text('User Page'),
                   onPressed: () {
-                    Navigator.of(context).pushNamed('/api_json');
+                    Navigator.of(context).pushNamed('/users');
                   },
                 )),
               )),
