@@ -15,6 +15,6 @@ Map<String, Widget Function(BuildContext)> appRoutes = {
   // '/users': (context) => const UserPage(title: 'Users Page'),
 
   // Backend
-  '/counter': (context) => CounterPage(),
-  // '/counter': (context) => const CounterPage(title: 'Counter GetX Page'),
+  // '/counter': (context) => CounterPage(),
+  '/counter': (context) => const CounterPage(title: 'Counter GetX Page'),
 };
