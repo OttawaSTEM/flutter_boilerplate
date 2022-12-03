@@ -1,8 +1,8 @@
-// ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 import '../controller/counter_controller.dart';
+import '../../../core/auth/ui/login.dart';
 
 class CounterPage extends StatelessWidget {
   final String title;
@@ -10,7 +10,6 @@ class CounterPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    // Instantiate your class using Get.put() to make it available for all "child" routes there.
     final CounterController counterController = Get.put(CounterController());
 
     return Scaffold(
@@ -45,32 +44,13 @@ class CounterPage extends StatelessWidget {
                 ),
               ],
             ),
+            ElevatedButton(
+              child: const Text("Go to Login Page"),
+              onPressed: () => Get.to(const LoginPage()),
+            ),
           ],
         ),
       ),
     );
   }
 }
-
-// Replace the 8 lines Navigator.push by a simple Get.to(). You don't need context
-// body: Center(
-//   child: ElevatedButton(
-//     child: const Text("Go to Other"),
-//     onPressed: () => Get.to(Other()),
-//   ),
-// ),
-// floatingActionButton: FloatingActionButton(
-//   onPressed: c.increment,
-//   child: const Icon(Icons.add),
-// ),
-
-// class Other extends StatelessWidget {
-//   // You can ask Get to find a Controller that is being used by another page and redirect you to it.
-//   final CounterController c = Get.find();
-
-//   @override
-//   Widget build(context) {
-//     // Access the updated count variable
-//     return Scaffold(body: Center(child: Text("${c.counter}")));
-//   }
-// }
