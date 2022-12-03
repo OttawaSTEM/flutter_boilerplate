@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
-import 'package:provider/provider.dart';
+import 'package:get/get.dart';
+import 'package:get_storage/get_storage.dart';
 
 import '../routes/routes.dart';
 
-import '../core/auth/models/auth_model.dart';
-
 void main() async {
+  await GetStorage.init();
   runApp(const App());
 }
 
@@ -14,12 +14,9 @@ class App extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return ChangeNotifierProvider<AuthModel>(
-      create: (_) => AuthModel(),
-      child: MaterialApp(
-        initialRoute: '/',
-        routes: appRoutes,
-      ),
+    return GetMaterialApp(
+      initialRoute: '/',
+      routes: appRoutes,
     );
   }
 }

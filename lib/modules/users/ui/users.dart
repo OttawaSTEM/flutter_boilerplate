@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import '../models/user_model.dart';
+import '../controller/user_controller.dart';
 
 class UserPage extends StatefulWidget {
   const UserPage({super.key, required this.title});
@@ -15,7 +15,7 @@ const String url = 'http://192.168.1.60:8000/api/users/';
 
 class _UserPageState extends State<UserPage> {
   // final Future _users = HttpService().get(url);
-  final Future _users = UserModel().getUsers();
+  // final Future _users = UserModel().getUsers();
 
   @override
   Widget build(BuildContext context) {
@@ -24,7 +24,7 @@ class _UserPageState extends State<UserPage> {
         title: Text(widget.title),
       ),
       body: FutureBuilder(
-        future: _users,
+        // future: _users,
         builder: (BuildContext context, AsyncSnapshot snapshot) {
           if (snapshot.hasError) {
             return Center(child: Text('Some error occurred ${snapshot.error}'));
