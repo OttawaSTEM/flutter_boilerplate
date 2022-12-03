@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
 
-import '../../../data/network/api.dart';
-
 class APIJsonPage extends StatefulWidget {
   const APIJsonPage({super.key, required this.title});
 
@@ -14,7 +12,7 @@ class APIJsonPage extends StatefulWidget {
 const String url = 'http://192.168.1.60:8000/api/users/';
 
 class _APIJsonPageState extends State<APIJsonPage> {
-  final Future _users = HttpService().get(url);
+  // final Future _users = HttpService().get(url);
   // final Future _users = HttpService().get();
 
   @override
@@ -24,7 +22,7 @@ class _APIJsonPageState extends State<APIJsonPage> {
         title: Text(widget.title),
       ),
       body: FutureBuilder(
-        future: _users,
+        // future: _users,
         builder: (BuildContext context, AsyncSnapshot snapshot) {
           if (snapshot.hasError) {
             return Center(child: Text('Some error occurred ${snapshot.error}'));

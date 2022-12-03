@@ -16,27 +16,6 @@ class LoginForm extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Consumer<AuthModel>(
-      //  listener: (context, state) {
-      //   if (state.counter3Incremented) {
-      //     ScaffoldMessenger.of(context).showSnackBar(SnackBar(
-      //       content: const Text('Incremented'),
-      //       duration: const Duration(seconds: 1),
-      //       action: SnackBarAction(
-      //         label: 'ACTION',
-      //         onPressed: () {},
-      //       ),
-      //     ));
-      //   } else {
-      //     ScaffoldMessenger.of(context).showSnackBar(SnackBar(
-      //       content: const Text('Dencremented'),
-      //       duration: const Duration(seconds: 1),
-      //       action: SnackBarAction(
-      //         label: 'ACTION',
-      //         onPressed: () {},
-      //       ),
-      //     ));
-      //   }
-      // },
       builder: (context, model, child) => Form(
         key: _formGlobalKey,
         child: Column(
@@ -95,6 +74,10 @@ class LoginForm extends StatelessWidget {
                       password: passwordController.text,
                     );
                   }
+                  ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+                    content: Text(model.authStatus ? model.token : model.authMessage),
+                    duration: const Duration(seconds: 1),
+                  ));
                 },
                 child: const Text(txtLogin),
               ),

@@ -9,6 +9,9 @@ import '../../../constants/strings.dart';
 class AuthModel with ChangeNotifier {
   final logger = Logger();
 
+  bool _authStatus = false;
+  bool get authStatus => _authStatus;
+
   String _authMessage = '';
   String get authMessage => _authMessage;
 
@@ -43,16 +46,26 @@ class AuthModel with ChangeNotifier {
       if (data['key'] != null) {
         _token = data['key'];
         _authMessage = txtLoginSucess;
+        _authStatus = true;
       } else if (data['email'] != null) {
         _authMessage = txtLoginValidEmail;
+        _authStatus = false;
       } else if (data['non_field_errors'] != null) {
         _authMessage = txtLoginFailed;
+        _authStatus = false;
       }
-      notifyListeners();
     } catch (e) {
       _token = '';
+      _authStatus = false;
+      _authMessage = e.toString();
+      logger.d(_authMessage);
     } finally {
       client.close();
     }
+    logger.i(_authMessage);
+    logger.i(_authStatus);
+    notifyListeners();
   }
 }
+
+class True {}
