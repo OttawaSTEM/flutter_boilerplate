@@ -19,7 +19,8 @@ class AuthController extends GetxController {
   String _authMessage = '';
   String get authMessage => _authMessage;
 
-  Future<void> login({required String username, required String password}) async {
+  Future<void> login(
+      {required String username, required String password}) async {
     var client = http.Client();
     try {
       const dynamic headers = {
@@ -34,13 +35,15 @@ class AuthController extends GetxController {
         'password': password,
       });
 
-      final response = await client.post(Uri.parse(authUrl), headers: headers, body: body);
+      final response =
+          await client.post(Uri.parse(authUrl), headers: headers, body: body);
       final data = jsonDecode(response.body);
+      logger.i(response.body);
       if (data['key'] != null) {
         storage.write("token", data['key']);
         _authMessage = txtLoginSucess;
         _authStatus = true;
-        Get.to(const HomePage(title: 'Home Page'));
+        Get.to(() => const HomePage(title: 'Home Page'));
       } else if (data['email'] != null) {
         storage.remove('token');
         _authMessage = txtLoginValidEmail;
@@ -54,6 +57,7 @@ class AuthController extends GetxController {
       storage.remove('token');
       _authStatus = false;
       _authMessage = e.toString();
+      logger.i(_authMessage);
     } finally {
       client.close();
     }
