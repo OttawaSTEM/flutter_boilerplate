@@ -6,6 +6,9 @@ import 'package:flutter/foundation.dart';
 // const String authUrl =
 //     kDebugMode ? 'http://192.168.1.51:8000/api/auth/login/' : 'https://domain.com/api/auth/login';
 
+const String googleUrl =
+    'https://accounts.google.com/o/oauth2/v2/auth?redirect_uri=localhost:8000/api/auth/login/callback/&prompt=consent&response_type=code&client_id=905930693098-tvji5i03ner41c3fje05i18hpvm3l6mg.apps.googleusercontent.com&scope=openid%20email%20profile&access_type=offline';
+
 // api routes
 // ? 'http://192.168.1.51:8000/api/auth/login/'
 const String authUrl = kDebugMode

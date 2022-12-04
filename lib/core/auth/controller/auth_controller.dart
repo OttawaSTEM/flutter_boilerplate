@@ -62,6 +62,23 @@ class AuthController extends GetxController {
       client.close();
     }
   }
-}
 
-class True {}
+  Future<void> googleLogin() async {
+    var client = http.Client();
+    try {
+      const dynamic headers = {
+        'Accept': '*/*',
+        'User-Agent':
+            'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/107.0.0.0 Safari/537.36',
+        'Content-Type': 'application/json',
+      };
+      final response =
+          await client.post(Uri.parse(googleUrl), headers: headers);
+    } catch (e) {
+      storage.remove('token');
+      logger.i(_authMessage);
+    } finally {
+      client.close();
+    }
+  }
+}
