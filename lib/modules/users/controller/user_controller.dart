@@ -19,7 +19,7 @@ class UserController extends GetxController {
     logger.i(token);
 
     try {
-      final response = await http.get(Uri.parse(userUrl), headers: {
+      final response = await http.get(Uri.parse(fetchUserURL()), headers: {
         HttpHeaders.authorizationHeader: 'Token $token',
       });
       data = json.decode(response.body);

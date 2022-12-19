@@ -1,11 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
+import 'package:flutter_dotenv/flutter_dotenv.dart';
 
 import '../routes/routes.dart';
 
-void main() async {
+Future main() async {
   await GetStorage.init();
+  await dotenv.load(fileName: 'assets/local.env');
   runApp(const App());
 }
 

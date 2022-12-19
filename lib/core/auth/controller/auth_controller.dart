@@ -41,7 +41,49 @@ class AuthController extends GetxController {
         'password': password,
       });
 
-      final response = await client.post(Uri.parse(authUrl), headers: headers, body: body);
+      final response = await client.post(Uri.parse(djangoAuthURL()), headers: headers, body: body);
+      final data = jsonDecode(response.body);
+      logger.i(response.body);
+      if (data['key'] != null) {
+        storage.write("token", data['key']);
+        _authMessage = txtLoginSucess;
+        _authStatus = true;
+        Get.to(() => const HomePage(title: 'Home Page'));
+      } else if (data['email'] != null) {
+        storage.remove('token');
+        _authMessage = txtLoginValidEmail;
+        _authStatus = false;
+      } else if (data['non_field_errors'] != null) {
+        storage.remove('token');
+        _authMessage = txtLoginFailed;
+        _authStatus = false;
+      }
+    } catch (e) {
+      storage.remove('token');
+      _authStatus = false;
+      _authMessage = e.toString();
+      logger.i(_authMessage);
+    } finally {
+      client.close();
+    }
+  }
+
+  Future<void> googleLogin(String? accessToken) async {
+    logger.i('googleLogin');
+    var client = http.Client();
+    try {
+      const dynamic headers = {
+        'Accept': '*/*',
+        'User-Agent':
+            'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/107.0.0.0 Safari/537.36',
+        'Content-Type': 'application/json',
+      };
+
+      final body = jsonEncode({
+        'access_token': accessToken,
+      });
+
+      final response = await client.post(Uri.parse(googleAuthURL()), headers: headers, body: body);
       final data = jsonDecode(response.body);
       logger.i(response.body);
       if (data['key'] != null) {
@@ -71,11 +113,16 @@ class AuthController extends GetxController {
   Future<void> googleSignIn() async {
     try {
       final result = await _googleSignIn.signIn();
-      final ggAuth = await result?.authentication;
-      print(ggAuth?.idToken);
-      print(ggAuth?.accessToken);
-    } catch (error) {
-      print(error);
+      final googleAuth = await result?.authentication;
+      if (googleAuth != null) {
+        logger.i(googleAuth.accessToken);
+        googleLogin(googleAuth.accessToken);
+      } else {
+        storage.write('token', '');
+      }
+    } catch (e) {
+      storage.write('token', '');
+      logger.d(e);
     }
   }
 
