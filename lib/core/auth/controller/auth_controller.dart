@@ -1,6 +1,7 @@
 import 'dart:convert';
 import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
+import 'package:google_sign_in/google_sign_in.dart';
 import 'package:http/http.dart' as http;
 import 'package:logger/logger.dart';
 
@@ -8,6 +9,12 @@ import '../../../constants/http_req.dart';
 import '../../../constants/strings.dart';
 
 import '../../../modules/home/ui/home.dart';
+
+GoogleSignIn _googleSignIn = GoogleSignIn(
+  scopes: <String>[
+    'email',
+  ],
+);
 
 class AuthController extends GetxController {
   final storage = GetStorage();
@@ -19,8 +26,7 @@ class AuthController extends GetxController {
   String _authMessage = '';
   String get authMessage => _authMessage;
 
-  Future<void> login(
-      {required String username, required String password}) async {
+  Future<void> login({required String username, required String password}) async {
     var client = http.Client();
     try {
       const dynamic headers = {
@@ -35,8 +41,7 @@ class AuthController extends GetxController {
         'password': password,
       });
 
-      final response =
-          await client.post(Uri.parse(authUrl), headers: headers, body: body);
+      final response = await client.post(Uri.parse(authUrl), headers: headers, body: body);
       final data = jsonDecode(response.body);
       logger.i(response.body);
       if (data['key'] != null) {
@@ -63,22 +68,16 @@ class AuthController extends GetxController {
     }
   }
 
-  Future<void> googleLogin() async {
-    var client = http.Client();
+  Future<void> googleSignIn() async {
     try {
-      const dynamic headers = {
-        'Accept': '*/*',
-        'User-Agent':
-            'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/107.0.0.0 Safari/537.36',
-        'Content-Type': 'application/json',
-      };
-      final response =
-          await client.post(Uri.parse(googleUrl), headers: headers);
-    } catch (e) {
-      storage.remove('token');
-      logger.i(_authMessage);
-    } finally {
-      client.close();
+      final result = await _googleSignIn.signIn();
+      final ggAuth = await result?.authentication;
+      print(ggAuth?.idToken);
+      print(ggAuth?.accessToken);
+    } catch (error) {
+      print(error);
     }
   }
+
+  Future<void> googleSignOut() => _googleSignIn.disconnect();
 }
