@@ -43,11 +43,14 @@ android {
 
     defaultConfig {
         // TODO: Specify your own unique Application ID (https://developer.android.com/studio/build/application-id.html).
-        applicationId "com.example.flutter_boilerplate"
+        applicationId "com.flutter_boilerplate"
         minSdkVersion flutter.minSdkVersion
         targetSdkVersion flutter.targetSdkVersion
         versionCode flutterVersionCode.toInteger()
         versionName flutterVersionName
+        manifestPlaceholders += [
+            'appAuthRedirectScheme': 'com.googleusercontent.apps.905930693098-00hj6i34sv5m13501rplco6o437e33he'
+        ]
     }
 
     buildTypes {
