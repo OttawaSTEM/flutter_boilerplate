@@ -2,7 +2,7 @@ import 'package:flutter/foundation.dart';
 
 // App content
 const String appName = 'Flutter Boilerplate Project';
-const String contactEmail = 'support@acelords.space';
+const String contactEmail = 'ottawastem@gmail.com';
 const String appAbout =
     'Using this app will improve your project deliverability and sharpen your understanding of Flutter'
     'and BLoC pattern in no time. Build Flutter apps like a pro!';

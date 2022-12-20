@@ -32,32 +32,54 @@ class NavigationDrawer extends StatelessWidget {
             child: Container(
               color: Colors.black54,
               padding: EdgeInsets.only(
-                top: 24 + MediaQuery.of(context).padding.top,
+                top: MediaQuery.of(context).padding.top,
                 bottom: 24,
               ),
-              child: Column(children: const [
-                CircleAvatar(
-                  radius: 52,
-                  // backgroundImage: AssetImage(Assets.appLogo),
-                  backgroundImage: AssetImage(appLogo),
-                ),
-                SizedBox(height: 12),
-                Text('Ottawa STEM Club', style: TextStyle(fontSize: 28)),
-                Text('ottawastem@gmail.com', style: TextStyle(fontSize: 16)),
-              ]),
+              child: Column(
+                children: [
+                  const CircleAvatar(
+                    backgroundColor: Colors.white,
+                    radius: 55,
+                    child: CircleAvatar(
+                      radius: 50,
+                      backgroundColor: Colors.white,
+                      backgroundImage: AssetImage(appLogo),
+                    ),
+                  ),
+                  const SizedBox(height: 12),
+                  Text(
+                    appName,
+                    style: Theme.of(context)
+                        .textTheme
+                        .headline5
+                        ?.merge(const TextStyle(color: Colors.white)),
+                  ),
+                  Text(
+                    contactEmail,
+                    style: Theme.of(context)
+                        .textTheme
+                        .titleMedium
+                        ?.merge(const TextStyle(color: Colors.white)),
+                  ),
+                ],
+              ),
             )),
       );
 
   Widget drawerMenuItems(BuildContext context) => Container(
-        padding: const EdgeInsets.all(24),
+        padding: const EdgeInsets.all(10),
         child: Wrap(
           children: [
             ListTile(
               leading: const Icon(Icons.home_outlined),
-              title: const Text('Home'),
+              title: const Text(
+                'Home',
+                style: TextStyle(
+                  fontSize: 18.0,
+                ),
+              ),
               onTap: () => Navigator.of(context).pushReplacement(
-                  MaterialPageRoute(
-                      builder: (context) => const HomePage(title: appName))),
+                  MaterialPageRoute(builder: (context) => const HomePage(title: appName))),
             ),
             // ListTile(
             //     leading: const Icon(Icons.workspaces_outlined),
@@ -72,7 +94,12 @@ class NavigationDrawer extends StatelessWidget {
             //     }),
             ListTile(
                 leading: const Icon(Icons.login_outlined),
-                title: const Text('Login'),
+                title: const Text(
+                  'Login',
+                  style: TextStyle(
+                    fontSize: 18.0,
+                  ),
+                ),
                 onTap: () {
                   // Close navigation drawer first
                   Navigator.pop(context);
@@ -96,12 +123,22 @@ class NavigationDrawer extends StatelessWidget {
             const Divider(color: Colors.black54),
             ListTile(
               leading: const Icon(Icons.account_tree_outlined),
-              title: const Text('Plugins'),
+              title: const Text(
+                'Plugins',
+                style: TextStyle(
+                  fontSize: 18.0,
+                ),
+              ),
               onTap: () {},
             ),
             ListTile(
               leading: const Icon(Icons.notifications_outlined),
-              title: const Text('Notification'),
+              title: const Text(
+                'Notification',
+                style: TextStyle(
+                  fontSize: 18.0,
+                ),
+              ),
               onTap: () {},
             ),
           ],
