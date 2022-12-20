@@ -126,5 +126,8 @@ class AuthController extends GetxController {
     }
   }
 
-  Future<void> googleSignOut() => _googleSignIn.disconnect();
+  Future<void> googleSignOut() async {
+    _googleSignIn.disconnect();
+    Get.to(() => const HomePage(title: 'Home Page'));
+  }
 }

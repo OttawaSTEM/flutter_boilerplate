@@ -18,7 +18,7 @@ class _HomePageState extends State<HomePage> {
       appBar: AppBar(
         title: Text(widget.title),
       ),
-      drawer: const NavigationDrawer(),
+      drawer: NavigationDrawer(),
       body: SafeArea(
         child: Column(
           children: [

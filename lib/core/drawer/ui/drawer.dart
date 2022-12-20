@@ -1,15 +1,17 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_boilerplate/constants/assets.dart';
-import 'package:flutter_boilerplate/constants/colors.dart';
-import 'package:flutter_boilerplate/constants/strings.dart';
+import 'package:get/get.dart';
 
-import 'package:flutter_boilerplate/modules/home/ui/home.dart';
-import 'package:flutter_boilerplate/core/auth/ui/login.dart';
-// import 'package:material_design_icons_flutter/material_design_icons_flutter.dart';
-// import 'package:flutter_boilerplate/utils/styles.dart';
+import '../../../constants/assets.dart';
+import '../../../constants/colors.dart';
+import '../../../constants/strings.dart';
+
+import '../../../core/auth/controller/auth_controller.dart';
+import '../../../core/auth/ui/login.dart';
+import '../../../modules/home/ui/home.dart';
 
 class NavigationDrawer extends StatelessWidget {
-  const NavigationDrawer({Key? key}) : super(key: key);
+  final AuthController authController = Get.put(AuthController());
+  NavigationDrawer({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) => Drawer(
@@ -48,14 +50,14 @@ class NavigationDrawer extends StatelessWidget {
                   ),
                   const SizedBox(height: 12),
                   Text(
-                    appName,
+                    txtAppName,
                     style: Theme.of(context)
                         .textTheme
                         .headline5
                         ?.merge(const TextStyle(color: Colors.white)),
                   ),
                   Text(
-                    contactEmail,
+                    txtContactEmail,
                     style: Theme.of(context)
                         .textTheme
                         .titleMedium
@@ -73,53 +75,48 @@ class NavigationDrawer extends StatelessWidget {
             ListTile(
               leading: const Icon(Icons.home_outlined),
               title: const Text(
-                'Home',
+                txtHome,
                 style: TextStyle(
                   fontSize: 18.0,
                 ),
               ),
               onTap: () => Navigator.of(context).pushReplacement(
-                  MaterialPageRoute(builder: (context) => const HomePage(title: appName))),
+                MaterialPageRoute(builder: (context) => const HomePage(title: txtAppName)),
+              ),
             ),
-            // ListTile(
-            //     leading: const Icon(Icons.workspaces_outlined),
-            //     title: const Text('Second Page'),
-            //     onTap: () {
-            //       // Close navigation drawer first
-            //       Navigator.pop(context);
-            //       Navigator.of(context).push(MaterialPageRoute(
-            //         // < Menu
-            //         builder: (context) => const SecondPage(),
-            //       ));
-            //     }),
-            ListTile(
-                leading: const Icon(Icons.login_outlined),
-                title: const Text(
-                  'Login',
-                  style: TextStyle(
-                    fontSize: 18.0,
+            authController.authStatus
+                ? ListTile(
+                    leading: const Icon(Icons.logout_outlined),
+                    title: const Text(
+                      txtLogout,
+                      style: TextStyle(
+                        fontSize: 18.0,
+                      ),
+                    ),
+                    onTap: () {
+                      // Close navigation drawer first
+                      Navigator.pop(context);
+                      Navigator.of(context).push(MaterialPageRoute(
+                        builder: (context) => const LoginPage(),
+                      ));
+                    },
+                  )
+                : ListTile(
+                    leading: const Icon(Icons.login_outlined),
+                    title: const Text(
+                      txtLogin,
+                      style: TextStyle(
+                        fontSize: 18.0,
+                      ),
+                    ),
+                    onTap: () {
+                      // Close navigation drawer first
+                      Navigator.pop(context);
+                      Navigator.of(context).push(MaterialPageRoute(
+                        builder: (context) => const LoginPage(),
+                      ));
+                    },
                   ),
-                ),
-                onTap: () {
-                  // Close navigation drawer first
-                  Navigator.pop(context);
-                  Navigator.of(context).push(MaterialPageRoute(
-                    // < Menu
-                    builder: (context) => const LoginPage(),
-                  ));
-                }),
-            // ListTile(
-            //     leading: const Icon(Icons.update),
-            //     title: const Text('Updates'),
-            //     onTap: () {
-            //       // Close navigation drawer first
-            //       Navigator.pop(context);
-            //       Navigator.of(context).push(MaterialPageRoute(
-            //         // < Menu
-            //         builder: (context) => const SecondPage(),
-            //       ));
-            //     }),
-            // const Divider(color: AppColors.dividerColor),
             const Divider(color: Colors.black54),
             ListTile(
               leading: const Icon(Icons.account_tree_outlined),
@@ -145,224 +142,3 @@ class NavigationDrawer extends StatelessWidget {
         ),
       );
 }
-
-
-
-
-// menu header
-// class DrawerHeader extends StatelessWidget {
-//   @override
-//   Widget build(BuildContext context) {
-//     return DrawerHeader(
-// //      child: Text("Menu",
-// //        style: TextStyle(
-// //          fontSize: 20.0,
-// //          color: Colors.white,
-// //        ),
-// //      ),
-//       decoration: BoxDecoration(
-//         color: Theme.of(context).primaryColor,
-//         image: DecorationImage(
-//             image: AssetImage(Assets.appLogo), fit: BoxFit.contain),
-//       ),
-//       child: null,
-//     );
-//   }
-// }
-
-// class HomeDrawer extends StatelessWidget {
-//   @override
-//   Widget build(BuildContext context) {
-//     return Drawer(
-//       child: ListView(
-//         padding: EdgeInsets.zero,
-//         children: <Widget>[
-//           DrawerHeaderItem(),
-//           FlutterTipsItem(),
-//           Divider(
-//             color: Colors.grey[500],
-//           ),
-//           LoginItem(),
-//           ReferAFriendItem(),
-//           AboutItem(),
-//           RateAppItem(),
-//           SizedBox(
-//             height: 50,
-//           ),
-//         ],
-//       ),
-//     );
-//   }
-// }
-
-// class BackendDrawer extends StatelessWidget {
-//   @override
-//   Widget build(BuildContext context) {
-//     return Drawer(
-//       child: ListView(
-//         padding: EdgeInsets.zero,
-//         children: <Widget>[
-//           DrawerHeaderItem(),
-//           Divider(
-//             color: Colors.grey[500],
-//           ),
-//           LogoutItem(),
-//           ReferAFriendItem(),
-//           AboutItem(),
-//           RateAppItem(),
-//           SizedBox(
-//             height: 50,
-//           ),
-//         ],
-//       ),
-//     );
-//   }
-// }
-
-
-
-// /// home item
-// class HomeItem extends StatelessWidget {
-//   @override
-//   Widget build(BuildContext context) {
-//     return ListTile(
-//       title: Text("Home", style: Styles.appDrawerTextStyle),
-//       leading: Icon(Icons.lightbulb_outline, color: Styles.appDrawerIconColor),
-//       onTap: () {
-//         Navigator.pop(context);
-
-//         Navigator.pushNamed(context, '/');
-//       },
-//     );
-//   }
-// }
-
-// /// flutter tips item
-// class FlutterTipsItem extends StatelessWidget {
-//   @override
-//   Widget build(BuildContext context) {
-//     return ListTile(
-//       title: Text("Flutter Tips", style: Styles.appDrawerTextStyle),
-//       leading: Icon(Icons.lightbulb_outline, color: Styles.appDrawerIconColor),
-//       onTap: () {
-//         Navigator.pop(context);
-
-//         Navigator.pushNamed(context, '/flutter-tips');
-//       },
-//     );
-//   }
-// }
-
-// /// refer a friend item
-// class ReferAFriendItem extends StatelessWidget {
-//   @override
-//   Widget build(BuildContext context) {
-//     return ListTile(
-//       title: Text("Refer a Friend", style: Styles.appDrawerTextStyle),
-//       leading: Icon(Icons.share, color: Styles.appDrawerIconColor),
-//       onTap: () {
-//         Navigator.pop(context);
-
-//         Navigator.pushNamed(context, '/refer-a-friend');
-//       },
-//     );
-//   }
-// }
-
-// /// logout item
-// class LogoutItem extends StatelessWidget {
-//   @override
-//   Widget build(BuildContext context) {
-//     return ListTile(
-//       title: Text("Logout", style: Styles.appDrawerTextStyle),
-//       leading: Icon(Icons.exit_to_app, color: Styles.appDrawerIconColor),
-//       onTap: () {
-// //        AuthProvider().logout();
-
-// //        Navigator.pop(context);
-// //        Navigator.pop(context);
-
-//         Navigator.pushNamed(context, '/');
-//       },
-//     );
-//   }
-// }
-
-// /// login item
-// class LoginItem extends StatefulWidget {
-//   @override
-//   _LoginItemState createState() => _LoginItemState();
-// }
-
-// class _LoginItemState extends State<LoginItem> {
-//   bool loggedIn = false;
-
-//   void _checkStatus() async {
-// //    bool isLoggedIn = await AuthProvider().checkIfAuth();
-// //    setState(() {
-// //      loggedIn = isLoggedIn;
-// //    });
-//   }
-
-//   @override
-//   void initState() {
-//     _checkStatus();
-
-//     super.initState();
-//   }
-
-//   @override
-//   Widget build(BuildContext context) {
-//     return loggedIn
-//         ? ListTile(
-//             title: Text("Dashboard", style: Styles.appDrawerTextStyle),
-//             leading: Icon(Icons.home, color: Styles.appDrawerIconColor),
-//             onTap: () {
-//               Navigator.pop(context);
-
-//               Navigator.pushNamed(context, '/dashboard');
-//             },
-//           )
-//         : ListTile(
-//             title: Text("Sign In", style: Styles.appDrawerTextStyle),
-//             leading: Icon(Icons.exit_to_app, color: Styles.appDrawerIconColor),
-//             onTap: () {
-//               Navigator.pop(context);
-
-//               Navigator.pushNamed(context, '/login');
-//             },
-//           );
-//   }
-// }
-
-// /// about item
-// class AboutItem extends StatelessWidget {
-//   @override
-//   Widget build(BuildContext context) {
-//     return ListTile(
-//       title: Text("About", style: Styles.appDrawerTextStyle),
-//       leading: Icon(Icons.info_outline, color: Styles.appDrawerIconColor),
-//       onTap: () {
-//         Navigator.pop(context);
-
-//         Navigator.pushNamed(context, '/about');
-//       },
-//     );
-//   }
-// }
-
-// /// rate app item
-// class RateAppItem extends StatelessWidget {
-//   @override
-//   Widget build(BuildContext context) {
-//     return ListTile(
-//       title: Text("Rate Us", style: Styles.appDrawerTextStyle),
-//       leading: Icon(Icons.star, color: Styles.appDrawerIconColor),
-//       onTap: () {
-//         Navigator.pop(context);
-
-//         Navigator.pushNamed(context, '/rate-app');
-//       },
-//     );
-//   }
-// }

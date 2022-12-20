@@ -3,6 +3,7 @@ import 'package:get/get.dart';
 
 import '../../../constants/assets.dart';
 import '../../../constants/strings.dart';
+
 import '../controller/auth_controller.dart';
 
 class LoginSocial extends StatelessWidget {
