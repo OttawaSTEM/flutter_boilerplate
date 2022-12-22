@@ -29,19 +29,7 @@ class _HomePageState extends State<HomePage> {
                 child: (ElevatedButton(
                   child: const Text('Counter 0'),
                   onPressed: () {
-                    Navigator.of(context).pushNamed('/counter');
-                    // Get.to(() => const CounterPage(title: 'Counter GetX Page'));
-                  },
-                )),
-              )),
-            ),
-            SizedBox(
-              height: 80,
-              child: (Center(
-                child: (ElevatedButton(
-                  child: const Text('Login Page'),
-                  onPressed: () {
-                    Navigator.of(context).pushNamed('/login');
+                    Get.toNamed("/counter");
                   },
                 )),
               )),
@@ -52,7 +40,7 @@ class _HomePageState extends State<HomePage> {
                 child: (ElevatedButton(
                   child: const Text('Users Page'),
                   onPressed: () {
-                    Navigator.of(context).pushNamed('/users');
+                    Get.toNamed("/users");
                   },
                 )),
               )),

@@ -25,7 +25,7 @@ class AuthController extends GetxController {
   String _authMessage = '';
   String get authMessage => _authMessage;
 
-  Future<void> djangoLogin(String loginURL, Object body) async {
+  Future<void> djangoAuth(String djangoAuthURL, Object body) async {
     var client = http.Client();
     try {
       const dynamic headers = {
@@ -33,7 +33,7 @@ class AuthController extends GetxController {
         'Content-Type': 'application/json',
       };
 
-      final response = await client.post(Uri.parse(loginURL), headers: headers, body: body);
+      final response = await client.post(Uri.parse(djangoAuthURL), headers: headers, body: body);
       final data = jsonDecode(response.body);
       if (data['key'] != null) {
         storage.write("token", data['key']);
@@ -63,8 +63,7 @@ class AuthController extends GetxController {
       'email': username,
       'password': password,
     });
-    final loginURL = djangoUserAuthURL();
-    djangoLogin(loginURL, body);
+    djangoAuth(djangoUserSigninURL(), body);
   }
 
   Future<void> googleSignIn() async {
@@ -73,7 +72,7 @@ class AuthController extends GetxController {
       final googleAuth = await result?.authentication;
       if (googleAuth != null) {
         Get.snackbar(
-          'Google Signin',
+          'Signin',
           'Succeed!',
           backgroundColor: Colors.black87,
           colorText: Colors.white,
@@ -88,11 +87,11 @@ class AuthController extends GetxController {
           'access_token': googleAuth.accessToken,
         });
         final loginURL = djangoGoogleAuthURL();
-        djangoLogin(loginURL, body);
+        djangoAuth(loginURL, body);
       } else {
         storage.write('token', '');
         Get.snackbar(
-          'Google Signin',
+          'Signin',
           'Failed!',
           backgroundColor: Colors.black87,
           colorText: Colors.white,
@@ -109,7 +108,8 @@ class AuthController extends GetxController {
     }
   }
 
-  Future<void> googleSignOut() async {
+  Future<void> signOut() async {
+    final body = jsonEncode({});
     Get.dialog(
       AlertDialog(
         title: const Text('Sign Out'),
@@ -119,11 +119,12 @@ class AuthController extends GetxController {
             child: const Text("Sign Out"),
             onPressed: () {
               storage.write('token', '');
+              djangoAuth(djangoUserSignOutURL(), body);
               _googleSignIn.disconnect();
               _authStatus = false;
               Get.back();
               Get.snackbar(
-                'Google Signout',
+                'Signout',
                 'Sucussed!',
                 backgroundColor: Colors.black87,
                 colorText: Colors.white,

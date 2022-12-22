@@ -41,8 +41,9 @@ class LoginSocial extends StatelessWidget {
         TextButton(
           onPressed: () {},
           child: Text.rich(
-            TextSpan(text: txtNoAccount, style: Theme.of(context).textTheme.bodyText1,
-                // style: TextStyle(height: 3, fontSize: 16),
+            TextSpan(
+                text: txtNoAccount,
+                style: Theme.of(context).textTheme.bodyText1,
                 children: const [
                   TextSpan(
                     text: txtSignUp,

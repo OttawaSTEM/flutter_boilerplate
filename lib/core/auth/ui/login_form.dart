@@ -4,14 +4,17 @@ import 'package:get/get.dart';
 import '../../../constants/strings.dart';
 import '../controller/auth_controller.dart';
 
-class LoginForm extends StatelessWidget {
-  LoginForm({
-    Key? key,
-  }) : super(key: key);
+class LoginForm extends StatefulWidget {
+  const LoginForm({Key? key}) : super(key: key);
 
+  @override
+  State createState() => LoginFormState();
+}
+
+class LoginFormState extends State<LoginForm> {
   final usernameController = TextEditingController();
   final passwordController = TextEditingController();
-  final GlobalKey<FormState> _formGlobalKey = GlobalKey<FormState>();
+  final _formGlobalKey = GlobalKey<FormState>();
 
   @override
   Widget build(BuildContext context) {

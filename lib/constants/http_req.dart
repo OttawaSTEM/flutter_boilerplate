@@ -5,13 +5,23 @@ import 'package:flutter_dotenv/flutter_dotenv.dart';
 
 final env = dotenv.env;
 
-String djangoUserAuthURL() {
+String djangoUserSigninURL() {
   if (Platform.isAndroid && kDebugMode) {
     return 'http://${env['WIN_IP']}:8000/api/auth/login/';
   } else if (Platform.isIOS && kDebugMode) {
     return 'http://${env['Mac_IP']}:8000/api/auth/login/';
   } else {
     return 'https://${env['DOMAIN']}/api/auth/login/';
+  }
+}
+
+String djangoUserSignOutURL() {
+  if (Platform.isAndroid && kDebugMode) {
+    return 'http://${env['WIN_IP']}:8000/api/auth/logout/';
+  } else if (Platform.isIOS && kDebugMode) {
+    return 'http://${env['Mac_IP']}:8000/api/auth/logout/';
+  } else {
+    return 'https://${env['DOMAIN']}/api/auth/logout/';
   }
 }
 
