@@ -5,7 +5,7 @@ import 'package:flutter_dotenv/flutter_dotenv.dart';
 
 final env = dotenv.env;
 
-String djangoAuthURL() {
+String djangoUserAuthURL() {
   if (Platform.isAndroid && kDebugMode) {
     return 'http://${env['WIN_IP']}:8000/api/auth/login/';
   } else if (Platform.isIOS && kDebugMode) {
@@ -15,7 +15,7 @@ String djangoAuthURL() {
   }
 }
 
-String googleAuthURL() {
+String djangoGoogleAuthURL() {
   if (Platform.isAndroid && kDebugMode) {
     return 'http://${env['WIN_IP']}:8000/api/auth/google/';
   } else if (Platform.isIOS && kDebugMode) {

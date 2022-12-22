@@ -1,4 +1,5 @@
 import 'dart:convert';
+import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
 import 'package:google_sign_in/google_sign_in.dart';
@@ -26,24 +27,17 @@ class AuthController extends GetxController {
   String _authMessage = '';
   String get authMessage => _authMessage;
 
-  Future<void> login({required String username, required String password}) async {
+  Future<void> djangoLogin(String loginURL, Object body) async {
     var client = http.Client();
+    var loginURL = '';
     try {
       const dynamic headers = {
         'Accept': '*/*',
-        'User-Agent':
-            'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/107.0.0.0 Safari/537.36',
         'Content-Type': 'application/json',
       };
 
-      final body = jsonEncode({
-        'email': username,
-        'password': password,
-      });
-
-      final response = await client.post(Uri.parse(djangoAuthURL()), headers: headers, body: body);
+      final response = await client.post(Uri.parse(loginURL), headers: headers, body: body);
       final data = jsonDecode(response.body);
-      logger.i(response.body);
       if (data['key'] != null) {
         storage.write("token", data['key']);
         _authMessage = txtLoginSucess;
@@ -68,46 +62,13 @@ class AuthController extends GetxController {
     }
   }
 
-  Future<void> googleLogin(String? accessToken) async {
-    logger.i('googleLogin');
-    var client = http.Client();
-    try {
-      const dynamic headers = {
-        'Accept': '*/*',
-        'User-Agent':
-            'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/107.0.0.0 Safari/537.36',
-        'Content-Type': 'application/json',
-      };
-
-      final body = jsonEncode({
-        'access_token': accessToken,
-      });
-
-      final response = await client.post(Uri.parse(googleAuthURL()), headers: headers, body: body);
-      final data = jsonDecode(response.body);
-      logger.i(response.body);
-      if (data['key'] != null) {
-        storage.write("token", data['key']);
-        _authMessage = txtLoginSucess;
-        _authStatus = true;
-        Get.to(() => const HomePage(title: 'Home Page'));
-      } else if (data['email'] != null) {
-        storage.remove('token');
-        _authMessage = txtLoginValidEmail;
-        _authStatus = false;
-      } else if (data['non_field_errors'] != null) {
-        storage.remove('token');
-        _authMessage = txtLoginFailed;
-        _authStatus = false;
-      }
-    } catch (e) {
-      storage.remove('token');
-      _authStatus = false;
-      _authMessage = e.toString();
-      logger.i(_authMessage);
-    } finally {
-      client.close();
-    }
+  Future<void> usernameLogin({required String username, required String password}) async {
+    final body = jsonEncode({
+      'email': username,
+      'password': password,
+    });
+    final loginURL = djangoUserAuthURL();
+    djangoLogin(loginURL, body);
   }
 
   Future<void> googleSignIn() async {
@@ -115,10 +76,37 @@ class AuthController extends GetxController {
       final result = await _googleSignIn.signIn();
       final googleAuth = await result?.authentication;
       if (googleAuth != null) {
-        logger.i(googleAuth.accessToken);
-        googleLogin(googleAuth.accessToken);
+        Get.snackbar(
+          'Google Signin',
+          'Sucussed!',
+          backgroundColor: Colors.black87,
+          colorText: Colors.white,
+          icon: const Icon(
+            Icons.check_circle_outline,
+            color: Colors.green,
+          ),
+          snackPosition: SnackPosition.BOTTOM,
+          duration: const Duration(seconds: 2),
+        );
+        final body = jsonEncode({
+          'access_token': googleAuth.accessToken,
+        });
+        final loginURL = djangoGoogleAuthURL();
+        djangoLogin(loginURL, body);
       } else {
         storage.write('token', '');
+        Get.snackbar(
+          'Google Signin',
+          'Failed!',
+          backgroundColor: Colors.black87,
+          colorText: Colors.white,
+          icon: const Icon(
+            Icons.error_outline,
+            color: Colors.red,
+          ),
+          snackPosition: SnackPosition.BOTTOM,
+          duration: const Duration(seconds: 2),
+        );
       }
     } catch (e) {
       storage.write('token', '');
@@ -127,7 +115,20 @@ class AuthController extends GetxController {
   }
 
   Future<void> googleSignOut() async {
+    storage.write('token', '');
     _googleSignIn.disconnect();
+    Get.snackbar(
+      'Google Signout',
+      'Sucussed!',
+      backgroundColor: Colors.black87,
+      colorText: Colors.white,
+      icon: const Icon(
+        Icons.info_outline,
+        color: Colors.green,
+      ),
+      snackPosition: SnackPosition.BOTTOM,
+      duration: const Duration(seconds: 2),
+    );
     Get.to(() => const HomePage(title: 'Home Page'));
   }
 }

@@ -69,7 +69,7 @@ class LoginForm extends StatelessWidget {
             child: ElevatedButton(
               onPressed: () {
                 if (_formGlobalKey.currentState!.validate()) {
-                  authController.login(
+                  authController.usernameLogin(
                     username: usernameController.text,
                     password: passwordController.text,
                   );

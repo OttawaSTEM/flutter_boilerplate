@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
 import '../../../core/drawer/ui/drawer.dart';
 
@@ -29,6 +30,7 @@ class _HomePageState extends State<HomePage> {
                   child: const Text('Counter 0'),
                   onPressed: () {
                     Navigator.of(context).pushNamed('/counter');
+                    // Get.to(() => const CounterPage(title: 'Counter GetX Page'));
                   },
                 )),
               )),
