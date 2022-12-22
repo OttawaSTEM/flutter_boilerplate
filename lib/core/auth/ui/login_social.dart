@@ -38,22 +38,6 @@ class LoginSocial extends StatelessWidget {
             label: const Text(txtSigninGoogle),
           ),
         ),
-        const SizedBox(height: 10),
-        SizedBox(
-          width: double.infinity,
-          height: 50,
-          child: OutlinedButton.icon(
-            icon: const Image(
-              image: AssetImage(googleLogo),
-              width: 20,
-            ),
-            onPressed: () {
-              authController.googleSignOut();
-            },
-            label: const Text('Google Sign Out'),
-          ),
-        ),
-        // const SizedBox(height: 20),
         TextButton(
           onPressed: () {},
           child: Text.rich(

@@ -96,9 +96,10 @@ class NavigationDrawer extends StatelessWidget {
                     onTap: () {
                       // Close navigation drawer first
                       Navigator.pop(context);
-                      Navigator.of(context).push(MaterialPageRoute(
-                        builder: (context) => const LoginPage(),
-                      ));
+                      authController.googleSignOut();
+                      // Navigator.of(context).push(MaterialPageRoute(
+                      //   builder: (context) => const LoginPage(),
+                      // ));
                     },
                   )
                 : ListTile(

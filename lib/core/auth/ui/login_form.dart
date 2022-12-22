@@ -11,7 +11,7 @@ class LoginForm extends StatelessWidget {
 
   final usernameController = TextEditingController();
   final passwordController = TextEditingController();
-  static final _formGlobalKey = GlobalKey<FormState>();
+  final GlobalKey<FormState> _formGlobalKey = GlobalKey<FormState>();
 
   @override
   Widget build(BuildContext context) {

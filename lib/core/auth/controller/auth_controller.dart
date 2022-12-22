@@ -4,7 +4,6 @@ import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 import 'package:http/http.dart' as http;
-import 'package:logger/logger.dart';
 
 import '../../../constants/http_req.dart';
 import '../../../constants/strings.dart';
@@ -19,7 +18,6 @@ GoogleSignIn _googleSignIn = GoogleSignIn(
 
 class AuthController extends GetxController {
   final storage = GetStorage();
-  final logger = Logger();
 
   bool _authStatus = false;
   bool get authStatus => _authStatus;
@@ -29,7 +27,6 @@ class AuthController extends GetxController {
 
   Future<void> djangoLogin(String loginURL, Object body) async {
     var client = http.Client();
-    var loginURL = '';
     try {
       const dynamic headers = {
         'Accept': '*/*',
@@ -56,7 +53,6 @@ class AuthController extends GetxController {
       storage.remove('token');
       _authStatus = false;
       _authMessage = e.toString();
-      logger.i(_authMessage);
     } finally {
       client.close();
     }
@@ -78,7 +74,7 @@ class AuthController extends GetxController {
       if (googleAuth != null) {
         Get.snackbar(
           'Google Signin',
-          'Sucussed!',
+          'Succeed!',
           backgroundColor: Colors.black87,
           colorText: Colors.white,
           icon: const Icon(
@@ -110,25 +106,38 @@ class AuthController extends GetxController {
       }
     } catch (e) {
       storage.write('token', '');
-      logger.d(e);
     }
   }
 
   Future<void> googleSignOut() async {
-    storage.write('token', '');
-    _googleSignIn.disconnect();
-    Get.snackbar(
-      'Google Signout',
-      'Sucussed!',
-      backgroundColor: Colors.black87,
-      colorText: Colors.white,
-      icon: const Icon(
-        Icons.info_outline,
-        color: Colors.green,
+    Get.dialog(
+      AlertDialog(
+        title: const Text('Sign Out'),
+        content: const Text('Are you sure to sign out?'),
+        actions: [
+          ElevatedButton(
+            child: const Text("Sign Out"),
+            onPressed: () {
+              storage.write('token', '');
+              _googleSignIn.disconnect();
+              _authStatus = false;
+              Get.back();
+              Get.snackbar(
+                'Google Signout',
+                'Sucussed!',
+                backgroundColor: Colors.black87,
+                colorText: Colors.white,
+                icon: const Icon(
+                  Icons.info_outline,
+                  color: Colors.green,
+                ),
+                snackPosition: SnackPosition.BOTTOM,
+                duration: const Duration(seconds: 2),
+              );
+            },
+          ),
+        ],
       ),
-      snackPosition: SnackPosition.BOTTOM,
-      duration: const Duration(seconds: 2),
     );
-    Get.to(() => const HomePage(title: 'Home Page'));
   }
 }
