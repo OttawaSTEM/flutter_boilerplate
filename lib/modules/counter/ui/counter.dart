@@ -44,10 +44,6 @@ class CounterPage extends StatelessWidget {
                 ),
               ],
             ),
-            ElevatedButton(
-              child: const Text("Go to Login Page"),
-              onPressed: () => Get.to(const LoginPage()),
-            ),
           ],
         ),
       ),
