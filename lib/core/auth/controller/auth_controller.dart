@@ -45,10 +45,15 @@ class AuthController extends GetxController {
         'Content-Type': 'application/json',
       };
 
-      final response =
-          await http.post(Uri.parse(djangoAuthURL), headers: headers, body: body).timeout(
-                const Duration(seconds: httpRequestTimeout),
-              );
+      final response = await http
+          .post(
+            Uri.parse(djangoAuthURL),
+            headers: headers,
+            body: body,
+          )
+          .timeout(
+            const Duration(seconds: httpRequestTimeout),
+          );
       final data = jsonDecode(response.body);
       if (data['key'] != null) {
         storage.write("token", data['key']);
@@ -68,7 +73,7 @@ class AuthController extends GetxController {
       storage.remove('token');
       _authStatus = false;
       if (e.toString().contains('TimeoutException') && !djangoAuthURL.contains('logout')) {
-        snackbarMsg(title: 'Sign In', message: 'Failed! - Unable connect to server.');
+        snackbarMsg(title: 'Sign In', message: 'Failed! - Unable to connect to server.');
       }
     }
   }
