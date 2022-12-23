@@ -18,7 +18,7 @@ class LoginPage extends StatelessWidget {
             child: Column(
               children: [
                 LoginHeader(screenSize: screenSize),
-                LoginForm(),
+                const LoginForm(),
                 const LoginSocial(),
               ],
             ),
