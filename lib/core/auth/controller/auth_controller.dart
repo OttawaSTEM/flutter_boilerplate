@@ -7,6 +7,7 @@ import 'package:http/http.dart' as http;
 
 import '../../../constants/http_req.dart';
 import '../../../constants/strings.dart';
+import '../../../constants/timeout.dart';
 
 import '../../../modules/home/ui/home.dart';
 
@@ -22,39 +23,53 @@ class AuthController extends GetxController {
   bool _authStatus = false;
   bool get authStatus => _authStatus;
 
-  String _authMessage = '';
-  String get authMessage => _authMessage;
+  Future<void> snackbarMsg({required String title, required String message}) async {
+    Get.snackbar(
+      title,
+      message,
+      backgroundColor: Colors.black87,
+      colorText: Colors.white,
+      icon: const Icon(
+        Icons.check_circle_outline,
+        color: Colors.green,
+      ),
+      snackPosition: SnackPosition.BOTTOM,
+      duration: const Duration(seconds: snackbarMsgTimeout),
+    );
+  }
 
   Future<void> djangoAuth(String djangoAuthURL, Object body) async {
-    var client = http.Client();
     try {
       const dynamic headers = {
         'Accept': '*/*',
         'Content-Type': 'application/json',
       };
 
-      final response = await client.post(Uri.parse(djangoAuthURL), headers: headers, body: body);
+      final response =
+          await http.post(Uri.parse(djangoAuthURL), headers: headers, body: body).timeout(
+                const Duration(seconds: httpRequestTimeout),
+              );
       final data = jsonDecode(response.body);
       if (data['key'] != null) {
         storage.write("token", data['key']);
-        _authMessage = txtLoginSucess;
         _authStatus = true;
         Get.to(() => const HomePage(title: 'Home Page'));
+        snackbarMsg(title: 'Sign In', message: 'Succeed!');
       } else if (data['email'] != null) {
         storage.remove('token');
-        _authMessage = txtLoginValidEmail;
         _authStatus = false;
+        snackbarMsg(title: 'Sign In', message: 'Failed! - $txtLoginValidEmail.');
       } else if (data['non_field_errors'] != null) {
         storage.remove('token');
-        _authMessage = txtLoginFailed;
         _authStatus = false;
+        snackbarMsg(title: 'Sign In', message: 'Failed! - $txtLoginFailed.');
       }
     } catch (e) {
       storage.remove('token');
       _authStatus = false;
-      _authMessage = e.toString();
-    } finally {
-      client.close();
+      if (e.toString().contains('TimeoutException') && !djangoAuthURL.contains('logout')) {
+        snackbarMsg(title: 'Sign In', message: 'Failed! - Unable connect to server.');
+      }
     }
   }
 
@@ -71,18 +86,6 @@ class AuthController extends GetxController {
       final result = await _googleSignIn.signIn();
       final googleAuth = await result?.authentication;
       if (googleAuth != null) {
-        Get.snackbar(
-          'Signin',
-          'Succeed!',
-          backgroundColor: Colors.black87,
-          colorText: Colors.white,
-          icon: const Icon(
-            Icons.check_circle_outline,
-            color: Colors.green,
-          ),
-          snackPosition: SnackPosition.BOTTOM,
-          duration: const Duration(seconds: 2),
-        );
         final body = jsonEncode({
           'access_token': googleAuth.accessToken,
         });
@@ -90,18 +93,7 @@ class AuthController extends GetxController {
         djangoAuth(loginURL, body);
       } else {
         storage.write('token', '');
-        Get.snackbar(
-          'Signin',
-          'Failed!',
-          backgroundColor: Colors.black87,
-          colorText: Colors.white,
-          icon: const Icon(
-            Icons.error_outline,
-            color: Colors.red,
-          ),
-          snackPosition: SnackPosition.BOTTOM,
-          duration: const Duration(seconds: 2),
-        );
+        snackbarMsg(title: 'Google Sign Iut', message: 'Failed!');
       }
     } catch (e) {
       storage.write('token', '');
@@ -123,18 +115,7 @@ class AuthController extends GetxController {
               _googleSignIn.disconnect();
               _authStatus = false;
               Get.back();
-              Get.snackbar(
-                'Signout',
-                'Sucussed!',
-                backgroundColor: Colors.black87,
-                colorText: Colors.white,
-                icon: const Icon(
-                  Icons.info_outline,
-                  color: Colors.green,
-                ),
-                snackPosition: SnackPosition.BOTTOM,
-                duration: const Duration(seconds: 2),
-              );
+              snackbarMsg(title: 'Sign Out', message: 'Sucussed!');
             },
           ),
         ],
