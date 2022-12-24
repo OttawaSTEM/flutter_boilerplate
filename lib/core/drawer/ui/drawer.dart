@@ -6,7 +6,7 @@ import '../../../constants/colors.dart';
 import '../../../constants/strings.dart';
 
 import '../../../core/auth/controller/auth_controller.dart';
-import '../../../core/auth/ui/login.dart';
+import '../../auth/ui/signin.dart';
 import '../../../modules/home/ui/home.dart';
 
 class NavigationDrawer extends StatelessWidget {

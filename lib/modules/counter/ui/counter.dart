@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 import '../controller/counter_controller.dart';
-import '../../../core/auth/ui/login.dart';
+import '../../../core/auth/ui/signin.dart';
 
 class CounterPage extends StatelessWidget {
   final String title;

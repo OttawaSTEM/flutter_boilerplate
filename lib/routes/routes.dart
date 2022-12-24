@@ -1,6 +1,6 @@
 import 'package:get/get.dart';
 
-import '../core/auth/ui/login.dart';
+import '../core/auth/ui/signin.dart';
 import '../modules/home/ui/home.dart';
 import '../modules/users/ui/users.dart';
 import '../modules/counter/ui/counter.dart';

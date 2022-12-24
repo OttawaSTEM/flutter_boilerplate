@@ -2,9 +2,9 @@ import 'package:flutter/material.dart';
 
 import '../../../constants/strings.dart';
 
-import '../../auth/ui/login_header.dart';
-import '../../auth/ui/login_form.dart';
-import '../../auth/ui/login_social.dart';
+import 'signin_header.dart';
+import 'signin_form.dart';
+import 'signin_social.dart';
 
 class SigninPage extends StatelessWidget {
   const SigninPage({Key? key}) : super(key: key);
