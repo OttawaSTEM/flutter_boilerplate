@@ -88,7 +88,7 @@ class NavigationDrawer extends StatelessWidget {
                 ? ListTile(
                     leading: const Icon(Icons.logout_outlined),
                     title: const Text(
-                      txtLogout,
+                      txtSignout,
                       style: TextStyle(
                         fontSize: 18.0,
                       ),
@@ -102,7 +102,7 @@ class NavigationDrawer extends StatelessWidget {
                 : ListTile(
                     leading: const Icon(Icons.login_outlined),
                     title: const Text(
-                      txtLogin,
+                      txtSignin,
                       style: TextStyle(
                         fontSize: 18.0,
                       ),
@@ -111,7 +111,7 @@ class NavigationDrawer extends StatelessWidget {
                       // Close navigation drawer first
                       Navigator.pop(context);
                       Navigator.of(context).push(MaterialPageRoute(
-                        builder: (context) => const LoginPage(),
+                        builder: (context) => const SigninPage(),
                       ));
                     },
                   ),

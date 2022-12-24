@@ -63,11 +63,11 @@ class AuthController extends GetxController {
       } else if (data['email'] != null) {
         storage.remove('token');
         _authStatus = false;
-        snackbarMsg(title: 'Sign In', message: 'Failed! - $txtLoginValidEmail.');
+        snackbarMsg(title: 'Sign In', message: 'Failed! - $txtSigninValidEmail.');
       } else if (data['non_field_errors'] != null) {
         storage.remove('token');
         _authStatus = false;
-        snackbarMsg(title: 'Sign In', message: 'Failed! - $txtLoginFailed.');
+        snackbarMsg(title: 'Sign In', message: 'Failed! - $txtSigninFailed.');
       }
     } catch (e) {
       storage.remove('token');
@@ -78,7 +78,7 @@ class AuthController extends GetxController {
     }
   }
 
-  Future<void> usernameLogin({required String username, required String password}) async {
+  Future<void> usernameSignin({required String username, required String password}) async {
     final body = jsonEncode({
       'email': username,
       'password': password,

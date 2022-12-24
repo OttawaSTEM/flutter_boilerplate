@@ -3,9 +3,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter_boilerplate/constants/assets.dart';
 import 'package:flutter_boilerplate/constants/strings.dart';
 
-class LoginHeader extends StatelessWidget {
+class SigninHeader extends StatelessWidget {
   final Size screenSize;
-  const LoginHeader({
+  const SigninHeader({
     Key? key,
     required this.screenSize,
   }) : super(key: key);

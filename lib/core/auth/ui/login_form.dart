@@ -4,14 +4,14 @@ import 'package:get/get.dart';
 import '../../../constants/strings.dart';
 import '../controller/auth_controller.dart';
 
-class LoginForm extends StatefulWidget {
-  const LoginForm({Key? key}) : super(key: key);
+class SigninForm extends StatefulWidget {
+  const SigninForm({Key? key}) : super(key: key);
 
   @override
-  State createState() => LoginFormState();
+  State createState() => SigninFormState();
 }
 
-class LoginFormState extends State<LoginForm> {
+class SigninFormState extends State<SigninForm> {
   final usernameController = TextEditingController();
   final passwordController = TextEditingController();
   final _formGlobalKey = GlobalKey<FormState>();
@@ -72,13 +72,13 @@ class LoginFormState extends State<LoginForm> {
             child: ElevatedButton(
               onPressed: () {
                 if (_formGlobalKey.currentState!.validate()) {
-                  authController.usernameLogin(
+                  authController.usernameSignin(
                     username: usernameController.text,
                     password: passwordController.text,
                   );
                 }
               },
-              child: const Text(txtLogin),
+              child: const Text(txtSignin),
             ),
           ),
         ],

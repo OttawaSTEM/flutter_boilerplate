@@ -14,7 +14,7 @@ final appRoutes = [
   ),
   GetPage(
     name: '/login',
-    page: () => const LoginPage(),
+    page: () => const SigninPage(),
     transition: Transition.leftToRightWithFade,
     transitionDuration: const Duration(milliseconds: 500),
   ),
