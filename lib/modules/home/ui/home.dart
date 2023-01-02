@@ -20,11 +20,11 @@ class _HomePageState extends State<HomePage> {
         title: Text(widget.title),
       ),
       drawer: NavigationDrawer(),
-      body: SafeArea(
+      body: Container(
         child: Column(
           children: [
             SizedBox(
-              height: 80,
+              height: 40,
               child: (Center(
                 child: (ElevatedButton(
                   child: const Text('Counter 0'),
@@ -35,7 +35,7 @@ class _HomePageState extends State<HomePage> {
               )),
             ),
             SizedBox(
-              height: 80,
+              height: 40,
               child: (Center(
                 child: (ElevatedButton(
                   child: const Text('Users Page'),
@@ -46,12 +46,23 @@ class _HomePageState extends State<HomePage> {
               )),
             ),
             SizedBox(
-              height: 80,
+              height: 40,
               child: (Center(
                 child: (ElevatedButton(
                   child: const Text('Dashboard Page'),
                   onPressed: () {
                     Get.toNamed("/dashboard");
+                  },
+                )),
+              )),
+            ),
+            SizedBox(
+              height: 40,
+              child: (Center(
+                child: (ElevatedButton(
+                  child: const Text('Bluetooth Page'),
+                  onPressed: () {
+                    Get.toNamed("/bluetooth");
                   },
                 )),
               )),

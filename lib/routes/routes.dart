@@ -5,6 +5,7 @@ import '../modules/home/ui/home.dart';
 import '../modules/users/ui/users.dart';
 import '../modules/counter/ui/counter.dart';
 import '../modules/dashboard/ui/dashboard.dart';
+import '../modules/bluetooth/ui/bluetooth.dart';
 
 final appRoutes = [
   GetPage(
@@ -34,6 +35,12 @@ final appRoutes = [
   GetPage(
     name: '/dashboard',
     page: () => const DashboardPage(),
+    transition: Transition.leftToRightWithFade,
+    transitionDuration: const Duration(milliseconds: 500),
+  ),
+  GetPage(
+    name: '/bluetooth',
+    page: () => const BluetoothPage(title: 'Bluetooth'),
     transition: Transition.leftToRightWithFade,
     transitionDuration: const Duration(milliseconds: 500),
   ),

@@ -47,3 +47,6 @@ Mac OS:  Command + .
 
 # SVG Cleaner
 [SVG Cleaner Online](https://iconly.io/tools/svg-cleaner)
+
+# Flutter Default Config
+C:\Tools\Flutter\packages\flutter_tools\gradle\flutter.gradle
