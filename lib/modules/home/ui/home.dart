@@ -45,6 +45,17 @@ class _HomePageState extends State<HomePage> {
                 )),
               )),
             ),
+            SizedBox(
+              height: 80,
+              child: (Center(
+                child: (ElevatedButton(
+                  child: const Text('Dashboard Page'),
+                  onPressed: () {
+                    Get.toNamed("/dashboard");
+                  },
+                )),
+              )),
+            ),
           ],
         ),
       ),

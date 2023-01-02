@@ -43,3 +43,7 @@ Mac OS:  Command + .
 
 # JSON to Dart
 [JSON to Dart](https://javiercbk.github.io/json_to_dart/)
+
+
+# SVG Cleaner
+[SVG Cleaner Online](https://iconly.io/tools/svg-cleaner)

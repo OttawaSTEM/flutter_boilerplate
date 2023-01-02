@@ -4,6 +4,7 @@ import '../core/auth/ui/signin.dart';
 import '../modules/home/ui/home.dart';
 import '../modules/users/ui/users.dart';
 import '../modules/counter/ui/counter.dart';
+import '../modules/dashboard/ui/dashboard.dart';
 
 final appRoutes = [
   GetPage(
@@ -27,6 +28,12 @@ final appRoutes = [
   GetPage(
     name: '/counter',
     page: () => const CounterPage(title: 'Counter GetX Page'),
+    transition: Transition.leftToRightWithFade,
+    transitionDuration: const Duration(milliseconds: 500),
+  ),
+  GetPage(
+    name: '/dashboard',
+    page: () => const DashboardPage(),
     transition: Transition.leftToRightWithFade,
     transitionDuration: const Duration(milliseconds: 500),
   ),
