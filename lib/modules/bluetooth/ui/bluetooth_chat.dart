@@ -15,15 +15,15 @@ class Message {
   Message(this.whom, this.text);
 }
 
-class BluetoothControlPage extends StatefulWidget {
-  final BluetoothDevice server;
-  const BluetoothControlPage({super.key, required this.server});
+class BluetoothChatPage extends StatefulWidget {
+  final BluetoothDevice btDevice;
+  const BluetoothChatPage({super.key, required this.btDevice});
 
   @override
-  State<BluetoothControlPage> createState() => _BluetoothControlPage();
+  State<BluetoothChatPage> createState() => _BluetoothChatPage();
 }
 
-class _BluetoothControlPage extends State<BluetoothControlPage> {
+class _BluetoothChatPage extends State<BluetoothChatPage> {
   static const clientID = 0;
   BluetoothConnection? connection;
 
@@ -42,7 +42,7 @@ class _BluetoothControlPage extends State<BluetoothControlPage> {
   void initState() {
     super.initState();
 
-    BluetoothConnection.toAddress(widget.server.address).then((btConnection) {
+    BluetoothConnection.toAddress(widget.btDevice.address).then((btConnection) {
       logger.d('Connected to the device');
       connection = btConnection;
       setState(() {
@@ -108,14 +108,14 @@ class _BluetoothControlPage extends State<BluetoothControlPage> {
       );
     }).toList();
 
-    final serverName = widget.server.name ?? "Unknown";
+    final serverName = widget.btDevice.name ?? "Unknown";
     return Scaffold(
       appBar: AppBar(
           title: (isConnecting
               ? Text('Connecting chat to $serverName...')
               : isConnected
                   ? Text('Live chat with $serverName')
-                  : Text('BluetoothControl log with $serverName'))),
+                  : Text('BluetoothChat log with $serverName'))),
       body: SafeArea(
         child: Column(
           children: <Widget>[
@@ -138,7 +138,7 @@ class _BluetoothControlPage extends State<BluetoothControlPage> {
                             ? 'Wait until connected...'
                             : isConnected
                                 ? 'Type your message...'
-                                : 'BluetoothControl got disconnected',
+                                : 'BluetoothChat got disconnected',
                         hintStyle: const TextStyle(color: Colors.grey),
                       ),
                       enabled: isConnected,

@@ -2,9 +2,10 @@ import 'dart:async';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_bluetooth_serial/flutter_bluetooth_serial.dart';
+import 'package:get/get.dart';
 
 import '../controller/bluetooth_devices.dart';
-import '../ui/bluetooth_control.dart';
+import '../ui/bluetooth_chat.dart';
 
 enum DeviceAvailability {
   no,
@@ -129,14 +130,7 @@ class _BluetoothPage extends State<BluetoothPage> {
               rssi: btDevice.rssi,
               enabled: btDevice.availability == DeviceAvailability.yes,
               onTap: () {
-                // Navigator.of(context).pop(btDevice.device);
-                Navigator.of(context).push(
-                  MaterialPageRoute(
-                    builder: (context) {
-                      return BluetoothControlPage(server: btDevice.device);
-                    },
-                  ),
-                );
+                Get.to(BluetoothChatPage(btDevice: btDevice.device));
               },
             ))
         .toList();
@@ -193,9 +187,12 @@ class _BluetoothPage extends State<BluetoothPage> {
               ),
               title: Text('Choose Bluetooth device to connect'),
             ),
-            ListView(
+            ListView.builder(
               shrinkWrap: true,
-              children: list,
+              itemCount: list.length,
+              itemBuilder: (context, index) {
+                return Card(child: list[index]);
+              },
             ),
           ],
         ),
