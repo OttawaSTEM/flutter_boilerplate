@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+
+import '../constants/timeout.dart';
 
 /// Helper class for device related operations.
 class DeviceUtils {
@@ -9,9 +12,10 @@ class DeviceUtils {
 
   /// accepts a double [scale] and returns scaled sized based on the screen orientation
   static double getScaledSize(BuildContext context, double scale) =>
-      scale * (
-        MediaQuery.of(context).orientation == Orientation.portrait ? MediaQuery.of(context).size.width : MediaQuery.of(context).size.height
-      );
+      scale *
+      (MediaQuery.of(context).orientation == Orientation.portrait
+          ? MediaQuery.of(context).size.width
+          : MediaQuery.of(context).size.height);
 
   /// accepts a double [scale] and returns scaled sized based on the screen width
   static double getScaledWidth(BuildContext context, double scale) =>
@@ -20,4 +24,17 @@ class DeviceUtils {
   /// accepts a double [scale] and returns scaled sized based on the screen height
   static double getScaledHeight(BuildContext context, double scale) =>
       scale * MediaQuery.of(context).size.height;
+}
+
+Future<void> snackbarMsg(
+    {required String title, required String message, required Icon icon}) async {
+  Get.snackbar(
+    title,
+    message,
+    backgroundColor: Colors.black87,
+    colorText: Colors.white,
+    icon: icon,
+    snackPosition: SnackPosition.BOTTOM,
+    duration: const Duration(seconds: snackbarMsgTimeout),
+  );
 }

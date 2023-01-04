@@ -8,6 +8,7 @@ import 'package:http/http.dart' as http;
 import '../../../constants/http_req.dart';
 import '../../../constants/strings.dart';
 import '../../../constants/timeout.dart';
+import '../../../utils/utils.dart';
 
 import '../../../modules/home/ui/home.dart';
 
@@ -22,21 +23,6 @@ class AuthController extends GetxController {
 
   bool _authStatus = false;
   bool get authStatus => _authStatus;
-
-  Future<void> snackbarMsg({required String title, required String message}) async {
-    Get.snackbar(
-      title,
-      message,
-      backgroundColor: Colors.black87,
-      colorText: Colors.white,
-      icon: const Icon(
-        Icons.check_circle_outline,
-        color: Colors.green,
-      ),
-      snackPosition: SnackPosition.BOTTOM,
-      duration: const Duration(seconds: snackbarMsgTimeout),
-    );
-  }
 
   Future<void> djangoAuth(String djangoAuthURL, Object body) async {
     try {
@@ -59,21 +45,49 @@ class AuthController extends GetxController {
         storage.write("token", data['key']);
         _authStatus = true;
         Get.to(() => const HomePage(title: 'Home Page'));
-        snackbarMsg(title: 'Sign In', message: 'Succeed!');
+        snackbarMsg(
+          title: 'Sign In',
+          message: 'Succeed!',
+          icon: const Icon(
+            Icons.check_circle_outline,
+            color: Colors.green,
+          ),
+        );
       } else if (data['email'] != null) {
         storage.remove('token');
         _authStatus = false;
-        snackbarMsg(title: 'Sign In', message: 'Failed! - $txtSigninValidEmail.');
+        snackbarMsg(
+          title: 'Sign In',
+          message: 'Failed! - $txtSigninValidEmail.',
+          icon: const Icon(
+            Icons.error_outline_outlined,
+            color: Colors.red,
+          ),
+        );
       } else if (data['non_field_errors'] != null) {
         storage.remove('token');
         _authStatus = false;
-        snackbarMsg(title: 'Sign In', message: 'Failed! - $txtSigninFailed.');
+        snackbarMsg(
+          title: 'Sign In',
+          message: 'Failed! - $txtSigninFailed.',
+          icon: const Icon(
+            Icons.error_outline_outlined,
+            color: Colors.red,
+          ),
+        );
       }
     } catch (e) {
       storage.remove('token');
       _authStatus = false;
       if (e.toString().contains('TimeoutException') && !djangoAuthURL.contains('logout')) {
-        snackbarMsg(title: 'Sign In', message: 'Failed! - Unable to connect to server.');
+        snackbarMsg(
+          title: 'Sign In',
+          message: 'Failed! - Unable to connect to server.',
+          icon: const Icon(
+            Icons.error_outline_outlined,
+            color: Colors.red,
+          ),
+        );
       }
     }
   }
@@ -98,7 +112,14 @@ class AuthController extends GetxController {
         djangoAuth(loginURL, body);
       } else {
         storage.write('token', '');
-        snackbarMsg(title: 'Google Sign Iut', message: 'Failed!');
+        snackbarMsg(
+          title: 'Google Sign Iut',
+          message: 'Failed!',
+          icon: const Icon(
+            Icons.error_outline_outlined,
+            color: Colors.red,
+          ),
+        );
       }
     } catch (e) {
       storage.write('token', '');
@@ -120,7 +141,14 @@ class AuthController extends GetxController {
               _googleSignIn.disconnect();
               _authStatus = false;
               Get.back();
-              snackbarMsg(title: 'Sign Out', message: 'Sucussed!');
+              snackbarMsg(
+                title: 'Sign Out',
+                message: 'Sucussed!',
+                icon: const Icon(
+                  Icons.check_circle_outline,
+                  color: Colors.green,
+                ),
+              );
             },
           ),
         ],

@@ -7,24 +7,10 @@ import 'package:http/http.dart' as http;
 
 import '../../../constants/http_req.dart';
 import '../../../constants/timeout.dart';
+import '../../../utils/utils.dart';
 
 class UserController extends GetxController {
   final storage = GetStorage();
-
-  Future<void> snackbarMsg({required String title, required String message}) async {
-    Get.snackbar(
-      title,
-      message,
-      backgroundColor: Colors.black87,
-      colorText: Colors.white,
-      icon: const Icon(
-        Icons.check_circle_outline,
-        color: Colors.green,
-      ),
-      snackPosition: SnackPosition.BOTTOM,
-      duration: const Duration(seconds: snackbarMsgTimeout),
-    );
-  }
 
   Future getUsers() async {
     var data = [];
@@ -42,7 +28,14 @@ class UserController extends GetxController {
       data = json.decode(response.body);
     } catch (e) {
       if (e.toString().contains('TimeoutException')) {
-        snackbarMsg(title: 'Failed!', message: 'Unable to connect to server.');
+        snackbarMsg(
+          title: 'Failed!',
+          message: 'Unable to connect to server.',
+          icon: const Icon(
+            Icons.error_outline_outlined,
+            color: Colors.red,
+          ),
+        );
       }
     }
     return data;
