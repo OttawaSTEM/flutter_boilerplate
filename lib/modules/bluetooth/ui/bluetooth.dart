@@ -6,6 +6,7 @@ import 'package:get/get.dart';
 
 import '../controller/bluetooth_devices.dart';
 import '../ui/bluetooth_chat.dart';
+import '../ui/bluetooth_control.dart';
 
 enum DeviceAvailability {
   no,
@@ -130,7 +131,8 @@ class _BluetoothPage extends State<BluetoothPage> {
               rssi: btDevice.rssi,
               enabled: btDevice.availability == DeviceAvailability.yes,
               onTap: () {
-                Get.to(() => BluetoothChatPage(btDevice: btDevice.device));
+                // Get.to(() => BluetoothChatPage(btDevice: btDevice.device));
+                Get.to(() => BluetoothControlPage(btDevice: btDevice.device));
               },
             ))
         .toList();
