@@ -5,7 +5,7 @@ import 'package:flutter_bluetooth_serial/flutter_bluetooth_serial.dart';
 import 'package:get/get.dart';
 
 import '../controller/bluetooth_devices.dart';
-import '../ui/bluetooth_chat.dart';
+// import '../ui/bluetooth_chat.dart';
 import '../ui/bluetooth_control.dart';
 
 enum DeviceAvailability {
@@ -132,7 +132,9 @@ class _BluetoothPage extends State<BluetoothPage> {
               enabled: btDevice.availability == DeviceAvailability.yes,
               onTap: () {
                 // Get.to(() => BluetoothChatPage(btDevice: btDevice.device));
-                Get.to(() => BluetoothControlPage(btDevice: btDevice.device));
+                Future.delayed(const Duration(milliseconds: 300), () {
+                  Get.to(BluetoothControlPage(btDevice: btDevice.device));
+                });
               },
             ))
         .toList();
@@ -160,6 +162,7 @@ class _BluetoothPage extends State<BluetoothPage> {
       body: SingleChildScrollView(
         child: Column(
           children: <Widget>[
+            const SizedBox(height: 10),
             SwitchListTile(
               title: const Text('Enable Bluetooth'),
               value: bluetoothState.isEnabled,
@@ -179,6 +182,7 @@ class _BluetoothPage extends State<BluetoothPage> {
                 });
               },
             ),
+            const Divider(),
             const ListTile(
               leading: CircleAvatar(
                 backgroundColor: Colors.blue,
@@ -193,7 +197,13 @@ class _BluetoothPage extends State<BluetoothPage> {
               shrinkWrap: true,
               itemCount: list.length,
               itemBuilder: (context, index) {
-                return Card(child: list[index]);
+                return Card(
+                  clipBehavior: Clip.hardEdge,
+                  child: InkWell(
+                    splashColor: Colors.blue.withAlpha(30),
+                    child: list[index],
+                  ),
+                );
               },
             ),
           ],
