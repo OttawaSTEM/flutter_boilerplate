@@ -24,7 +24,7 @@ class _HomePageState extends State<HomePage> {
         child: Column(
           children: [
             SizedBox(
-              height: 40,
+              height: 50,
               child: (Center(
                 child: (ElevatedButton(
                   child: const Text('Counter 0'),
@@ -35,7 +35,7 @@ class _HomePageState extends State<HomePage> {
               )),
             ),
             SizedBox(
-              height: 40,
+              height: 50,
               child: (Center(
                 child: (ElevatedButton(
                   child: const Text('Users Page'),
@@ -46,7 +46,7 @@ class _HomePageState extends State<HomePage> {
               )),
             ),
             SizedBox(
-              height: 40,
+              height: 50,
               child: (Center(
                 child: (ElevatedButton(
                   child: const Text('Dashboard Page'),
@@ -57,7 +57,7 @@ class _HomePageState extends State<HomePage> {
               )),
             ),
             SizedBox(
-              height: 40,
+              height: 50,
               child: (Center(
                 child: (ElevatedButton(
                   child: const Text('Bluetooth Page'),

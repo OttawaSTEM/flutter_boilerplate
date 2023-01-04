@@ -44,7 +44,6 @@ dependencies:
   get_storage: ^2.0.3
   google_sign_in: ^5.4.2
   http: ^0.13.5
-  scoped_model: ^2.0.0
 
 dev_dependencies:
   flutter_test:

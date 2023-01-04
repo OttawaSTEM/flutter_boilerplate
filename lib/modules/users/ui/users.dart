@@ -3,9 +3,8 @@ import 'package:flutter/material.dart';
 import '../controller/user_controller.dart';
 
 class UserPage extends StatefulWidget {
-  const UserPage({super.key, required this.title});
-
   final String title;
+  const UserPage({super.key, required this.title});
 
   @override
   State<UserPage> createState() => _UserPageState();
