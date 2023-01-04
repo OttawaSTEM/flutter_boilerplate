@@ -3,7 +3,7 @@ import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:flutter_bluetooth_serial/flutter_bluetooth_serial.dart';
 
-import '../controller/BluetoothDeviceListEntry.dart';
+import '../controller/bluetooth_devices.dart';
 
 enum DeviceAvailability {
   no,
@@ -37,11 +37,8 @@ class _BluetoothPage extends State<BluetoothPage> {
   Timer? discoverableTimeoutTimer;
   int discoverableTimeoutSecondsLeft = 0;
 
-  // Availability
   StreamSubscription<BluetoothDiscoveryResult>? discoveryStreamSubscription;
   bool isDiscovering = false;
-
-  _BluetoothPage();
 
   @override
   void initState() {
@@ -125,8 +122,8 @@ class _BluetoothPage extends State<BluetoothPage> {
 
   @override
   Widget build(BuildContext context) {
-    List<BluetoothDeviceListEntry> list = devices
-        .map((btDevice) => BluetoothDeviceListEntry(
+    List<BluetoothDeviceList> list = devices
+        .map((btDevice) => BluetoothDeviceList(
               device: btDevice.device,
               rssi: btDevice.rssi,
               enabled: btDevice.availability == DeviceAvailability.yes,
