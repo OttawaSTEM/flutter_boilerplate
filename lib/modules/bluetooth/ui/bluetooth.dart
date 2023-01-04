@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bluetooth_serial/flutter_bluetooth_serial.dart';
 
 import '../controller/bluetooth_devices.dart';
+import '../ui/bluetooth_control.dart';
 
 enum DeviceAvailability {
   no,
@@ -128,7 +129,14 @@ class _BluetoothPage extends State<BluetoothPage> {
               rssi: btDevice.rssi,
               enabled: btDevice.availability == DeviceAvailability.yes,
               onTap: () {
-                Navigator.of(context).pop(btDevice.device);
+                // Navigator.of(context).pop(btDevice.device);
+                Navigator.of(context).push(
+                  MaterialPageRoute(
+                    builder: (context) {
+                      return BluetoothControlPage(server: btDevice.device);
+                    },
+                  ),
+                );
               },
             ))
         .toList();
