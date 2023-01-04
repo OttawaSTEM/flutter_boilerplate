@@ -51,6 +51,7 @@ class AuthController extends GetxController {
           icon: const Icon(
             Icons.check_circle_outline,
             color: Colors.green,
+            size: 40,
           ),
         );
       } else if (data['email'] != null) {
@@ -62,6 +63,7 @@ class AuthController extends GetxController {
           icon: const Icon(
             Icons.error_outline_outlined,
             color: Colors.red,
+            size: 40,
           ),
         );
       } else if (data['non_field_errors'] != null) {
@@ -73,6 +75,7 @@ class AuthController extends GetxController {
           icon: const Icon(
             Icons.error_outline_outlined,
             color: Colors.red,
+            size: 40,
           ),
         );
       }
@@ -86,6 +89,7 @@ class AuthController extends GetxController {
           icon: const Icon(
             Icons.error_outline_outlined,
             color: Colors.red,
+            size: 40,
           ),
         );
       }
@@ -118,6 +122,7 @@ class AuthController extends GetxController {
           icon: const Icon(
             Icons.error_outline_outlined,
             color: Colors.red,
+            size: 40,
           ),
         );
       }
@@ -147,6 +152,7 @@ class AuthController extends GetxController {
                 icon: const Icon(
                   Icons.check_circle_outline,
                   color: Colors.green,
+                  size: 40,
                 ),
               );
             },

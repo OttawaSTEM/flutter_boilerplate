@@ -34,6 +34,7 @@ class UserController extends GetxController {
           icon: const Icon(
             Icons.error_outline_outlined,
             color: Colors.red,
+            size: 40,
           ),
         );
       }

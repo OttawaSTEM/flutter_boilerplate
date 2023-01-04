@@ -48,6 +48,7 @@ class _BluetoothChatPage extends State<BluetoothChatPage> {
         icon: const Icon(
           Icons.check_circle_outline,
           color: Colors.green,
+          size: 40,
         ),
       );
       connection = btConnection;
@@ -66,10 +67,11 @@ class _BluetoothChatPage extends State<BluetoothChatPage> {
         if (isDisconnecting) {
           snackbarMsg(
             title: 'Bluetooth Device ${widget.btDevice.name}',
-            message: 'Disconnecting locally!',
+            message: 'Disconnected locally!',
             icon: const Icon(
               Icons.error_outline_outlined,
               color: Colors.red,
+              size: 40,
             ),
           );
         } else {
@@ -79,6 +81,7 @@ class _BluetoothChatPage extends State<BluetoothChatPage> {
             icon: const Icon(
               Icons.error_outline_outlined,
               color: Colors.red,
+              size: 40,
             ),
           );
         }
@@ -93,6 +96,7 @@ class _BluetoothChatPage extends State<BluetoothChatPage> {
         icon: const Icon(
           Icons.error_outline_outlined,
           color: Colors.red,
+          size: 40,
         ),
       );
     });
