@@ -20,55 +20,53 @@ class _HomePageState extends State<HomePage> {
         title: Text(widget.title),
       ),
       drawer: NavigationDrawer(),
-      body: Container(
-        child: Column(
-          children: [
-            SizedBox(
-              height: 50,
-              child: (Center(
-                child: (ElevatedButton(
-                  child: const Text('Counter 0'),
-                  onPressed: () {
-                    Get.toNamed("/counter");
-                  },
-                )),
+      body: Column(
+        children: [
+          SizedBox(
+            height: 50,
+            child: (Center(
+              child: (ElevatedButton(
+                child: const Text('Counter 0'),
+                onPressed: () {
+                  Get.toNamed("/counter");
+                },
               )),
-            ),
-            SizedBox(
-              height: 50,
-              child: (Center(
-                child: (ElevatedButton(
-                  child: const Text('Users Page'),
-                  onPressed: () {
-                    Get.toNamed("/users");
-                  },
-                )),
+            )),
+          ),
+          SizedBox(
+            height: 50,
+            child: (Center(
+              child: (ElevatedButton(
+                child: const Text('Users Page'),
+                onPressed: () {
+                  Get.toNamed("/users");
+                },
               )),
-            ),
-            SizedBox(
-              height: 50,
-              child: (Center(
-                child: (ElevatedButton(
-                  child: const Text('Dashboard Page'),
-                  onPressed: () {
-                    Get.toNamed("/dashboard");
-                  },
-                )),
+            )),
+          ),
+          SizedBox(
+            height: 50,
+            child: (Center(
+              child: (ElevatedButton(
+                child: const Text('Dashboard Page'),
+                onPressed: () {
+                  Get.toNamed("/dashboard");
+                },
               )),
-            ),
-            SizedBox(
-              height: 50,
-              child: (Center(
-                child: (ElevatedButton(
-                  child: const Text('Bluetooth Page'),
-                  onPressed: () {
-                    Get.toNamed("/bluetooth");
-                  },
-                )),
+            )),
+          ),
+          SizedBox(
+            height: 50,
+            child: (Center(
+              child: (ElevatedButton(
+                child: const Text('Bluetooth Page'),
+                onPressed: () {
+                  Get.toNamed("/bluetooth");
+                },
               )),
-            ),
-          ],
-        ),
+            )),
+          ),
+        ],
       ),
     );
   }
