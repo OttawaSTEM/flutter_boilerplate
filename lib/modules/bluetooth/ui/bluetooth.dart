@@ -2,139 +2,198 @@ import 'dart:async';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_bluetooth_serial/flutter_bluetooth_serial.dart';
-import 'package:get/get.dart';
 
-import '../controller/SelectBondedDevicePage.dart';
-import '../ui/ChatPage.dart';
+import '../controller/BluetoothDeviceListEntry.dart';
 
-class BluetoothPage extends StatefulWidget {
-  final String title;
-  const BluetoothPage({super.key, required this.title});
-
-  @override
-  State<BluetoothPage> createState() => _BluetoothPageState();
+enum _DeviceAvailability {
+  no,
+  maybe,
+  yes,
 }
 
-class _BluetoothPageState extends State<BluetoothPage> {
-  BluetoothState _bluetoothState = BluetoothState.UNKNOWN;
+class _DeviceWithAvailability {
+  BluetoothDevice device;
+  _DeviceAvailability availability;
+  int? rssi;
 
-  String _address = "...";
-  String _name = "...";
+  _DeviceWithAvailability(this.device, this.availability, [this.rssi]);
+}
 
-  Timer? _discoverableTimeoutTimer;
-  int _discoverableTimeoutSecondsLeft = 0;
+class BluetoothPage extends StatefulWidget {
+  /// If true, on page start there is performed discovery upon the bonded devices.
+  /// Then, if they are not avaliable, they would be disabled from the selection.
+  final String title;
+  final bool checkAvailability;
+  const BluetoothPage({super.key, required this.title, this.checkAvailability = true});
 
-  bool _autoAcceptPairingRequests = false;
+  @override
+  State<BluetoothPage> createState() => _BluetoothPage();
+}
+
+class _BluetoothPage extends State<BluetoothPage> {
+  BluetoothState bluetoothState = BluetoothState.UNKNOWN;
+  List<_DeviceWithAvailability> devices = List<_DeviceWithAvailability>.empty(growable: true);
+
+  Timer? discoverableTimeoutTimer;
+  int discoverableTimeoutSecondsLeft = 0;
+
+  // Availability
+  StreamSubscription<BluetoothDiscoveryResult>? discoveryStreamSubscription;
+  bool isDiscovering = false;
+
+  _BluetoothPage();
 
   @override
   void initState() {
     super.initState();
 
+    isDiscovering = widget.checkAvailability;
+
+    if (isDiscovering) {
+      _startDiscovery();
+    }
+
+    // Setup a list of the bonded devices
+    FlutterBluetoothSerial.instance.getBondedDevices().then((List<BluetoothDevice> bondedDevices) {
+      setState(() {
+        devices = bondedDevices
+            .map(
+              (device) => _DeviceWithAvailability(
+                device,
+                widget.checkAvailability ? _DeviceAvailability.maybe : _DeviceAvailability.yes,
+              ),
+            )
+            .toList();
+      });
+    });
+
     // Get current state
     FlutterBluetoothSerial.instance.state.then((state) {
       setState(() {
-        _bluetoothState = state;
-      });
-    });
-
-    Future.doWhile(() async {
-      // Wait if adapter not enabled
-      if ((await FlutterBluetoothSerial.instance.isEnabled) ?? false) {
-        return false;
-      }
-      await Future.delayed(const Duration(milliseconds: 0xDD));
-      return true;
-    }).then((_) {
-      // Update the address field
-      FlutterBluetoothSerial.instance.address.then((address) {
-        setState(() {
-          _address = address!;
-        });
-      });
-    });
-
-    FlutterBluetoothSerial.instance.name.then((name) {
-      setState(() {
-        _name = name!;
+        bluetoothState = state;
       });
     });
 
     // Listen for futher state changes
     FlutterBluetoothSerial.instance.onStateChanged().listen((BluetoothState state) {
       setState(() {
-        _bluetoothState = state;
+        bluetoothState = state;
 
         // Discoverable mode is disabled when Bluetooth gets disabled
-        _discoverableTimeoutTimer = null;
-        _discoverableTimeoutSecondsLeft = 0;
+        discoverableTimeoutTimer = null;
+        discoverableTimeoutSecondsLeft = 0;
+      });
+    });
+  }
+
+  void _restartDiscovery() {
+    setState(() {
+      isDiscovering = true;
+    });
+
+    _startDiscovery();
+  }
+
+  void _startDiscovery() {
+    discoveryStreamSubscription = FlutterBluetoothSerial.instance.startDiscovery().listen((r) {
+      setState(() {
+        Iterator i = devices.iterator;
+        while (i.moveNext()) {
+          var btDevice = i.current;
+          if (btDevice.device == r.device) {
+            btDevice.availability = _DeviceAvailability.yes;
+            btDevice.rssi = r.rssi;
+          }
+        }
+      });
+    });
+
+    discoveryStreamSubscription?.onDone(() {
+      setState(() {
+        isDiscovering = false;
       });
     });
   }
 
   @override
   void dispose() {
-    FlutterBluetoothSerial.instance.setPairingRequestHandler(null);
-    _discoverableTimeoutTimer?.cancel();
+    discoverableTimeoutTimer?.cancel();
+    discoveryStreamSubscription?.cancel();
+
     super.dispose();
   }
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(title: Text(widget.title)),
-      body: Column(
-        children: [
-          SwitchListTile(
-            title: const Text('Enable Bluetooth'),
-            value: _bluetoothState.isEnabled,
-            onChanged: (bool value) {
-              // Do the request and update with the true value then
-              future() async {
-                // async lambda seems to not working
-                if (value) {
-                  await FlutterBluetoothSerial.instance.requestEnable();
-                } else {
-                  await FlutterBluetoothSerial.instance.requestDisable();
-                }
-              }
-
-              future().then((_) {
-                setState(() {});
-              });
-            },
-          ),
-          ListTile(
-            title: ElevatedButton(
-              child: const Text('Connect to paired device to chat'),
-              onPressed: () async {
-                final BluetoothDevice? selectedDevice = await Navigator.of(context).push(
-                  MaterialPageRoute(
-                    builder: (context) {
-                      return const SelectBondedDevicePage(checkAvailability: false);
-                    },
-                  ),
-                );
-
-                if (selectedDevice != null) {
-                  print('Connect -> selected ' + selectedDevice.address);
-                  _startChat(context, selectedDevice);
-                } else {
-                  print('Connect -> no device selected');
-                }
+    List<BluetoothDeviceListEntry> list = devices
+        .map((btDevice) => BluetoothDeviceListEntry(
+              device: btDevice.device,
+              rssi: btDevice.rssi,
+              enabled: btDevice.availability == _DeviceAvailability.yes,
+              onTap: () {
+                Navigator.of(context).pop(btDevice.device);
               },
-            ),
-          ),
+            ))
+        .toList();
+    return Scaffold(
+      appBar: AppBar(
+        title: Text(widget.title),
+        actions: <Widget>[
+          isDiscovering
+              ? FittedBox(
+                  child: Container(
+                    margin: const EdgeInsets.all(16.0),
+                    child: const CircularProgressIndicator(
+                      valueColor: AlwaysStoppedAnimation<Color>(
+                        Colors.white,
+                      ),
+                    ),
+                  ),
+                )
+              : IconButton(
+                  icon: const Icon(Icons.replay),
+                  onPressed: _restartDiscovery,
+                )
         ],
       ),
-    );
-  }
+      body: SingleChildScrollView(
+        child: Column(
+          children: <Widget>[
+            SwitchListTile(
+              title: const Text('Enable Bluetooth'),
+              value: bluetoothState.isEnabled,
+              onChanged: (bool value) {
+                // Do the request and update with the true value then
+                future() async {
+                  // async lambda seems to not working
+                  if (value) {
+                    await FlutterBluetoothSerial.instance.requestEnable();
+                  } else {
+                    await FlutterBluetoothSerial.instance.requestDisable();
+                  }
+                }
 
-  void _startChat(BuildContext context, BluetoothDevice server) {
-    Navigator.of(context).push(
-      MaterialPageRoute(
-        builder: (context) {
-          return ChatPage(server: server);
-        },
+                future().then((_) {
+                  setState(() {});
+                });
+              },
+            ),
+            const ListTile(
+              leading: CircleAvatar(
+                backgroundColor: Colors.blue,
+                child: Icon(
+                  Icons.bluetooth,
+                  color: Colors.white,
+                ),
+              ),
+              title: Text('Choose Bluetooth device to connect'),
+            ),
+            ListView(
+              shrinkWrap: true,
+              children: list,
+            ),
+          ],
+        ),
       ),
     );
   }

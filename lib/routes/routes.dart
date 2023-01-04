@@ -1,11 +1,11 @@
 import 'package:get/get.dart';
 
 import '../core/auth/ui/signin.dart';
-import '../modules/home/ui/home.dart';
-import '../modules/users/ui/users.dart';
+import '../modules/bluetooth/ui/bluetooth.dart';
 import '../modules/counter/ui/counter.dart';
 import '../modules/dashboard/ui/dashboard.dart';
-import '../modules/bluetooth/ui/bluetooth.dart';
+import '../modules/home/ui/home.dart';
+import '../modules/users/ui/users.dart';
 
 final appRoutes = [
   GetPage(
@@ -40,7 +40,8 @@ final appRoutes = [
   ),
   GetPage(
     name: '/bluetooth',
-    page: () => const BluetoothPage(title: 'Bluetooth'),
+    // page: () => const BluetoothPage(title: 'Bluetooth'),
+    page: () => const BluetoothPage(title: 'Bluetooth', checkAvailability: false),
     transition: Transition.leftToRightWithFade,
     transitionDuration: const Duration(milliseconds: 500),
   ),
