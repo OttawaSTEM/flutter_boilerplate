@@ -40,7 +40,6 @@ final appRoutes = [
   ),
   GetPage(
     name: '/bluetooth',
-    // page: () => const BluetoothPage(title: 'Bluetooth'),
     page: () => const BluetoothPage(title: 'Bluetooth', checkAvailability: false),
     transition: Transition.leftToRightWithFade,
     transitionDuration: const Duration(milliseconds: 500),

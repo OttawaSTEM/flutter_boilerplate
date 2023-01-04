@@ -5,7 +5,7 @@ import 'package:flutter_bluetooth_serial/flutter_bluetooth_serial.dart';
 
 import '../controller/BluetoothDeviceListEntry.dart';
 
-enum _DeviceAvailability {
+enum DeviceAvailability {
   no,
   maybe,
   yes,
@@ -13,7 +13,7 @@ enum _DeviceAvailability {
 
 class _DeviceWithAvailability {
   BluetoothDevice device;
-  _DeviceAvailability availability;
+  DeviceAvailability availability;
   int? rssi;
 
   _DeviceWithAvailability(this.device, this.availability, [this.rssi]);
@@ -50,7 +50,7 @@ class _BluetoothPage extends State<BluetoothPage> {
     isDiscovering = widget.checkAvailability;
 
     if (isDiscovering) {
-      _startDiscovery();
+      startDiscovery();
     }
 
     // Setup a list of the bonded devices
@@ -60,7 +60,7 @@ class _BluetoothPage extends State<BluetoothPage> {
             .map(
               (device) => _DeviceWithAvailability(
                 device,
-                widget.checkAvailability ? _DeviceAvailability.maybe : _DeviceAvailability.yes,
+                widget.checkAvailability ? DeviceAvailability.maybe : DeviceAvailability.yes,
               ),
             )
             .toList();
@@ -86,22 +86,22 @@ class _BluetoothPage extends State<BluetoothPage> {
     });
   }
 
-  void _restartDiscovery() {
+  void restartDiscovery() {
     setState(() {
       isDiscovering = true;
     });
 
-    _startDiscovery();
+    startDiscovery();
   }
 
-  void _startDiscovery() {
+  void startDiscovery() {
     discoveryStreamSubscription = FlutterBluetoothSerial.instance.startDiscovery().listen((r) {
       setState(() {
         Iterator i = devices.iterator;
         while (i.moveNext()) {
           var btDevice = i.current;
           if (btDevice.device == r.device) {
-            btDevice.availability = _DeviceAvailability.yes;
+            btDevice.availability = DeviceAvailability.yes;
             btDevice.rssi = r.rssi;
           }
         }
@@ -129,7 +129,7 @@ class _BluetoothPage extends State<BluetoothPage> {
         .map((btDevice) => BluetoothDeviceListEntry(
               device: btDevice.device,
               rssi: btDevice.rssi,
-              enabled: btDevice.availability == _DeviceAvailability.yes,
+              enabled: btDevice.availability == DeviceAvailability.yes,
               onTap: () {
                 Navigator.of(context).pop(btDevice.device);
               },
@@ -152,7 +152,7 @@ class _BluetoothPage extends State<BluetoothPage> {
                 )
               : IconButton(
                   icon: const Icon(Icons.replay),
-                  onPressed: _restartDiscovery,
+                  onPressed: restartDiscovery,
                 )
         ],
       ),
