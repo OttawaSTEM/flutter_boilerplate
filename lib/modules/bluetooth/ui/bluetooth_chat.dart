@@ -4,9 +4,8 @@ import 'dart:typed_data';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_bluetooth_serial/flutter_bluetooth_serial.dart';
-import 'package:logger/logger.dart';
 
-var logger = Logger();
+import '../../../utils/utils.dart';
 
 class Message {
   int whom;
@@ -43,7 +42,14 @@ class _BluetoothChatPage extends State<BluetoothChatPage> {
     super.initState();
 
     BluetoothConnection.toAddress(widget.btDevice.address).then((btConnection) {
-      logger.d('Connected to the device');
+      snackbarMsg(
+        title: 'Connected to the Bluetooth device ${widget.btDevice.name}',
+        message: 'Succeed!',
+        icon: const Icon(
+          Icons.check_circle_outline,
+          color: Colors.green,
+        ),
+      );
       connection = btConnection;
       setState(() {
         isConnecting = false;
@@ -58,17 +64,37 @@ class _BluetoothChatPage extends State<BluetoothChatPage> {
         // If we except the disconnection, `onDone` should be fired as result.
         // If we didn't except this (no flag set), it means closing by remote.
         if (isDisconnecting) {
-          logger.d('Disconnecting locally!');
+          snackbarMsg(
+            title: 'Bluetooth Device ${widget.btDevice.name}',
+            message: 'Disconnecting locally!',
+            icon: const Icon(
+              Icons.error_outline_outlined,
+              color: Colors.red,
+            ),
+          );
         } else {
-          logger.d('Disconnected remotely!');
+          snackbarMsg(
+            title: 'Bluetooth Device ${widget.btDevice.name}',
+            message: 'Disconnected remotely!',
+            icon: const Icon(
+              Icons.error_outline_outlined,
+              color: Colors.red,
+            ),
+          );
         }
         if (mounted) {
           setState(() {});
         }
       });
     }).catchError((error) {
-      logger.d('Cannot connect, exception occured');
-      logger.d(error);
+      snackbarMsg(
+        title: 'Cannot connect to Bluetooth Device ${widget.btDevice.name}',
+        message: error,
+        icon: const Icon(
+          Icons.error_outline_outlined,
+          color: Colors.red,
+        ),
+      );
     });
   }
 

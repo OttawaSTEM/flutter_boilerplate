@@ -130,7 +130,7 @@ class _BluetoothPage extends State<BluetoothPage> {
               rssi: btDevice.rssi,
               enabled: btDevice.availability == DeviceAvailability.yes,
               onTap: () {
-                Get.to(BluetoothChatPage(btDevice: btDevice.device));
+                Get.to(() => BluetoothChatPage(btDevice: btDevice.device));
               },
             ))
         .toList();
