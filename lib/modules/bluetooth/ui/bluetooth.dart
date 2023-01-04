@@ -11,12 +11,12 @@ enum DeviceAvailability {
   yes,
 }
 
-class _DeviceWithAvailability {
+class DeviceWithAvailability {
   BluetoothDevice device;
   DeviceAvailability availability;
   int? rssi;
 
-  _DeviceWithAvailability(this.device, this.availability, [this.rssi]);
+  DeviceWithAvailability(this.device, this.availability, [this.rssi]);
 }
 
 class BluetoothPage extends StatefulWidget {
@@ -32,7 +32,7 @@ class BluetoothPage extends StatefulWidget {
 
 class _BluetoothPage extends State<BluetoothPage> {
   BluetoothState bluetoothState = BluetoothState.UNKNOWN;
-  List<_DeviceWithAvailability> devices = List<_DeviceWithAvailability>.empty(growable: true);
+  List<DeviceWithAvailability> devices = List<DeviceWithAvailability>.empty(growable: true);
 
   Timer? discoverableTimeoutTimer;
   int discoverableTimeoutSecondsLeft = 0;
@@ -55,7 +55,7 @@ class _BluetoothPage extends State<BluetoothPage> {
       setState(() {
         devices = bondedDevices
             .map(
-              (device) => _DeviceWithAvailability(
+              (device) => DeviceWithAvailability(
                 device,
                 widget.checkAvailability ? DeviceAvailability.maybe : DeviceAvailability.yes,
               ),
