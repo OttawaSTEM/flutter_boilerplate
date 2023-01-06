@@ -26,7 +26,6 @@ class _BluetoothControlPage extends State<BluetoothControlPage> {
   BluetoothConnection? connection;
 
   List<Message> messages = List<Message>.empty(growable: true);
-  String messageBuffer = '';
 
   bool isConnecting = true;
   bool get isConnected => (connection?.isConnected ?? false);
@@ -197,25 +196,7 @@ class _BluetoothControlPage extends State<BluetoothControlPage> {
     }
 
     // Create message if there is new line character
-    String dataString = String.fromCharCodes(buffer);
-    int index = buffer.indexOf(13);
-    if (~index != 0) {
-      setState(() {
-        messages.add(
-          Message(
-            1,
-            backspacesCounter > 0
-                ? messageBuffer.substring(0, messageBuffer.length - backspacesCounter)
-                : messageBuffer + dataString.substring(0, index),
-          ),
-        );
-        messageBuffer = dataString.substring(index);
-      });
-    } else {
-      messageBuffer = (backspacesCounter > 0
-          ? messageBuffer.substring(0, messageBuffer.length - backspacesCounter)
-          : messageBuffer + dataString);
-    }
+    // String dataString = String.fromCharCodes(buffer);
   }
 
   void sendMessage(String text) async {
