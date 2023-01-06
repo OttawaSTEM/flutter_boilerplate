@@ -45,6 +45,7 @@ dependencies:
   google_sign_in: ^5.4.2
   http: ^0.13.5
   logger: ^1.1.0
+  # syncfusion_flutter_sliders: ^20.4.42
 
 dev_dependencies:
   flutter_test:
@@ -106,6 +107,7 @@ flutter:
   assets:
     - assets/
     - assets/images/
+    - assets/images/robot/
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware.

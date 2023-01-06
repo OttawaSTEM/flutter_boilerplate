@@ -1,4 +1,5 @@
 import 'dart:convert';
+import 'dart:math';
 import 'dart:typed_data';
 
 import 'package:flutter/material.dart';
@@ -31,6 +32,12 @@ class _BluetoothRobotArmPage extends State<BluetoothRobotArmPage> {
   bool get isConnected => (connection?.isConnected ?? false);
 
   bool isDisconnecting = false;
+
+  double currentGripperValue = 512;
+  double currentGripperHeaderValue = 512;
+  double currentHeadValue = 512;
+  double currentArmUpperValue = 512;
+  double currentArmLowerValue = 512;
 
   @override
   void initState() {
@@ -111,60 +118,222 @@ class _BluetoothRobotArmPage extends State<BluetoothRobotArmPage> {
 
   @override
   Widget build(BuildContext context) {
-    final serverName = widget.btDevice.name ?? "Unknown";
+    var screenSize = MediaQuery.of(context).size;
+    var ratioFHD = 1.78;
+    var baseHorizontal = ((screenSize.width / screenSize.height) > ratioFHD) ? false : true;
+    var screenHalfHeight = screenSize.height / 2;
+    var screenHalfWidth = screenSize.width / 2;
+
     return Scaffold(
-      appBar: AppBar(
-          title: (isConnecting
-              ? Text('Connecting chat to $serverName...')
-              : isConnected
-                  ? Text(serverName)
-                  : Text('Bluetooth device $serverName is not connected!'))),
-      body: SafeArea(
-        child: Center(
-          child: Column(
-            children: <Widget>[
-              const SizedBox(height: 20),
-              ElevatedButton(
-                onPressed: isConnected ? () => sendMessage('LED OFF') : null,
-                style: ElevatedButton.styleFrom(
-                    minimumSize: const Size(120, 50),
-                    shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(50))),
-                child: const Text('LED OFF'),
-              ),
-              const SizedBox(height: 20),
-              ElevatedButton(
-                onPressed: isConnected ? () => sendMessage('LED 50%') : null,
-                style: ElevatedButton.styleFrom(
-                    minimumSize: const Size(120, 50),
-                    shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(50))),
-                child: const Text('LED 25%'),
-              ),
-              const SizedBox(height: 20),
-              ElevatedButton(
-                onPressed: isConnected ? () => sendMessage('LED 50%') : null,
-                style: ElevatedButton.styleFrom(
-                    minimumSize: const Size(120, 50),
-                    shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(50))),
-                child: const Text('LED 50%'),
-              ),
-              const SizedBox(height: 20),
-              ElevatedButton(
-                onPressed: isConnected ? () => sendMessage('LED 50%') : null,
-                style: ElevatedButton.styleFrom(
-                    minimumSize: const Size(120, 50),
-                    shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(50))),
-                child: const Text('LED 75%'),
-              ),
-              const SizedBox(height: 20),
-              ElevatedButton(
-                onPressed: isConnected ? () => sendMessage('LED ON') : null,
-                style: ElevatedButton.styleFrom(
-                    minimumSize: const Size(120, 50),
-                    shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(50))),
-                child: const Text('LED ON'),
-              ),
-            ],
+      backgroundColor: Colors.black,
+      body: Container(
+        decoration: const BoxDecoration(
+          image: DecorationImage(
+            image: AssetImage("assets/images/robot/robot-arm.png"),
+            fit: BoxFit.contain,
           ),
+        ),
+        child: Stack(
+          children: <Widget>[
+            // Gripper
+            Positioned(
+              top: baseHorizontal
+                  ? screenHalfHeight - (screenSize.width / ratioFHD) * 0.45
+                  : screenHalfHeight - screenSize.height * 0.45,
+              left: baseHorizontal
+                  ? screenHalfWidth + screenSize.width * 0.1
+                  : screenHalfWidth + (screenSize.height * ratioFHD) * 0.1,
+              child: Slider(
+                value: currentGripperValue,
+                min: 0,
+                max: 1024,
+                divisions: 1024,
+                label: currentGripperValue.round().toString(),
+                onChanged: (double value) {
+                  setState(() {
+                    currentGripperValue = value;
+                  });
+                },
+              ),
+            ),
+            Positioned(
+              top: baseHorizontal
+                  ? screenHalfHeight - (screenSize.width / ratioFHD) * 0.42
+                  : screenHalfHeight - screenSize.height * 0.42,
+              left: baseHorizontal
+                  ? screenHalfWidth + screenSize.width * 0.12
+                  : screenHalfWidth + (screenSize.height * ratioFHD) * 0.12,
+              child: Text(
+                'Gripper: ${currentGripperValue.round().toString()} °',
+                style: const TextStyle(
+                  color: Colors.white,
+                  height: 3,
+                  fontSize: 16,
+                ),
+              ),
+            ),
+
+            // Gripper Head
+            Positioned(
+              top: baseHorizontal
+                  ? screenHalfHeight - (screenSize.width / ratioFHD) * 0.22
+                  : screenHalfHeight - screenSize.height * 0.22,
+              left: baseHorizontal
+                  ? screenHalfWidth + screenSize.width * 0.1
+                  : screenHalfWidth + (screenSize.height * ratioFHD) * 0.1,
+              child: Transform.rotate(
+                angle: 90 * pi / 180,
+                child: Slider(
+                  value: currentGripperHeaderValue,
+                  min: 0,
+                  max: 1024,
+                  divisions: 1024,
+                  label: currentGripperHeaderValue.round().toString(),
+                  onChanged: (double value) {
+                    setState(() {
+                      currentGripperHeaderValue = value;
+                    });
+                  },
+                ),
+              ),
+            ),
+            Positioned(
+              top: baseHorizontal
+                  ? screenHalfHeight - (screenSize.width / ratioFHD) * 0.12
+                  : screenHalfHeight - screenSize.height * 0.12,
+              left: baseHorizontal
+                  ? screenHalfWidth + screenSize.width * 0.11
+                  : screenHalfWidth + (screenSize.height * ratioFHD) * 0.11,
+              child: Text(
+                'Gripper Head: ${currentGripperHeaderValue.round().toString()} °',
+                style: const TextStyle(
+                  color: Colors.white,
+                  height: 3,
+                  fontSize: 16,
+                ),
+              ),
+            ),
+
+            // Head
+            Positioned(
+              top: baseHorizontal
+                  ? screenHalfHeight + (screenSize.width / ratioFHD) * 0.02
+                  : screenHalfHeight + screenSize.height * 0.02,
+              left: baseHorizontal
+                  ? screenHalfWidth + screenSize.width * 0.1
+                  : screenHalfWidth + (screenSize.height * ratioFHD) * 0.1,
+              child: Slider(
+                value: currentHeadValue,
+                min: 0,
+                max: 1024,
+                divisions: 1024,
+                label: currentHeadValue.round().toString(),
+                onChanged: (double value) {
+                  setState(() {
+                    currentHeadValue = value;
+                  });
+                },
+              ),
+            ),
+            Positioned(
+              top: baseHorizontal
+                  ? screenHalfHeight + (screenSize.width / ratioFHD) * 0.05
+                  : screenHalfHeight + screenSize.height * 0.05,
+              left: baseHorizontal
+                  ? screenHalfWidth + screenSize.width * 0.13
+                  : screenHalfWidth + (screenSize.height * ratioFHD) * 0.13,
+              child: Text(
+                'Head: ${currentHeadValue.round().toString()} °',
+                style: const TextStyle(
+                  color: Colors.white,
+                  height: 3,
+                  fontSize: 16,
+                ),
+              ),
+            ),
+
+            // Upper Arm
+            Positioned(
+              top: baseHorizontal
+                  ? screenHalfHeight + (screenSize.width / ratioFHD) * 0.0
+                  : screenHalfHeight + screenSize.height * 0.0,
+              left: baseHorizontal
+                  ? screenHalfWidth - screenSize.width * 0.25
+                  : screenHalfWidth - (screenSize.height * ratioFHD) * 0.25,
+              child: Transform.rotate(
+                angle: 90 * pi / 180,
+                child: Slider(
+                  value: currentArmUpperValue,
+                  min: 0,
+                  max: 1024,
+                  divisions: 1024,
+                  label: currentArmUpperValue.round().toString(),
+                  onChanged: (double value) {
+                    setState(() {
+                      currentArmUpperValue = value;
+                    });
+                  },
+                ),
+              ),
+            ),
+            Positioned(
+              top: baseHorizontal
+                  ? screenHalfHeight + (screenSize.width / ratioFHD) * 0.1
+                  : screenHalfHeight + screenSize.height * 0.1,
+              left: baseHorizontal
+                  ? screenHalfWidth - screenSize.width * 0.23
+                  : screenHalfWidth - (screenSize.height * ratioFHD) * 0.23,
+              child: Text(
+                'Upper Arm: ${currentArmUpperValue.round().toString()} °',
+                style: const TextStyle(
+                  color: Colors.white,
+                  height: 3,
+                  fontSize: 16,
+                ),
+              ),
+            ),
+
+            // Lower Arm
+            Positioned(
+              top: baseHorizontal
+                  ? screenHalfHeight + (screenSize.width / ratioFHD) * 0.3
+                  : screenHalfHeight + screenSize.height * 0.3,
+              left: baseHorizontal
+                  ? screenHalfWidth - screenSize.width * 0.25
+                  : screenHalfWidth - (screenSize.height * ratioFHD) * 0.25,
+              child: Transform.rotate(
+                angle: 90 * pi / 180,
+                child: Slider(
+                  value: currentArmLowerValue,
+                  min: 0,
+                  max: 1024,
+                  divisions: 1024,
+                  label: currentArmLowerValue.round().toString(),
+                  onChanged: (double value) {
+                    setState(() {
+                      currentArmLowerValue = value;
+                    });
+                  },
+                ),
+              ),
+            ),
+            Positioned(
+              top: baseHorizontal
+                  ? screenHalfHeight + (screenSize.width / ratioFHD) * 0.4
+                  : screenHalfHeight + screenSize.height * 0.4,
+              left: baseHorizontal
+                  ? screenHalfWidth - screenSize.width * 0.23
+                  : screenHalfWidth - (screenSize.height * ratioFHD) * 0.23,
+              child: Text(
+                'Lower Arm: ${currentArmLowerValue.round().toString()} °',
+                style: const TextStyle(
+                  color: Colors.white,
+                  height: 3,
+                  fontSize: 16,
+                ),
+              ),
+            ),
+          ],
         ),
       ),
     );
