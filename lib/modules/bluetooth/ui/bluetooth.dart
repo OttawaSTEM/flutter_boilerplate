@@ -133,7 +133,7 @@ class _BluetoothPage extends State<BluetoothPage> {
               onTap: () {
                 // Get.to(() => BluetoothChatPage(btDevice: btDevice.device));
                 Future.delayed(const Duration(milliseconds: 300), () {
-                  Get.to(BluetoothControlPage(btDevice: btDevice.device));
+                  Get.to(() => BluetoothControlPage(btDevice: btDevice.device));
                 });
               },
             ))
@@ -159,7 +159,7 @@ class _BluetoothPage extends State<BluetoothPage> {
                 )
         ],
       ),
-      body: SingleChildScrollView(
+      body: SafeArea(
         child: Column(
           children: <Widget>[
             const SizedBox(height: 10),

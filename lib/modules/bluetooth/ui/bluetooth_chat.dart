@@ -57,7 +57,7 @@ class _BluetoothChatPage extends State<BluetoothChatPage> {
         isDisconnecting = false;
       });
 
-      connection!.input!.listen(_onDataReceived).onDone(() {
+      connection!.input!.listen(onDataReceived).onDone(() {
         // Example: Detect which side closed the connection
         // There should be `isDisconnecting` flag to show are we are (locally)
         // in middle of disconnecting process, should be set before calling
@@ -180,7 +180,7 @@ class _BluetoothChatPage extends State<BluetoothChatPage> {
                   child: IconButton(
                       icon: const Icon(Icons.send),
                       onPressed:
-                          isConnected ? () => _sendMessage(textEditingController.text) : null),
+                          isConnected ? () => sendMessage(textEditingController.text) : null),
                 ),
               ],
             )
@@ -190,7 +190,7 @@ class _BluetoothChatPage extends State<BluetoothChatPage> {
     );
   }
 
-  void _onDataReceived(Uint8List data) {
+  void onDataReceived(Uint8List data) {
     // Allocate buffer for parsed data
     int backspacesCounter = 0;
     for (var byte in data) {
@@ -237,7 +237,7 @@ class _BluetoothChatPage extends State<BluetoothChatPage> {
     }
   }
 
-  void _sendMessage(String text) async {
+  void sendMessage(String text) async {
     text = text.trim();
     textEditingController.clear();
 

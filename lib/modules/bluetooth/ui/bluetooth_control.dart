@@ -57,7 +57,7 @@ class _BluetoothControlPage extends State<BluetoothControlPage> {
         isDisconnecting = false;
       });
 
-      connection!.input!.listen(_onDataReceived).onDone(() {
+      connection!.input!.listen(onDataReceived).onDone(() {
         // Example: Detect which side closed the connection
         // There should be `isDisconnecting` flag to show are we are (locally)
         // in middle of disconnecting process, should be set before calling
@@ -116,81 +116,66 @@ class _BluetoothControlPage extends State<BluetoothControlPage> {
 
   @override
   Widget build(BuildContext context) {
-    final List<Row> list = messages.map((message) {
-      return Row(
-        mainAxisAlignment:
-            message.whom == clientID ? MainAxisAlignment.end : MainAxisAlignment.start,
-        children: <Widget>[
-          Container(
-            padding: const EdgeInsets.all(12.0),
-            margin: const EdgeInsets.only(bottom: 8.0, left: 8.0, right: 8.0),
-            width: 222.0,
-            decoration: BoxDecoration(
-                color: message.whom == clientID ? Colors.blueAccent : Colors.grey,
-                borderRadius: BorderRadius.circular(7.0)),
-            child: Text(
-                (text) {
-                  return text == '/shrug' ? '¯\\_(ツ)_/¯' : text;
-                }(message.text.trim()),
-                style: const TextStyle(color: Colors.white)),
-          ),
-        ],
-      );
-    }).toList();
-
     final serverName = widget.btDevice.name ?? "Unknown";
     return Scaffold(
       appBar: AppBar(
           title: (isConnecting
               ? Text('Connecting chat to $serverName...')
               : isConnected
-                  ? Text('Live chat with $serverName')
-                  : Text('BluetoothControl log with $serverName'))),
+                  ? Text(serverName)
+                  : Text('Bluetooth device $serverName is not connected!'))),
       body: SafeArea(
-        child: Column(
-          children: <Widget>[
-            Flexible(
-              child: ListView(
-                  padding: const EdgeInsets.all(12.0),
-                  controller: listScrollController,
-                  children: list),
-            ),
-            Row(
-              children: <Widget>[
-                Flexible(
-                  child: Container(
-                    margin: const EdgeInsets.only(left: 16.0),
-                    child: TextField(
-                      style: const TextStyle(fontSize: 15.0),
-                      controller: textEditingController,
-                      decoration: InputDecoration.collapsed(
-                        hintText: isConnecting
-                            ? 'Wait until connected...'
-                            : isConnected
-                                ? 'Type your message...'
-                                : 'BluetoothControl got disconnected',
-                        hintStyle: const TextStyle(color: Colors.grey),
-                      ),
-                      enabled: isConnected,
-                    ),
-                  ),
-                ),
-                Container(
-                  margin: const EdgeInsets.all(8.0),
-                  child: IconButton(
-                      icon: const Icon(Icons.send),
-                      onPressed:
-                          isConnected ? () => _sendMessage(textEditingController.text) : null),
-                ),
-              ],
-            )
-          ],
+        child: Center(
+          child: Column(
+            children: <Widget>[
+              const SizedBox(height: 20),
+              ElevatedButton(
+                onPressed: isConnected ? () => sendMessage('LED OFF') : null,
+                style: ElevatedButton.styleFrom(
+                    minimumSize: const Size(120, 50),
+                    shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(50))),
+                child: const Text('LED OFF'),
+              ),
+              const SizedBox(height: 20),
+              ElevatedButton(
+                onPressed: isConnected ? () => sendMessage('LED 50%') : null,
+                style: ElevatedButton.styleFrom(
+                    minimumSize: const Size(120, 50),
+                    shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(50))),
+                child: const Text('LED 25%'),
+              ),
+              const SizedBox(height: 20),
+              ElevatedButton(
+                onPressed: isConnected ? () => sendMessage('LED 50%') : null,
+                style: ElevatedButton.styleFrom(
+                    minimumSize: const Size(120, 50),
+                    shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(50))),
+                child: const Text('LED 50%'),
+              ),
+              const SizedBox(height: 20),
+              ElevatedButton(
+                onPressed: isConnected ? () => sendMessage('LED 50%') : null,
+                style: ElevatedButton.styleFrom(
+                    minimumSize: const Size(120, 50),
+                    shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(50))),
+                child: const Text('LED 75%'),
+              ),
+              const SizedBox(height: 20),
+              ElevatedButton(
+                onPressed: isConnected ? () => sendMessage('LED ON') : null,
+                style: ElevatedButton.styleFrom(
+                    minimumSize: const Size(120, 50),
+                    shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(50))),
+                child: const Text('LED ON'),
+              ),
+            ],
+          ),
         ),
       ),
     );
   }
 
-  void _onDataReceived(Uint8List data) {
+  void onDataReceived(Uint8List data) {
     // Allocate buffer for parsed data
     int backspacesCounter = 0;
     for (var byte in data) {
@@ -237,13 +222,11 @@ class _BluetoothControlPage extends State<BluetoothControlPage> {
     }
   }
 
-  void _sendMessage(String text) async {
+  void sendMessage(String text) async {
     text = text.trim();
-    textEditingController.clear();
-
     if (text.isNotEmpty) {
       try {
-        connection!.output.add(Uint8List.fromList(utf8.encode("$text\r\n")));
+        connection!.output.add(Uint8List.fromList(utf8.encode("$text\n")));
         await connection!.output.allSent;
 
         setState(() {
