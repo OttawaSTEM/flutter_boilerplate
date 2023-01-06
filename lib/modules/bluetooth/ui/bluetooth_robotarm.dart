@@ -13,15 +13,15 @@ class Message {
   Message(this.whom, this.text);
 }
 
-class BluetoothControlPage extends StatefulWidget {
+class BluetoothRobotArmPage extends StatefulWidget {
   final BluetoothDevice btDevice;
-  const BluetoothControlPage({super.key, required this.btDevice});
+  const BluetoothRobotArmPage({super.key, required this.btDevice});
 
   @override
-  State<BluetoothControlPage> createState() => _BluetoothControlPage();
+  State<BluetoothRobotArmPage> createState() => _BluetoothRobotArmPage();
 }
 
-class _BluetoothControlPage extends State<BluetoothControlPage> {
+class _BluetoothRobotArmPage extends State<BluetoothRobotArmPage> {
   static const clientID = 0;
   BluetoothConnection? connection;
 
