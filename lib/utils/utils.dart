@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:get_storage/get_storage.dart';
 
 import '../constants/timeout.dart';
 
@@ -39,4 +40,18 @@ Future<void> snackbarMsg(
     padding: const EdgeInsets.fromLTRB(30, 20, 10, 20),
     margin: const EdgeInsets.all(20),
   );
+}
+
+double screenPosition(var axis, double position) {
+  GetStorage storage = GetStorage();
+  var screenWidth = storage.read('screeWidth');
+  var screenHeight = storage.read('screeHeight');
+  var screenHalfHeight = screenHeight / 2;
+  var screenHalfWidth = screenWidth / 2;
+
+  if (axis == 'x') {
+    return screenHalfWidth + screenHalfWidth * position;
+  } else {
+    return screenHalfHeight + screenHalfHeight * position;
+  }
 }

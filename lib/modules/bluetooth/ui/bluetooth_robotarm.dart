@@ -4,6 +4,7 @@ import 'dart:typed_data';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_bluetooth_serial/flutter_bluetooth_serial.dart';
+import 'package:get_storage/get_storage.dart';
 
 import '../../../utils/utils.dart';
 
@@ -119,10 +120,10 @@ class _BluetoothRobotArmPage extends State<BluetoothRobotArmPage> {
   @override
   Widget build(BuildContext context) {
     var screenSize = MediaQuery.of(context).size;
-    var ratioFHD = 1.78;
-    var baseHorizontal = ((screenSize.width / screenSize.height) > ratioFHD) ? false : true;
-    var screenHalfHeight = screenSize.height / 2;
-    var screenHalfWidth = screenSize.width / 2;
+    var landscapeScreen = (screenSize.width > screenSize.height) ? true : false;
+    GetStorage storage = GetStorage();
+    storage.write('screeWidth', screenSize.width);
+    storage.write('screeHeight', screenSize.height);
 
     return Scaffold(
       backgroundColor: Colors.black,
@@ -137,12 +138,29 @@ class _BluetoothRobotArmPage extends State<BluetoothRobotArmPage> {
           children: <Widget>[
             // Gripper
             Positioned(
-              top: baseHorizontal
-                  ? screenHalfHeight - (screenSize.width / ratioFHD) * 0.45
-                  : screenHalfHeight - screenSize.height * 0.45,
-              left: baseHorizontal
-                  ? screenHalfWidth + screenSize.width * 0.1
-                  : screenHalfWidth + (screenSize.height * ratioFHD) * 0.1,
+              left: landscapeScreen ? screenPosition('x', 0.15) : screenPosition('x', 0.095),
+              top: landscapeScreen ? screenPosition('y', -0.8) : screenPosition('y', -0.546),
+              child: Container(
+                width: 200,
+                height: 40,
+                decoration: BoxDecoration(
+                  color: const Color.fromRGBO(24, 24, 24, 1),
+                  borderRadius: BorderRadius.circular(30),
+                  boxShadow: [
+                    BoxShadow(
+                      color: Colors.grey.withOpacity(0.4), //color of shadow
+                      spreadRadius: 1, //spread radius
+                      blurRadius: 3, // blur radius
+                      offset: const Offset(1, 1), // changes position of shadow
+                    ),
+                    //you can set more BoxShadow() here
+                  ],
+                ),
+              ),
+            ),
+            Positioned(
+              left: landscapeScreen ? screenPosition('x', 0.15) : screenPosition('x', 0.1),
+              top: landscapeScreen ? screenPosition('y', -0.8) : screenPosition('y', -0.45),
               child: Slider(
                 value: currentGripperValue,
                 min: 0,
@@ -157,12 +175,8 @@ class _BluetoothRobotArmPage extends State<BluetoothRobotArmPage> {
               ),
             ),
             Positioned(
-              top: baseHorizontal
-                  ? screenHalfHeight - (screenSize.width / ratioFHD) * 0.42
-                  : screenHalfHeight - screenSize.height * 0.42,
-              left: baseHorizontal
-                  ? screenHalfWidth + screenSize.width * 0.12
-                  : screenHalfWidth + (screenSize.height * ratioFHD) * 0.12,
+              left: landscapeScreen ? screenPosition('x', 0.2) : screenPosition('x', 0.12),
+              top: landscapeScreen ? screenPosition('y', -0.75) : screenPosition('y', -0.42),
               child: Text(
                 'Gripper: ${currentGripperValue.round().toString()} °',
                 style: const TextStyle(
@@ -175,12 +189,8 @@ class _BluetoothRobotArmPage extends State<BluetoothRobotArmPage> {
 
             // Gripper Head
             Positioned(
-              top: baseHorizontal
-                  ? screenHalfHeight - (screenSize.width / ratioFHD) * 0.22
-                  : screenHalfHeight - screenSize.height * 0.22,
-              left: baseHorizontal
-                  ? screenHalfWidth + screenSize.width * 0.1
-                  : screenHalfWidth + (screenSize.height * ratioFHD) * 0.1,
+              left: landscapeScreen ? screenPosition('x', 0.15) : screenPosition('x', 0.15),
+              top: landscapeScreen ? screenPosition('y', -0.45) : screenPosition('y', -0.3),
               child: Transform.rotate(
                 angle: 90 * pi / 180,
                 child: Slider(
@@ -198,12 +208,8 @@ class _BluetoothRobotArmPage extends State<BluetoothRobotArmPage> {
               ),
             ),
             Positioned(
-              top: baseHorizontal
-                  ? screenHalfHeight - (screenSize.width / ratioFHD) * 0.12
-                  : screenHalfHeight - screenSize.height * 0.12,
-              left: baseHorizontal
-                  ? screenHalfWidth + screenSize.width * 0.11
-                  : screenHalfWidth + (screenSize.height * ratioFHD) * 0.11,
+              left: landscapeScreen ? screenPosition('x', 0.15) : screenPosition('x', 0.11),
+              top: landscapeScreen ? screenPosition('y', -0.27) : screenPosition('y', -0.12),
               child: Text(
                 'Gripper Head: ${currentGripperHeaderValue.round().toString()} °',
                 style: const TextStyle(
@@ -216,12 +222,8 @@ class _BluetoothRobotArmPage extends State<BluetoothRobotArmPage> {
 
             // Head
             Positioned(
-              top: baseHorizontal
-                  ? screenHalfHeight + (screenSize.width / ratioFHD) * 0.02
-                  : screenHalfHeight + screenSize.height * 0.02,
-              left: baseHorizontal
-                  ? screenHalfWidth + screenSize.width * 0.1
-                  : screenHalfWidth + (screenSize.height * ratioFHD) * 0.1,
+              left: landscapeScreen ? screenPosition('x', 0.15) : screenPosition('x', 0.15),
+              top: landscapeScreen ? screenPosition('y', 0.0) : screenPosition('y', 0.0),
               child: Slider(
                 value: currentHeadValue,
                 min: 0,
@@ -236,12 +238,8 @@ class _BluetoothRobotArmPage extends State<BluetoothRobotArmPage> {
               ),
             ),
             Positioned(
-              top: baseHorizontal
-                  ? screenHalfHeight + (screenSize.width / ratioFHD) * 0.05
-                  : screenHalfHeight + screenSize.height * 0.05,
-              left: baseHorizontal
-                  ? screenHalfWidth + screenSize.width * 0.13
-                  : screenHalfWidth + (screenSize.height * ratioFHD) * 0.13,
+              left: landscapeScreen ? screenPosition('x', 0.21) : screenPosition('x', 0.21),
+              top: landscapeScreen ? screenPosition('y', 0.05) : screenPosition('y', 0.05),
               child: Text(
                 'Head: ${currentHeadValue.round().toString()} °',
                 style: const TextStyle(
@@ -254,12 +252,8 @@ class _BluetoothRobotArmPage extends State<BluetoothRobotArmPage> {
 
             // Upper Arm
             Positioned(
-              top: baseHorizontal
-                  ? screenHalfHeight + (screenSize.width / ratioFHD) * 0.0
-                  : screenHalfHeight + screenSize.height * 0.0,
-              left: baseHorizontal
-                  ? screenHalfWidth - screenSize.width * 0.25
-                  : screenHalfWidth - (screenSize.height * ratioFHD) * 0.25,
+              left: landscapeScreen ? screenPosition('x', -0.52) : screenPosition('x', -0.52),
+              top: landscapeScreen ? screenPosition('y', -0.2) : screenPosition('y', -0.2),
               child: Transform.rotate(
                 angle: 90 * pi / 180,
                 child: Slider(
@@ -277,12 +271,8 @@ class _BluetoothRobotArmPage extends State<BluetoothRobotArmPage> {
               ),
             ),
             Positioned(
-              top: baseHorizontal
-                  ? screenHalfHeight + (screenSize.width / ratioFHD) * 0.1
-                  : screenHalfHeight + screenSize.height * 0.1,
-              left: baseHorizontal
-                  ? screenHalfWidth - screenSize.width * 0.23
-                  : screenHalfWidth - (screenSize.height * ratioFHD) * 0.23,
+              left: landscapeScreen ? screenPosition('x', -0.5) : screenPosition('x', -0.5),
+              top: landscapeScreen ? screenPosition('y', -0.0) : screenPosition('y', 0.0),
               child: Text(
                 'Upper Arm: ${currentArmUpperValue.round().toString()} °',
                 style: const TextStyle(
@@ -295,12 +285,8 @@ class _BluetoothRobotArmPage extends State<BluetoothRobotArmPage> {
 
             // Lower Arm
             Positioned(
-              top: baseHorizontal
-                  ? screenHalfHeight + (screenSize.width / ratioFHD) * 0.3
-                  : screenHalfHeight + screenSize.height * 0.3,
-              left: baseHorizontal
-                  ? screenHalfWidth - screenSize.width * 0.25
-                  : screenHalfWidth - (screenSize.height * ratioFHD) * 0.25,
+              left: landscapeScreen ? screenPosition('x', -0.52) : screenPosition('x', -0.52),
+              top: landscapeScreen ? screenPosition('y', 0.5) : screenPosition('y', 0.5),
               child: Transform.rotate(
                 angle: 90 * pi / 180,
                 child: Slider(
@@ -318,12 +304,8 @@ class _BluetoothRobotArmPage extends State<BluetoothRobotArmPage> {
               ),
             ),
             Positioned(
-              top: baseHorizontal
-                  ? screenHalfHeight + (screenSize.width / ratioFHD) * 0.4
-                  : screenHalfHeight + screenSize.height * 0.4,
-              left: baseHorizontal
-                  ? screenHalfWidth - screenSize.width * 0.23
-                  : screenHalfWidth - (screenSize.height * ratioFHD) * 0.23,
+              left: landscapeScreen ? screenPosition('x', -0.5) : screenPosition('x', -0.5),
+              top: landscapeScreen ? screenPosition('y', 0.7) : screenPosition('y', 0.7),
               child: Text(
                 'Lower Arm: ${currentArmLowerValue.round().toString()} °',
                 style: const TextStyle(
