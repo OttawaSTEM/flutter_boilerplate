@@ -43,6 +43,7 @@ Future<void> snackbarMsg(
 }
 
 double screenPosition(var axis, double position) {
+  // From center of the screen position
   GetStorage storage = GetStorage();
   var screenWidth = storage.read('screeWidth');
   var screenHeight = storage.read('screeHeight');
