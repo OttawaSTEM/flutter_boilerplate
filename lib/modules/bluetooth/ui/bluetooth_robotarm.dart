@@ -175,7 +175,7 @@ class _BluetoothRobotArmPage extends State<BluetoothRobotArmPage> {
               ),
             ),
             Positioned(
-              left: landscapeScreen ? screenPosition('x', 0.2) : screenPosition('x', 0.48),
+              left: landscapeScreen ? screenPosition('x', 0.2) : screenPosition('x', 0.46),
               top: landscapeScreen ? screenPosition('y', -0.75) : screenPosition('y', -0.75),
               child: Text(
                 'Gripper: ${currentGripperValue.round().toString()} °',
@@ -208,8 +208,8 @@ class _BluetoothRobotArmPage extends State<BluetoothRobotArmPage> {
               ),
             ),
             Positioned(
-              left: landscapeScreen ? screenPosition('x', 0.15) : screenPosition('x', 0.42),
-              top: landscapeScreen ? screenPosition('y', -0.27) : screenPosition('y', -0.3),
+              left: landscapeScreen ? screenPosition('x', 0.15) : screenPosition('x', 0.4),
+              top: landscapeScreen ? screenPosition('y', -0.27) : screenPosition('y', -0.32),
               child: Text(
                 'Gripper Head: ${currentGripperHeaderValue.round().toString()} °',
                 style: const TextStyle(
@@ -271,7 +271,7 @@ class _BluetoothRobotArmPage extends State<BluetoothRobotArmPage> {
               ),
             ),
             Positioned(
-              left: landscapeScreen ? screenPosition('x', -0.5) : screenPosition('x', -0.8),
+              left: landscapeScreen ? screenPosition('x', -0.5) : screenPosition('x', -0.85),
               top: landscapeScreen ? screenPosition('y', -0.0) : screenPosition('y', 0.2),
               child: Text(
                 'Upper Arm: ${currentArmUpperValue.round().toString()} °',
@@ -304,7 +304,7 @@ class _BluetoothRobotArmPage extends State<BluetoothRobotArmPage> {
               ),
             ),
             Positioned(
-              left: landscapeScreen ? screenPosition('x', -0.5) : screenPosition('x', -0.8),
+              left: landscapeScreen ? screenPosition('x', -0.5) : screenPosition('x', -0.85),
               top: landscapeScreen ? screenPosition('y', 0.7) : screenPosition('y', 0.8),
               child: Text(
                 'Lower Arm: ${currentArmLowerValue.round().toString()} °',

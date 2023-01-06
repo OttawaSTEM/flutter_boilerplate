@@ -8,7 +8,7 @@ import '../controller/bluetooth_devices.dart';
 // import '../ui/bluetooth_chat.dart';
 // import '../ui/bluetooth_control.dart';
 import '../ui/bluetooth_robotarm.dart';
-import '../ui/bluetooth_design.dart';
+// import '../ui/bluetooth_design.dart';
 
 enum DeviceAvailability {
   no,

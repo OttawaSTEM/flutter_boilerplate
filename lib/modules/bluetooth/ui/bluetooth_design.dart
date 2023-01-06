@@ -173,7 +173,7 @@ class _BluetoothDesignPage extends State<BluetoothDesignPage> {
               ),
             ),
             Positioned(
-              left: landscapeScreen ? screenPosition('x', -0.5) : screenPosition('x', -0.8),
+              left: landscapeScreen ? screenPosition('x', -0.5) : screenPosition('x', -0.85),
               top: landscapeScreen ? screenPosition('y', -0.0) : screenPosition('y', 0.2),
               child: Text(
                 'Upper Arm: ${currentArmUpperValue.round().toString()} °',
@@ -206,7 +206,7 @@ class _BluetoothDesignPage extends State<BluetoothDesignPage> {
               ),
             ),
             Positioned(
-              left: landscapeScreen ? screenPosition('x', -0.5) : screenPosition('x', -0.8),
+              left: landscapeScreen ? screenPosition('x', -0.5) : screenPosition('x', -0.85),
               top: landscapeScreen ? screenPosition('y', 0.7) : screenPosition('y', 0.8),
               child: Text(
                 'Lower Arm: ${currentArmLowerValue.round().toString()} °',
