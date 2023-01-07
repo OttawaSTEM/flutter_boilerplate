@@ -45,7 +45,7 @@ dependencies:
   google_sign_in: ^5.4.2
   http: ^0.13.5
   logger: ^1.1.0
-  # syncfusion_flutter_sliders: ^20.4.42
+  # quick_blue: ^0.4.1+1
 
 dev_dependencies:
   flutter_test:

@@ -37,6 +37,7 @@ class _DashboardPageState extends State<DashboardPage> {
               top: landscapeScreen ? screenPosition('y', -0.8) : screenPosition('y', -0.546),
               child: IconButton(
                 icon: SvgPicture.asset("assets/images/logo.svg"),
+                // icon: Image.asset("assets/images/logo.png"),
                 iconSize: 50,
                 onPressed: () => Get.back(),
               ),
