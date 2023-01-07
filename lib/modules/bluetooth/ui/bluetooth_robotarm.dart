@@ -141,7 +141,7 @@ class _BluetoothRobotArmPage extends State<BluetoothRobotArmPage> {
               left: landscapeScreen ? screenPosition('x', 0.15) : screenPosition('x', 0.35),
               top: landscapeScreen ? screenPosition('y', -0.8) : screenPosition('y', -0.8),
               child: Container(
-                width: 200,
+                width: 190,
                 height: 40,
                 decoration: BoxDecoration(
                   color: const Color.fromRGBO(24, 24, 24, 1),
