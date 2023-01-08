@@ -8,7 +8,7 @@ import '../controller/bluetooth_devices.dart';
 // import '../ui/bluetooth_chat.dart';
 // import '../ui/bluetooth_control.dart';
 import '../ui/bluetooth_robotarm.dart';
-// import '../ui/bluetooth_design.dart';
+import '../ui/bluetooth_design.dart';
 
 enum DeviceAvailability {
   no,
@@ -213,15 +213,15 @@ class _BluetoothPage extends State<BluetoothPage> {
                 );
               },
             ),
-            // ElevatedButton(
-            //   style: ElevatedButton.styleFrom(
-            //       minimumSize: const Size(120, 50),
-            //       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10))),
-            //   child: const Text('Users Page'),
-            //   onPressed: () {
-            //     Get.to(() => const BluetoothDesignPage());
-            //   },
-            // )
+            ElevatedButton(
+              style: ElevatedButton.styleFrom(
+                  minimumSize: const Size(120, 50),
+                  shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10))),
+              child: const Text('Users Page'),
+              onPressed: () {
+                Get.to(() => const BluetoothDesignPage());
+              },
+            )
           ],
         ),
       ),

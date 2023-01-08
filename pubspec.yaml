@@ -45,7 +45,8 @@ dependencies:
   google_sign_in: ^5.4.2
   http: ^0.13.5
   logger: ^1.1.0
-  # quick_blue: ^0.4.1+1
+  sleek_circular_slider: ^2.0.1
+  flutter_circular_slider: ^2.5.0
 
 dev_dependencies:
   flutter_test:
