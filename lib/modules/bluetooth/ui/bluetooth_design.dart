@@ -40,6 +40,32 @@ class _BluetoothDesignPage extends State<BluetoothDesignPage> {
         ),
         child: Stack(
           children: <Widget>[
+            // Dance
+            Positioned(
+              left: landscapeScreen ? screenPosition('x', -0.42) : screenPosition('x', -0.82),
+              top: landscapeScreen ? screenPosition('y', -0.9) : screenPosition('y', -0.9),
+              child: (ElevatedButton(
+                style: ElevatedButton.styleFrom(
+                    minimumSize: const Size(100, 40),
+                    shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(30))),
+                child: const Text('Dance'),
+                onPressed: () {},
+              )),
+            ),
+
+            // Program 1
+            Positioned(
+              left: landscapeScreen ? screenPosition('x', -0.42) : screenPosition('x', -0.82),
+              top: landscapeScreen ? screenPosition('y', -0.7) : screenPosition('y', -0.75),
+              child: (ElevatedButton(
+                style: ElevatedButton.styleFrom(
+                    minimumSize: const Size(100, 40),
+                    shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(30))),
+                child: const Text('Program 1'),
+                onPressed: () {},
+              )),
+            ),
+
             // Gripper
             Positioned(
               left: landscapeScreen ? screenPosition('x', 0.17) : screenPosition('x', 0.35),
@@ -249,7 +275,7 @@ class _BluetoothDesignPage extends State<BluetoothDesignPage> {
                 ),
                 min: 0,
                 max: 1024,
-                initialValue: headValue,
+                initialValue: baseValue,
                 onChange: (double value) {
                   setState(() {
                     baseValue = value;
@@ -271,7 +297,20 @@ class _BluetoothDesignPage extends State<BluetoothDesignPage> {
               ),
             ),
 
-            // Calibration
+            // Initial Position
+            Positioned(
+              left: landscapeScreen ? screenPosition('x', 0.25) : screenPosition('x', 0.5),
+              top: landscapeScreen ? screenPosition('y', 0.5) : screenPosition('y', 0.65),
+              child: (ElevatedButton(
+                style: ElevatedButton.styleFrom(
+                    minimumSize: const Size(100, 40),
+                    shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(30))),
+                child: const Text('Initial'),
+                onPressed: () {},
+              )),
+            ),
+
+            // Settings
             Positioned(
               left: landscapeScreen ? screenPosition('x', 0.25) : screenPosition('x', 0.5),
               top: landscapeScreen ? screenPosition('y', 0.7) : screenPosition('y', 0.8),
@@ -279,7 +318,7 @@ class _BluetoothDesignPage extends State<BluetoothDesignPage> {
                 style: ElevatedButton.styleFrom(
                     minimumSize: const Size(100, 40),
                     shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(30))),
-                child: const Text('Calibration'),
+                child: const Text('Settings'),
                 onPressed: () {},
               )),
             ),

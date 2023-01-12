@@ -1,123 +1,25 @@
-import 'dart:convert';
 import 'dart:math';
-import 'dart:typed_data';
 
 import 'package:flutter/material.dart';
-import 'package:flutter_bluetooth_serial/flutter_bluetooth_serial.dart';
 import 'package:get_storage/get_storage.dart';
 import 'package:sleek_circular_slider/sleek_circular_slider.dart';
 
 import '../../../utils/utils.dart';
 
-class Message {
-  int whom;
-  String text;
-
-  Message(this.whom, this.text);
-}
-
-class BluetoothRobotArmPage extends StatefulWidget {
-  final BluetoothDevice btDevice;
-  const BluetoothRobotArmPage({super.key, required this.btDevice});
+class BluetoothDesignPage extends StatefulWidget {
+  const BluetoothDesignPage({super.key});
 
   @override
-  State<BluetoothRobotArmPage> createState() => _BluetoothRobotArmPage();
+  State<BluetoothDesignPage> createState() => _BluetoothDesignPage();
 }
 
-class _BluetoothRobotArmPage extends State<BluetoothRobotArmPage> {
-  static const clientID = 0;
-  BluetoothConnection? connection;
-
-  List<Message> messages = List<Message>.empty(growable: true);
-
-  bool isConnecting = true;
-  bool get isConnected => (connection?.isConnected ?? false);
-
-  bool isDisconnecting = false;
-
+class _BluetoothDesignPage extends State<BluetoothDesignPage> {
   double gripperValue = 512;
   double gripperHeaderValue = 512;
   double headValue = 512;
   double armUpperValue = 512;
   double armLowerValue = 512;
   double baseValue = 512;
-
-  @override
-  void initState() {
-    super.initState();
-
-    BluetoothConnection.toAddress(widget.btDevice.address).then((btConnection) {
-      snackbarMsg(
-        title: 'Connected to the Bluetooth device ${widget.btDevice.name}',
-        message: 'Succeed!',
-        icon: const Icon(
-          Icons.check_circle_outline,
-          color: Colors.green,
-          size: 40,
-        ),
-      );
-      connection = btConnection;
-      setState(() {
-        isConnecting = false;
-        isDisconnecting = false;
-      });
-
-      connection!.input!.listen(onDataReceived).onDone(() {
-        // Example: Detect which side closed the connection
-        // There should be `isDisconnecting` flag to show are we are (locally)
-        // in middle of disconnecting process, should be set before calling
-        // `dispose`, `finish` or `close`, which all causes to disconnect.
-        // If we except the disconnection, `onDone` should be fired as result.
-        // If we didn't except this (no flag set), it means closing by remote.
-        if (isDisconnecting) {
-          snackbarMsg(
-            title: 'Bluetooth Device ${widget.btDevice.name}',
-            message: 'Disconnected locally!',
-            icon: const Icon(
-              Icons.error_outline_outlined,
-              color: Colors.red,
-              size: 40,
-            ),
-          );
-        } else {
-          snackbarMsg(
-            title: 'Bluetooth Device ${widget.btDevice.name}',
-            message: 'Disconnected remotely!',
-            icon: const Icon(
-              Icons.error_outline_outlined,
-              color: Colors.red,
-              size: 40,
-            ),
-          );
-        }
-        if (mounted) {
-          setState(() {});
-        }
-      });
-    }).catchError((error) {
-      snackbarMsg(
-        title: 'Cannot connect to Bluetooth Device ${widget.btDevice.name}',
-        message: error,
-        icon: const Icon(
-          Icons.error_outline_outlined,
-          color: Colors.red,
-          size: 40,
-        ),
-      );
-    });
-  }
-
-  @override
-  void dispose() {
-    // Avoid memory leak (`setState` after dispose) and disconnect
-    if (isConnected) {
-      isDisconnecting = true;
-      connection?.dispose();
-      connection = null;
-    }
-
-    super.dispose();
-  }
 
   @override
   Widget build(BuildContext context) {
@@ -146,8 +48,8 @@ class _BluetoothRobotArmPage extends State<BluetoothRobotArmPage> {
                 style: ElevatedButton.styleFrom(
                     minimumSize: const Size(100, 40),
                     shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(30))),
-                onPressed: isConnected ? () => sendMessage('Dance') : null,
                 child: const Text('Dance'),
+                onPressed: () {},
               )),
             ),
 
@@ -159,8 +61,8 @@ class _BluetoothRobotArmPage extends State<BluetoothRobotArmPage> {
                 style: ElevatedButton.styleFrom(
                     minimumSize: const Size(100, 40),
                     shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(30))),
-                onPressed: isConnected ? () => sendMessage('Program 1') : null,
                 child: const Text('Program 1'),
+                onPressed: () {},
               )),
             ),
 
@@ -198,7 +100,6 @@ class _BluetoothRobotArmPage extends State<BluetoothRobotArmPage> {
                   setState(() {
                     gripperValue = value;
                   });
-                  isConnected ? () => sendMessage('gripper:$value') : null;
                 },
               ),
             ),
@@ -231,7 +132,6 @@ class _BluetoothRobotArmPage extends State<BluetoothRobotArmPage> {
                     setState(() {
                       gripperHeaderValue = value;
                     });
-                    isConnected ? () => sendMessage('gripper_header:$value') : null;
                   },
                 ),
               ),
@@ -263,7 +163,6 @@ class _BluetoothRobotArmPage extends State<BluetoothRobotArmPage> {
                   setState(() {
                     headValue = value;
                   });
-                  isConnected ? () => sendMessage('header:$value') : null;
                 },
               ),
             ),
@@ -296,7 +195,6 @@ class _BluetoothRobotArmPage extends State<BluetoothRobotArmPage> {
                     setState(() {
                       armUpperValue = value;
                     });
-                    isConnected ? () => sendMessage('arm_upper:$value') : null;
                   },
                 ),
               ),
@@ -330,7 +228,6 @@ class _BluetoothRobotArmPage extends State<BluetoothRobotArmPage> {
                     setState(() {
                       armLowerValue = value;
                     });
-                    isConnected ? () => sendMessage('arm_lower:$value') : null;
                   },
                 ),
               ),
@@ -378,12 +275,11 @@ class _BluetoothRobotArmPage extends State<BluetoothRobotArmPage> {
                 ),
                 min: 0,
                 max: 1024,
-                initialValue: baseValue,
+                initialValue: headValue,
                 onChange: (double value) {
                   setState(() {
                     baseValue = value;
                   });
-                  isConnected ? () => sendMessage('base:$value') : null;
                 },
                 innerWidget: null,
               ),
@@ -401,20 +297,7 @@ class _BluetoothRobotArmPage extends State<BluetoothRobotArmPage> {
               ),
             ),
 
-            // Initial Position
-            Positioned(
-              left: landscapeScreen ? screenPosition('x', 0.25) : screenPosition('x', 0.5),
-              top: landscapeScreen ? screenPosition('y', 0.5) : screenPosition('y', 0.65),
-              child: (ElevatedButton(
-                style: ElevatedButton.styleFrom(
-                    minimumSize: const Size(100, 40),
-                    shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(30))),
-                onPressed: isConnected ? () => sendMessage('Initial') : null,
-                child: const Text('Initial'),
-              )),
-            ),
-
-            // Settings
+            // Calibration
             Positioned(
               left: landscapeScreen ? screenPosition('x', 0.25) : screenPosition('x', 0.5),
               top: landscapeScreen ? screenPosition('y', 0.7) : screenPosition('y', 0.8),
@@ -422,68 +305,13 @@ class _BluetoothRobotArmPage extends State<BluetoothRobotArmPage> {
                 style: ElevatedButton.styleFrom(
                     minimumSize: const Size(100, 40),
                     shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(30))),
+                child: const Text('Calibration'),
                 onPressed: () {},
-                child: const Text('Settings'),
               )),
             ),
           ],
         ),
       ),
     );
-  }
-
-  void onDataReceived(Uint8List data) {
-    // Allocate buffer for parsed data
-    int backspacesCounter = 0;
-    for (var byte in data) {
-      if (byte == 8 || byte == 127) {
-        backspacesCounter++;
-      }
-    }
-    Uint8List buffer = Uint8List(data.length - backspacesCounter);
-    int bufferIndex = buffer.length;
-
-    // Apply backspace control character
-    backspacesCounter = 0;
-    for (int i = data.length - 1; i >= 0; i--) {
-      if (data[i] == 8 || data[i] == 127) {
-        backspacesCounter++;
-      } else {
-        if (backspacesCounter > 0) {
-          backspacesCounter--;
-        } else {
-          buffer[--bufferIndex] = data[i];
-        }
-      }
-    }
-
-    // Create message if there is new line character
-    // String dataString = String.fromCharCodes(buffer);
-  }
-
-  void sendMessage(String text) async {
-    text = text.trim();
-    if (text.isNotEmpty) {
-      try {
-        connection!.output.add(Uint8List.fromList(utf8.encode("$text\n")));
-        await connection!.output.allSent;
-
-        setState(() {
-          messages.add(Message(clientID, text));
-        });
-      } catch (error) {
-        // Ignore error, but notify state
-        setState(() {});
-        snackbarMsg(
-          title: 'Cannot connect to Bluetooth Device ${widget.btDevice.name}',
-          message: error.toString(),
-          icon: const Icon(
-            Icons.error_outline_outlined,
-            color: Colors.red,
-            size: 40,
-          ),
-        );
-      }
-    }
   }
 }
