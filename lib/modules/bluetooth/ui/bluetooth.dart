@@ -29,7 +29,8 @@ class BluetoothPage extends StatefulWidget {
   /// Then, if they are not avaliable, they would be disabled from the selection.
   final String title;
   final bool checkAvailability;
-  const BluetoothPage({super.key, required this.title, this.checkAvailability = true});
+  const BluetoothPage(
+      {super.key, required this.title, this.checkAvailability = true});
 
   @override
   State<BluetoothPage> createState() => _BluetoothPage();
@@ -37,7 +38,8 @@ class BluetoothPage extends StatefulWidget {
 
 class _BluetoothPage extends State<BluetoothPage> {
   BluetoothState bluetoothState = BluetoothState.UNKNOWN;
-  List<DeviceWithAvailability> devices = List<DeviceWithAvailability>.empty(growable: true);
+  List<DeviceWithAvailability> devices =
+      List<DeviceWithAvailability>.empty(growable: true);
 
   Timer? discoverableTimeoutTimer;
   int discoverableTimeoutSecondsLeft = 0;
@@ -56,13 +58,17 @@ class _BluetoothPage extends State<BluetoothPage> {
     }
 
     // Setup a list of the bonded devices
-    FlutterBluetoothSerial.instance.getBondedDevices().then((List<BluetoothDevice> bondedDevices) {
+    FlutterBluetoothSerial.instance
+        .getBondedDevices()
+        .then((List<BluetoothDevice> bondedDevices) {
       setState(() {
         devices = bondedDevices
             .map(
               (device) => DeviceWithAvailability(
                 device,
-                widget.checkAvailability ? DeviceAvailability.maybe : DeviceAvailability.yes,
+                widget.checkAvailability
+                    ? DeviceAvailability.maybe
+                    : DeviceAvailability.yes,
               ),
             )
             .toList();
@@ -77,7 +83,9 @@ class _BluetoothPage extends State<BluetoothPage> {
     });
 
     // Listen for futher state changes
-    FlutterBluetoothSerial.instance.onStateChanged().listen((BluetoothState state) {
+    FlutterBluetoothSerial.instance
+        .onStateChanged()
+        .listen((BluetoothState state) {
       setState(() {
         bluetoothState = state;
 
@@ -97,7 +105,8 @@ class _BluetoothPage extends State<BluetoothPage> {
   }
 
   void startDiscovery() {
-    discoveryStreamSubscription = FlutterBluetoothSerial.instance.startDiscovery().listen((r) {
+    discoveryStreamSubscription =
+        FlutterBluetoothSerial.instance.startDiscovery().listen((r) {
       setState(() {
         Iterator i = devices.iterator;
         while (i.moveNext()) {
@@ -140,7 +149,8 @@ class _BluetoothPage extends State<BluetoothPage> {
                 //   Get.to(() => BluetoothControlPage(btDevice: btDevice.device));
                 // });
                 Future.delayed(const Duration(milliseconds: 300), () {
-                  Get.to(() => BluetoothRobotArmPage(btDevice: btDevice.device));
+                  Get.to(
+                      () => BluetoothRobotArmPage(btDevice: btDevice.device));
                 });
               },
             ))
@@ -213,15 +223,17 @@ class _BluetoothPage extends State<BluetoothPage> {
                 );
               },
             ),
-            ElevatedButton(
-              style: ElevatedButton.styleFrom(
-                  minimumSize: const Size(120, 50),
-                  shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10))),
-              child: const Text('Users Page'),
-              onPressed: () {
-                Get.to(() => const BluetoothDesignPage());
-              },
-            )
+            // const SizedBox(height: 50),
+            // ElevatedButton(
+            //   style: ElevatedButton.styleFrom(
+            //       minimumSize: const Size(120, 50),
+            //       shape: RoundedRectangleBorder(
+            //           borderRadius: BorderRadius.circular(10))),
+            //   child: const Text('UI Design Page'),
+            //   onPressed: () {
+            //     Get.to(() => const BluetoothDesignPage());
+            //   },
+            // )
           ],
         ),
       ),

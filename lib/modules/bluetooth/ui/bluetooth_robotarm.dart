@@ -38,8 +38,8 @@ class _BluetoothRobotArmPage extends State<BluetoothRobotArmPage> {
   double gripperValue = 512;
   double gripperHeaderValue = 512;
   double headValue = 512;
-  double armUpperValue = 512;
-  double armLowerValue = 512;
+  double armValue = 512;
+  double waistValue = 512;
   double baseValue = 512;
 
   @override
@@ -140,12 +140,17 @@ class _BluetoothRobotArmPage extends State<BluetoothRobotArmPage> {
           children: <Widget>[
             // Dance
             Positioned(
-              left: landscapeScreen ? screenPosition('x', -0.42) : screenPosition('x', -0.82),
-              top: landscapeScreen ? screenPosition('y', -0.9) : screenPosition('y', -0.9),
+              left: landscapeScreen
+                  ? screenPosition('x', -0.42)
+                  : screenPosition('x', -0.82),
+              top: landscapeScreen
+                  ? screenPosition('y', -0.9)
+                  : screenPosition('y', -0.9),
               child: (ElevatedButton(
                 style: ElevatedButton.styleFrom(
                     minimumSize: const Size(100, 40),
-                    shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(30))),
+                    shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(30))),
                 onPressed: isConnected ? () => sendMessage('Dance') : null,
                 child: const Text('Dance'),
               )),
@@ -153,12 +158,17 @@ class _BluetoothRobotArmPage extends State<BluetoothRobotArmPage> {
 
             // Program 1
             Positioned(
-              left: landscapeScreen ? screenPosition('x', -0.42) : screenPosition('x', -0.82),
-              top: landscapeScreen ? screenPosition('y', -0.7) : screenPosition('y', -0.75),
+              left: landscapeScreen
+                  ? screenPosition('x', -0.42)
+                  : screenPosition('x', -0.82),
+              top: landscapeScreen
+                  ? screenPosition('y', -0.7)
+                  : screenPosition('y', -0.75),
               child: (ElevatedButton(
                 style: ElevatedButton.styleFrom(
                     minimumSize: const Size(100, 40),
-                    shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(30))),
+                    shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(30))),
                 onPressed: isConnected ? () => sendMessage('Program 1') : null,
                 child: const Text('Program 1'),
               )),
@@ -166,11 +176,19 @@ class _BluetoothRobotArmPage extends State<BluetoothRobotArmPage> {
 
             // Gripper
             Positioned(
-              left: landscapeScreen ? screenPosition('x', 0.17) : screenPosition('x', 0.35),
-              top: landscapeScreen ? screenPosition('y', -0.82) : screenPosition('y', -0.8),
+              left: landscapeScreen
+                  ? screenPosition('x', 0.17)
+                  : screenPosition('x', 0.35),
+              top: landscapeScreen
+                  ? screenPosition('y', -0.82)
+                  : screenPosition('y', -0.8),
               child: Container(
-                width: landscapeScreen ? screenSize.width * 0.18 : screenSize.width * 0.31,
-                height: landscapeScreen ? screenSize.height * 0.05 : screenSize.height * 0.04,
+                width: landscapeScreen
+                    ? screenSize.width * 0.18
+                    : screenSize.width * 0.31,
+                height: landscapeScreen
+                    ? screenSize.height * 0.05
+                    : screenSize.height * 0.04,
                 decoration: BoxDecoration(
                   color: const Color.fromRGBO(24, 24, 24, 1),
                   borderRadius: BorderRadius.circular(30),
@@ -186,8 +204,12 @@ class _BluetoothRobotArmPage extends State<BluetoothRobotArmPage> {
               ),
             ),
             Positioned(
-              left: landscapeScreen ? screenPosition('x', 0.15) : screenPosition('x', 0.35),
-              top: landscapeScreen ? screenPosition('y', -0.85) : screenPosition('y', -0.81),
+              left: landscapeScreen
+                  ? screenPosition('x', 0.15)
+                  : screenPosition('x', 0.35),
+              top: landscapeScreen
+                  ? screenPosition('y', -0.85)
+                  : screenPosition('y', -0.81),
               child: Slider(
                 value: gripperValue,
                 min: 0,
@@ -203,8 +225,12 @@ class _BluetoothRobotArmPage extends State<BluetoothRobotArmPage> {
               ),
             ),
             Positioned(
-              left: landscapeScreen ? screenPosition('x', 0.24) : screenPosition('x', 0.46),
-              top: landscapeScreen ? screenPosition('y', -0.75) : screenPosition('y', -0.75),
+              left: landscapeScreen
+                  ? screenPosition('x', 0.24)
+                  : screenPosition('x', 0.46),
+              top: landscapeScreen
+                  ? screenPosition('y', -0.75)
+                  : screenPosition('y', -0.75),
               child: Text(
                 'Gripper: ${gripperValue.round().toString()} °',
                 style: const TextStyle(
@@ -217,8 +243,12 @@ class _BluetoothRobotArmPage extends State<BluetoothRobotArmPage> {
 
             // Gripper Head
             Positioned(
-              left: landscapeScreen ? screenPosition('x', 0.15) : screenPosition('x', 0.35),
-              top: landscapeScreen ? screenPosition('y', -0.42) : screenPosition('y', -0.45),
+              left: landscapeScreen
+                  ? screenPosition('x', 0.15)
+                  : screenPosition('x', 0.35),
+              top: landscapeScreen
+                  ? screenPosition('y', -0.42)
+                  : screenPosition('y', -0.45),
               child: Transform.rotate(
                 angle: 90 * pi / 180,
                 child: Slider(
@@ -231,14 +261,20 @@ class _BluetoothRobotArmPage extends State<BluetoothRobotArmPage> {
                     setState(() {
                       gripperHeaderValue = value;
                     });
-                    isConnected ? () => sendMessage('gripper_header:$value') : null;
+                    isConnected
+                        ? () => sendMessage('gripper_header:$value')
+                        : null;
                   },
                 ),
               ),
             ),
             Positioned(
-              left: landscapeScreen ? screenPosition('x', 0.2) : screenPosition('x', 0.4),
-              top: landscapeScreen ? screenPosition('y', -0.18) : screenPosition('y', -0.3),
+              left: landscapeScreen
+                  ? screenPosition('x', 0.2)
+                  : screenPosition('x', 0.4),
+              top: landscapeScreen
+                  ? screenPosition('y', -0.18)
+                  : screenPosition('y', -0.3),
               child: Text(
                 'Gripper Head: ${gripperHeaderValue.round().toString()} °',
                 style: const TextStyle(
@@ -251,8 +287,12 @@ class _BluetoothRobotArmPage extends State<BluetoothRobotArmPage> {
 
             // Head
             Positioned(
-              left: landscapeScreen ? screenPosition('x', 0.15) : screenPosition('x', 0.35),
-              top: landscapeScreen ? screenPosition('y', 0.0) : screenPosition('y', -0.1),
+              left: landscapeScreen
+                  ? screenPosition('x', 0.15)
+                  : screenPosition('x', 0.35),
+              top: landscapeScreen
+                  ? screenPosition('y', 0.0)
+                  : screenPosition('y', -0.1),
               child: Slider(
                 value: headValue,
                 min: 0,
@@ -268,8 +308,12 @@ class _BluetoothRobotArmPage extends State<BluetoothRobotArmPage> {
               ),
             ),
             Positioned(
-              left: landscapeScreen ? screenPosition('x', 0.21) : screenPosition('x', 0.48),
-              top: landscapeScreen ? screenPosition('y', 0.05) : screenPosition('y', -0.05),
+              left: landscapeScreen
+                  ? screenPosition('x', 0.21)
+                  : screenPosition('x', 0.48),
+              top: landscapeScreen
+                  ? screenPosition('y', 0.05)
+                  : screenPosition('y', -0.05),
               child: Text(
                 'Head: ${headValue.round().toString()} °',
                 style: const TextStyle(
@@ -280,21 +324,25 @@ class _BluetoothRobotArmPage extends State<BluetoothRobotArmPage> {
               ),
             ),
 
-            // Upper Arm
+            // Arm
             Positioned(
-              left: landscapeScreen ? screenPosition('x', -0.52) : screenPosition('x', -0.98),
-              top: landscapeScreen ? screenPosition('y', -0.2) : screenPosition('y', 0.05),
+              left: landscapeScreen
+                  ? screenPosition('x', -0.52)
+                  : screenPosition('x', -0.98),
+              top: landscapeScreen
+                  ? screenPosition('y', -0.2)
+                  : screenPosition('y', 0.05),
               child: Transform.rotate(
                 angle: 90 * pi / 180,
                 child: Slider(
-                  value: armUpperValue,
+                  value: armValue,
                   min: 0,
                   max: 1024,
                   divisions: 1024,
-                  label: armUpperValue.round().toString(),
+                  label: armValue.round().toString(),
                   onChanged: (double value) {
                     setState(() {
-                      armUpperValue = value;
+                      armValue = value;
                     });
                     isConnected ? () => sendMessage('arm_upper:$value') : null;
                   },
@@ -302,10 +350,14 @@ class _BluetoothRobotArmPage extends State<BluetoothRobotArmPage> {
               ),
             ),
             Positioned(
-              left: landscapeScreen ? screenPosition('x', -0.5) : screenPosition('x', -0.85),
-              top: landscapeScreen ? screenPosition('y', -0.0) : screenPosition('y', 0.25),
+              left: landscapeScreen
+                  ? screenPosition('x', -0.5)
+                  : screenPosition('x', -0.85),
+              top: landscapeScreen
+                  ? screenPosition('y', -0.0)
+                  : screenPosition('y', 0.25),
               child: Text(
-                'Upper Arm: ${armUpperValue.round().toString()} °',
+                'Upper Arm: ${armValue.round().toString()} °',
                 style: const TextStyle(
                   color: Colors.white,
                   height: 3,
@@ -316,19 +368,23 @@ class _BluetoothRobotArmPage extends State<BluetoothRobotArmPage> {
 
             // Lower Arm
             Positioned(
-              left: landscapeScreen ? screenPosition('x', -0.52) : screenPosition('x', -0.98),
-              top: landscapeScreen ? screenPosition('y', 0.5) : screenPosition('y', 0.6),
+              left: landscapeScreen
+                  ? screenPosition('x', -0.52)
+                  : screenPosition('x', -0.98),
+              top: landscapeScreen
+                  ? screenPosition('y', 0.5)
+                  : screenPosition('y', 0.6),
               child: Transform.rotate(
                 angle: 90 * pi / 180,
                 child: Slider(
-                  value: armLowerValue,
+                  value: waistValue,
                   min: 0,
                   max: 1024,
                   divisions: 1024,
-                  label: armLowerValue.round().toString(),
+                  label: waistValue.round().toString(),
                   onChanged: (double value) {
                     setState(() {
-                      armLowerValue = value;
+                      waistValue = value;
                     });
                     isConnected ? () => sendMessage('arm_lower:$value') : null;
                   },
@@ -336,10 +392,14 @@ class _BluetoothRobotArmPage extends State<BluetoothRobotArmPage> {
               ),
             ),
             Positioned(
-              left: landscapeScreen ? screenPosition('x', -0.5) : screenPosition('x', -0.85),
-              top: landscapeScreen ? screenPosition('y', 0.7) : screenPosition('y', 0.8),
+              left: landscapeScreen
+                  ? screenPosition('x', -0.5)
+                  : screenPosition('x', -0.85),
+              top: landscapeScreen
+                  ? screenPosition('y', 0.7)
+                  : screenPosition('y', 0.8),
               child: Text(
-                'Lower Arm: ${armLowerValue.round().toString()} °',
+                'Lower Arm: ${waistValue.round().toString()} °',
                 style: const TextStyle(
                   color: Colors.white,
                   height: 3,
@@ -350,8 +410,12 @@ class _BluetoothRobotArmPage extends State<BluetoothRobotArmPage> {
 
             // Base
             Positioned(
-              left: landscapeScreen ? screenPosition('x', -0.15) : screenPosition('x', -0.24),
-              top: landscapeScreen ? screenPosition('y', 0.25) : screenPosition('y', 0.25),
+              left: landscapeScreen
+                  ? screenPosition('x', -0.15)
+                  : screenPosition('x', -0.24),
+              top: landscapeScreen
+                  ? screenPosition('y', 0.25)
+                  : screenPosition('y', 0.25),
               child: SleekCircularSlider(
                 appearance: CircularSliderAppearance(
                   startAngle: 180,
@@ -389,8 +453,12 @@ class _BluetoothRobotArmPage extends State<BluetoothRobotArmPage> {
               ),
             ),
             Positioned(
-              left: landscapeScreen ? screenPosition('x', -0.07) : screenPosition('x', -0.12),
-              top: landscapeScreen ? screenPosition('y', 0.28) : screenPosition('y', 0.27),
+              left: landscapeScreen
+                  ? screenPosition('x', -0.07)
+                  : screenPosition('x', -0.12),
+              top: landscapeScreen
+                  ? screenPosition('y', 0.28)
+                  : screenPosition('y', 0.27),
               child: Text(
                 'Base: ${baseValue.round().toString()} °',
                 style: const TextStyle(
@@ -403,27 +471,37 @@ class _BluetoothRobotArmPage extends State<BluetoothRobotArmPage> {
 
             // Initial Position
             Positioned(
-              left: landscapeScreen ? screenPosition('x', 0.25) : screenPosition('x', 0.5),
-              top: landscapeScreen ? screenPosition('y', 0.5) : screenPosition('y', 0.65),
+              left: landscapeScreen
+                  ? screenPosition('x', 0.25)
+                  : screenPosition('x', 0.5),
+              top: landscapeScreen
+                  ? screenPosition('y', 0.5)
+                  : screenPosition('y', 0.65),
               child: (ElevatedButton(
                 style: ElevatedButton.styleFrom(
                     minimumSize: const Size(100, 40),
-                    shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(30))),
-                onPressed: isConnected ? () => sendMessage('Initial') : null,
+                    shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(30))),
                 child: const Text('Initial'),
+                onPressed: () {},
               )),
             ),
 
             // Settings
             Positioned(
-              left: landscapeScreen ? screenPosition('x', 0.25) : screenPosition('x', 0.5),
-              top: landscapeScreen ? screenPosition('y', 0.7) : screenPosition('y', 0.8),
+              left: landscapeScreen
+                  ? screenPosition('x', 0.25)
+                  : screenPosition('x', 0.5),
+              top: landscapeScreen
+                  ? screenPosition('y', 0.7)
+                  : screenPosition('y', 0.8),
               child: (ElevatedButton(
                 style: ElevatedButton.styleFrom(
                     minimumSize: const Size(100, 40),
-                    shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(30))),
-                onPressed: () {},
+                    shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(30))),
                 child: const Text('Settings'),
+                onPressed: () {},
               )),
             ),
           ],

@@ -91,3 +91,4 @@ https://pub.dev/packages/bluetooth_low_energy
 https://pub.dev/packages/flutter_bluetooth_serial
 
 
+# F5 to run Flutter Debug
