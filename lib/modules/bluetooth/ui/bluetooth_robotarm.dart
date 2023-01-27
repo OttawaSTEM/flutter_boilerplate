@@ -357,7 +357,7 @@ class _BluetoothRobotArmPage extends State<BluetoothRobotArmPage> {
                   ? screenPosition('y', -0.0)
                   : screenPosition('y', 0.25),
               child: Text(
-                'Upper Arm: ${armValue.round().toString()} °',
+                'Arm: ${armValue.round().toString()} °',
                 style: const TextStyle(
                   color: Colors.white,
                   height: 3,
@@ -366,7 +366,7 @@ class _BluetoothRobotArmPage extends State<BluetoothRobotArmPage> {
               ),
             ),
 
-            // Lower Arm
+            // Waist
             Positioned(
               left: landscapeScreen
                   ? screenPosition('x', -0.52)
@@ -399,7 +399,7 @@ class _BluetoothRobotArmPage extends State<BluetoothRobotArmPage> {
                   ? screenPosition('y', 0.7)
                   : screenPosition('y', 0.8),
               child: Text(
-                'Lower Arm: ${waistValue.round().toString()} °',
+                'Waist: ${waistValue.round().toString()} °',
                 style: const TextStyle(
                   color: Colors.white,
                   height: 3,
