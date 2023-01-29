@@ -5,6 +5,7 @@ import 'dart:typed_data';
 import 'package:flutter/material.dart';
 import 'package:flutter_bluetooth_serial/flutter_bluetooth_serial.dart';
 import 'package:get_storage/get_storage.dart';
+import 'package:sleek_circular_slider/sleek_circular_slider.dart';
 
 import '../../../utils/utils.dart';
 
@@ -34,11 +35,12 @@ class _BluetoothRobotArmPage extends State<BluetoothRobotArmPage> {
 
   bool isDisconnecting = false;
 
-  double currentGripperValue = 512;
-  double currentGripperHeaderValue = 512;
-  double currentHeadValue = 512;
-  double currentArmUpperValue = 512;
-  double currentArmLowerValue = 512;
+  double gripperValue = 512;
+  double gripperHeaderValue = 512;
+  double headValue = 512;
+  double armValue = 512;
+  double waistValue = 512;
+  double baseValue = 512;
 
   @override
   void initState() {
@@ -136,49 +138,101 @@ class _BluetoothRobotArmPage extends State<BluetoothRobotArmPage> {
         ),
         child: Stack(
           children: <Widget>[
+            // Dance
+            Positioned(
+              left: landscapeScreen
+                  ? screenPosition('x', -0.42)
+                  : screenPosition('x', -0.82),
+              top: landscapeScreen
+                  ? screenPosition('y', -0.9)
+                  : screenPosition('y', -0.9),
+              child: (ElevatedButton(
+                style: ElevatedButton.styleFrom(
+                    minimumSize: const Size(100, 40),
+                    shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(30))),
+                onPressed: isConnected ? () => sendMessage('Dance') : null,
+                child: const Text('Dance'),
+              )),
+            ),
+
+            // Program 1
+            Positioned(
+              left: landscapeScreen
+                  ? screenPosition('x', -0.42)
+                  : screenPosition('x', -0.82),
+              top: landscapeScreen
+                  ? screenPosition('y', -0.7)
+                  : screenPosition('y', -0.75),
+              child: (ElevatedButton(
+                style: ElevatedButton.styleFrom(
+                    minimumSize: const Size(100, 40),
+                    shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(30))),
+                onPressed: isConnected ? () => sendMessage('Program 1') : null,
+                child: const Text('Program 1'),
+              )),
+            ),
+
             // Gripper
             Positioned(
-              left: landscapeScreen ? screenPosition('x', 0.15) : screenPosition('x', 0.35),
-              top: landscapeScreen ? screenPosition('y', -0.8) : screenPosition('y', -0.8),
+              left: landscapeScreen
+                  ? screenPosition('x', 0.17)
+                  : screenPosition('x', 0.35),
+              top: landscapeScreen
+                  ? screenPosition('y', -0.82)
+                  : screenPosition('y', -0.8),
               child: Container(
-                width: 190,
-                height: 40,
+                width: landscapeScreen
+                    ? screenSize.width * 0.18
+                    : screenSize.width * 0.31,
+                height: landscapeScreen
+                    ? screenSize.height * 0.05
+                    : screenSize.height * 0.04,
                 decoration: BoxDecoration(
                   color: const Color.fromRGBO(24, 24, 24, 1),
                   borderRadius: BorderRadius.circular(30),
-                  boxShadow: [
-                    BoxShadow(
-                      color: Colors.grey.withOpacity(0.4), //color of shadow
-                      spreadRadius: 1, //spread radius
-                      blurRadius: 3, // blur radius
-                      offset: const Offset(1, 1), // changes position of shadow
-                    ),
-                    //you can set more BoxShadow() here
-                  ],
+                  // boxShadow: [
+                  //   BoxShadow(
+                  //     color: Colors.grey.withOpacity(0.4), //color of shadow
+                  //     spreadRadius: 1, //spread radius
+                  //     blurRadius: 2, // blur radius
+                  //     offset: const Offset(1, 1), // changes position of shadow
+                  //   ),
+                  // ],
                 ),
               ),
             ),
             Positioned(
-              left: landscapeScreen ? screenPosition('x', 0.15) : screenPosition('x', 0.35),
-              top: landscapeScreen ? screenPosition('y', -0.81) : screenPosition('y', -0.81),
+              left: landscapeScreen
+                  ? screenPosition('x', 0.15)
+                  : screenPosition('x', 0.35),
+              top: landscapeScreen
+                  ? screenPosition('y', -0.85)
+                  : screenPosition('y', -0.81),
               child: Slider(
-                value: currentGripperValue,
+                value: gripperValue,
                 min: 0,
                 max: 1024,
                 divisions: 1024,
-                label: currentGripperValue.round().toString(),
+                label: gripperValue.round().toString(),
                 onChanged: (double value) {
                   setState(() {
-                    currentGripperValue = value;
+                    gripperValue = value;
                   });
+                  isConnected ? () => sendMessage('gripper:$value') : null;
                 },
               ),
             ),
             Positioned(
-              left: landscapeScreen ? screenPosition('x', 0.2) : screenPosition('x', 0.46),
-              top: landscapeScreen ? screenPosition('y', -0.75) : screenPosition('y', -0.75),
+              left: landscapeScreen
+                  ? screenPosition('x', 0.24)
+                  : screenPosition('x', 0.46),
+              top: landscapeScreen
+                  ? screenPosition('y', -0.75)
+                  : screenPosition('y', -0.75),
               child: Text(
-                'Gripper: ${currentGripperValue.round().toString()} °',
+                'Gripper: ${gripperValue.round().toString()} °',
                 style: const TextStyle(
                   color: Colors.white,
                   height: 3,
@@ -189,29 +243,40 @@ class _BluetoothRobotArmPage extends State<BluetoothRobotArmPage> {
 
             // Gripper Head
             Positioned(
-              left: landscapeScreen ? screenPosition('x', 0.15) : screenPosition('x', 0.35),
-              top: landscapeScreen ? screenPosition('y', -0.45) : screenPosition('y', -0.45),
+              left: landscapeScreen
+                  ? screenPosition('x', 0.15)
+                  : screenPosition('x', 0.35),
+              top: landscapeScreen
+                  ? screenPosition('y', -0.42)
+                  : screenPosition('y', -0.45),
               child: Transform.rotate(
                 angle: 90 * pi / 180,
                 child: Slider(
-                  value: currentGripperHeaderValue,
+                  value: gripperHeaderValue,
                   min: 0,
                   max: 1024,
                   divisions: 1024,
-                  label: currentGripperHeaderValue.round().toString(),
+                  label: gripperHeaderValue.round().toString(),
                   onChanged: (double value) {
                     setState(() {
-                      currentGripperHeaderValue = value;
+                      gripperHeaderValue = value;
                     });
+                    isConnected
+                        ? () => sendMessage('gripper_header:$value')
+                        : null;
                   },
                 ),
               ),
             ),
             Positioned(
-              left: landscapeScreen ? screenPosition('x', 0.15) : screenPosition('x', 0.4),
-              top: landscapeScreen ? screenPosition('y', -0.27) : screenPosition('y', -0.32),
+              left: landscapeScreen
+                  ? screenPosition('x', 0.2)
+                  : screenPosition('x', 0.4),
+              top: landscapeScreen
+                  ? screenPosition('y', -0.18)
+                  : screenPosition('y', -0.3),
               child: Text(
-                'Gripper Head: ${currentGripperHeaderValue.round().toString()} °',
+                'Gripper Head: ${gripperHeaderValue.round().toString()} °',
                 style: const TextStyle(
                   color: Colors.white,
                   height: 3,
@@ -222,26 +287,35 @@ class _BluetoothRobotArmPage extends State<BluetoothRobotArmPage> {
 
             // Head
             Positioned(
-              left: landscapeScreen ? screenPosition('x', 0.15) : screenPosition('x', 0.35),
-              top: landscapeScreen ? screenPosition('y', 0.0) : screenPosition('y', -0.1),
+              left: landscapeScreen
+                  ? screenPosition('x', 0.15)
+                  : screenPosition('x', 0.35),
+              top: landscapeScreen
+                  ? screenPosition('y', 0.0)
+                  : screenPosition('y', -0.1),
               child: Slider(
-                value: currentHeadValue,
+                value: headValue,
                 min: 0,
                 max: 1024,
                 divisions: 1024,
-                label: currentHeadValue.round().toString(),
+                label: headValue.round().toString(),
                 onChanged: (double value) {
                   setState(() {
-                    currentHeadValue = value;
+                    headValue = value;
                   });
+                  isConnected ? () => sendMessage('header:$value') : null;
                 },
               ),
             ),
             Positioned(
-              left: landscapeScreen ? screenPosition('x', 0.21) : screenPosition('x', 0.48),
-              top: landscapeScreen ? screenPosition('y', 0.05) : screenPosition('y', -0.05),
+              left: landscapeScreen
+                  ? screenPosition('x', 0.21)
+                  : screenPosition('x', 0.48),
+              top: landscapeScreen
+                  ? screenPosition('y', 0.05)
+                  : screenPosition('y', -0.05),
               child: Text(
-                'Head: ${currentHeadValue.round().toString()} °',
+                'Head: ${headValue.round().toString()} °',
                 style: const TextStyle(
                   color: Colors.white,
                   height: 3,
@@ -250,31 +324,40 @@ class _BluetoothRobotArmPage extends State<BluetoothRobotArmPage> {
               ),
             ),
 
-            // Upper Arm
+            // Arm
             Positioned(
-              left: landscapeScreen ? screenPosition('x', -0.52) : screenPosition('x', -0.9),
-              top: landscapeScreen ? screenPosition('y', -0.2) : screenPosition('y', 0.05),
+              left: landscapeScreen
+                  ? screenPosition('x', -0.52)
+                  : screenPosition('x', -0.98),
+              top: landscapeScreen
+                  ? screenPosition('y', -0.2)
+                  : screenPosition('y', 0.05),
               child: Transform.rotate(
                 angle: 90 * pi / 180,
                 child: Slider(
-                  value: currentArmUpperValue,
+                  value: armValue,
                   min: 0,
                   max: 1024,
                   divisions: 1024,
-                  label: currentArmUpperValue.round().toString(),
+                  label: armValue.round().toString(),
                   onChanged: (double value) {
                     setState(() {
-                      currentArmUpperValue = value;
+                      armValue = value;
                     });
+                    isConnected ? () => sendMessage('arm_upper:$value') : null;
                   },
                 ),
               ),
             ),
             Positioned(
-              left: landscapeScreen ? screenPosition('x', -0.5) : screenPosition('x', -0.85),
-              top: landscapeScreen ? screenPosition('y', -0.0) : screenPosition('y', 0.2),
+              left: landscapeScreen
+                  ? screenPosition('x', -0.5)
+                  : screenPosition('x', -0.85),
+              top: landscapeScreen
+                  ? screenPosition('y', -0.0)
+                  : screenPosition('y', 0.25),
               child: Text(
-                'Upper Arm: ${currentArmUpperValue.round().toString()} °',
+                'Arm: ${armValue.round().toString()} °',
                 style: const TextStyle(
                   color: Colors.white,
                   height: 3,
@@ -283,37 +366,143 @@ class _BluetoothRobotArmPage extends State<BluetoothRobotArmPage> {
               ),
             ),
 
-            // Lower Arm
+            // Waist
             Positioned(
-              left: landscapeScreen ? screenPosition('x', -0.52) : screenPosition('x', -0.9),
-              top: landscapeScreen ? screenPosition('y', 0.5) : screenPosition('y', 0.65),
+              left: landscapeScreen
+                  ? screenPosition('x', -0.52)
+                  : screenPosition('x', -0.98),
+              top: landscapeScreen
+                  ? screenPosition('y', 0.5)
+                  : screenPosition('y', 0.6),
               child: Transform.rotate(
                 angle: 90 * pi / 180,
                 child: Slider(
-                  value: currentArmLowerValue,
+                  value: waistValue,
                   min: 0,
                   max: 1024,
                   divisions: 1024,
-                  label: currentArmLowerValue.round().toString(),
+                  label: waistValue.round().toString(),
                   onChanged: (double value) {
                     setState(() {
-                      currentArmLowerValue = value;
+                      waistValue = value;
                     });
+                    isConnected ? () => sendMessage('arm_lower:$value') : null;
                   },
                 ),
               ),
             ),
             Positioned(
-              left: landscapeScreen ? screenPosition('x', -0.5) : screenPosition('x', -0.85),
-              top: landscapeScreen ? screenPosition('y', 0.7) : screenPosition('y', 0.8),
+              left: landscapeScreen
+                  ? screenPosition('x', -0.5)
+                  : screenPosition('x', -0.85),
+              top: landscapeScreen
+                  ? screenPosition('y', 0.7)
+                  : screenPosition('y', 0.8),
               child: Text(
-                'Lower Arm: ${currentArmLowerValue.round().toString()} °',
+                'Waist: ${waistValue.round().toString()} °',
                 style: const TextStyle(
                   color: Colors.white,
                   height: 3,
                   fontSize: 16,
                 ),
               ),
+            ),
+
+            // Base
+            Positioned(
+              left: landscapeScreen
+                  ? screenPosition('x', -0.15)
+                  : screenPosition('x', -0.24),
+              top: landscapeScreen
+                  ? screenPosition('y', 0.25)
+                  : screenPosition('y', 0.25),
+              child: SleekCircularSlider(
+                appearance: CircularSliderAppearance(
+                  startAngle: 180,
+                  angleRange: 180,
+                  customWidths: CustomSliderWidths(
+                    trackWidth: 4,
+                    progressBarWidth: 8,
+                    handlerSize: 10,
+                  ),
+                  customColors: CustomSliderColors(
+                    dotColor: Colors.blue,
+                    trackColor: Colors.blue.withOpacity(0.3),
+                    progressBarColors: [
+                      Colors.blue.withOpacity(1),
+                      Colors.blue.withOpacity(1),
+                      Colors.blue.withOpacity(1),
+                    ],
+                  ),
+                  infoProperties: InfoProperties(
+                    modifier: (double value) {
+                      return '';
+                    },
+                  ),
+                ),
+                min: 0,
+                max: 1024,
+                initialValue: baseValue,
+                onChange: (double value) {
+                  setState(() {
+                    baseValue = value;
+                  });
+                  isConnected ? () => sendMessage('base:$value') : null;
+                },
+                innerWidget: null,
+              ),
+            ),
+            Positioned(
+              left: landscapeScreen
+                  ? screenPosition('x', -0.07)
+                  : screenPosition('x', -0.12),
+              top: landscapeScreen
+                  ? screenPosition('y', 0.28)
+                  : screenPosition('y', 0.27),
+              child: Text(
+                'Base: ${baseValue.round().toString()} °',
+                style: const TextStyle(
+                  color: Colors.white,
+                  height: 3,
+                  fontSize: 16,
+                ),
+              ),
+            ),
+
+            // Initial Position
+            Positioned(
+              left: landscapeScreen
+                  ? screenPosition('x', 0.25)
+                  : screenPosition('x', 0.5),
+              top: landscapeScreen
+                  ? screenPosition('y', 0.5)
+                  : screenPosition('y', 0.65),
+              child: (ElevatedButton(
+                style: ElevatedButton.styleFrom(
+                    minimumSize: const Size(100, 40),
+                    shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(30))),
+                child: const Text('Initial'),
+                onPressed: () {},
+              )),
+            ),
+
+            // Settings
+            Positioned(
+              left: landscapeScreen
+                  ? screenPosition('x', 0.25)
+                  : screenPosition('x', 0.5),
+              top: landscapeScreen
+                  ? screenPosition('y', 0.7)
+                  : screenPosition('y', 0.8),
+              child: (ElevatedButton(
+                style: ElevatedButton.styleFrom(
+                    minimumSize: const Size(100, 40),
+                    shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(30))),
+                child: const Text('Settings'),
+                onPressed: () {},
+              )),
             ),
           ],
         ),

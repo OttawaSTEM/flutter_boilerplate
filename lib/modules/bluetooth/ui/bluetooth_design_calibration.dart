@@ -275,7 +275,7 @@ class _BluetoothDesignPage extends State<BluetoothDesignPage> {
                 ),
                 min: 0,
                 max: 1024,
-                initialValue: baseValue,
+                initialValue: headValue,
                 onChange: (double value) {
                   setState(() {
                     baseValue = value;
@@ -297,20 +297,7 @@ class _BluetoothDesignPage extends State<BluetoothDesignPage> {
               ),
             ),
 
-            // Initial Position
-            Positioned(
-              left: landscapeScreen ? screenPosition('x', 0.25) : screenPosition('x', 0.5),
-              top: landscapeScreen ? screenPosition('y', 0.5) : screenPosition('y', 0.65),
-              child: (ElevatedButton(
-                style: ElevatedButton.styleFrom(
-                    minimumSize: const Size(100, 40),
-                    shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(30))),
-                child: const Text('Initial'),
-                onPressed: () {},
-              )),
-            ),
-
-            // Settings
+            // Calibration
             Positioned(
               left: landscapeScreen ? screenPosition('x', 0.25) : screenPosition('x', 0.5),
               top: landscapeScreen ? screenPosition('y', 0.7) : screenPosition('y', 0.8),
@@ -318,7 +305,7 @@ class _BluetoothDesignPage extends State<BluetoothDesignPage> {
                 style: ElevatedButton.styleFrom(
                     minimumSize: const Size(100, 40),
                     shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(30))),
-                child: const Text('Settings'),
+                child: const Text('Calibration'),
                 onPressed: () {},
               )),
             ),
