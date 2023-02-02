@@ -19,7 +19,7 @@ class _HomePageState extends State<HomePage> {
       appBar: AppBar(
         title: Text(widget.title),
       ),
-      drawer: NavigationDrawer(),
+      drawer: NavDrawer(),
       body: Column(
         children: [
           const SizedBox(height: 20),
@@ -29,7 +29,8 @@ class _HomePageState extends State<HomePage> {
               child: (ElevatedButton(
                 style: ElevatedButton.styleFrom(
                     minimumSize: const Size(120, 50),
-                    shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10))),
+                    shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(10))),
                 child: const Text('Counter 0'),
                 onPressed: () {
                   Get.toNamed("/counter");
@@ -44,7 +45,8 @@ class _HomePageState extends State<HomePage> {
               child: (ElevatedButton(
                 style: ElevatedButton.styleFrom(
                     minimumSize: const Size(120, 50),
-                    shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10))),
+                    shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(10))),
                 child: const Text('Users Page'),
                 onPressed: () {
                   Get.toNamed("/users");
@@ -59,7 +61,8 @@ class _HomePageState extends State<HomePage> {
               child: (ElevatedButton(
                 style: ElevatedButton.styleFrom(
                     minimumSize: const Size(120, 50),
-                    shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10))),
+                    shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(10))),
                 child: const Text('Dashboard Page'),
                 onPressed: () {
                   Get.toNamed("/dashboard");
@@ -74,7 +77,8 @@ class _HomePageState extends State<HomePage> {
               child: (ElevatedButton(
                 style: ElevatedButton.styleFrom(
                     minimumSize: const Size(120, 50),
-                    shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10))),
+                    shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(10))),
                 child: const Text('Bluetooth Page'),
                 onPressed: () {
                   Get.toNamed("/bluetooth");

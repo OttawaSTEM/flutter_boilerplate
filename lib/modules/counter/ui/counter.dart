@@ -23,7 +23,7 @@ class CounterPage extends StatelessWidget {
             Obx(
               () => Text(
                 '${counterController.counter}',
-                style: Theme.of(context).textTheme.headline4,
+                style: Theme.of(context).textTheme.headlineLarge,
               ),
             ),
             Row(

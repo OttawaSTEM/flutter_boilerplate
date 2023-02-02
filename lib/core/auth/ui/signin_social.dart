@@ -43,7 +43,7 @@ class SigninSocial extends StatelessWidget {
           child: Text.rich(
             TextSpan(
                 text: txtNoAccount,
-                style: Theme.of(context).textTheme.bodyText1,
+                style: Theme.of(context).textTheme.bodySmall,
                 children: const [
                   TextSpan(
                     text: txtSignUp,

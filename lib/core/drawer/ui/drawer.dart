@@ -9,9 +9,9 @@ import '../../../core/auth/controller/auth_controller.dart';
 import '../../auth/ui/signin.dart';
 import '../../../modules/home/ui/home.dart';
 
-class NavigationDrawer extends StatelessWidget {
+class NavDrawer extends StatelessWidget {
   final AuthController authController = Get.put(AuthController());
-  NavigationDrawer({Key? key}) : super(key: key);
+  NavDrawer({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) => Drawer(
@@ -53,7 +53,7 @@ class NavigationDrawer extends StatelessWidget {
                     txtAppName,
                     style: Theme.of(context)
                         .textTheme
-                        .headline5
+                        .headlineMedium
                         ?.merge(const TextStyle(color: Colors.white)),
                   ),
                   Text(
@@ -81,7 +81,8 @@ class NavigationDrawer extends StatelessWidget {
                 ),
               ),
               onTap: () => Navigator.of(context).pushReplacement(
-                MaterialPageRoute(builder: (context) => const HomePage(title: txtAppName)),
+                MaterialPageRoute(
+                    builder: (context) => const HomePage(title: txtAppName)),
               ),
             ),
             authController.authStatus
