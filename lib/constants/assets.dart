@@ -1,2 +1,2 @@
-const String appLogo = "assets/images/logo.png";
-const String googleLogo = "assets/images/google-logo.png";
+const String appLogo = "assets/images/core/logo.png";
+const String googleLogo = "assets/images/core/google-logo.png";

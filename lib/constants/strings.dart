@@ -3,7 +3,8 @@ import 'package:flutter/foundation.dart';
 // App content
 const String txtAppName = 'Flutter Boilerplate Project';
 const String txtContactEmail = 'ottawastem@gmail.com';
-const String txtAbout = 'Using Flutter Boilerplate to speed up the Flutter development';
+const String txtAbout =
+    'Using Flutter Boilerplate to speed up the Flutter development';
 
 // Sign In
 const String txtEmail = 'Email';
@@ -25,7 +26,7 @@ const String txtEnterUserPassword = 'Please enter your password';
 const String txtHome = 'Home';
 
 // Images
-const String logoImage = 'assets/images/logo.png';
+const String logoImage = 'assets/images/core/logo.png';
 
 // Share message
 const String shareLink = 'http://bit.ly/acelords';

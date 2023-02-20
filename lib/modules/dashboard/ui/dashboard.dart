@@ -33,10 +33,14 @@ class _DashboardPageState extends State<DashboardPage> {
         child: Stack(
           children: <Widget>[
             Positioned(
-              left: landscapeScreen ? screenPosition('x', 0.15) : screenPosition('x', 0.095),
-              top: landscapeScreen ? screenPosition('y', -0.8) : screenPosition('y', -0.546),
+              left: landscapeScreen
+                  ? screenPosition('x', 0.15)
+                  : screenPosition('x', 0.095),
+              top: landscapeScreen
+                  ? screenPosition('y', -0.8)
+                  : screenPosition('y', -0.546),
               child: IconButton(
-                icon: SvgPicture.asset("assets/images/logo.svg"),
+                icon: SvgPicture.asset("assets/images/core/logo.svg"),
                 // icon: Image.asset("assets/images/logo.png"),
                 iconSize: 50,
                 onPressed: () => Get.back(),

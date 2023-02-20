@@ -41,6 +41,7 @@ dependencies:
   flutter_native_splash: ^2.2.16
   flutter_svg: ^1.1.6
   get: ^4.6.5
+  google_fonts: ^3.0.1
   get_storage: ^2.0.3
   google_sign_in: ^5.4.2
   http: ^0.13.5
@@ -92,8 +93,8 @@ flutter_native_splash:
   color: "#ffffff"
   color_dark: "#121212" # For OS dark mode
   # color_dark: "#ffffff"     # For OS dark mode
-  image: assets/images/splash.png
-  image_dark: assets/images/splash.png
+  image: assets/images/launcher/splash.png
+  image_dark: assets/images/launcher/splash.png
   android: true
   ios: true
 
@@ -109,6 +110,7 @@ flutter:
     - assets/
     - assets/images/
     - assets/images/robot/
+    - assets/google_fonts/
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware.

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 import '../../../core/drawer/ui/drawer.dart';
 
@@ -17,7 +18,14 @@ class _HomePageState extends State<HomePage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text(widget.title),
+        title: Text(
+          widget.title,
+          style: GoogleFonts.roboto(
+            fontWeight: FontWeight.bold,
+            color: Colors.black,
+            fontSize: 20,
+          ),
+        ),
       ),
       drawer: NavDrawer(),
       body: Column(
@@ -31,7 +39,14 @@ class _HomePageState extends State<HomePage> {
                     minimumSize: const Size(120, 50),
                     shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(10))),
-                child: const Text('Counter 0'),
+                child: Text(
+                  'Counter 0',
+                  style: GoogleFonts.roboto(
+                    fontWeight: FontWeight.bold,
+                    color: Colors.black,
+                    fontSize: 20,
+                  ),
+                ),
                 onPressed: () {
                   Get.toNamed("/counter");
                 },
@@ -47,7 +62,14 @@ class _HomePageState extends State<HomePage> {
                     minimumSize: const Size(120, 50),
                     shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(10))),
-                child: const Text('Users Page'),
+                child: Text(
+                  'Users Page',
+                  style: GoogleFonts.roboto(
+                    fontWeight: FontWeight.bold,
+                    color: Colors.black,
+                    fontSize: 20,
+                  ),
+                ),
                 onPressed: () {
                   Get.toNamed("/users");
                 },
@@ -63,7 +85,14 @@ class _HomePageState extends State<HomePage> {
                     minimumSize: const Size(120, 50),
                     shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(10))),
-                child: const Text('Dashboard Page'),
+                child: Text(
+                  'Dashboard Page',
+                  style: GoogleFonts.roboto(
+                    fontWeight: FontWeight.bold,
+                    color: Colors.black,
+                    fontSize: 20,
+                  ),
+                ),
                 onPressed: () {
                   Get.toNamed("/dashboard");
                 },
@@ -79,7 +108,14 @@ class _HomePageState extends State<HomePage> {
                     minimumSize: const Size(120, 50),
                     shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(10))),
-                child: const Text('Bluetooth Page'),
+                child: Text(
+                  'Bluetooth Page',
+                  style: GoogleFonts.roboto(
+                    fontWeight: FontWeight.bold,
+                    color: Colors.black,
+                    fontSize: 20,
+                  ),
+                ),
                 onPressed: () {
                   Get.toNamed("/bluetooth");
                 },
