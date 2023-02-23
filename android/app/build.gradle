@@ -57,6 +57,7 @@ android {
         manifestPlaceholders += [
             'appAuthRedirectScheme': 'com.googleusercontent.apps.65747968087-l3nsirbv8rtr9efmm7ejpt4htd94vn28'
         ]
+        multiDexEnabled true
     }
 
     signingConfigs {
@@ -85,4 +86,5 @@ flutter {
 dependencies {
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
     implementation 'com.google.android.material:material:1.8.0'
+    implementation 'androidx.multidex:multidex:2.0.1'
 }
