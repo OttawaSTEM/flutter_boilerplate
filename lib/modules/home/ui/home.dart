@@ -22,7 +22,7 @@ class _HomePageState extends State<HomePage> {
           widget.title,
           style: GoogleFonts.roboto(
             fontWeight: FontWeight.bold,
-            color: Colors.black,
+            color: Colors.white,
             fontSize: 20,
           ),
         ),
@@ -43,8 +43,8 @@ class _HomePageState extends State<HomePage> {
                   'Counter 0',
                   style: GoogleFonts.roboto(
                     fontWeight: FontWeight.bold,
-                    color: Colors.black,
-                    fontSize: 20,
+                    color: Colors.white,
+                    fontSize: 16,
                   ),
                 ),
                 onPressed: () {
@@ -53,7 +53,7 @@ class _HomePageState extends State<HomePage> {
               )),
             )),
           ),
-          const SizedBox(height: 20),
+          const SizedBox(height: 16),
           SizedBox(
             height: 50,
             child: (Center(
@@ -66,8 +66,8 @@ class _HomePageState extends State<HomePage> {
                   'Users Page',
                   style: GoogleFonts.roboto(
                     fontWeight: FontWeight.bold,
-                    color: Colors.black,
-                    fontSize: 20,
+                    color: Colors.white,
+                    fontSize: 16,
                   ),
                 ),
                 onPressed: () {
@@ -89,8 +89,8 @@ class _HomePageState extends State<HomePage> {
                   'Dashboard Page',
                   style: GoogleFonts.roboto(
                     fontWeight: FontWeight.bold,
-                    color: Colors.black,
-                    fontSize: 20,
+                    color: Colors.white,
+                    fontSize: 16,
                   ),
                 ),
                 onPressed: () {
@@ -112,12 +112,35 @@ class _HomePageState extends State<HomePage> {
                   'Bluetooth Page',
                   style: GoogleFonts.roboto(
                     fontWeight: FontWeight.bold,
-                    color: Colors.black,
-                    fontSize: 20,
+                    color: Colors.white,
+                    fontSize: 16,
                   ),
                 ),
                 onPressed: () {
                   Get.toNamed("/bluetooth");
+                },
+              )),
+            )),
+          ),
+          const SizedBox(height: 20),
+          SizedBox(
+            height: 50,
+            child: (Center(
+              child: (ElevatedButton(
+                style: ElevatedButton.styleFrom(
+                    minimumSize: const Size(120, 50),
+                    shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(10))),
+                child: Text(
+                  'Websocket',
+                  style: GoogleFonts.roboto(
+                    fontWeight: FontWeight.bold,
+                    color: Colors.white,
+                    fontSize: 16,
+                  ),
+                ),
+                onPressed: () {
+                  Get.toNamed("/websocket");
                 },
               )),
             )),

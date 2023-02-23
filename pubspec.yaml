@@ -48,6 +48,7 @@ dependencies:
   logger: ^1.1.0
   sleek_circular_slider: ^2.0.1
   flutter_circular_slider: ^2.5.0
+  web_socket_channel: ^2.3.0
 
 dev_dependencies:
   flutter_test:
@@ -58,7 +59,6 @@ dev_dependencies:
   # package. See that file for information about deactivating specific lint
   # rules and activating additional ones.
   flutter_lints: ^2.0.1
-  bloc_test: ^9.1.0
 
 # For information on the generic Dart part of this file, see the
 # following page: https://dart.dev/tools/pub/pubspec
