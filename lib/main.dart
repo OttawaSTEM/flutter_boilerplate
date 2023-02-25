@@ -17,6 +17,13 @@ class App extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return GetMaterialApp(
+      // https://flutter.github.io/samples/web/material_3_demo/#/
+      // theme: ThemeData(
+      //   useMaterial3: true,
+      //   brightness: Brightness.light,
+      //   primarySwatch: Colors.blue,
+      //   colorSchemeSeed: Colors.blue,
+      // ),
       initialRoute: '/',
       getPages: appRoutes,
     );

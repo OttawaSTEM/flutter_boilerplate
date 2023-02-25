@@ -19,6 +19,7 @@ class _WebsocketPageState extends State<WebsocketPage> {
   final _channel = WebSocketChannel.connect(
     // Uri.parse('wss://ws.ifelse.io/'),
     Uri.parse('ws://192.168.1.57:8000/ws/chat/lobby/'),
+    // Uri.parse('wss://flutter.ottawastem.com/ws/chat/lobby/'),      // This is will not work in emulator
   );
 
   @override
