@@ -17,7 +17,8 @@ class WebsocketPage extends StatefulWidget {
 class _WebsocketPageState extends State<WebsocketPage> {
   final TextEditingController _controller = TextEditingController();
   final _channel = WebSocketChannel.connect(
-    Uri.parse('wss://ws.ifelse.io/'),
+    // Uri.parse('wss://ws.ifelse.io/'),
+    Uri.parse('ws://192.168.1.57:8000/ws/chat/lobby/'),
   );
 
   @override

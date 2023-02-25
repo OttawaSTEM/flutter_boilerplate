@@ -140,7 +140,7 @@ class _HomePageState extends State<HomePage> {
                   ),
                 ),
                 onPressed: () {
-                  Get.toNamed("/websocket");
+                  Get.toNamed("/chat");
                 },
               )),
             )),

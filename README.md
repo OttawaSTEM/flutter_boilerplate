@@ -1,3 +1,5 @@
+# Flutter local dev can't use localhost or 127.0.0.1
+
 # VSCode extensions for Flutter
 
 - Dart

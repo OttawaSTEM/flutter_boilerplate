@@ -7,7 +7,7 @@ import '../modules/counter/ui/counter.dart';
 import '../modules/dashboard/ui/dashboard.dart';
 import '../modules/home/ui/home.dart';
 import '../modules/users/ui/users.dart';
-import '../modules/websocket/ui/websocket.dart';
+import '../modules/chat/ui/chat.dart';
 
 final appRoutes = [
   GetPage(
@@ -48,8 +48,8 @@ final appRoutes = [
     transitionDuration: const Duration(milliseconds: 500),
   ),
   GetPage(
-    name: '/websocket',
-    page: () => const WebsocketPage(title: 'Websocket'),
+    name: '/chat',
+    page: () => const WebsocketPage(title: 'Chat'),
     transition: Transition.leftToRightWithFade,
     transitionDuration: const Duration(milliseconds: 500),
   ),
