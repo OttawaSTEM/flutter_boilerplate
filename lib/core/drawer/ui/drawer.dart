@@ -82,7 +82,7 @@ class NavDrawer extends StatelessWidget {
               ),
               onTap: () => Navigator.of(context).pushReplacement(
                 MaterialPageRoute(
-                    builder: (context) => HomePage(title: txtAppName)),
+                    builder: (context) => const HomePage(title: txtAppName)),
               ),
             ),
             authController.authStatus

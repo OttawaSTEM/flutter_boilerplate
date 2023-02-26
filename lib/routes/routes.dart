@@ -1,6 +1,7 @@
 import 'package:get/get.dart';
 
 import '../core/auth/ui/signin.dart';
+import '../modules/admin/ui/admin.dart';
 import '../modules/bluetooth/ui/bluetooth.dart';
 // import '../modules/bluetooth/ui/bluetooth_control.dart';
 import '../modules/counter/ui/counter.dart';
@@ -12,13 +13,19 @@ import '../modules/chat/ui/chat.dart';
 final appRoutes = [
   GetPage(
     name: '/',
-    page: () => HomePage(title: 'Home Page'),
+    page: () => const HomePage(title: 'Home Page'),
     transition: Transition.leftToRightWithFade,
     transitionDuration: const Duration(milliseconds: 500),
   ),
   GetPage(
     name: '/login',
     page: () => const SigninPage(),
+    transition: Transition.leftToRightWithFade,
+    transitionDuration: const Duration(milliseconds: 500),
+  ),
+  GetPage(
+    name: '/admin',
+    page: () => const AdminPage(title: 'Admin Dashboard'),
     transition: Transition.leftToRightWithFade,
     transitionDuration: const Duration(milliseconds: 500),
   ),
