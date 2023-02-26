@@ -12,7 +12,7 @@ import '../modules/chat/ui/chat.dart';
 final appRoutes = [
   GetPage(
     name: '/',
-    page: () => const HomePage(title: 'Home Page'),
+    page: () => HomePage(title: 'Home Page'),
     transition: Transition.leftToRightWithFade,
     transitionDuration: const Duration(milliseconds: 500),
   ),

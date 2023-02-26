@@ -24,6 +24,7 @@ class App extends StatelessWidget {
       //   primarySwatch: Colors.blue,
       //   colorSchemeSeed: Colors.blue,
       // ),
+      // debugShowCheckedModeBanner: false,
       initialRoute: '/',
       getPages: appRoutes,
     );

@@ -36,6 +36,7 @@ dependencies:
   # flutter_bluetooth_serial: ^0.4.0
   flutter_bluetooth_serial:
     path: ../flutter_bluetooth_serial
+  flutter_circular_slider: ^2.5.0
   flutter_dotenv: ^5.0.2
   flutter_launcher_icons: ^0.11.0
   flutter_native_splash: ^2.2.16
@@ -47,7 +48,7 @@ dependencies:
   http: ^0.13.5
   logger: ^1.1.0
   sleek_circular_slider: ^2.0.1
-  flutter_circular_slider: ^2.5.0
+  sidebarx: ^0.14.0
   web_socket_channel: ^2.3.0
 
 dev_dependencies:

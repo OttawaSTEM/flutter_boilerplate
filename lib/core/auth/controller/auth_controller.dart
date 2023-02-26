@@ -44,7 +44,7 @@ class AuthController extends GetxController {
       if (data['key'] != null) {
         storage.write("token", data['key']);
         _authStatus = true;
-        Get.to(() => const HomePage(title: 'Home Page'));
+        Get.to(() => HomePage(title: 'Home Page'));
         snackbarMsg(
           title: 'Sign In',
           message: 'Succeed!',
@@ -82,7 +82,8 @@ class AuthController extends GetxController {
     } catch (e) {
       storage.remove('token');
       _authStatus = false;
-      if (e.toString().contains('TimeoutException') && !djangoAuthURL.contains('logout')) {
+      if (e.toString().contains('TimeoutException') &&
+          !djangoAuthURL.contains('logout')) {
         snackbarMsg(
           title: 'Sign In',
           message: 'Failed! - Unable to connect to server.',
@@ -96,7 +97,8 @@ class AuthController extends GetxController {
     }
   }
 
-  Future<void> usernameSignin({required String username, required String password}) async {
+  Future<void> usernameSignin(
+      {required String username, required String password}) async {
     final body = jsonEncode({
       'email': username,
       'password': password,
