@@ -9,24 +9,41 @@ import '../../../constants/http_req.dart';
 import '../../../constants/timeout.dart';
 import '../../../utils/utils.dart';
 
+import 'package:flutter/foundation.dart';
+import 'package:logger/logger.dart';
+
+var logger = Logger();
+
 class UserController extends GetxController {
   final storage = GetStorage();
 
   Future getUsers() async {
+    if (kDebugMode) {
+      logger.i('getUsers');
+      logger.i(fetchUserURL());
+    }
     var data = [];
     String? token = storage.read('token');
 
     try {
-      final response = await http.get(
-        Uri.parse(fetchUserURL()),
-        headers: {
-          HttpHeaders.authorizationHeader: 'Token $token',
-        },
-      ).timeout(
-        const Duration(seconds: httpRequestTimeout),
-      );
+      final response = await http
+          .get(
+            Uri.parse(fetchUserURL()),
+            // headers: {
+            //   HttpHeaders.authorizationHeader: 'Token $token',
+            // },
+          )
+          .timeout(
+            const Duration(seconds: httpRequestTimeout),
+          );
       data = json.decode(response.body);
+      if (kDebugMode) {
+        logger.i(data);
+      }
     } catch (e) {
+      if (kDebugMode) {
+        logger.i(e);
+      }
       if (e.toString().contains('TimeoutException')) {
         snackbarMsg(
           title: 'Failed!',

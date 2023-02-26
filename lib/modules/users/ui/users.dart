@@ -10,7 +10,8 @@ class UserPage extends StatefulWidget {
   State<UserPage> createState() => _UserPageState();
 }
 
-const String url = 'http://192.168.1.60:8000/api/users/';
+// const String url = 'http://192.168.1.60:8000/api/users/';
+const String url = 'http://flutter.ottawastem.com/api/groups/';
 
 class _UserPageState extends State<UserPage> {
   // final Future _users = HttpService().get(url);

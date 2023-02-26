@@ -109,6 +109,7 @@ flutter:
   assets:
     - assets/
     - assets/images/
+    - assets/images/core/
     - assets/images/robot/
     - assets/google_fonts/
 
