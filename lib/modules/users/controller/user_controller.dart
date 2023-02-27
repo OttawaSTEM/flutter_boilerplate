@@ -26,16 +26,14 @@ class UserController extends GetxController {
     String? token = storage.read('token');
 
     try {
-      final response = await http
-          .get(
-            Uri.parse(fetchUserURL()),
-            // headers: {
-            //   HttpHeaders.authorizationHeader: 'Token $token',
-            // },
-          )
-          .timeout(
-            const Duration(seconds: httpRequestTimeout),
-          );
+      final response = await http.get(
+        Uri.parse(fetchUserURL()),
+        headers: {
+          HttpHeaders.authorizationHeader: 'Token $token',
+        },
+      ).timeout(
+        const Duration(seconds: httpRequestTimeout),
+      );
       data = json.decode(response.body);
       if (kDebugMode) {
         logger.i(data);
