@@ -1,9 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
-import 'package:google_fonts/google_fonts.dart';
 import 'package:sidebarx/sidebarx.dart';
 
-import '../../../core/drawer/ui/drawer.dart';
 
 class AdminPage extends StatefulWidget {
   const AdminPage({super.key, required this.title});
