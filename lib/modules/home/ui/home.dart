@@ -40,6 +40,29 @@ class _HomePageState extends State<HomePage> {
                     shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(10))),
                 child: Text(
+                  'Signin',
+                  style: GoogleFonts.roboto(
+                    fontWeight: FontWeight.bold,
+                    color: Colors.white,
+                    fontSize: 16,
+                  ),
+                ),
+                onPressed: () {
+                  Get.toNamed("/login");
+                },
+              )),
+            )),
+          ),
+          const SizedBox(height: 20),
+          SizedBox(
+            height: 50,
+            child: (Center(
+              child: (ElevatedButton(
+                style: ElevatedButton.styleFrom(
+                    minimumSize: const Size(120, 50),
+                    shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(10))),
+                child: Text(
                   'Admin Dashboard',
                   style: GoogleFonts.roboto(
                     fontWeight: FontWeight.bold,
