@@ -24,16 +24,22 @@ flutter pub run flutter_launcher_icons
 flutter pub run flutter_native_splash:create
 
 # Local http request
-
 Add '--disable-web-security' in the chrome web configuration.
-
 1. Go to flutter\bin\cache and remove a file named: flutter_tools.stamp
 2. Go to flutter\packages\flutter_tools\lib\src\web and open the file chrome.dart.
 3. Find '--disable-extensions'
 4. Add '--disable-web-security', # !!! Including ,(comma)
 
+# MacOS no network connection
+```
+Add
+<key>com.apple.security.network.client</key>
+<true />
+to
+macos/Runner/DebugProfile.entitiements
+macos/Runner/release.entitiements
+```
 # Flutter http: api vs client - ??? Django auth session ???
-
 api: Single http request
 client: Multiple requests and a persistent connection
 
@@ -98,13 +104,11 @@ Scaffold(
 );
 ```
 
-# Bluetooth
-
-https://pub.dev/packages/quick_blue
-
-https://pub.dev/packages/flutter_reactive_ble
-https://pub.dev/packages/flutter_bluetooth_basic_v2
-https://pub.dev/packages/flutter_blue
-https://pub.dev/packages/bluetooth_low_energy
+# Clean flutter packages and reinstall flutter packages
+```
+flutter pub outdated
+flutter pub upgrade
+flutter clean && flutter pub get 
+```
 
 # F5 to run Flutter Debug
