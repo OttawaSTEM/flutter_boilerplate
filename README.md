@@ -71,11 +71,6 @@ Mac OS: Command + .
 
 C:\Tools\Flutter\packages\flutter_tools\gradle\flutter.gradle
 
-# Custom flutter_bluetooth_serial
-
-Remove Location Permission didn't release yet in 0.4.0
-[Remove Location Permission](https://github.com/edufolly/flutter_bluetooth_serial/pull/152/commits/d6c98d0edafb03cbfb405d619905089bafe88e6c)
-
 # Scrollable Layout
 
 ## 1. SingleChildScrollView inside SafeArea
@@ -111,7 +106,5 @@ https://pub.dev/packages/flutter_reactive_ble
 https://pub.dev/packages/flutter_bluetooth_basic_v2
 https://pub.dev/packages/flutter_blue
 https://pub.dev/packages/bluetooth_low_energy
-
-https://pub.dev/packages/flutter_bluetooth_serial
 
 # F5 to run Flutter Debug

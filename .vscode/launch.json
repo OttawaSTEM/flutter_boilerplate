@@ -8,12 +8,6 @@
             "name": "flutter_boilerplate",
             "request": "launch",
             "type": "dart"
-        },
-        {
-            "name": "flutter_boilerplate (profile mode)",
-            "request": "launch",
-            "type": "dart",
-            "flutterMode": "profile"
         }
     ]
 }

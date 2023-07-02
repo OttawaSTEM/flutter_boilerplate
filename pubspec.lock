@@ -134,13 +134,6 @@ packages:
     description: flutter
     source: sdk
     version: "0.0.0"
-  flutter_bluetooth_serial:
-    dependency: "direct main"
-    description:
-      path: "../flutter_bluetooth_serial"
-      relative: true
-    source: path
-    version: "0.4.0"
   flutter_dotenv:
     dependency: "direct main"
     description:
