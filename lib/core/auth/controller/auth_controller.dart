@@ -12,6 +12,10 @@ import '../../../utils/utils.dart';
 
 import '../../../modules/home/ui/home.dart';
 
+import 'package:logger/logger.dart';
+
+var logger = Logger();
+
 GoogleSignIn _googleSignIn = GoogleSignIn(
   scopes: <String>[
     'email',
@@ -128,8 +132,10 @@ class AuthController extends GetxController {
           ),
         );
       }
+      logger.i('Login Google successfully');
     } catch (e) {
       storage.write('token', '');
+      logger.e(e);
     }
   }
 

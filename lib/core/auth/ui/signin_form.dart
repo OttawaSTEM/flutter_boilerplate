@@ -16,6 +16,21 @@ class SigninFormState extends State<SigninForm> {
   final passwordController = TextEditingController();
   final _formGlobalKey = GlobalKey<FormState>();
 
+  bool _isObscured = true;
+
+  @override
+  void initState() {
+    super.initState();
+    _isObscured = true;
+  }
+
+  @override
+  void dispose() {
+    usernameController.dispose();
+    passwordController.dispose();
+    super.dispose();
+  }
+
   @override
   Widget build(BuildContext context) {
     final AuthController authController = Get.put(AuthController());
@@ -41,14 +56,21 @@ class SigninFormState extends State<SigninForm> {
           const SizedBox(height: 20),
           TextFormField(
             controller: passwordController,
-            decoration: const InputDecoration(
-              prefixIcon: Icon(Icons.fingerprint),
+            obscureText: _isObscured,
+            decoration: InputDecoration(
+              prefixIcon: const Icon(Icons.password),
               labelText: txtPassword,
               hintText: txtPassword,
-              border: OutlineInputBorder(),
+              border: const OutlineInputBorder(),
               suffixIcon: IconButton(
-                onPressed: null,
-                icon: Icon(Icons.remove_red_eye_sharp),
+                icon: _isObscured
+                    ? const Icon(Icons.visibility)
+                    : const Icon(Icons.visibility_off),
+                onPressed: () {
+                  setState(() {
+                    _isObscured = !_isObscured;
+                  });
+                },
               ),
             ),
             validator: (value) {
