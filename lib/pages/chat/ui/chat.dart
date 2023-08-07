@@ -1,14 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:web_socket_channel/web_socket_channel.dart';
 import 'package:web_socket_channel/status.dart' as status;
 
 class WebsocketPage extends StatefulWidget {
-  const WebsocketPage({
-    super.key,
-    required this.title,
-  });
-
-  final String title;
+  const WebsocketPage({Key? key}) : super(key: key);
 
   @override
   State<WebsocketPage> createState() => _WebsocketPageState();
@@ -27,7 +23,7 @@ class _WebsocketPageState extends State<WebsocketPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text(widget.title),
+        title: Text('Websocket Chat'.tr),
       ),
       body: Padding(
         padding: const EdgeInsets.all(20.0),

@@ -3,12 +3,28 @@
 const Map<String, String> enUS = {
   'Home Page': 'Home Page',
   'Flutter Boilerplate Project': 'Flutter Boilerplate Project',
-  'txtEmail': 'Email',
+
+  // SignIn
+  'Sign in': 'Sign in',
+  'Sign up': 'Sign up',
+  'Email': 'Email',
   'txtEmailAddress': 'ottawastem@gmail.com',
   'txtAbout': 'Using Flutter Boilerplate to speed up the Flutter development',
   'Forgot Password?': 'Forgot Password?',
   'Password': 'Password',
   'Forgot Password': 'Forgot Password?',
+
+  // counter
+  'Counter GetX Page': 'Counter GetX Page',
+
+  // Users List Page
+  'Users List Page': 'Users List Page',
+
+  // Dashboard Page
+  'Dashboard Page': 'Dashboard Page',
+
+  // chat
+  'Websocket Chat': 'Websocket Chat',
 };
 
 

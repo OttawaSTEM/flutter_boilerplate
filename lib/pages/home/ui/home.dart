@@ -33,7 +33,7 @@ class HomePage extends StatelessWidget {
                     shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(10))),
                 child: Text(
-                  'Signin',
+                  'Sign in'.tr,
                   style: GoogleFonts.roboto(
                     fontWeight: FontWeight.bold,
                     color: Colors.white,
@@ -41,7 +41,7 @@ class HomePage extends StatelessWidget {
                   ),
                 ),
                 onPressed: () {
-                  Get.toNamed("/login");
+                  Get.toNamed("/signin");
                 },
               )),
             )),
@@ -56,30 +56,7 @@ class HomePage extends StatelessWidget {
                     shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(10))),
                 child: Text(
-                  'Admin Dashboard',
-                  style: GoogleFonts.roboto(
-                    fontWeight: FontWeight.bold,
-                    color: Colors.white,
-                    fontSize: 16,
-                  ),
-                ),
-                onPressed: () {
-                  Get.toNamed("/admin");
-                },
-              )),
-            )),
-          ),
-          const SizedBox(height: 20),
-          SizedBox(
-            height: 50,
-            child: (Center(
-              child: (ElevatedButton(
-                style: ElevatedButton.styleFrom(
-                    minimumSize: const Size(120, 50),
-                    shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(10))),
-                child: Text(
-                  'Counter 0',
+                  'Counter'.tr,
                   style: GoogleFonts.roboto(
                     fontWeight: FontWeight.bold,
                     color: Colors.white,
@@ -102,7 +79,7 @@ class HomePage extends StatelessWidget {
                     shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(10))),
                 child: Text(
-                  'Users Page',
+                  'Users List Page'.tr,
                   style: GoogleFonts.roboto(
                     fontWeight: FontWeight.bold,
                     color: Colors.white,
@@ -125,7 +102,7 @@ class HomePage extends StatelessWidget {
                     shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(10))),
                 child: Text(
-                  'Dashboard Page',
+                  'Dashboard Page'.tr,
                   style: GoogleFonts.roboto(
                     fontWeight: FontWeight.bold,
                     color: Colors.white,
@@ -148,7 +125,7 @@ class HomePage extends StatelessWidget {
                     shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(10))),
                 child: Text(
-                  'Websocket',
+                  'Websocket Chat'.tr,
                   style: GoogleFonts.roboto(
                     fontWeight: FontWeight.bold,
                     color: Colors.white,

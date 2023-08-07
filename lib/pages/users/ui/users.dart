@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
 import '../controller/user_controller.dart';
 
 class UserPage extends StatefulWidget {
-  final String title;
-  const UserPage({super.key, required this.title});
+  const UserPage({Key? key}) : super(key: key);
 
   @override
   State<UserPage> createState() => _UserPageState();
@@ -21,7 +21,7 @@ class _UserPageState extends State<UserPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text(widget.title),
+        title: Text('Users List Page'.tr),
       ),
       body: FutureBuilder(
         future: _users,

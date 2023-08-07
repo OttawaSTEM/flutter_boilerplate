@@ -4,15 +4,14 @@ import 'package:get/get.dart';
 import '../controller/counter_controller.dart';
 
 class CounterPage extends StatelessWidget {
-  final String title;
-  const CounterPage({Key? key, required this.title}) : super(key: key);
+  const CounterPage({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     final CounterController counterController = Get.put(CounterController());
 
     return Scaffold(
-      appBar: AppBar(title: Text(title)),
+      appBar: AppBar(title: Text('Counter GetX Page'.tr)),
       body: Center(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
