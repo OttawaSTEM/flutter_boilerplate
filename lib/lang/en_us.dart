@@ -1,18 +1,29 @@
-// ignore_for_file: file_names
+// ignore: file_names
 
 const Map<String, String> enUS = {
+  'Change Language': 'Change Language',
+
   'Home Page': 'Home Page',
   'Flutter Boilerplate Project': 'Flutter Boilerplate Project',
 
   // SignIn
   'Sign in': 'Sign in',
   'Sign up': 'Sign up',
+  'Sign out': 'Sign out',
   'Email': 'Email',
   'txtEmailAddress': 'ottawastem@gmail.com',
   'txtAbout': 'Using Flutter Boilerplate to speed up the Flutter development',
+  'Please enter your Email.': 'Please enter your Email.',
   'Forgot Password?': 'Forgot Password?',
   'Password': 'Password',
+  'Please enter your password.': 'Please enter your password.',
   'Forgot Password': 'Forgot Password?',
+  'OR': 'OR',
+  'Sign in with Google': 'Sign in with Google',
+  'Don\'t have an account? ': 'Don\'t have an account? ',
+// const String txtSigninFailed = 'Unable to log in with provided credentials.';
+// const String txtSigninSucess = 'You are successfully logged in.';
+// const String txtSigninValidEmail = 'Enter a valid email address.';
 
   // counter
   'Counter GetX Page': 'Counter GetX Page',
@@ -26,39 +37,3 @@ const Map<String, String> enUS = {
   // chat
   'Websocket Chat': 'Websocket Chat',
 };
-
-
-
-
-// // Sign In
-// const String txtForgetPassword = 'Forgot Password?';
-// const String txtSignin = 'Signin';
-// const String txtSignout = 'Signout';
-// const String txtSigninFailed = 'Unable to log in with provided credentials.';
-// const String txtSigninSucess = 'You are successfully logged in.';
-// const String txtSigninValidEmail = 'Enter a valid email address.';
-// const String txtSigninGoogle = 'Sign in with Google';
-// const String txtNoAccount = 'Don\'t have an account? ';
-// const String txtSignUp = 'Sign up';
-// const String txtOR = 'OR';
-// const String txtEnterEmail = 'Please enter your Email';
-// const String txtEnterUserPassword = 'Please enter your password';
-
-// // Drawer
-// const String txtHome = 'Home';
-
-// // Images
-// const String logoImage = 'assets/images/core/logo.png';
-
-// // Share message
-// const String shareLink = 'http://bit.ly/acelords';
-// const String shareMessage = 'Check out this Amazing App at $shareLink';
-// const String shareSubject = 'Best App Ever!';
-// const String twitterUrl = 'https://twitter.com/acelords';
-
-// // MQ Topics
-// const String publicTopicKey = kDebugMode ? 'debug' : 'production';
-
-// // Others
-// const double commonPadding = 15.0;
-// const String commonDateFormat = 'dd MMM yyyy, hh:mm a';

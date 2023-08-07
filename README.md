@@ -1,6 +1,11 @@
 # VSCode Extension 
 GetX Snippets
 
+# Change Language regardless device setting
+```
+Get.updateLocale(const Locale('zh', 'CN'));
+Get.updateLocale(const Locale('en', 'US'));
+```
 
 # Flutter local dev can't use localhost or 127.0.0.1
 

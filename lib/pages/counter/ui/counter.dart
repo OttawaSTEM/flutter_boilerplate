@@ -11,7 +11,9 @@ class CounterPage extends StatelessWidget {
     final CounterController counterController = Get.put(CounterController());
 
     return Scaffold(
-      appBar: AppBar(title: Text('Counter GetX Page'.tr)),
+      appBar: AppBar(
+        title: Text('Counter GetX Page'.tr),
+      ),
       body: Center(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,

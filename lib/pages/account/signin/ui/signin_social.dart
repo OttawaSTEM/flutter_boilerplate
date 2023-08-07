@@ -14,12 +14,13 @@ class SigninSocial extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final AuthController authController = Get.put(AuthController());
+
     return Column(
       crossAxisAlignment: CrossAxisAlignment.center,
       children: [
-        const Text(
-          txtOR,
-          style: TextStyle(height: 3, fontSize: 16),
+        Text(
+          'OR'.tr,
+          style: const TextStyle(height: 3, fontSize: 16),
         ),
         const SizedBox(
           height: 10,
@@ -35,19 +36,19 @@ class SigninSocial extends StatelessWidget {
             onPressed: () {
               authController.googleSignIn();
             },
-            label: const Text(txtSigninGoogle),
+            label: Text('Sign in with Google'.tr),
           ),
         ),
         TextButton(
           onPressed: () {},
           child: Text.rich(
             TextSpan(
-                text: txtNoAccount,
+                text: 'Don\'t have an account? '.tr,
                 style: Theme.of(context).textTheme.bodySmall,
-                children: const [
+                children: [
                   TextSpan(
-                    text: txtSignUp,
-                    style: TextStyle(color: Colors.blue),
+                    text: 'Sign up'.tr,
+                    style: const TextStyle(color: Colors.blue),
                   ),
                 ]),
           ),

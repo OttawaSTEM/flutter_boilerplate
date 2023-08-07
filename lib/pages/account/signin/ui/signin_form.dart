@@ -1,109 +1,95 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-import '../../../../constants/strings.dart';
 import '../controller/auth_controller.dart';
 
-class SigninForm extends StatefulWidget {
+class ObscuredController extends GetxController {
+  RxBool isObscured = true.obs;
+}
+
+class SigninForm extends StatelessWidget {
   const SigninForm({Key? key}) : super(key: key);
 
   @override
-  State createState() => SigninFormState();
-}
-
-class SigninFormState extends State<SigninForm> {
-  final usernameController = TextEditingController();
-  final passwordController = TextEditingController();
-  final _formGlobalKey = GlobalKey<FormState>();
-
-  bool _isObscured = true;
-
-  @override
-  void initState() {
-    super.initState();
-    _isObscured = true;
-  }
-
-  @override
-  void dispose() {
-    usernameController.dispose();
-    passwordController.dispose();
-    super.dispose();
-  }
-
-  @override
   Widget build(BuildContext context) {
+    // final screenSize = MediaQuery.of(context).size;
+    final ObscuredController obscuredController = Get.put(ObscuredController());
     final AuthController authController = Get.put(AuthController());
+    final usernameController = TextEditingController();
+    final passwordController = TextEditingController();
+    final formGlobalKey = GlobalKey<FormState>();
+
     return Form(
-      key: _formGlobalKey,
-      child: Column(
-        children: [
-          TextFormField(
-            controller: usernameController,
-            decoration: const InputDecoration(
-              prefixIcon: Icon(Icons.mail),
-              labelText: txtEmail,
-              hintText: txtEmail,
-              border: OutlineInputBorder(),
+      key: formGlobalKey,
+      child: Obx(
+        () => Column(
+          children: [
+            TextFormField(
+              controller: usernameController,
+              decoration: InputDecoration(
+                prefixIcon: const Icon(Icons.mail),
+                labelText: 'Email'.tr,
+                hintText: 'Email'.tr,
+                border: const OutlineInputBorder(),
+              ),
+              validator: (value) {
+                if (value == null || value.isEmpty) {
+                  return 'Please enter your Email.'.tr;
+                }
+                return null;
+              },
             ),
-            validator: (value) {
-              if (value == null || value.isEmpty) {
-                return txtEnterEmail;
-              }
-              return null;
-            },
-          ),
-          const SizedBox(height: 20),
-          TextFormField(
-            controller: passwordController,
-            obscureText: _isObscured,
-            decoration: InputDecoration(
-              prefixIcon: const Icon(Icons.password),
-              labelText: txtPassword,
-              hintText: txtPassword,
-              border: const OutlineInputBorder(),
-              suffixIcon: IconButton(
-                icon: _isObscured
-                    ? const Icon(Icons.visibility)
-                    : const Icon(Icons.visibility_off),
-                onPressed: () {
-                  setState(() {
-                    _isObscured = !_isObscured;
-                  });
-                },
+            const SizedBox(height: 20),
+            TextFormField(
+              controller: passwordController,
+              obscureText: obscuredController.isObscured.value,
+              decoration: InputDecoration(
+                prefixIcon: const Icon(Icons.password),
+                labelText: 'Password'.tr,
+                hintText: 'Password'.tr,
+                border: const OutlineInputBorder(),
+                suffixIcon: IconButton(
+                  icon: obscuredController.isObscured.value
+                      ? const Icon(Icons.visibility)
+                      : const Icon(Icons.visibility_off),
+                  onPressed: () {
+                    obscuredController.isObscured.value =
+                        !obscuredController.isObscured.value;
+                  },
+                ),
+              ),
+              validator: (value) {
+                if (value == null || value.isEmpty) {
+                  return 'Please enter your password.'.tr;
+                }
+                return null;
+              },
+            ),
+            const SizedBox(height: 20),
+            Align(
+              alignment: Alignment.centerRight,
+              child: TextButton(
+                onPressed: () {},
+                child: Text('Forgot Password?'.tr),
               ),
             ),
-            validator: (value) {
-              if (value == null || value.isEmpty) {
-                return txtEnterUserPassword;
-              }
-              return null;
-            },
-          ),
-          const SizedBox(height: 20),
-          Align(
-            alignment: Alignment.centerRight,
-            child: TextButton(
-              onPressed: () {},
-              child: Text('Forgot Password'.tr),
+            SizedBox(
+              width: double.infinity,
+              height: 50,
+              child: ElevatedButton(
+                onPressed: () {
+                  if (formGlobalKey.currentState!.validate()) {
+                    authController.usernameSignin(
+                      username: usernameController.text,
+                      password: passwordController.text,
+                    );
+                  }
+                },
+                child: Text('Sign in'.tr),
+              ),
             ),
-          ),
-          SizedBox(
-            width: double.infinity,
-            height: 50,
-            child: ElevatedButton(
-              onPressed: () {
-                if (_formGlobalKey.currentState!.validate()) {
-                  authController.usernameSignin(
-                    username: usernameController.text,
-                    password: passwordController.text,
-                  );
-                }
-              },
-              child: const Text(txtSignin),
-            ),
-          ),
-        ],
+          ],
+        ),
       ),
     );
   }
