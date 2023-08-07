@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-import '../../../constants/assets.dart';
-import '../../../constants/strings.dart';
+import '../../../../constants/assets.dart';
+import '../../../../constants/strings.dart';
 
 import '../controller/auth_controller.dart';
 

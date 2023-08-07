@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-import '../../../constants/strings.dart';
+import '../../../../constants/strings.dart';
 import '../controller/auth_controller.dart';
 
 class SigninForm extends StatefulWidget {

@@ -1,12 +1,12 @@
 import 'package:get/get.dart';
 
-import '../core/auth/ui/signin.dart';
-import '../modules/admin/ui/admin.dart';
-import '../modules/counter/ui/counter.dart';
-import '../modules/dashboard/ui/dashboard.dart';
-import '../modules/home/ui/home.dart';
-import '../modules/users/ui/users.dart';
-import '../modules/chat/ui/chat.dart';
+import '../pages/account/signin/ui/signin.dart';
+import '../pages/admin/ui/admin.dart';
+import '../pages/counter/ui/counter.dart';
+import '../pages/dashboard/ui/dashboard.dart';
+import '../pages/home/ui/home.dart';
+import '../pages/users/ui/users.dart';
+import '../pages/chat/ui/chat.dart';
 
 final appRoutes = [
   GetPage(

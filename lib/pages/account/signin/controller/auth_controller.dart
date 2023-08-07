@@ -5,12 +5,12 @@ import 'package:get_storage/get_storage.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 import 'package:http/http.dart' as http;
 
-import '../../../constants/http_req.dart';
-import '../../../constants/strings.dart';
-import '../../../constants/timeout.dart';
-import '../../../utils/utils.dart';
+import '../../../../constants/http_req.dart';
+import '../../../../constants/strings.dart';
+import '../../../../constants/timeout.dart';
+import '../../../../utils/utils.dart';
 
-import '../../../modules/home/ui/home.dart';
+import '../../../home/ui/home.dart';
 
 import 'package:logger/logger.dart';
 

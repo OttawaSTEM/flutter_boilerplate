@@ -5,9 +5,9 @@ import '../../../constants/assets.dart';
 import '../../../constants/colors.dart';
 import '../../../constants/strings.dart';
 
-import '../../../core/auth/controller/auth_controller.dart';
-import '../../auth/ui/signin.dart';
-import '../../../modules/home/ui/home.dart';
+import '../../../pages/account/signin/controller/auth_controller.dart';
+import '../../../pages/account/signin/ui/signin.dart';
+import '../../../pages/home/ui/home.dart';
 
 class NavDrawer extends StatelessWidget {
   final AuthController authController = Get.put(AuthController());

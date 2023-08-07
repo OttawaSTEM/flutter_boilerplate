@@ -19,12 +19,14 @@ class App extends StatelessWidget {
     return GetMaterialApp(
       // https://flutter.github.io/samples/web/material_3_demo/#/
       // theme: ThemeData(
+      //   colorScheme: ColorScheme.fromSwatch(primarySwatch: Colors.blue),
       //   useMaterial3: true,
+
       //   brightness: Brightness.light,
       //   primarySwatch: Colors.blue,
       //   colorSchemeSeed: Colors.blue,
       // ),
-      // debugShowCheckedModeBanner: false,
+      debugShowCheckedModeBanner: false,
       initialRoute: '/',
       getPages: appRoutes,
     );
