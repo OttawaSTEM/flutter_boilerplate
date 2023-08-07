@@ -48,7 +48,7 @@ class AuthController extends GetxController {
       if (data['key'] != null) {
         storage.write("token", data['key']);
         _authStatus = true;
-        Get.to(() => const HomePage(title: 'Home Page'));
+        Get.to(() => const HomePage());
         snackbarMsg(
           title: 'Sign In',
           message: 'Succeed!',

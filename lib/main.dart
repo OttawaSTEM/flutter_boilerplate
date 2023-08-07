@@ -3,7 +3,8 @@ import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
 
-import '../routes/routes.dart';
+import 'lang/languages.dart';
+import 'routes/app_routes.dart';
 
 Future main() async {
   await GetStorage.init();
@@ -27,8 +28,11 @@ class App extends StatelessWidget {
       //   colorSchemeSeed: Colors.blue,
       // ),
       debugShowCheckedModeBanner: false,
-      initialRoute: '/',
-      getPages: appRoutes,
+      translations: Languages(),
+      locale: Get.deviceLocale,
+      fallbackLocale: const Locale('en', 'US'),
+      initialRoute: AppRoutes.home,
+      getPages: AppPages.pages,
     );
   }
 }

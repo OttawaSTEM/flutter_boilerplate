@@ -85,7 +85,7 @@ class SigninFormState extends State<SigninForm> {
             alignment: Alignment.centerRight,
             child: TextButton(
               onPressed: () {},
-              child: Text('Forget Passowrd'.tr),
+              child: const Text(txtForgetPassword),
             ),
           ),
           SizedBox(

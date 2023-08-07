@@ -4,22 +4,15 @@ import 'package:google_fonts/google_fonts.dart';
 
 import '../../../core/drawer/ui/drawer.dart';
 
-class HomePage extends StatefulWidget {
-  const HomePage({super.key, required this.title});
+class HomePage extends StatelessWidget {
+  const HomePage({Key? key}) : super(key: key);
 
-  final String title;
-
-  @override
-  State<HomePage> createState() => _HomePageState();
-}
-
-class _HomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
         title: Text(
-          widget.title,
+          'Home Page'.tr,
           style: GoogleFonts.roboto(
             fontWeight: FontWeight.bold,
             color: Colors.white,
