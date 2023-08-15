@@ -1,4 +1,5 @@
-
+import 'dart:io';
+import 'package:flutter/foundation.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
 
 final env = dotenv.env;
@@ -7,11 +8,12 @@ String djangoUserSigninURL() {
   // if (Platform.isAndroid && kDebugMode) {
   //   return 'http://${env['WIN_IP']}:8000/api/auth/login/';
   // } else if (Platform.isIOS && kDebugMode) {
-  //   return 'http://${env['Mac_IP']}:8000/api/auth/login/';
+  //   return 'http://${env['MAC_IP']}:8000/api/auth/login/';
   // } else {
   //   return 'https://${env['DOMAIN']}/api/auth/login/';
   // }
-  return 'https://flutter.ottawastem.com/api/auth/login/';
+  return 'https://${env['MAC_IP']}:8000api/auth/login/';
+  // return 'https://flutter.ottawastem.com/api/auth/login/';
 }
 
 String djangoUserSignOutURL() {

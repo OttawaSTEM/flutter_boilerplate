@@ -8,10 +8,10 @@ import 'package:http/http.dart' as http;
 import '../../../../constants/http_req.dart';
 import '../../../../constants/strings.dart';
 import '../../../../constants/timeout.dart';
-import '../../../home/ui/home.dart';
 import '../../../../utils/utils.dart';
 
-import 'package:flutter/foundation.dart';
+import '../../../home/ui/home.dart';
+
 import 'package:logger/logger.dart';
 
 var logger = Logger();
@@ -30,12 +30,6 @@ class AuthController extends GetxController {
 
   Future<void> djangoAuth(String djangoAuthURL, Object body) async {
     try {
-      if (kDebugMode) {
-        logger.i('djangoAuth');
-        logger.i(djangoAuthURL);
-        logger.i(body);
-      }
-
       const dynamic headers = {
         'Accept': '*/*',
         'Content-Type': 'application/json',
@@ -50,12 +44,7 @@ class AuthController extends GetxController {
           .timeout(
             const Duration(seconds: httpRequestTimeout),
           );
-
       final data = jsonDecode(response.body);
-      if (kDebugMode) {
-        logger.i(data);
-      }
-
       if (data['key'] != null) {
         storage.write("token", data['key']);
         _authStatus = true;
@@ -114,12 +103,10 @@ class AuthController extends GetxController {
 
   Future<void> usernameSignin(
       {required String username, required String password}) async {
-    final body = jsonEncode(
-      {
-        'email': username,
-        'password': password,
-      },
-    );
+    final body = jsonEncode({
+      'email': username,
+      'password': password,
+    });
     djangoAuth(djangoUserSigninURL(), body);
   }
 

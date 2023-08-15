@@ -7,6 +7,10 @@ Get.updateLocale(const Locale('zh', 'CN'));
 Get.updateLocale(const Locale('en', 'US'));
 ```
 
+# Websocket use GetxService
+chat
+https://absyz.com/getconnect-the-best-way-to-perform-api-operations-in-flutter-with-getx/
+
 # Flutter local dev can't use localhost or 127.0.0.1
 
 # VSCode extensions for Flutter

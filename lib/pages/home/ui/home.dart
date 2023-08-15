@@ -33,7 +33,7 @@ class HomePage extends StatelessWidget {
                     shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(10))),
                 child: Text(
-                  'Sign in'.tr,
+                  'Counter'.tr,
                   style: GoogleFonts.roboto(
                     fontWeight: FontWeight.bold,
                     color: Colors.white,
@@ -41,7 +41,7 @@ class HomePage extends StatelessWidget {
                   ),
                 ),
                 onPressed: () {
-                  Get.toNamed("/signin");
+                  Get.toNamed("/counter");
                 },
               )),
             )),
@@ -56,7 +56,7 @@ class HomePage extends StatelessWidget {
                     shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(10))),
                 child: Text(
-                  'Counter'.tr,
+                  'Sign in'.tr,
                   style: GoogleFonts.roboto(
                     fontWeight: FontWeight.bold,
                     color: Colors.white,
@@ -64,7 +64,7 @@ class HomePage extends StatelessWidget {
                   ),
                 ),
                 onPressed: () {
-                  Get.toNamed("/counter");
+                  Get.toNamed("/signin");
                 },
               )),
             )),
@@ -88,6 +88,29 @@ class HomePage extends StatelessWidget {
                 ),
                 onPressed: () {
                   Get.toNamed("/users");
+                },
+              )),
+            )),
+          ),
+          const SizedBox(height: 16),
+          SizedBox(
+            height: 50,
+            child: (Center(
+              child: (ElevatedButton(
+                style: ElevatedButton.styleFrom(
+                    minimumSize: const Size(120, 50),
+                    shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(10))),
+                child: Text(
+                  'Groups Page'.tr,
+                  style: GoogleFonts.roboto(
+                    fontWeight: FontWeight.bold,
+                    color: Colors.white,
+                    fontSize: 16,
+                  ),
+                ),
+                onPressed: () {
+                  Get.toNamed("/groups");
                 },
               )),
             )),
