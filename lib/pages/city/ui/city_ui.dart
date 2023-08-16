@@ -32,10 +32,10 @@ class CityPage extends GetView<CityController> {
           ),
         ),
       ),
-      // floatingActionButton: FloatingActionButton(
-      //   child: Icon(Icons.add),
-      //   onPressed: () => controller.insertCity(),
-      // ),
+      floatingActionButton: FloatingActionButton(
+        child: const Icon(Icons.add),
+        onPressed: () => controller.insertCity(),
+      ),
     );
   }
 }

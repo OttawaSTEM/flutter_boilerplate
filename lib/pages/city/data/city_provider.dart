@@ -1,4 +1,5 @@
 import 'package:get/get.dart';
+import 'package:get/get_connect/http/src/request/request.dart';
 
 import '../model/city_model.dart';
 
@@ -8,10 +9,10 @@ class CityProvider extends GetConnect {
     // All request will pass to jsonEncode so CasesModel.fromJson()
     httpClient.defaultDecoder = CityModel.listFromJson;
 
-    // httpClient.addRequestModifier((request) {
-    //   request.headers['Authorization'] = 'Bearer sdfsdfgsdfsdsdf12345678';
-    //   return request;
-    // });
+    httpClient.addRequestModifier((Request request) async {
+      request.headers['Authorization'] = 'Bearer sdfsdfgsdfsdsdf12345678';
+      return request;
+    });
   }
 
   Future<Response<List<CityModel>>> getCity() => get<List<CityModel>>(
