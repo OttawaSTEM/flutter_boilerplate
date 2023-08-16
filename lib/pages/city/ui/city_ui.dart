@@ -2,16 +2,12 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 import '../controller/city_controller.dart';
-import '../data/city_provider.dart';
 
 class CityPage extends GetView<CityController> {
-// class CityPage extends StatelessWidget {
   const CityPage({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    var controller = Get.put(CityController(cityProvider: CityProvider()));
-
     return Scaffold(
       appBar: AppBar(title: const Text('Cities')),
       body: Container(

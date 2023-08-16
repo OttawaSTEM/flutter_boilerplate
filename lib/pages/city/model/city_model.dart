@@ -8,8 +8,8 @@ class CityModel {
   String name;
 
   factory CityModel.fromJson(Map<String, dynamic> json) => CityModel(
-        abbreviation: json["sigla"],
-        name: json["nome"],
+        abbreviation: json['sigla'],
+        name: json['nome'],
       );
 
   static List<CityModel> listFromJson(list) =>

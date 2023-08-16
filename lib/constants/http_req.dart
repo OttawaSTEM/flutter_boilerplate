@@ -47,6 +47,7 @@ String fetchUserURL() {
   //   return 'https://${env['DOMAIN']}/api/users/';
   // }
   return 'https://flutter.ottawastem.com/api/groups/';
+  // return 'https://servicodados.ibge.gov.br/api/v1/localidades/estados';
 }
 
 // http headers
@@ -55,8 +56,4 @@ const Object apiHeaders = {
   'Accept': 'application/json',
 };
 
-const Object backendHeaders = {
-  'Content-Type': 'application/json',
-  'Accept': 'application/json',
-  'Authorization': 'Bearer val'
-};
+const Object backendHeaders = {'Content-Type': 'application/json', 'Accept': 'application/json', 'Authorization': 'Bearer val'};

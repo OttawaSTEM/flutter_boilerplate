@@ -1,91 +1,42 @@
-// import 'dart:convert';
-// import 'dart:io';
-// import 'package:flutter/material.dart';
-// import 'package:flutter_boilerplate/utils/rest_api.dart';
 import 'package:get/get.dart';
-// import 'package:get_storage/get_storage.dart';
-// import 'package:http/http.dart' as http;
-// import 'package:http/http.dart';
 
-// import '../../../constants/http_req.dart';
-// import '../../../constants/timeout.dart';
-// import '../../../utils/utils.dart';
+import '../data/groups_provider.dart';
+import '../model/groups_model.dart';
 
-// import 'package:flutter/foundation.dart';
+import 'package:flutter/foundation.dart';
 import 'package:logger/logger.dart';
 
 var logger = Logger();
 
-// class GroupsProvider extends GetConnect {
-class GroupsController extends GetxController {
-  final List<dynamic> data = [
-    // final List<Map<String, dynamic>> data = [
-    {'name': 'John', 'age': 30},
-    {'name': 'Alex', 'age': 29},
-    {'name': 'Lucas', 'age': 33},
-    {'name': 'Emily', 'age': 40},
-    {'name': 'Atom', 'age': 66},
-    {'name': 'Atom', 'age': 66}
-  ].obs;
+class GroupsController extends GetxController with StateMixin<List<GroupModel>> {
+  final GroupsProvider groupsProvider;
+  GroupsController({required this.groupsProvider});
 
-  // final List<dynamic> data = [].obs;
+  @override
+  void onInit() {
+    getGroups();
+    super.onInit();
+  }
 
-  // Future<Response> getGroups() {
-  //   var response = get('https://flutter.ottawastem.com/api/groups/');
-  //   // final data = jsonDecode(response.body);
-  //   data.assignAll(response.body);
-  // }
+  void getGroups() {
+    groupsProvider.getGroups().then((result) {
+      logger.i('GroupsController getGroups()');
+      logger.i(result.body);
+      List<GroupModel>? data = result.body;
+      change(data, status: RxStatus.success());
+    }, onError: (err) {
+      change(null, status: RxStatus.error(err.toString()));
+    });
+  }
 
-  // void fetchProducts() async {
-  //   var products = await HttpServices.fetchProducts();
-  //   if (products != null) {
-  //     getGroups.assignAll(products);
-  //   }
-  // }
+  void insertGroups() {
+    const body = {'nome': 'joao', 'idade': 47};
 
-  // @override
-  // void onInit() {
-  //   getGroups();
-  //   super.onInit();
-  // }
+    groupsProvider.postGroups(body).then((result) {
+      if (kDebugMode) {
+        logger.i(result.body?.name);
+        logger.i(result.body?.age);
+      }
+    });
+  }
 }
-
-// class GroupsController extends GetxController {
-//   final storage = GetStorage();
-
-
-//   // var restAPI = Get.put(RestAPI());
-
-//   // var data = [].obs;
-
-//   // getGroups() async {
-//   //   try {
-//   //     var response = await restAPI.getData();
-//   //     data = json.decode(response.body);
-//   //     if (kDebugMode) {
-//   //       logger.i(data);
-//   //     }
-//   //   } catch (e) {
-//   //     if (kDebugMode) {
-//   //       logger.i(e);
-//   //     }
-//   //     if (e.toString().contains('TimeoutException')) {
-//   //       snackbarMsg(
-//   //         title: 'Failed!',
-//   //         message: 'Unable to connect to server.',
-//   //         icon: const Icon(
-//   //           Icons.error_outline_outlined,
-//   //           color: Colors.red,
-//   //           size: 40,
-//   //         ),
-//   //       );
-//   //     }
-//   //   }
-//   // }
-
-//   @override
-//   void onInit() {
-//     getGroups();
-//     super.onInit();
-//   }
-// }
