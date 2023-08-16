@@ -1,22 +1,25 @@
-import 'dart:convert';
-import 'dart:io';
-import 'package:flutter/material.dart';
-import 'package:flutter_boilerplate/utils/rest_api.dart';
+// import 'dart:convert';
+// import 'dart:io';
+// import 'package:flutter/material.dart';
+// import 'package:flutter_boilerplate/utils/rest_api.dart';
 import 'package:get/get.dart';
-import 'package:get_storage/get_storage.dart';
-import 'package:http/http.dart' as http;
+// import 'package:get_storage/get_storage.dart';
+// import 'package:http/http.dart' as http;
+// import 'package:http/http.dart';
 
-import '../../../constants/http_req.dart';
-import '../../../constants/timeout.dart';
-import '../../../utils/utils.dart';
+// import '../../../constants/http_req.dart';
+// import '../../../constants/timeout.dart';
+// import '../../../utils/utils.dart';
 
-import 'package:flutter/foundation.dart';
+// import 'package:flutter/foundation.dart';
 import 'package:logger/logger.dart';
 
 var logger = Logger();
 
-class GroupProvider extends GetConnect {
-  final List<Map<String, dynamic>> data = [
+// class GroupsProvider extends GetConnect {
+class GroupsController extends GetxController {
+  final List<dynamic> data = [
+    // final List<Map<String, dynamic>> data = [
     {'name': 'John', 'age': 30},
     {'name': 'Alex', 'age': 29},
     {'name': 'Lucas', 'age': 33},
@@ -25,8 +28,26 @@ class GroupProvider extends GetConnect {
     {'name': 'Atom', 'age': 66}
   ].obs;
 
-  // Future<Response> getGroups() =>
-  //     get('https://flutter.ottawastem.com/api/groups/');
+  // final List<dynamic> data = [].obs;
+
+  // Future<Response> getGroups() {
+  //   var response = get('https://flutter.ottawastem.com/api/groups/');
+  //   // final data = jsonDecode(response.body);
+  //   data.assignAll(response.body);
+  // }
+
+  // void fetchProducts() async {
+  //   var products = await HttpServices.fetchProducts();
+  //   if (products != null) {
+  //     getGroups.assignAll(products);
+  //   }
+  // }
+
+  // @override
+  // void onInit() {
+  //   getGroups();
+  //   super.onInit();
+  // }
 }
 
 // class GroupsController extends GetxController {

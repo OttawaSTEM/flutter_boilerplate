@@ -34,6 +34,9 @@ const Map<String, String> enUS = {
   // Groups Page
   'Groups Page': 'Groups Page',
 
+  // City Page
+  'City Page': 'City Page',
+
   // Dashboard Page
   'Dashboard Page': 'Dashboard Page',
 

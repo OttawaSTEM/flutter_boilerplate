@@ -14,7 +14,7 @@ class GroupsPage extends StatelessWidget {
     // final Future _users = HttpService().get(url);
     // final Future usersJSON = GroupsController().getGroups();
     // var groupsController = Get.put(GroupProvider());
-    var groupsController = Get.put(GroupProvider());
+    var groupsController = Get.put(GroupsController());
 
     return Scaffold(
       appBar: AppBar(

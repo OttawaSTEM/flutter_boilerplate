@@ -115,6 +115,29 @@ class HomePage extends StatelessWidget {
               )),
             )),
           ),
+          const SizedBox(height: 16),
+          SizedBox(
+            height: 50,
+            child: (Center(
+              child: (ElevatedButton(
+                style: ElevatedButton.styleFrom(
+                    minimumSize: const Size(120, 50),
+                    shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(10))),
+                child: Text(
+                  'City Page'.tr,
+                  style: GoogleFonts.roboto(
+                    fontWeight: FontWeight.bold,
+                    color: Colors.white,
+                    fontSize: 16,
+                  ),
+                ),
+                onPressed: () {
+                  Get.toNamed("/city");
+                },
+              )),
+            )),
+          ),
           const SizedBox(height: 20),
           SizedBox(
             height: 50,
