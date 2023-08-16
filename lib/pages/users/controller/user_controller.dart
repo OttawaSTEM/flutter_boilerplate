@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'dart:io';
 import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
-import 'package:http/http.dart' as http;
+import "package:http/io_client.dart";
 
 import '../../../constants/http_req.dart';
 import '../../../constants/timeout.dart';
@@ -18,14 +18,15 @@ class UserController extends GetxController {
   final storage = GetStorage();
 
   Future getUsers() async {
-    if (kDebugMode) {
-      logger.i('getUsers');
-      logger.i(fetchUserURL());
-    }
     var data = [];
     String? token = storage.read('token');
 
     try {
+      // Android Let's Encrypt Server,  HandshakeException: Handshake error in client (OS Error: CERTIFICATE_VERIFY_FAILED: certificate has expired(handshake)
+      final ioc = HttpClient();
+      ioc.badCertificateCallback = (X509Certificate cert, String host, int port) => true;
+      final http = IOClient(ioc);
+
       final response = await http.get(
         Uri.parse(fetchUserURL()),
         headers: {

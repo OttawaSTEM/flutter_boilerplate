@@ -1,11 +1,11 @@
 class UserModel {
-  String? name;
-  int? age;
-
   UserModel({
     this.name,
     this.age,
   });
+
+  String? name;
+  int? age;
 
   UserModel.fromJson(Map<String, dynamic> json) {
     name = json['name'];
@@ -21,6 +21,5 @@ class UserModel {
     return data;
   }
 
-  static List<UserModel> listFromJson(list) =>
-      List<UserModel>.from(list.map((x) => UserModel.fromJson(x)));
+  static List<UserModel> listFromJson(list) => List<UserModel>.from(list.map((x) => UserModel.fromJson(x)));
 }
