@@ -13,14 +13,12 @@ class GroupsProvider extends GetConnect {
     //   request.headers['Authorization'] = 'Bearer sdfsdfgsdfsdsdf12345678';
     //   return request;
     // });
+    httpClient.maxAuthRetries = 3;
   }
 
-  Future<Response<List<GroupModel>>> getGroups() =>
-      get<List<GroupModel>>('https://flutter.ottawastem.com/api/groups/');
+  Future<Response<List<GroupModel>>> getGroups() => get<List<GroupModel>>('https://flutter.ottawastem.com/api/groups/');
   // get<List<GroupModel>>(
   //     'https://servicodados.ibge.gov.br/api/v1/localidades/estados');
 
-  Future<Response<GroupModel>> postGroups(body) =>
-      post<GroupModel>('http://192.168.0.101:3000/items', body,
-          decoder: (obj) => GroupModel.fromJson(obj));
+  Future<Response<GroupModel>> postGroups(body) => post<GroupModel>('http://192.168.0.101:3000/items', body, decoder: (obj) => GroupModel.fromJson(obj));
 }

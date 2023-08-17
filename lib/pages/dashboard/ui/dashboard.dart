@@ -26,22 +26,18 @@ class _DashboardPageState extends State<DashboardPage> {
       body: Container(
         decoration: const BoxDecoration(
           image: DecorationImage(
-            image: AssetImage("assets/images/dashboard-bg.png"),
+            image: AssetImage('assets/images/dashboard-bg.png'),
             fit: BoxFit.contain,
           ),
         ),
         child: Stack(
           children: <Widget>[
             Positioned(
-              left: landscapeScreen
-                  ? screenPosition('x', 0.15)
-                  : screenPosition('x', 0.095),
-              top: landscapeScreen
-                  ? screenPosition('y', -0.8)
-                  : screenPosition('y', -0.546),
+              left: landscapeScreen ? screenPosition('x', 0.15) : screenPosition('x', 0.095),
+              top: landscapeScreen ? screenPosition('y', -0.8) : screenPosition('y', -0.546),
               child: IconButton(
-                icon: SvgPicture.asset("assets/images/core/logo.svg"),
-                // icon: Image.asset("assets/images/logo.png"),
+                icon: SvgPicture.asset('assets/images/core/logo.svg'),
+                // icon: Image.asset('assets/images/logo.png'),
                 iconSize: 50,
                 onPressed: () => Get.back(),
               ),
