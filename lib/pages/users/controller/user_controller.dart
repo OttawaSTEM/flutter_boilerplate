@@ -4,7 +4,6 @@ import 'dart:io';
 import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
 import 'package:http/http.dart' as http;
-// import "package:http/io_client.dart";
 
 import '../../../constants/http_req.dart';
 import '../../../constants/timeout.dart';
