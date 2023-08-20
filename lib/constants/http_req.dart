@@ -46,8 +46,8 @@ String fetchUserURL() {
   // } else {
   //   return 'https://${env['DOMAIN']}/api/users/';
   // }
-  return 'http://localhost:8000/api/users/';
-  // return 'http://localhost:8000/api/groups/';
+  // return 'http://localhost:8000/api/users/';
+  return 'http://localhost:8000/api/groups/';
   // return 'https://flutter.ottawastem.com/api/groups/';
   // return 'https://flutter.ottawastem.com/api/users/';
   // return 'https://servicodados.ibge.gov.br/api/v1/localidades/estados';
