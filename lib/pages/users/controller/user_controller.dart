@@ -22,6 +22,9 @@ class UserController extends GetxController {
     String? token = storage.read('token');
 
     try {
+      if (kDebugMode) {
+        logger.i(fetchUserURL());
+      }
       final response = await http.get(
         Uri.parse(fetchUserURL()),
         headers: {
