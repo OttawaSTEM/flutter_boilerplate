@@ -9,7 +9,7 @@ import '../../../../constants/http_req.dart';
 import '../../../../constants/strings.dart';
 import '../../../../constants/timeout.dart';
 import '../../../home/ui/home.dart';
-import '../../../../utils/utils.dart';
+import '../../../../widgets/snack_bar_msg.dart';
 
 import 'package:flutter/foundation.dart';
 import 'package:logger/logger.dart';
@@ -97,8 +97,7 @@ class AuthController extends GetxController {
     } catch (e) {
       storage.remove('token');
       _authStatus = false;
-      if (e.toString().contains('TimeoutException') &&
-          !djangoAuthURL.contains('logout')) {
+      if (e.toString().contains('TimeoutException') && !djangoAuthURL.contains('logout')) {
         snackbarMsg(
           title: 'Sign In',
           message: 'Failed! - Unable to connect to server.',
@@ -112,8 +111,7 @@ class AuthController extends GetxController {
     }
   }
 
-  Future<void> usernameSignin(
-      {required String username, required String password}) async {
+  Future<void> usernameSignin({required String username, required String password}) async {
     final body = jsonEncode(
       {
         'email': username,

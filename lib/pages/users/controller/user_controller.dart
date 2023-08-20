@@ -7,7 +7,7 @@ import 'package:http/http.dart' as http;
 
 import '../../../constants/http_req.dart';
 import '../../../constants/timeout.dart';
-import '../../../utils/utils.dart';
+import '../../../../widgets/snack_bar_msg.dart';
 
 import 'package:flutter/foundation.dart';
 import 'package:logger/logger.dart';

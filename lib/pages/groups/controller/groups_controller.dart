@@ -1,56 +1,58 @@
+import 'dart:convert';
+import 'package:flutter/material.dart';
+import 'dart:io';
 import 'package:get/get.dart';
-import 'package:flutter_dotenv/flutter_dotenv.dart';
+import 'package:get_storage/get_storage.dart';
+import 'package:http/http.dart' as http;
 
-import '../data/groups_provider.dart';
-import '../model/groups_model.dart';
+import '../../../constants/http_req.dart';
+import '../../../constants/timeout.dart';
+import '../../../../widgets/snack_bar_msg.dart';
 
 import 'package:flutter/foundation.dart';
 import 'package:logger/logger.dart';
 
-final env = dotenv.env;
 var logger = Logger();
 
-class GroupsController extends GetxController with StateMixin<List<GroupModel>> {
-  final GroupsProvider groupsProvider;
-  GroupsController({required this.groupsProvider});
+class GroupsController extends GetxController {
+  final storage = GetStorage();
 
-  final String url = '${env['BASE_URL']}/api/groups/';
+  Future getGroups() async {
+    var data = [];
+    String? token = storage.read('token');
 
-  @override
-  void onInit() {
-    getGroups();
-    super.onInit();
-  }
-
-  void getGroups() {
-    groupsProvider.getGroups(url).then((result) {
-      List<GroupModel>? data = result.body;
-      change(data, status: RxStatus.success());
-    }, onError: (err) {
-      change(null, status: RxStatus.error(err.toString()));
-    });
-  }
-
-  void insertGroups() {
-    const body = {'nome': 'joao', 'idade': 47};
-
-    groupsProvider.postGroups(body).then((result) {
+    try {
       if (kDebugMode) {
-        logger.i(result.body?.name);
-        logger.i(result.body?.age);
+        logger.i(fetchUserURL());
       }
-    });
+      final response = await http.get(
+        Uri.parse(fetchUserURL()),
+        headers: {
+          HttpHeaders.authorizationHeader: 'Token $token',
+        },
+      ).timeout(
+        const Duration(seconds: httpRequestTimeout),
+      );
+      data = json.decode(response.body);
+      if (kDebugMode) {
+        logger.i(data);
+      }
+    } catch (e) {
+      if (kDebugMode) {
+        logger.i(e);
+      }
+      if (e.toString().contains('TimeoutException')) {
+        snackbarMsg(
+          title: 'Failed!',
+          message: 'Unable to connect to server.',
+          icon: const Icon(
+            Icons.error_outline_outlined,
+            color: Colors.red,
+            size: 40,
+          ),
+        );
+      }
+    }
+    return data;
   }
-}
-
-String djangoUserSigninURL() {
-  // if (Platform.isAndroid && kDebugMode) {
-  //   return 'http://${env['WIN_IP']}:8000/api/auth/login/';
-  // } else if (Platform.isIOS && kDebugMode) {
-  //   return 'http://${env['MAC_IP']}:8000/api/auth/login/';
-  // } else {
-  //   return 'https://${env['DOMAIN']}/api/auth/login/';
-  // }
-  return 'https://${env['MAC_IP']}:8000api/auth/login/';
-  // return 'https://flutter.ottawastem.com/api/auth/login/';
 }

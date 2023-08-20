@@ -1,7 +1,6 @@
 import 'package:get/get.dart';
 
 import '../pages/city/bindings/city_binding.dart';
-import '../pages/groups/bindings/groups_binding.dart';
 
 import '../pages/account/signin/ui/signin.dart';
 import '../pages/counter/ui/counter.dart';
@@ -56,7 +55,6 @@ class AppPages {
     GetPage(
       name: AppRoutes.groups,
       page: () => const GroupsPage(),
-      binding: GroupsBinding(),
       transition: Transition.leftToRightWithFade,
       transitionDuration: const Duration(milliseconds: transitionMS),
     ),
