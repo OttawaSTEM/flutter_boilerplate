@@ -28,10 +28,7 @@ class HomePage extends StatelessWidget {
             height: 50,
             child: (Center(
               child: (ElevatedButton(
-                style: ElevatedButton.styleFrom(
-                    minimumSize: const Size(120, 50),
-                    shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(10))),
+                style: ElevatedButton.styleFrom(minimumSize: const Size(120, 50), shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10))),
                 child: Text(
                   'Counter'.tr,
                   style: GoogleFonts.roboto(
@@ -51,10 +48,7 @@ class HomePage extends StatelessWidget {
             height: 50,
             child: (Center(
               child: (ElevatedButton(
-                style: ElevatedButton.styleFrom(
-                    minimumSize: const Size(120, 50),
-                    shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(10))),
+                style: ElevatedButton.styleFrom(minimumSize: const Size(120, 50), shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10))),
                 child: Text(
                   'Sign in'.tr,
                   style: GoogleFonts.roboto(
@@ -74,12 +68,9 @@ class HomePage extends StatelessWidget {
             height: 50,
             child: (Center(
               child: (ElevatedButton(
-                style: ElevatedButton.styleFrom(
-                    minimumSize: const Size(120, 50),
-                    shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(10))),
+                style: ElevatedButton.styleFrom(minimumSize: const Size(120, 50), shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10))),
                 child: Text(
-                  'Users List Page'.tr,
+                  'Users Page (Auth)'.tr,
                   style: GoogleFonts.roboto(
                     fontWeight: FontWeight.bold,
                     color: Colors.white,
@@ -97,12 +88,9 @@ class HomePage extends StatelessWidget {
             height: 50,
             child: (Center(
               child: (ElevatedButton(
-                style: ElevatedButton.styleFrom(
-                    minimumSize: const Size(120, 50),
-                    shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(10))),
+                style: ElevatedButton.styleFrom(minimumSize: const Size(120, 50), shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10))),
                 child: Text(
-                  'Groups Page'.tr,
+                  'Groups Page (No Auth)'.tr,
                   style: GoogleFonts.roboto(
                     fontWeight: FontWeight.bold,
                     color: Colors.white,
@@ -120,10 +108,7 @@ class HomePage extends StatelessWidget {
             height: 50,
             child: (Center(
               child: (ElevatedButton(
-                style: ElevatedButton.styleFrom(
-                    minimumSize: const Size(120, 50),
-                    shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(10))),
+                style: ElevatedButton.styleFrom(minimumSize: const Size(120, 50), shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10))),
                 child: Text(
                   'City Page'.tr,
                   style: GoogleFonts.roboto(
@@ -143,10 +128,7 @@ class HomePage extends StatelessWidget {
             height: 50,
             child: (Center(
               child: (ElevatedButton(
-                style: ElevatedButton.styleFrom(
-                    minimumSize: const Size(120, 50),
-                    shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(10))),
+                style: ElevatedButton.styleFrom(minimumSize: const Size(120, 50), shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10))),
                 child: Text(
                   'Dashboard Page'.tr,
                   style: GoogleFonts.roboto(
@@ -166,10 +148,7 @@ class HomePage extends StatelessWidget {
             height: 50,
             child: (Center(
               child: (ElevatedButton(
-                style: ElevatedButton.styleFrom(
-                    minimumSize: const Size(120, 50),
-                    shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(10))),
+                style: ElevatedButton.styleFrom(minimumSize: const Size(120, 50), shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10))),
                 child: Text(
                   'Websocket Chat'.tr,
                   style: GoogleFonts.roboto(

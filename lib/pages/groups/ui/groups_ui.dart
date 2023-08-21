@@ -17,7 +17,7 @@ class _GroupsPageState extends State<GroupsPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Users List Page'.tr),
+        title: Text('Groups Page'.tr),
       ),
       body: FutureBuilder(
         future: _groups,
