@@ -1,4 +1,3 @@
-import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
@@ -16,16 +15,20 @@ final env = dotenv.env;
 
 class UserController extends GetxController {
   final storage = GetStorage();
+
   final String url = '${env['BASE_URL']}/api/users/';
 
   getUsers() async {
-    var response = await RestAPI().getData(url);
+    String? token = storage.read('token');
+
+    var response = await RestAPI().getData(url, token);
     if (kDebugMode) {
       logger.i(url);
       // logger.i(response.body);
-      logger.i(response.hasError);
-      logger.i(response.status);
-      logger.i(response.statusCode);
+      logger.i(token);
+      // logger.i(response.hasError);
+      // logger.i(response.status);
+      // logger.i(response.statusCode);
     }
 
     if (!response.hasError) {
