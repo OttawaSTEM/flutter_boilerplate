@@ -1,20 +1,21 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_boilerplate/pages/home/ui/home.dart';
 import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
 
-import '../../../constants/http_req.dart';
+import '../../../pages/home/ui/home.dart';
 import '../../../utils/rest_api.dart';
 import '../../../../widgets/snack_bar_msg.dart';
 
 import 'package:flutter/foundation.dart';
+import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:logger/logger.dart';
 
 var logger = Logger();
+final env = dotenv.env;
 
 class GroupsController extends GetxController {
   final storage = GetStorage();
-  final String url = fetchUserURL();
+  final String url = '${env['BASE_URL']}/api/groups/';
 
   getGroups() async {
     var response = await RestAPI().getData(url);
