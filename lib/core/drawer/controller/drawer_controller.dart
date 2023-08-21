@@ -5,10 +5,10 @@ import 'package:get_storage/get_storage.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 import 'package:http/http.dart' as http;
 
-import '../../../pages/home/ui/home.dart';
 import '../../../../constants/http_req.dart';
 import '../../../../constants/strings.dart';
 import '../../../../constants/timeout.dart';
+import '../../../pages/home/ui/home.dart';
 import '../../../../widgets/snack_bar_msg.dart';
 
 import 'package:flutter/foundation.dart';
@@ -22,11 +22,20 @@ GoogleSignIn _googleSignIn = GoogleSignIn(
   ],
 );
 
-class AuthController extends GetxController {
+class SideDrawerController extends GetxController {
   final storage = GetStorage();
+  RxBool authStatus = false.obs;
 
-  bool _authStatus = false;
-  bool get authStatus => _authStatus;
+  @override
+  void onInit() {
+    String? token = storage.read('token');
+    logger.i(token);
+    if (token != null) {
+      authStatus.value = true;
+    }
+    // Get called when controller is created
+    super.onInit();
+  }
 
   Future<void> djangoAuth(String djangoAuthURL, Object body) async {
     try {
@@ -58,7 +67,7 @@ class AuthController extends GetxController {
 
       if (data['key'] != null) {
         storage.write("token", data['key']);
-        _authStatus = true;
+        authStatus.value = true;
         Get.to(() => const HomePage());
         snackbarMsg(
           title: 'Sign In',
@@ -71,7 +80,7 @@ class AuthController extends GetxController {
         );
       } else if (data['email'] != null) {
         storage.remove('token');
-        _authStatus = false;
+        authStatus.value = false;
         snackbarMsg(
           title: 'Sign In',
           message: 'Failed! - $txtSigninValidEmail.',
@@ -83,7 +92,7 @@ class AuthController extends GetxController {
         );
       } else if (data['non_field_errors'] != null) {
         storage.remove('token');
-        _authStatus = false;
+        authStatus.value = false;
         snackbarMsg(
           title: 'Sign In',
           message: 'Failed! - $txtSigninFailed.',
@@ -96,7 +105,7 @@ class AuthController extends GetxController {
       }
     } catch (e) {
       storage.remove('token');
-      _authStatus = false;
+      authStatus.value = false;
       if (e.toString().contains('TimeoutException') && !djangoAuthURL.contains('logout')) {
         snackbarMsg(
           title: 'Sign In',
@@ -163,7 +172,7 @@ class AuthController extends GetxController {
               storage.write('token', '');
               djangoAuth(djangoUserSignOutURL(), body);
               _googleSignIn.disconnect();
-              _authStatus = false;
+              authStatus.value = false;
               Get.back();
               snackbarMsg(
                 title: 'Sign Out',
@@ -174,6 +183,7 @@ class AuthController extends GetxController {
                   size: 40,
                 ),
               );
+              Get.to(() => const HomePage());
             },
           ),
         ],

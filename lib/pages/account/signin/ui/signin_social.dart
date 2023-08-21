@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+// import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
 
 import '../controller/auth_controller.dart';
@@ -26,6 +27,7 @@ class SigninSocial extends StatelessWidget {
           width: double.infinity,
           height: 50,
           child: OutlinedButton.icon(
+            // icon: SvgPicture.asset('assets/images/core/google-logo.svg'),
             icon: const Image(
               image: AssetImage('assets/images/core/google-logo.png'),
               width: 20,

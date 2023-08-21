@@ -2,14 +2,14 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
 
-import '../../../pages/account/signin/controller/auth_controller.dart';
+import '../controller/drawer_controller.dart';
 import '../../../pages/account/signin/ui/signin.dart';
 import '../../../pages/home/ui/home.dart';
 
 class NavDrawer extends StatelessWidget {
   NavDrawer({Key? key}) : super(key: key);
 
-  final AuthController authController = Get.put(AuthController());
+  final SideDrawerController controller = Get.put(SideDrawerController());
 
   @override
   Widget build(BuildContext context) => Drawer(
@@ -79,37 +79,39 @@ class NavDrawer extends StatelessWidget {
                 MaterialPageRoute(builder: (context) => const HomePage()),
               ),
             ),
-            authController.authStatus
-                ? ListTile(
-                    leading: const Icon(Icons.logout_outlined),
-                    title: Text(
-                      'Sign out'.tr,
-                      style: const TextStyle(
-                        fontSize: 18.0,
+            Obx(
+              () => controller.authStatus.value
+                  ? ListTile(
+                      leading: const Icon(Icons.logout_outlined),
+                      title: Text(
+                        'Sign out'.tr,
+                        style: const TextStyle(
+                          fontSize: 18.0,
+                        ),
                       ),
-                    ),
-                    onTap: () {
-                      // Close navigation drawer first
-                      Navigator.pop(context);
-                      authController.signOut();
-                    },
-                  )
-                : ListTile(
-                    leading: const Icon(Icons.login_outlined),
-                    title: Text(
-                      'Sign in'.tr,
-                      style: const TextStyle(
-                        fontSize: 18.0,
+                      onTap: () {
+                        // Close navigation drawer first
+                        Navigator.pop(context);
+                        controller.signOut();
+                      },
+                    )
+                  : ListTile(
+                      leading: const Icon(Icons.login_outlined),
+                      title: Text(
+                        'Sign in'.tr,
+                        style: const TextStyle(
+                          fontSize: 18.0,
+                        ),
                       ),
+                      onTap: () {
+                        // Close navigation drawer first
+                        Navigator.pop(context);
+                        Navigator.of(context).push(MaterialPageRoute(
+                          builder: (context) => const SigninPage(),
+                        ));
+                      },
                     ),
-                    onTap: () {
-                      // Close navigation drawer first
-                      Navigator.pop(context);
-                      Navigator.of(context).push(MaterialPageRoute(
-                        builder: (context) => const SigninPage(),
-                      ));
-                    },
-                  ),
+            ),
             const Divider(color: Colors.black54),
             ListTile(
               leading: const Icon(Icons.account_tree_outlined),

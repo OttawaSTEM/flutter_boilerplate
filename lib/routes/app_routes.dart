@@ -3,7 +3,7 @@ import 'package:get/get.dart';
 import '../pages/city/bindings/city_binding.dart';
 
 import '../pages/account/signin/ui/signin.dart';
-import '../pages/counter/ui/counter.dart';
+import '../pages/counter/ui/counter_ui.dart';
 import '../pages/home/ui/home.dart';
 import '../pages/users/ui/users_ui.dart';
 import '../pages/groups/ui/groups_ui.dart';
