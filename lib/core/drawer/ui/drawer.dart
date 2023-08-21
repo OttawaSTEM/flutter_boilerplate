@@ -27,45 +27,42 @@ class NavDrawer extends StatelessWidget {
       );
 
   Widget drawerHeader(BuildContext context) => Material(
-        // color: Colors.black54,
-        color: dividerColor,
         child: InkWell(
-            onTap: () {},
-            child: Container(
-              color: Colors.black54,
-              padding: EdgeInsets.only(
-                top: MediaQuery.of(context).padding.top,
-                bottom: 24,
-              ),
-              child: Column(
-                children: [
-                  const CircleAvatar(
+          onTap: () {},
+          child: Container(
+            color: Colors.blue[600],
+            padding: EdgeInsets.only(
+              top: MediaQuery.of(context).padding.top,
+              bottom: 24,
+            ),
+            child: Column(
+              children: [
+                const CircleAvatar(
+                  backgroundColor: Colors.white,
+                  radius: 55,
+                  child: CircleAvatar(
+                    radius: 50,
                     backgroundColor: Colors.white,
-                    radius: 55,
-                    child: CircleAvatar(
-                      radius: 50,
-                      backgroundColor: Colors.white,
-                      backgroundImage: AssetImage(appLogo),
-                    ),
+                    backgroundImage: AssetImage(appLogo),
                   ),
-                  const SizedBox(height: 12),
-                  Text(
-                    txtAppName,
-                    style: Theme.of(context)
-                        .textTheme
-                        .headlineMedium
-                        ?.merge(const TextStyle(color: Colors.white)),
-                  ),
-                  Text(
-                    txtContactEmail,
-                    style: Theme.of(context)
-                        .textTheme
-                        .titleMedium
-                        ?.merge(const TextStyle(color: Colors.white)),
-                  ),
-                ],
-              ),
-            )),
+                ),
+                const SizedBox(height: 12),
+                Text(
+                  txtAppName,
+                  style: Theme.of(context).textTheme.headlineSmall?.merge(
+                        const TextStyle(color: Colors.white),
+                      ),
+                ),
+                Text(
+                  txtContactEmail,
+                  style: Theme.of(context).textTheme.titleMedium?.merge(
+                        const TextStyle(color: Colors.white),
+                      ),
+                ),
+              ],
+            ),
+          ),
+        ),
       );
 
   Widget drawerMenuItems(BuildContext context) => Container(
