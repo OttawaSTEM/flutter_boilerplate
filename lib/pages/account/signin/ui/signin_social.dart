@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-import '../../../../constants/assets.dart';
-
 import '../controller/auth_controller.dart';
 
 class SigninSocial extends StatelessWidget {
@@ -29,7 +27,7 @@ class SigninSocial extends StatelessWidget {
           height: 50,
           child: OutlinedButton.icon(
             icon: const Image(
-              image: AssetImage(googleLogo),
+              image: AssetImage('assets/images/core/google-logo.png'),
               width: 20,
             ),
             onPressed: () {
@@ -41,15 +39,12 @@ class SigninSocial extends StatelessWidget {
         TextButton(
           onPressed: () {},
           child: Text.rich(
-            TextSpan(
-                text: 'Don\'t have an account? '.tr,
-                style: Theme.of(context).textTheme.bodySmall,
-                children: [
-                  TextSpan(
-                    text: 'Sign up'.tr,
-                    style: const TextStyle(color: Colors.blue),
-                  ),
-                ]),
+            TextSpan(text: 'Don\'t have an account? '.tr, style: Theme.of(context).textTheme.bodySmall, children: [
+              TextSpan(
+                text: 'Sign up'.tr,
+                style: const TextStyle(color: Colors.blue),
+              ),
+            ]),
           ),
         ),
       ],

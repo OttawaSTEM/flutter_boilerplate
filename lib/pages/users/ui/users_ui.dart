@@ -18,7 +18,7 @@ class _UserPageState extends State<UserPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Users List Page'.tr),
+        title: Text('Users Page'.tr),
       ),
       body: FutureBuilder(
         future: _users,

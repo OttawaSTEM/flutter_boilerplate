@@ -1,21 +1,23 @@
-// ignore: file_names
-
 const Map<String, String> enUS = {
   'Change Language': 'Change Language',
+  'Home': 'Home',
 
+  // Drawer
   'Home Page': 'Home Page',
-  'Flutter Boilerplate Project': 'Flutter Boilerplate Project',
+  'Flutter Project': 'Flutter Project',
+  'Plugins': 'Plugins',
+  'Notification': 'Notification',
 
-  // counter
+  // Counter
   'Counter GetX Page': 'Counter GetX Page',
 
-  // SignIn
+  // Account
   'Sign in': 'Sign in',
   'Sign up': 'Sign up',
   'Sign out': 'Sign out',
   'Email': 'Email',
-  'txtEmailAddress': 'ottawastem@gmail.com',
-  'txtAbout': 'Using Flutter Boilerplate to speed up the Flutter development',
+  'Email Address': 'ottawastem@gmail.com',
+  'About': 'Using Flutter Boilerplate to speed up the Flutter development',
   'Please enter your Email.': 'Please enter your Email.',
   'Forgot Password?': 'Forgot Password?',
   'Password': 'Password',
@@ -28,8 +30,8 @@ const Map<String, String> enUS = {
   // const String txtSigninSucess = 'You are successfully logged in.';
   // const String txtSigninValidEmail = 'Enter a valid email address.';
 
-  // Users List Page
-  'Users List Page': 'Users List Page',
+  // Users Page
+  'Users Page': 'Users Page',
 
   // Groups Page
   'Groups Page': 'Groups Page',

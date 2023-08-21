@@ -1,11 +1,5 @@
 import 'package:flutter/foundation.dart';
 
-// App content
-const String txtAppName = 'Flutter Boilerplate Project';
-const String txtContactEmail = 'ottawastem@gmail.com';
-const String txtAbout =
-    'Using Flutter Boilerplate to speed up the Flutter development';
-
 // Sign In
 const String txtEmail = 'Email';
 const String txtPassword = 'Password';

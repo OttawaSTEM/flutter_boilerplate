@@ -1,17 +1,15 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
-
-import '../../../constants/assets.dart';
-import '../../../constants/colors.dart';
-import '../../../constants/strings.dart';
 
 import '../../../pages/account/signin/controller/auth_controller.dart';
 import '../../../pages/account/signin/ui/signin.dart';
 import '../../../pages/home/ui/home.dart';
 
 class NavDrawer extends StatelessWidget {
-  final AuthController authController = Get.put(AuthController());
   NavDrawer({Key? key}) : super(key: key);
+
+  final AuthController authController = Get.put(AuthController());
 
   @override
   Widget build(BuildContext context) => Drawer(
@@ -37,24 +35,24 @@ class NavDrawer extends StatelessWidget {
             ),
             child: Column(
               children: [
-                const CircleAvatar(
+                CircleAvatar(
                   backgroundColor: Colors.white,
                   radius: 55,
                   child: CircleAvatar(
                     radius: 50,
                     backgroundColor: Colors.white,
-                    backgroundImage: AssetImage(appLogo),
+                    child: SvgPicture.asset('assets/images/core/logo.svg'),
                   ),
                 ),
                 const SizedBox(height: 12),
                 Text(
-                  txtAppName,
+                  'Flutter Project',
                   style: Theme.of(context).textTheme.headlineSmall?.merge(
                         const TextStyle(color: Colors.white),
                       ),
                 ),
                 Text(
-                  txtContactEmail,
+                  'Ottawa STEM Club',
                   style: Theme.of(context).textTheme.titleMedium?.merge(
                         const TextStyle(color: Colors.white),
                       ),
@@ -71,9 +69,9 @@ class NavDrawer extends StatelessWidget {
           children: [
             ListTile(
               leading: const Icon(Icons.home_outlined),
-              title: const Text(
-                txtHome,
-                style: TextStyle(
+              title: Text(
+                'Home'.tr,
+                style: const TextStyle(
                   fontSize: 18.0,
                 ),
               ),
@@ -84,9 +82,9 @@ class NavDrawer extends StatelessWidget {
             authController.authStatus
                 ? ListTile(
                     leading: const Icon(Icons.logout_outlined),
-                    title: const Text(
-                      txtSignout,
-                      style: TextStyle(
+                    title: Text(
+                      'Sign out'.tr,
+                      style: const TextStyle(
                         fontSize: 18.0,
                       ),
                     ),
@@ -98,9 +96,9 @@ class NavDrawer extends StatelessWidget {
                   )
                 : ListTile(
                     leading: const Icon(Icons.login_outlined),
-                    title: const Text(
-                      txtSignin,
-                      style: TextStyle(
+                    title: Text(
+                      'Sign in'.tr,
+                      style: const TextStyle(
                         fontSize: 18.0,
                       ),
                     ),
@@ -115,9 +113,9 @@ class NavDrawer extends StatelessWidget {
             const Divider(color: Colors.black54),
             ListTile(
               leading: const Icon(Icons.account_tree_outlined),
-              title: const Text(
-                'Plugins',
-                style: TextStyle(
+              title: Text(
+                'Plugins'.tr,
+                style: const TextStyle(
                   fontSize: 18.0,
                 ),
               ),
@@ -125,9 +123,9 @@ class NavDrawer extends StatelessWidget {
             ),
             ListTile(
               leading: const Icon(Icons.notifications_outlined),
-              title: const Text(
-                'Notification',
-                style: TextStyle(
+              title: Text(
+                'Notification'.tr,
+                style: const TextStyle(
                   fontSize: 18.0,
                 ),
               ),
