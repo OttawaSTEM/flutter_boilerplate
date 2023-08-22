@@ -35,7 +35,7 @@ class SigninSocial extends StatelessWidget {
             onPressed: () {
               authController.googleSignIn();
             },
-            label: Text('Sign in with Google'.tr),
+            label: Text('Login with Google'.tr),
           ),
         ),
         TextButton(

@@ -5,16 +5,19 @@ import 'package:get_storage/get_storage.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 import 'package:http/http.dart' as http;
 
-import '../../../../constants/http_req.dart';
+import '../../../../utils/rest_api.dart';
+// import '../../../../constants/http_req.dart';
 import '../../../../constants/strings.dart';
 import '../../../../constants/timeout.dart';
 import '../../../home/ui/home.dart';
 import '../../../../widgets/snack_bar_msg.dart';
 
 import 'package:flutter/foundation.dart';
+import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:logger/logger.dart';
 
 var logger = Logger();
+final env = dotenv.env;
 
 GoogleSignIn _googleSignIn = GoogleSignIn(
   scopes: <String>[
@@ -24,14 +27,19 @@ GoogleSignIn _googleSignIn = GoogleSignIn(
 
 class AuthController extends GetxController {
   final storage = GetStorage();
+  final String djangoLoginURL = '${env['BASE_URL']}/api/auth/login/';
+  final String djangoLogoutURL = '${env['BASE_URL']}/api/auth/logout/';
+  final String djangoSignupURL = '${env['BASE_URL']}/api/auth/signup/';
+  final String djangoGoogleAuthURL = '${env['BASE_URL']}/api/auth/google/';
 
-  bool _authStatus = false;
-  bool get authStatus => _authStatus;
+  // bool authStatus = false;
+  // bool get authStatus => authStatus;
+  RxBool authStatus = false.obs;
 
-  Future<void> djangoAuth(String djangoAuthURL, Object body) async {
+  Future<void> djangoAuthBak(String djangoAuthURL, Object body) async {
     try {
       if (kDebugMode) {
-        logger.i('djangoAuth');
+        logger.i('djangoAuthBak');
         logger.i(djangoAuthURL);
         logger.i(body);
       }
@@ -58,8 +66,8 @@ class AuthController extends GetxController {
 
       if (data['key'] != null) {
         storage.write("token", data['key']);
-        _authStatus = true;
-        Get.to(() => const HomePage());
+        authStatus.value = true;
+        Get.to(() => HomePage());
         snackbarMsg(
           title: 'Sign In',
           message: 'Succeed!',
@@ -71,7 +79,7 @@ class AuthController extends GetxController {
         );
       } else if (data['email'] != null) {
         storage.remove('token');
-        _authStatus = false;
+        authStatus.value = false;
         snackbarMsg(
           title: 'Sign In',
           message: 'Failed! - $txtSigninValidEmail.',
@@ -83,7 +91,7 @@ class AuthController extends GetxController {
         );
       } else if (data['non_field_errors'] != null) {
         storage.remove('token');
-        _authStatus = false;
+        authStatus.value = false;
         snackbarMsg(
           title: 'Sign In',
           message: 'Failed! - $txtSigninFailed.',
@@ -96,7 +104,7 @@ class AuthController extends GetxController {
       }
     } catch (e) {
       storage.remove('token');
-      _authStatus = false;
+      authStatus.value = false;
       if (e.toString().contains('TimeoutException') && !djangoAuthURL.contains('logout')) {
         snackbarMsg(
           title: 'Sign In',
@@ -111,14 +119,14 @@ class AuthController extends GetxController {
     }
   }
 
-  Future<void> usernameSignin({required String username, required String password}) async {
+  Future<void> djangoLoginBak({required String username, required String password}) async {
     final body = jsonEncode(
       {
         'email': username,
         'password': password,
       },
     );
-    djangoAuth(djangoUserSigninURL(), body);
+    djangoAuthBak(djangoLoginURL, body);
   }
 
   Future<void> googleSignIn() async {
@@ -129,8 +137,8 @@ class AuthController extends GetxController {
         final body = jsonEncode({
           'access_token': googleAuth.accessToken,
         });
-        final loginURL = djangoGoogleAuthURL();
-        djangoAuth(loginURL, body);
+        final loginURL = djangoGoogleAuthURL;
+        djangoAuthBak(loginURL, body);
       } else {
         storage.write('token', '');
         snackbarMsg(
@@ -150,34 +158,100 @@ class AuthController extends GetxController {
     }
   }
 
-  Future<void> signOut() async {
-    final body = jsonEncode({});
-    Get.dialog(
-      AlertDialog(
-        title: const Text('Sign Out'),
-        content: const Text('Are you sure to sign out?'),
-        actions: [
-          ElevatedButton(
-            child: const Text("Sign Out"),
-            onPressed: () {
-              storage.write('token', '');
-              djangoAuth(djangoUserSignOutURL(), body);
-              _googleSignIn.disconnect();
-              _authStatus = false;
-              Get.back();
-              snackbarMsg(
-                title: 'Sign Out',
-                message: 'Sucussed!',
-                icon: const Icon(
-                  Icons.check_circle_outline,
-                  color: Colors.green,
-                  size: 40,
-                ),
-              );
-            },
+  // Future<void> signOut() async {
+  //   final body = jsonEncode({});
+  //   Get.dialog(
+  //     AlertDialog(
+  //       title: const Text('Sign Out'),
+  //       content: const Text('Are you sure to sign out?'),
+  //       actions: [
+  //         ElevatedButton(
+  //           child: const Text("Sign Out"),
+  //           onPressed: () {
+  //             storage.write('token', '');
+  //             djangoAuthBak(djangoLogoutURL, body);
+  //             _googleSignIn.disconnect();
+  //             authStatus.value = false;
+  //             Get.back();
+  //             snackbarMsg(
+  //               title: 'Sign Out',
+  //               message: 'Sucussed!',
+  //               icon: const Icon(
+  //                 Icons.check_circle_outline,
+  //                 color: Colors.green,
+  //                 size: 40,
+  //               ),
+  //             );
+  //           },
+  //         ),
+  //       ],
+  //     ),
+  //   );
+  // }
+
+  void djangoSignout() async {
+    var response = await RestAPI().postData(djangoLogoutURL);
+
+    if (!response.hasError) {}
+  }
+
+  void djangoLogin({required String username, required String password}) async {
+    final payLoad = {
+      'email': username,
+      'password': password,
+    };
+    var response = await RestAPI().postData(djangoLoginURL, payLoad);
+
+    if (!response.hasError) {
+      var data = response.body;
+      if (data['key'] != null) {
+        storage.write("token", data['key']);
+        authStatus.value = true;
+        Get.to(() => HomePage());
+        snackbarMsg(
+          title: 'Login'.tr,
+          message: 'Login succeed.'.tr,
+          icon: const Icon(
+            Icons.check_circle_outline,
+            color: Colors.green,
+            size: 40,
           ),
-        ],
-      ),
-    );
+        );
+      } else if (data['email'] != null) {
+        storage.remove('token');
+        authStatus.value = false;
+        snackbarMsg(
+          title: 'Login'.tr,
+          message: 'Failed, Enter a valid email address.'.tr,
+          icon: const Icon(
+            Icons.error_outline_outlined,
+            color: Colors.red,
+            size: 40,
+          ),
+        );
+      } else if (data['non_field_errors'] != null) {
+        storage.remove('token');
+        authStatus.value = false;
+        snackbarMsg(
+          title: 'Login'.tr,
+          message: 'Failed, unable to log in with provided credentials.'.tr,
+          icon: const Icon(
+            Icons.error_outline_outlined,
+            color: Colors.red,
+            size: 40,
+          ),
+        );
+      } else {
+        snackbarMsg(
+          title: 'Error'.tr,
+          message: '${response.statusText}',
+          icon: const Icon(
+            Icons.error_outline_outlined,
+            color: Colors.red,
+            size: 40,
+          ),
+        );
+      }
+    }
   }
 }

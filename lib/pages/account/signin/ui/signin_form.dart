@@ -49,12 +49,9 @@ class SigninForm extends StatelessWidget {
                 hintText: 'Password'.tr,
                 border: const OutlineInputBorder(),
                 suffixIcon: IconButton(
-                  icon: obscuredController.isObscured.value
-                      ? const Icon(Icons.visibility)
-                      : const Icon(Icons.visibility_off),
+                  icon: obscuredController.isObscured.value ? const Icon(Icons.visibility_off) : const Icon(Icons.visibility),
                   onPressed: () {
-                    obscuredController.isObscured.value =
-                        !obscuredController.isObscured.value;
+                    obscuredController.isObscured.value = !obscuredController.isObscured.value;
                   },
                 ),
               ),
@@ -79,13 +76,13 @@ class SigninForm extends StatelessWidget {
               child: ElevatedButton(
                 onPressed: () {
                   if (formGlobalKey.currentState!.validate()) {
-                    authController.usernameSignin(
+                    authController.djangoLogin(
                       username: usernameController.text,
                       password: passwordController.text,
                     );
                   }
                 },
-                child: Text('Sign in'.tr),
+                child: Text('Login'.tr),
               ),
             ),
           ],

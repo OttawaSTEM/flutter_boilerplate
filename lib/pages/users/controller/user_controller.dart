@@ -44,7 +44,7 @@ class UserController extends GetxController {
           size: 40,
         ),
       );
-      Get.to(() => const HomePage());
+      Get.to(() => HomePage());
     }
   }
 }

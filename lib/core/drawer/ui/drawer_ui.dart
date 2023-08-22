@@ -76,7 +76,7 @@ class NavDrawer extends StatelessWidget {
                 ),
               ),
               onTap: () => Navigator.of(context).pushReplacement(
-                MaterialPageRoute(builder: (context) => const HomePage()),
+                MaterialPageRoute(builder: (context) => HomePage()),
               ),
             ),
             Obx(
@@ -84,7 +84,7 @@ class NavDrawer extends StatelessWidget {
                   ? ListTile(
                       leading: const Icon(Icons.logout_outlined),
                       title: Text(
-                        'Sign out'.tr,
+                        'Logout'.tr,
                         style: const TextStyle(
                           fontSize: 18.0,
                         ),
@@ -98,7 +98,7 @@ class NavDrawer extends StatelessWidget {
                   : ListTile(
                       leading: const Icon(Icons.login_outlined),
                       title: Text(
-                        'Sign in'.tr,
+                        'Login'.tr,
                         style: const TextStyle(
                           fontSize: 18.0,
                         ),

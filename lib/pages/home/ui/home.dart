@@ -2,14 +2,18 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 
+import '../../../core/drawer/controller/drawer_controller.dart';
 import '../../../core/drawer/ui/drawer_ui.dart';
 
 class HomePage extends StatelessWidget {
-  const HomePage({Key? key}) : super(key: key);
+  HomePage({Key? key}) : super(key: key);
+  final GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey<ScaffoldState>();
+  final SideDrawerController controller = Get.put(SideDrawerController());
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      key: _scaffoldKey,
       appBar: AppBar(
         title: Text(
           'Home Page'.tr,
@@ -19,6 +23,12 @@ class HomePage extends StatelessWidget {
             fontSize: 20,
           ),
         ),
+        leading: IconButton(
+            onPressed: () {
+              controller.updateLoginStatus();
+              _scaffoldKey.currentState!.openDrawer();
+            },
+            icon: const Icon(Icons.menu)),
       ),
       drawer: NavDrawer(),
       body: Column(
@@ -50,7 +60,7 @@ class HomePage extends StatelessWidget {
               child: (ElevatedButton(
                 style: ElevatedButton.styleFrom(minimumSize: const Size(120, 50), shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10))),
                 child: Text(
-                  'Sign in'.tr,
+                  'Login'.tr,
                   style: GoogleFonts.roboto(
                     fontWeight: FontWeight.bold,
                     color: Colors.white,

@@ -12,9 +12,9 @@ const Map<String, String> enUS = {
   'Counter GetX Page': 'Counter GetX Page',
 
   // Account
-  'Sign in': 'Sign in',
+  'Login': 'Login',
+  'Logout': 'Logout',
   'Sign up': 'Sign up',
-  'Sign out': 'Sign out',
   'Email': 'Email',
   'Email Address': 'ottawastem@gmail.com',
   'About': 'Using Flutter Boilerplate to speed up the Flutter development',
@@ -24,11 +24,12 @@ const Map<String, String> enUS = {
   'Please enter your password.': 'Please enter your password.',
   'Forgot Password': 'Forgot Password?',
   'OR': 'OR',
-  'Sign in with Google': 'Sign in with Google',
+  'Login with Google': 'Login with Google',
   'Don\'t have an account? ': 'Don\'t have an account? ',
-  // const String txtSigninFailed = 'Unable to log in with provided credentials.';
-  // const String txtSigninSucess = 'You are successfully logged in.';
-  // const String txtSigninValidEmail = 'Enter a valid email address.';
+  'Login succeed.': 'Login succeed.',
+  'Failed, enter a valid email address.': 'Failed, enter a valid email address.',
+  'Failed, unable to log in with provided credentials.': 'Failed, unable to log in with provided credentials.',
+  'Logout sucussed!': 'Logout sucussed!',
 
   // Users Page
   'Users Page': 'Users Page',

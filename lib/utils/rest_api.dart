@@ -11,9 +11,9 @@ class RestAPI extends GetConnect {
         },
       );
 
-  Future<Response> postData(String url, Map data) => post(
+  Future<Response> postData(String url, [Map? payload]) => post(
         url,
-        data,
+        payload,
         contentType: 'application/json; charset=UTF-8',
       );
 
