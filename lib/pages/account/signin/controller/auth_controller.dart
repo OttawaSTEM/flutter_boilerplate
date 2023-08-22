@@ -158,43 +158,6 @@ class AuthController extends GetxController {
     }
   }
 
-  // Future<void> signOut() async {
-  //   final body = jsonEncode({});
-  //   Get.dialog(
-  //     AlertDialog(
-  //       title: const Text('Sign Out'),
-  //       content: const Text('Are you sure to sign out?'),
-  //       actions: [
-  //         ElevatedButton(
-  //           child: const Text("Sign Out"),
-  //           onPressed: () {
-  //             storage.write('token', '');
-  //             djangoAuthBak(djangoLogoutURL, body);
-  //             _googleSignIn.disconnect();
-  //             authStatus.value = false;
-  //             Get.back();
-  //             snackbarMsg(
-  //               title: 'Sign Out',
-  //               message: 'Sucussed!',
-  //               icon: const Icon(
-  //                 Icons.check_circle_outline,
-  //                 color: Colors.green,
-  //                 size: 40,
-  //               ),
-  //             );
-  //           },
-  //         ),
-  //       ],
-  //     ),
-  //   );
-  // }
-
-  void djangoSignout() async {
-    var response = await RestAPI().postData(djangoLogoutURL);
-
-    if (!response.hasError) {}
-  }
-
   void djangoLogin({required String username, required String password}) async {
     final payLoad = {
       'email': username,

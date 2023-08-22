@@ -30,7 +30,6 @@ class SideDrawerController extends GetxController {
     } else {
       authStatus.value = false;
     }
-    // Get called when controller is created
     super.onInit();
   }
 
@@ -54,7 +53,6 @@ class SideDrawerController extends GetxController {
           ElevatedButton(
             child: const Text("Sign Out"),
             onPressed: () async {
-              // storage.write('token', '');
               storage.remove('token');
               await RestAPI().postData(djangoLogoutURL);
               // awsit _googleSignIn.disconnect();
