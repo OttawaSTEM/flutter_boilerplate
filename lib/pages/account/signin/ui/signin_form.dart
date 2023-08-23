@@ -76,7 +76,7 @@ class SigninForm extends StatelessWidget {
               child: ElevatedButton(
                 onPressed: () {
                   if (formGlobalKey.currentState!.validate()) {
-                    authController.djangoLogin(
+                    authController.userLogin(
                       username: usernameController.text,
                       password: passwordController.text,
                     );

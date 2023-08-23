@@ -3,16 +3,11 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
 import 'package:google_sign_in/google_sign_in.dart';
-import 'package:http/http.dart' as http;
 
 import '../../../../utils/rest_api.dart';
-// import '../../../../constants/http_req.dart';
-import '../../../../constants/strings.dart';
-import '../../../../constants/timeout.dart';
 import '../../../home/ui/home.dart';
 import '../../../../widgets/snack_bar_msg.dart';
 
-import 'package:flutter/foundation.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:logger/logger.dart';
 
@@ -36,134 +31,8 @@ class AuthController extends GetxController {
   // bool get authStatus => authStatus;
   RxBool authStatus = false.obs;
 
-  Future<void> djangoAuthBak(String djangoAuthURL, Object body) async {
-    try {
-      if (kDebugMode) {
-        logger.i('djangoAuthBak');
-        logger.i(djangoAuthURL);
-        logger.i(body);
-      }
-
-      const dynamic headers = {
-        'Accept': '*/*',
-        'Content-Type': 'application/json',
-      };
-
-      final response = await http
-          .post(
-            Uri.parse(djangoAuthURL),
-            headers: headers,
-            body: body,
-          )
-          .timeout(
-            const Duration(seconds: httpRequestTimeout),
-          );
-
-      final data = jsonDecode(response.body);
-      if (kDebugMode) {
-        logger.i(data);
-      }
-
-      if (data['key'] != null) {
-        storage.write("token", data['key']);
-        authStatus.value = true;
-        Get.to(() => HomePage());
-        snackbarMsg(
-          title: 'Sign In',
-          message: 'Succeed!',
-          icon: const Icon(
-            Icons.check_circle_outline,
-            color: Colors.green,
-            size: 40,
-          ),
-        );
-      } else if (data['email'] != null) {
-        storage.remove('token');
-        authStatus.value = false;
-        snackbarMsg(
-          title: 'Sign In',
-          message: 'Failed! - $txtSigninValidEmail.',
-          icon: const Icon(
-            Icons.error_outline_outlined,
-            color: Colors.red,
-            size: 40,
-          ),
-        );
-      } else if (data['non_field_errors'] != null) {
-        storage.remove('token');
-        authStatus.value = false;
-        snackbarMsg(
-          title: 'Sign In',
-          message: 'Failed! - $txtSigninFailed.',
-          icon: const Icon(
-            Icons.error_outline_outlined,
-            color: Colors.red,
-            size: 40,
-          ),
-        );
-      }
-    } catch (e) {
-      storage.remove('token');
-      authStatus.value = false;
-      if (e.toString().contains('TimeoutException') && !djangoAuthURL.contains('logout')) {
-        snackbarMsg(
-          title: 'Sign In',
-          message: 'Failed! - Unable to connect to server.',
-          icon: const Icon(
-            Icons.error_outline_outlined,
-            color: Colors.red,
-            size: 40,
-          ),
-        );
-      }
-    }
-  }
-
-  Future<void> djangoLoginBak({required String username, required String password}) async {
-    final body = jsonEncode(
-      {
-        'email': username,
-        'password': password,
-      },
-    );
-    djangoAuthBak(djangoLoginURL, body);
-  }
-
-  Future<void> googleSignIn() async {
-    try {
-      final result = await _googleSignIn.signIn();
-      final googleAuth = await result?.authentication;
-      if (googleAuth != null) {
-        final body = jsonEncode({
-          'access_token': googleAuth.accessToken,
-        });
-        final loginURL = djangoGoogleAuthURL;
-        djangoAuthBak(loginURL, body);
-      } else {
-        storage.write('token', '');
-        snackbarMsg(
-          title: 'Google Sign Iut',
-          message: 'Failed!',
-          icon: const Icon(
-            Icons.error_outline_outlined,
-            color: Colors.red,
-            size: 40,
-          ),
-        );
-      }
-      logger.i('Login Google successfully');
-    } catch (e) {
-      storage.write('token', '');
-      logger.e(e);
-    }
-  }
-
-  void djangoLogin({required String username, required String password}) async {
-    final payLoad = {
-      'email': username,
-      'password': password,
-    };
-    var response = await RestAPI().postData(djangoLoginURL, payLoad);
+  void djangoAuth(String url, Object body) async {
+    var response = await RestAPI().postData(url, body);
 
     if (!response.hasError) {
       var data = response.body;
@@ -215,6 +84,59 @@ class AuthController extends GetxController {
           ),
         );
       }
+    } else if (!response.isOk) {
+      snackbarMsg(
+        title: 'Error',
+        message: 'Backend server error, Status Code: ${response.statusCode}.',
+        icon: const Icon(
+          Icons.error_outline_outlined,
+          color: Colors.red,
+          size: 40,
+        ),
+      );
     }
+  }
+
+  Future<void> googleLogin() async {
+    try {
+      final result = await _googleSignIn.signIn();
+      final googleAuth = await result?.authentication;
+      if (googleAuth != null) {
+        final body = jsonEncode({
+          'access_token': googleAuth.accessToken,
+        });
+        djangoAuth(djangoGoogleAuthURL, body);
+      } else {
+        storage.remove('token');
+        snackbarMsg(
+          title: 'Error'.tr,
+          message: 'Google Login failed'.tr,
+          icon: const Icon(
+            Icons.error_outline_outlined,
+            color: Colors.red,
+            size: 40,
+          ),
+        );
+      }
+    } catch (e) {
+      storage.remove('token');
+      snackbarMsg(
+        title: 'Google Login failed'.tr,
+        message: e.toString(),
+        icon: const Icon(
+          Icons.error_outline_outlined,
+          color: Colors.red,
+          size: 40,
+        ),
+      );
+    }
+  }
+
+  void userLogin({required String username, required String password}) async {
+    final body = {
+      'email': username,
+      'password': password,
+    };
+    djangoAuth(djangoLoginURL, body);
   }
 }

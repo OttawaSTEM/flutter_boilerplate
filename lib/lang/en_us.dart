@@ -30,6 +30,9 @@ const Map<String, String> enUS = {
   'Failed, enter a valid email address.': 'Failed, enter a valid email address.',
   'Failed, unable to log in with provided credentials.': 'Failed, unable to log in with provided credentials.',
   'Logout sucussed!': 'Logout sucussed!',
+  'Could not connect to backend server.': 'Could not connect to backend server.',
+  'Google Login': 'Google Login',
+  'Google Login failed': 'Google Login failed',
 
   // Users Page
   'Users Page': 'Users Page',

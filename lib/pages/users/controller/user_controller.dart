@@ -6,7 +6,6 @@ import '../../../pages/home/ui/home.dart';
 import '../../../utils/rest_api.dart';
 import '../../../../widgets/snack_bar_msg.dart';
 
-import 'package:flutter/foundation.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:logger/logger.dart';
 
@@ -22,14 +21,6 @@ class UserController extends GetxController {
     String? token = storage.read('token');
 
     var response = await RestAPI().getData(url, token);
-    if (kDebugMode) {
-      logger.i(url);
-      // logger.i(response.body);
-      logger.i(token);
-      // logger.i(response.hasError);
-      // logger.i(response.status);
-      // logger.i(response.statusCode);
-    }
 
     if (!response.hasError) {
       var data = response.body;

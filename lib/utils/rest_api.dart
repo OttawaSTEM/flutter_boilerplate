@@ -11,10 +11,13 @@ class RestAPI extends GetConnect {
         },
       );
 
-  Future<Response> postData(String url, [Map? payload]) => post(
+  Future<Response> postData(String url, [Object? body]) => post(
         url,
-        payload,
-        contentType: 'application/json; charset=UTF-8',
+        body,
+        headers: {
+          'Accept': '*/*',
+          'contentType': 'application/json; charset=UTF-8',
+        },
       );
 
   GetSocket userMessages(String url) {
