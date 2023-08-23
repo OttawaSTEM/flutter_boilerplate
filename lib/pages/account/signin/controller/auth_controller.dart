@@ -24,6 +24,7 @@ class AuthController extends GetxController {
   final storage = GetStorage();
   final String djangoLoginURL = '${env['BASE_URL']}/api/auth/login/';
   final String djangoLogoutURL = '${env['BASE_URL']}/api/auth/logout/';
+  final String djangoPasswordResetURL = '${env['BASE_URL']}/api/auth/password/reset/';
   final String djangoSignupURL = '${env['BASE_URL']}/api/auth/signup/';
   final String djangoGoogleAuthURL = '${env['BASE_URL']}/api/auth/google/';
 
@@ -33,6 +34,9 @@ class AuthController extends GetxController {
 
   void djangoAuth(String url, Object body) async {
     var response = await RestAPI().postData(url, body);
+    logger.i(response.body);
+    logger.i(response.statusCode);
+    logger.i(response.statusText);
 
     if (!response.hasError) {
       var data = response.body;
@@ -70,6 +74,17 @@ class AuthController extends GetxController {
           icon: const Icon(
             Icons.error_outline_outlined,
             color: Colors.red,
+            size: 40,
+          ),
+        );
+      } else if (data['detail'] == 'Password reset e-mail has been sent.') {
+        Get.to(() => HomePage());
+        snackbarMsg(
+          title: 'Password Reset'.tr,
+          message: 'Password reset e-mail has been sent.'.tr,
+          icon: const Icon(
+            Icons.check_circle_outline,
+            color: Colors.green,
             size: 40,
           ),
         );
@@ -138,5 +153,12 @@ class AuthController extends GetxController {
       'password': password,
     };
     djangoAuth(djangoLoginURL, body);
+  }
+
+  void resetPassword({required String email}) async {
+    final body = {
+      'email': email,
+    };
+    djangoAuth(djangoPasswordResetURL, body);
   }
 }

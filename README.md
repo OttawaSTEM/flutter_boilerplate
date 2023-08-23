@@ -6,6 +6,8 @@ GetX Snippets
 Get.updateLocale(const Locale('zh', 'CN'));
 Get.updateLocale(const Locale('en', 'US'));
 ```
+# Flutter Google Fonts Icon
+https://fonts.google.com/icons
 
 # Websocket use GetxService
 chat

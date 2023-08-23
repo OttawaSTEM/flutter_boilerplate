@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
+import '../ui/password_reset.dart';
 import '../controller/auth_controller.dart';
 
 class ObscuredController extends GetxController {
@@ -12,7 +13,6 @@ class LoginForm extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    // final screenSize = MediaQuery.of(context).size;
     final ObscuredController obscuredController = Get.put(ObscuredController());
     final AuthController authController = Get.put(AuthController());
     final usernameController = TextEditingController();
@@ -67,7 +67,9 @@ class LoginForm extends StatelessWidget {
               alignment: Alignment.centerRight,
               child: TextButton(
                 child: Text('Forgot Password?'.tr),
-                onPressed: () {},
+                onPressed: () {
+                  Get.to(() => const PasswordResetPage());
+                },
               ),
             ),
             SizedBox(

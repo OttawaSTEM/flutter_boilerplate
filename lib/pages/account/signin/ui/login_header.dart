@@ -3,14 +3,11 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 
 class LoginHeader extends StatelessWidget {
-  final Size screenSize;
-  const LoginHeader({
-    Key? key,
-    required this.screenSize,
-  }) : super(key: key);
+  const LoginHeader({super.key});
 
   @override
   Widget build(BuildContext context) {
+    final screenSize = MediaQuery.of(context).size;
     return Column(
       mainAxisAlignment: MainAxisAlignment.center,
       // crossAxisAlignment: CrossAxisAlignment.start,
@@ -21,7 +18,7 @@ class LoginHeader extends StatelessWidget {
         ),
         const SizedBox(height: 20),
         Text('Flutter Project', style: Theme.of(context).textTheme.headlineSmall),
-        Text('Ottawa STEM Club', style: Theme.of(context).textTheme.bodySmall),
+        Text('Ottawa STEM Club', style: Theme.of(context).textTheme.bodyLarge),
         const SizedBox(height: 30),
       ],
     );

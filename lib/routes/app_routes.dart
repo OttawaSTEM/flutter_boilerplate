@@ -3,6 +3,7 @@ import 'package:get/get.dart';
 import '../pages/city/bindings/city_binding.dart';
 
 import '../pages/account/signin/ui/login.dart';
+import '../pages/account/signin/ui/password_reset.dart';
 import '../pages/counter/ui/counter_ui.dart';
 import '../pages/home/ui/home.dart';
 import '../pages/users/ui/users_ui.dart';
@@ -17,6 +18,7 @@ abstract class AppRoutes {
   static const String home = '/';
   static const String counter = '/counter';
   static const String login = '/signin';
+  static const String passwordReset = '/passwordReset';
   static const String users = '/users';
   static const String groups = '/groups';
   static const String city = '/city';
@@ -35,14 +37,20 @@ class AppPages {
       transitionDuration: const Duration(milliseconds: transitionMS),
     ),
     GetPage(
-      name: AppRoutes.counter,
-      page: () => const CounterPage(),
+      name: AppRoutes.login,
+      page: () => const LoginPage(),
       transition: Transition.leftToRightWithFade,
       transitionDuration: const Duration(milliseconds: transitionMS),
     ),
     GetPage(
-      name: AppRoutes.login,
-      page: () => const LoginPage(),
+      name: AppRoutes.passwordReset,
+      page: () => const PasswordResetPage(),
+      transition: Transition.leftToRightWithFade,
+      transitionDuration: const Duration(milliseconds: transitionMS),
+    ),
+    GetPage(
+      name: AppRoutes.counter,
+      page: () => const CounterPage(),
       transition: Transition.leftToRightWithFade,
       transitionDuration: const Duration(milliseconds: transitionMS),
     ),
