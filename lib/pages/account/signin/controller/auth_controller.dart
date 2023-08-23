@@ -35,9 +35,6 @@ class AuthController extends GetxController {
   void djangoAuth(String url, Object body) async {
     var response = await RestAPI().postData(url, body);
     var data = response.body;
-    logger.i(response.body);
-    logger.i(response.statusCode);
-    logger.i(response.statusText);
 
     if (!response.hasError) {
       if (data['key'] != null) {
@@ -116,9 +113,6 @@ class AuthController extends GetxController {
         );
       }
     } else if (!response.isOk) {
-      logger.i('response is not ok');
-      logger.i(data['username']);
-      logger.i(data['email']);
       if (data.containsKey('username')) {
         if (data['username'].contains('A user with that username already exists.')) {
           // Registration failed, user email is already registered
