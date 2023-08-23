@@ -25,7 +25,7 @@ class PasswordResetPage extends StatelessWidget {
             children: [
               const LoginHeader(),
               Text(
-                'Reset Passowrd Hints'.tr,
+                'Reset Password Hints'.tr,
                 style: const TextStyle(fontSize: 18),
               ),
               const SizedBox(height: 20),
@@ -43,7 +43,7 @@ class PasswordResetPage extends StatelessWidget {
                       ),
                       validator: (value) {
                         if (value == null || value.isEmpty) {
-                          return 'Please enter your Email.'.tr;
+                          return 'Please enter your valid email.'.tr;
                         }
                         return null;
                       },

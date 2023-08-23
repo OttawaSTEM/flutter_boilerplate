@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-// import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
 
+import 'signup.dart';
 import '../controller/auth_controller.dart';
 
 class LoginSocial extends StatelessWidget {
@@ -38,15 +38,30 @@ class LoginSocial extends StatelessWidget {
             label: Text('Login with Google'.tr),
           ),
         ),
-        TextButton(
-          onPressed: () {},
-          child: Text.rich(
-            TextSpan(text: 'Don\'t have an account? '.tr, style: Theme.of(context).textTheme.bodySmall, children: [
+        const SizedBox(
+          height: 20,
+        ),
+        Align(
+          alignment: Alignment.centerRight,
+          child: TextButton(
+            child: Text.rich(
               TextSpan(
-                text: 'Sign up'.tr,
-                style: const TextStyle(color: Colors.blue),
+                text: 'Don\'t have an account? '.tr,
+                style: Theme.of(context).textTheme.bodyMedium,
+                children: [
+                  TextSpan(
+                    text: 'Sign up'.tr,
+                    style: const TextStyle(
+                      color: Colors.blue,
+                      fontWeight: FontWeight.bold,
+                    ),
+                  ),
+                ],
               ),
-            ]),
+            ),
+            onPressed: () {
+              Get.to(() => const SignupPage());
+            },
           ),
         ),
       ],
