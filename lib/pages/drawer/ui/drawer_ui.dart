@@ -3,7 +3,7 @@ import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
 
 import '../controller/drawer_controller.dart';
-import '../../account/signin/ui/signin.dart';
+import '../../account/signin/ui/login.dart';
 import '../../home/ui/home.dart';
 
 class NavDrawer extends StatelessWidget {
@@ -107,7 +107,7 @@ class NavDrawer extends StatelessWidget {
                         // Close navigation drawer first
                         Navigator.pop(context);
                         Navigator.of(context).push(MaterialPageRoute(
-                          builder: (context) => const SigninPage(),
+                          builder: (context) => const LoginPage(),
                         ));
                       },
                     ),

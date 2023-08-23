@@ -4,8 +4,8 @@ import 'package:get/get.dart';
 
 import '../controller/auth_controller.dart';
 
-class SigninSocial extends StatelessWidget {
-  const SigninSocial({
+class LoginSocial extends StatelessWidget {
+  const LoginSocial({
     Key? key,
   }) : super(key: key);
 

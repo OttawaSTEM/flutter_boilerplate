@@ -2,7 +2,7 @@ import 'package:get/get.dart';
 
 import '../pages/city/bindings/city_binding.dart';
 
-import '../pages/account/signin/ui/signin.dart';
+import '../pages/account/signin/ui/login.dart';
 import '../pages/counter/ui/counter_ui.dart';
 import '../pages/home/ui/home.dart';
 import '../pages/users/ui/users_ui.dart';
@@ -42,7 +42,7 @@ class AppPages {
     ),
     GetPage(
       name: AppRoutes.login,
-      page: () => const SigninPage(),
+      page: () => const LoginPage(),
       transition: Transition.leftToRightWithFade,
       transitionDuration: const Duration(milliseconds: transitionMS),
     ),

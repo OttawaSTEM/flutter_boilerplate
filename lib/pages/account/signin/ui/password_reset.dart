@@ -66,8 +66,8 @@ class SigninForm extends StatelessWidget {
             Align(
               alignment: Alignment.centerRight,
               child: TextButton(
-                onPressed: () {},
                 child: Text('Forgot Password?'.tr),
+                onPressed: () {},
               ),
             ),
             SizedBox(

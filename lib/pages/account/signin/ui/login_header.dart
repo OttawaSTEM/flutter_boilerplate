@@ -2,9 +2,9 @@ import 'package:flutter/material.dart';
 
 import 'package:flutter_svg/svg.dart';
 
-class SigninHeader extends StatelessWidget {
+class LoginHeader extends StatelessWidget {
   final Size screenSize;
-  const SigninHeader({
+  const LoginHeader({
     Key? key,
     required this.screenSize,
   }) : super(key: key);
