@@ -31,149 +31,151 @@ class HomePage extends StatelessWidget {
             icon: const Icon(Icons.menu)),
       ),
       drawer: NavDrawer(),
-      body: Column(
-        children: [
-          const SizedBox(height: 20),
-          SizedBox(
-            height: 50,
-            child: (Center(
-              child: (ElevatedButton(
-                style: ElevatedButton.styleFrom(minimumSize: const Size(120, 50), shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10))),
-                child: Text(
-                  'Counter'.tr,
-                  style: GoogleFonts.roboto(
-                    fontWeight: FontWeight.bold,
-                    color: Colors.white,
-                    fontSize: 16,
+      body: SingleChildScrollView(
+        child: Column(
+          children: [
+            const SizedBox(height: 20),
+            SizedBox(
+              height: 50,
+              child: (Center(
+                child: (ElevatedButton(
+                  style: ElevatedButton.styleFrom(minimumSize: const Size(120, 50), shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10))),
+                  child: Text(
+                    'Counter'.tr,
+                    style: GoogleFonts.roboto(
+                      fontWeight: FontWeight.bold,
+                      color: Colors.white,
+                      fontSize: 16,
+                    ),
                   ),
-                ),
-                onPressed: () {
-                  Get.toNamed("/counter");
-                },
+                  onPressed: () {
+                    Get.toNamed("/counter");
+                  },
+                )),
               )),
-            )),
-          ),
-          const SizedBox(height: 20),
-          SizedBox(
-            height: 50,
-            child: (Center(
-              child: (ElevatedButton(
-                style: ElevatedButton.styleFrom(minimumSize: const Size(120, 50), shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10))),
-                child: Text(
-                  'Login'.tr,
-                  style: GoogleFonts.roboto(
-                    fontWeight: FontWeight.bold,
-                    color: Colors.white,
-                    fontSize: 16,
+            ),
+            const SizedBox(height: 20),
+            SizedBox(
+              height: 50,
+              child: (Center(
+                child: (ElevatedButton(
+                  style: ElevatedButton.styleFrom(minimumSize: const Size(120, 50), shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10))),
+                  child: Text(
+                    'Login'.tr,
+                    style: GoogleFonts.roboto(
+                      fontWeight: FontWeight.bold,
+                      color: Colors.white,
+                      fontSize: 16,
+                    ),
                   ),
-                ),
-                onPressed: () {
-                  Get.toNamed("/signin");
-                },
+                  onPressed: () {
+                    Get.toNamed("/signin");
+                  },
+                )),
               )),
-            )),
-          ),
-          const SizedBox(height: 16),
-          SizedBox(
-            height: 50,
-            child: (Center(
-              child: (ElevatedButton(
-                style: ElevatedButton.styleFrom(minimumSize: const Size(120, 50), shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10))),
-                child: Text(
-                  'Users Page (Auth)'.tr,
-                  style: GoogleFonts.roboto(
-                    fontWeight: FontWeight.bold,
-                    color: Colors.white,
-                    fontSize: 16,
+            ),
+            const SizedBox(height: 16),
+            SizedBox(
+              height: 50,
+              child: (Center(
+                child: (ElevatedButton(
+                  style: ElevatedButton.styleFrom(minimumSize: const Size(120, 50), shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10))),
+                  child: Text(
+                    'Users Page (Auth)'.tr,
+                    style: GoogleFonts.roboto(
+                      fontWeight: FontWeight.bold,
+                      color: Colors.white,
+                      fontSize: 16,
+                    ),
                   ),
-                ),
-                onPressed: () {
-                  Get.toNamed("/users");
-                },
+                  onPressed: () {
+                    Get.toNamed("/users");
+                  },
+                )),
               )),
-            )),
-          ),
-          const SizedBox(height: 16),
-          SizedBox(
-            height: 50,
-            child: (Center(
-              child: (ElevatedButton(
-                style: ElevatedButton.styleFrom(minimumSize: const Size(120, 50), shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10))),
-                child: Text(
-                  'Groups Page (No Auth)'.tr,
-                  style: GoogleFonts.roboto(
-                    fontWeight: FontWeight.bold,
-                    color: Colors.white,
-                    fontSize: 16,
+            ),
+            const SizedBox(height: 16),
+            SizedBox(
+              height: 50,
+              child: (Center(
+                child: (ElevatedButton(
+                  style: ElevatedButton.styleFrom(minimumSize: const Size(120, 50), shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10))),
+                  child: Text(
+                    'Groups Page (No Auth)'.tr,
+                    style: GoogleFonts.roboto(
+                      fontWeight: FontWeight.bold,
+                      color: Colors.white,
+                      fontSize: 16,
+                    ),
                   ),
-                ),
-                onPressed: () {
-                  Get.toNamed("/groups");
-                },
+                  onPressed: () {
+                    Get.toNamed("/groups");
+                  },
+                )),
               )),
-            )),
-          ),
-          const SizedBox(height: 16),
-          SizedBox(
-            height: 50,
-            child: (Center(
-              child: (ElevatedButton(
-                style: ElevatedButton.styleFrom(minimumSize: const Size(120, 50), shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10))),
-                child: Text(
-                  'City Page'.tr,
-                  style: GoogleFonts.roboto(
-                    fontWeight: FontWeight.bold,
-                    color: Colors.white,
-                    fontSize: 16,
+            ),
+            const SizedBox(height: 16),
+            SizedBox(
+              height: 50,
+              child: (Center(
+                child: (ElevatedButton(
+                  style: ElevatedButton.styleFrom(minimumSize: const Size(120, 50), shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10))),
+                  child: Text(
+                    'City Page'.tr,
+                    style: GoogleFonts.roboto(
+                      fontWeight: FontWeight.bold,
+                      color: Colors.white,
+                      fontSize: 16,
+                    ),
                   ),
-                ),
-                onPressed: () {
-                  Get.toNamed("/city");
-                },
+                  onPressed: () {
+                    Get.toNamed("/city");
+                  },
+                )),
               )),
-            )),
-          ),
-          const SizedBox(height: 20),
-          SizedBox(
-            height: 50,
-            child: (Center(
-              child: (ElevatedButton(
-                style: ElevatedButton.styleFrom(minimumSize: const Size(120, 50), shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10))),
-                child: Text(
-                  'Dashboard Page'.tr,
-                  style: GoogleFonts.roboto(
-                    fontWeight: FontWeight.bold,
-                    color: Colors.white,
-                    fontSize: 16,
+            ),
+            const SizedBox(height: 20),
+            SizedBox(
+              height: 50,
+              child: (Center(
+                child: (ElevatedButton(
+                  style: ElevatedButton.styleFrom(minimumSize: const Size(120, 50), shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10))),
+                  child: Text(
+                    'Dashboard Page'.tr,
+                    style: GoogleFonts.roboto(
+                      fontWeight: FontWeight.bold,
+                      color: Colors.white,
+                      fontSize: 16,
+                    ),
                   ),
-                ),
-                onPressed: () {
-                  Get.toNamed("/dashboard");
-                },
+                  onPressed: () {
+                    Get.toNamed("/dashboard");
+                  },
+                )),
               )),
-            )),
-          ),
-          const SizedBox(height: 20),
-          SizedBox(
-            height: 50,
-            child: (Center(
-              child: (ElevatedButton(
-                style: ElevatedButton.styleFrom(minimumSize: const Size(120, 50), shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10))),
-                child: Text(
-                  'Websocket Chat'.tr,
-                  style: GoogleFonts.roboto(
-                    fontWeight: FontWeight.bold,
-                    color: Colors.white,
-                    fontSize: 16,
+            ),
+            const SizedBox(height: 20),
+            SizedBox(
+              height: 50,
+              child: (Center(
+                child: (ElevatedButton(
+                  style: ElevatedButton.styleFrom(minimumSize: const Size(120, 50), shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10))),
+                  child: Text(
+                    'Websocket Chat'.tr,
+                    style: GoogleFonts.roboto(
+                      fontWeight: FontWeight.bold,
+                      color: Colors.white,
+                      fontSize: 16,
+                    ),
                   ),
-                ),
-                onPressed: () {
-                  Get.toNamed("/chat");
-                },
+                  onPressed: () {
+                    Get.toNamed("/chat");
+                  },
+                )),
               )),
-            )),
-          ),
-        ],
+            ),
+          ],
+        ),
       ),
     );
   }

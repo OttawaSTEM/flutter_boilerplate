@@ -84,14 +84,14 @@ flutter_icons:
     generate: true
     image_path: "assets/launcher/launcher.png"
 
-# For update splash
-# flutter pub run flutter_native_splash:create
+# Update splash: dart run flutter_native_splash:create
 flutter_native_splash:
   color: "#ffffff"
   color_dark: "#121212" # For OS dark mode
   # color_dark: "#ffffff"     # For OS dark mode
-  image: assets/images/launcher/splash.png
-  image_dark: assets/images/launcher/splash.png
+  fill: true
+  image: assets/launcher/splash.png
+  image_dark: assets/launcher/splash.png
   android: true
   ios: true
 
