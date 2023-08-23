@@ -3,8 +3,8 @@ import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
 
 import '../controller/drawer_controller.dart';
-import '../../../pages/account/signin/ui/signin.dart';
-import '../../../pages/home/ui/home.dart';
+import '../../account/signin/ui/signin.dart';
+import '../../home/ui/home.dart';
 
 class NavDrawer extends StatelessWidget {
   NavDrawer({Key? key}) : super(key: key);

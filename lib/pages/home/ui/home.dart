@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 
-import '../../../core/drawer/controller/drawer_controller.dart';
-import '../../../core/drawer/ui/drawer_ui.dart';
+import '../../drawer/controller/drawer_controller.dart';
+import '../../drawer/ui/drawer_ui.dart';
 
 class HomePage extends StatelessWidget {
   HomePage({Key? key}) : super(key: key);

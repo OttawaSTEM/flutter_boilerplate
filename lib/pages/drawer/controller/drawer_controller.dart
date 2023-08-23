@@ -4,7 +4,7 @@ import 'package:get_storage/get_storage.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 
 import '../../../../utils/rest_api.dart';
-import '../../../pages/home/ui/home.dart';
+import '../../home/ui/home.dart';
 import '../../../../widgets/snack_bar_msg.dart';
 
 import 'package:flutter_dotenv/flutter_dotenv.dart';
