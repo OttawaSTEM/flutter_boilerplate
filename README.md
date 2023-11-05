@@ -1,3 +1,9 @@
+# Install Flutter
+https://docs.flutter.dev/get-started/install/macos
+
+brew install cocoapods
+
+
 # VSCode Extension 
 GetX Snippets
 
