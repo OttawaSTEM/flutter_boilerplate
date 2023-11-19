@@ -5,6 +5,10 @@ import 'package:google_fonts/google_fonts.dart';
 import '../../drawer/controller/drawer_controller.dart';
 import '../../drawer/ui/drawer_ui.dart';
 
+// import '../../../widgets/app_bar.dart';
+// import '../../../widgets/textfield.dart';
+import '../../../widgets/custom_button.dart';
+
 class HomePage extends StatelessWidget {
   HomePage({Key? key}) : super(key: key);
   final GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey<ScaffoldState>();
@@ -14,6 +18,7 @@ class HomePage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       key: _scaffoldKey,
+      // appBar: const AppBarWidget(),
       appBar: AppBar(
         title: Text(
           'Home Page'.tr,
@@ -174,6 +179,23 @@ class HomePage extends StatelessWidget {
                 )),
               )),
             ),
+            const SizedBox(height: 16),
+            CustomButton(
+              platform: 'Ottawa STEM Club',
+              onPressed: () {
+                // Button on pressed action
+              },
+            ),
+
+            // const SizedBox(height: 20),
+            // const SizedBox(
+            //   height: 50,
+            //   child: (Center(
+            //     child: (TextFieldWidget(
+            //         onChange: null,
+            //         ),),
+            //   ),),
+            // ),
           ],
         ),
       ),
