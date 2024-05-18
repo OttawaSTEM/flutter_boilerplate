@@ -10,10 +10,14 @@ class CounterController extends GetxController {
   // final myMap = <String, int>{}.obs;
   // final user = User().obs; // Custom classes — it can be any class,
 
-  var counter = 0.obs;
+  // var counter = 0.obs;
+  int counter = 0;
 
   // Does not use Streams or ChangeNotifier, uses extremely low resources
-  void increment() => counter++;
+  void increment() {
+    counter++;
+    update();
+  }
 
   // Use Streams or ChangeNotifier, notifi widget counter have changed, uses more resources
   void decrement() {
@@ -22,7 +26,8 @@ class CounterController extends GetxController {
   }
 
   void reset() {
-    counter.value = 0;
+    counter = 0;
+    // counter.value = 0;
   }
 
   // @override

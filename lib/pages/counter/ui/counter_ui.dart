@@ -21,12 +21,18 @@ class CounterPage extends StatelessWidget {
             const Text(
               'You have pushed the button this many times:',
             ),
-            Obx(
-              () => Text(
-                '${counterController.counter}',
+            GetBuilder<CounterController>(
+              builder: (counterController) => Text(
+                "increment  ${counterController.counter}",
                 style: Theme.of(context).textTheme.headlineLarge,
               ),
             ),
+            // Obx(
+            //   () => Text(
+            //     '${counterController.counter}',
+            //     style: Theme.of(context).textTheme.headlineLarge,
+            //   ),
+            // ),
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: [
