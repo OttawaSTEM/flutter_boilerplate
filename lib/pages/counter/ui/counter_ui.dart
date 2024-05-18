@@ -3,12 +3,14 @@ import 'package:get/get.dart';
 
 import '../controller/counter_controller.dart';
 
-class CounterPage extends StatelessWidget {
+class CounterPage extends GetView<CounterController> {
+// class CounterPage extends StatelessWidget {              // Support Multiple controller
   const CounterPage({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    final CounterController controller = Get.put(CounterController()); // Support multiple controller
+    // final controller controller = Get.put(controller()); // Support multiple controller
+    final CounterController controller = Get.put(CounterController());
 
     return Scaffold(
       appBar: AppBar(
@@ -29,17 +31,11 @@ class CounterPage extends StatelessWidget {
               ),
             ),
             GetBuilder<CounterController>(
-              builder: (counterController) => Text(
-                "increment  ${counterController.counter}",
+              builder: (controller) => Text(
+                "increment  ${controller.counter}",
                 style: Theme.of(context).textTheme.headlineLarge,
               ),
             ),
-            // Obx(
-            //   () => Text(
-            //     '${counterController.counter}',
-            //     style: Theme.of(context).textTheme.headlineLarge,
-            //   ),
-            // ),
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: [
