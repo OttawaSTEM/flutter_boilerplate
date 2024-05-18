@@ -22,6 +22,13 @@ class CounterPage extends StatelessWidget {
               'You have pushed the button this many times:',
             ),
             GetBuilder<CounterController>(
+              id: 'txtCounter1',
+              builder: (counterController) => Text(
+                "increment  ${counterController.counter}",
+                style: Theme.of(context).textTheme.headlineLarge,
+              ),
+            ),
+            GetBuilder<CounterController>(
               builder: (counterController) => Text(
                 "increment  ${counterController.counter}",
                 style: Theme.of(context).textTheme.headlineLarge,

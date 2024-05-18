@@ -16,17 +16,18 @@ class CounterController extends GetxController {
   // Does not use Streams or ChangeNotifier, uses extremely low resources
   void increment() {
     counter++;
-    update();
+    update(['txtCounter1']);
   }
 
   // Use Streams or ChangeNotifier, notifi widget counter have changed, uses more resources
   void decrement() {
     counter--;
-    update();
+    update(['txtCounter1']);
   }
 
   void reset() {
     counter = 0;
+    update(['txtCounter1']);
     // counter.value = 0;
   }
 
