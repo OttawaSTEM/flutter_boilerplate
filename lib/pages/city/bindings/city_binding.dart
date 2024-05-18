@@ -7,6 +7,6 @@ class CityBinding extends Bindings {
   @override
   void dependencies() {
     Get.lazyPut(() => CityProvider());
-    Get.put(CityController(cityProvider: Get.find()));
+    Get.lazyPut<CityController>(() => CityController(cityProvider: Get.find()));
   }
 }
