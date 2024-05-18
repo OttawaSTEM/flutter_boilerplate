@@ -19,7 +19,7 @@ class CounterController extends GetxController {
     update(['txtCounter1']);
   }
 
-  // Use Streams or ChangeNotifier, notifi widget counter have changed, uses more resources
+  // Use Streams or ChangeNotifier, notify widget counter have changed, uses more resources
   void decrement() {
     counter--;
     update(['txtCounter1']);

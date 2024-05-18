@@ -8,7 +8,7 @@ class CounterPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final CounterController counterController = Get.put(CounterController());
+    final CounterController controller = Get.put(CounterController()); // Support multiple controller
 
     return Scaffold(
       appBar: AppBar(
@@ -23,8 +23,8 @@ class CounterPage extends StatelessWidget {
             ),
             GetBuilder<CounterController>(
               id: 'txtCounter1',
-              builder: (counterController) => Text(
-                "increment  ${counterController.counter}",
+              builder: (controller) => Text(
+                "increment  ${controller.counter}",
                 style: Theme.of(context).textTheme.headlineLarge,
               ),
             ),
@@ -44,15 +44,15 @@ class CounterPage extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: [
                 ElevatedButton(
-                  onPressed: counterController.decrement,
+                  onPressed: controller.decrement,
                   child: const Icon(Icons.remove),
                 ),
                 ElevatedButton(
-                  onPressed: counterController.reset,
+                  onPressed: controller.reset,
                   child: const Icon(Icons.refresh),
                 ),
                 ElevatedButton(
-                  onPressed: counterController.increment,
+                  onPressed: controller.increment,
                   child: const Icon(Icons.add),
                 ),
               ],
