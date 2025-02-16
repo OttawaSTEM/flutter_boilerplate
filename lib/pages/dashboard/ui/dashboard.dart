@@ -6,7 +6,7 @@ import 'package:get_storage/get_storage.dart';
 import '../../../utils/utils.dart';
 
 class DashboardPage extends StatefulWidget {
-  const DashboardPage({Key? key}) : super(key: key);
+  const DashboardPage({super.key});
 
   @override
   State<DashboardPage> createState() => _DashboardPageState();

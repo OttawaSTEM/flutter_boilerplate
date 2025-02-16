@@ -4,7 +4,7 @@ import 'package:get/get.dart';
 import '../controller/city_controller.dart';
 
 class CityPage extends GetView<CityController> {
-  const CityPage({Key? key}) : super(key: key);
+  const CityPage({super.key});
 
   @override
   Widget build(BuildContext context) {

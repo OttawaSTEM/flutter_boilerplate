@@ -8,7 +8,7 @@ import 'login_header.dart';
 var logger = Logger();
 
 class PasswordResetPage extends StatelessWidget {
-  const PasswordResetPage({Key? key}) : super(key: key);
+  const PasswordResetPage({super.key});
 
   @override
   Widget build(BuildContext context) {

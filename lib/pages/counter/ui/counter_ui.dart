@@ -5,7 +5,7 @@ import '../controller/counter_controller.dart';
 
 class CounterPage extends GetView<CounterController> {
 // class CounterPage extends StatelessWidget {              // Support Multiple controller
-  const CounterPage({Key? key}) : super(key: key);
+  const CounterPage({super.key});
 
   @override
   Widget build(BuildContext context) {

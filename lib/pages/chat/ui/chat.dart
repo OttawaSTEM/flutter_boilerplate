@@ -4,7 +4,7 @@ import 'package:web_socket_channel/web_socket_channel.dart';
 import 'package:web_socket_channel/status.dart' as status;
 
 class WebsocketPage extends StatefulWidget {
-  const WebsocketPage({Key? key}) : super(key: key);
+  const WebsocketPage({super.key});
 
   @override
   State<WebsocketPage> createState() => _WebsocketPageState();

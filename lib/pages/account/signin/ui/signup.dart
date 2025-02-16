@@ -15,7 +15,7 @@ class ObscuredSignupController extends GetxController {
 }
 
 class SignupPage extends StatelessWidget {
-  const SignupPage({Key? key}) : super(key: key);
+  const SignupPage({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -129,7 +129,7 @@ class SignupPage extends StatelessWidget {
                           onPressed: () {
                             if (password1Controller.text != password2Controller.text) {
                               snackbarMsg(
-                                title: 'Passowrd are not matched.'.tr,
+                                title: 'Password are not matched.'.tr,
                                 message: 'Please enter same password.',
                                 icon: const Icon(
                                   Icons.error_outline_outlined,

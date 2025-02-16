@@ -4,7 +4,7 @@ import 'package:get/get.dart';
 import '../controller/groups_controller.dart';
 
 class GroupsPage extends StatefulWidget {
-  const GroupsPage({Key? key}) : super(key: key);
+  const GroupsPage({super.key});
 
   @override
   State<GroupsPage> createState() => _GroupsPageState();

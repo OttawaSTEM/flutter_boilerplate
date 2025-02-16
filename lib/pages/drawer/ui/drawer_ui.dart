@@ -7,7 +7,7 @@ import '../../account/signin/ui/login.dart';
 import '../../home/ui/home.dart';
 
 class NavDrawer extends StatelessWidget {
-  NavDrawer({Key? key}) : super(key: key);
+  NavDrawer({super.key});
 
   final SideDrawerController controller = Get.put(SideDrawerController());
 

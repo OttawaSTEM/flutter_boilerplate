@@ -10,7 +10,7 @@ import '../../drawer/ui/drawer_ui.dart';
 import '../../../widgets/custom_button.dart';
 
 class HomePage extends StatelessWidget {
-  HomePage({Key? key}) : super(key: key);
+  HomePage({super.key});
   final GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey<ScaffoldState>();
   final SideDrawerController controller = Get.put(SideDrawerController());
 
@@ -36,6 +36,7 @@ class HomePage extends StatelessWidget {
             icon: const Icon(Icons.menu)),
       ),
       drawer: NavDrawer(),
+      backgroundColor: Theme.of(context).colorScheme.surface,
       body: SingleChildScrollView(
         child: Column(
           children: [
