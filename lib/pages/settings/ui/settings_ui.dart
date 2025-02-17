@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:get_storage/get_storage.dart';
 import 'package:flutter_settings_ui/flutter_settings_ui.dart';
 
 import 'package:flutter_boilerplate/theme/theme.dart';
@@ -12,6 +13,7 @@ class SettingsPage extends StatefulWidget {
 }
 
 class _SettingsPageState extends State<SettingsPage> {
+  final settings = GetStorage();
   var userTextSize = 1.0;
   bool isDarkMode = false;
 
@@ -34,10 +36,11 @@ class _SettingsPageState extends State<SettingsPage> {
                 onToggle: (bool value) {
                   setState(() {
                     isDarkMode = value;
+                    settings.write('isDarkMode', isDarkMode);
                   });
                   Get.changeTheme(isDarkMode ? darkMode : lightMode);
                 },
-                initialValue: isDarkMode,
+                initialValue: settings.read('isDarkMode') ?? false,
                 leading: Icon(Icons.dark_mode),
                 title: Text('Dark Mode'.tr),
               ),
