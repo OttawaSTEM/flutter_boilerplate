@@ -11,6 +11,7 @@ import '../pages/groups/ui/groups_ui.dart';
 import '../pages/city/ui/city_ui.dart';
 import '../pages/dashboard/ui/dashboard.dart';
 import '../pages/chat/ui/chat.dart';
+import '../pages/settings/ui/settings_ui.dart';
 
 const transitionMS = 500;
 
@@ -18,14 +19,14 @@ abstract class AppRoutes {
   static const String home = '/';
   static const String counter = '/counter';
   static const String login = '/signin';
+  static const String signup = '/signup';
   static const String passwordReset = '/passwordReset';
   static const String users = '/users';
   static const String groups = '/groups';
   static const String city = '/city';
   static const String dashboard = '/dashboard';
   static const String chat = '/chat';
-
-  static const String signup = '/signup';
+  static const String settings = '/settings';
 }
 
 class AppPages {
@@ -33,6 +34,12 @@ class AppPages {
     GetPage(
       name: AppRoutes.home,
       page: () => HomePage(),
+      transition: Transition.leftToRightWithFade,
+      transitionDuration: const Duration(milliseconds: transitionMS),
+    ),
+    GetPage(
+      name: AppRoutes.settings,
+      page: () => const SettingsPage(),
       transition: Transition.leftToRightWithFade,
       transitionDuration: const Duration(milliseconds: transitionMS),
     ),

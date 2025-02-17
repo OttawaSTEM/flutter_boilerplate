@@ -46,9 +46,9 @@ class HomePage extends StatelessWidget {
               height: 50,
               child: (Center(
                 child: (DefaultButton(
-                  text: 'Ottawa STEM Club'.tr,
+                  text: 'Settings'.tr,
                   onPressed: () {
-                    Get.toNamed("/counter");
+                    Get.toNamed('/settings');
                   },
                 )),
               )),
@@ -73,7 +73,7 @@ class HomePage extends StatelessWidget {
                     ),
                   ),
                   onPressed: () {
-                    Get.toNamed("/counter");
+                    Get.toNamed('/counter');
                   },
                 )),
               )),
@@ -96,7 +96,7 @@ class HomePage extends StatelessWidget {
                     ),
                   ),
                   onPressed: () {
-                    Get.toNamed("/signin");
+                    Get.toNamed('/signin');
                   },
                 )),
               )),
@@ -116,7 +116,7 @@ class HomePage extends StatelessWidget {
                     ),
                   ),
                   onPressed: () {
-                    Get.toNamed("/users");
+                    Get.toNamed('/users');
                   },
                 )),
               )),
@@ -136,7 +136,7 @@ class HomePage extends StatelessWidget {
                     ),
                   ),
                   onPressed: () {
-                    Get.toNamed("/groups");
+                    Get.toNamed('/groups');
                   },
                 )),
               )),
@@ -156,7 +156,7 @@ class HomePage extends StatelessWidget {
                     ),
                   ),
                   onPressed: () {
-                    Get.toNamed("/city");
+                    Get.toNamed('/city');
                   },
                 )),
               )),
@@ -176,7 +176,7 @@ class HomePage extends StatelessWidget {
                     ),
                   ),
                   onPressed: () {
-                    Get.toNamed("/dashboard");
+                    Get.toNamed('/dashboard');
                   },
                 )),
               )),
@@ -196,7 +196,7 @@ class HomePage extends StatelessWidget {
                     ),
                   ),
                   onPressed: () {
-                    Get.toNamed("/chat");
+                    Get.toNamed('/chat');
                   },
                 )),
               )),

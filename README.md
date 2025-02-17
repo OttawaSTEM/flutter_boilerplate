@@ -145,3 +145,7 @@ https://api.flutter.dev/flutter/material/ColorScheme-class.html
 delete android
 flutter create .
 flutter create --platforms=android,ios --project-name=flutter_boilerplate .
+
+# Flutter add package
+flutter pub add settings_ui
+flutter pub get

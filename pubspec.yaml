@@ -43,6 +43,7 @@ dependencies:
   google_sign_in: ^6.1.4
   http: ^1.1.0
   logger: ^2.5.0
+  settings_ui: ^2.0.2
   sleek_circular_slider: ^2.0.1
   sidebarx: ^0.17.1
   web_socket_channel: ^3.0.2

@@ -133,6 +133,18 @@ class NavDrawer extends StatelessWidget {
               ),
               onTap: () {},
             ),
+            ListTile(
+              leading: const Icon(Icons.settings_outlined),
+              title: Text(
+                'Settings'.tr,
+                style: const TextStyle(
+                  fontSize: 18.0,
+                ),
+              ),
+              onTap: () {
+                Get.toNamed('/settings');
+              },
+            ),
           ],
         ),
       );
