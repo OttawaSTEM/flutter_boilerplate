@@ -8,6 +8,7 @@ import '../../drawer/ui/drawer_ui.dart';
 // import '../../../widgets/app_bar.dart';
 // import '../../../widgets/textfield.dart';
 import '../../../widgets/custom_button.dart';
+import '../../../widgets/buttons/default.dart';
 
 class HomePage extends StatelessWidget {
   HomePage({super.key});
@@ -44,9 +45,21 @@ class HomePage extends StatelessWidget {
             SizedBox(
               height: 50,
               child: (Center(
+                child: (DefaultButton(
+                  text: 'Ottawa STEM Club'.tr,
+                  onPressed: () {
+                    Get.toNamed("/counter");
+                  },
+                )),
+              )),
+            ),
+            const SizedBox(height: 20),
+            SizedBox(
+              height: 50,
+              child: (Center(
                 child: (ElevatedButton(
                   style: ElevatedButton.styleFrom(
-                    minimumSize: const Size(120, 50),
+                    // minimumSize: const Size(120, 50),
                     shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
                     backgroundColor: Theme.of(context).colorScheme.secondary,
                     foregroundColor: Theme.of(context).colorScheme.primary,
@@ -70,7 +83,10 @@ class HomePage extends StatelessWidget {
               height: 50,
               child: (Center(
                 child: (ElevatedButton(
-                  style: ElevatedButton.styleFrom(minimumSize: const Size(120, 50), shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10))),
+                  style: ElevatedButton.styleFrom(
+                    // minimumSize: const Size(120, 50),
+                    shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
+                  ),
                   child: Text(
                     'Login'.tr,
                     style: GoogleFonts.roboto(
