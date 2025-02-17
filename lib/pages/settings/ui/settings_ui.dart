@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:settings_ui/settings_ui.dart';
+import 'package:flutter_settings_ui/flutter_settings_ui.dart';
+
+import 'package:flutter_boilerplate/theme/theme.dart';
 
 class SettingsPage extends StatefulWidget {
   const SettingsPage({super.key});
@@ -10,6 +12,9 @@ class SettingsPage extends StatefulWidget {
 }
 
 class _SettingsPageState extends State<SettingsPage> {
+  var userTextSize = 1.0;
+  bool isDarkMode = false;
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -22,15 +27,35 @@ class _SettingsPageState extends State<SettingsPage> {
             tiles: <SettingsTile>[
               SettingsTile.navigation(
                 leading: Icon(Icons.language),
-                title: Text('Language'),
-                value: Text('English'),
+                title: Text('Language'.tr),
+                value: Text('English'.tr),
               ),
               SettingsTile.switchTile(
-                onToggle: (value) {},
-                initialValue: true,
-                leading: Icon(Icons.format_paint),
-                title: Text('Enable custom theme'),
+                onToggle: (bool value) {
+                  setState(() {
+                    isDarkMode = value;
+                  });
+                  Get.changeTheme(isDarkMode ? darkMode : lightMode);
+                },
+                initialValue: isDarkMode,
+                leading: Icon(Icons.dark_mode),
+                title: Text('Dark Mode'.tr),
               ),
+              SettingsTile(
+                title: Text('Text Size'),
+                leading: Icon(Icons.text_fields),
+                trailing: Slider(
+                  min: 0.5,
+                  max: 2.0,
+                  divisions: 3,
+                  value: userTextSize,
+                  onChanged: (newValue) {
+                    setState(() {
+                      userTextSize = newValue;
+                    });
+                  },
+                ),
+              )
             ],
           ),
         ],

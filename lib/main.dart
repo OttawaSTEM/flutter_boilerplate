@@ -7,9 +7,9 @@ import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
 
-import 'lang/languages.dart';
-import 'theme/theme.dart';
-import 'routes/app_routes.dart';
+import 'package:flutter_boilerplate/lang/languages.dart';
+import 'package:flutter_boilerplate/theme/theme.dart';
+import 'package:flutter_boilerplate/routes/app_routes.dart';
 
 Future main() async {
   // Let's Encrypt Certificate Handshake Expired Error
@@ -29,6 +29,7 @@ class App extends StatelessWidget {
   Widget build(BuildContext context) {
     return GetMaterialApp(
       debugShowCheckedModeBanner: false,
+      // themeMode: ThemeMode.system,
       theme: lightMode,
       darkTheme: darkMode,
       translations: Languages(),

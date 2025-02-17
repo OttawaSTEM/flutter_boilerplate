@@ -1,17 +1,17 @@
 import 'package:get/get.dart';
 
-import '../pages/city/bindings/city_binding.dart';
+import 'package:flutter_boilerplate/pages/city/bindings/city_binding.dart';
 
-import '../pages/account/signin/ui/login.dart';
-import '../pages/account/signin/ui/password_reset.dart';
-import '../pages/counter/ui/counter_ui.dart';
-import '../pages/home/ui/home.dart';
-import '../pages/users/ui/users_ui.dart';
-import '../pages/groups/ui/groups_ui.dart';
-import '../pages/city/ui/city_ui.dart';
-import '../pages/dashboard/ui/dashboard.dart';
-import '../pages/chat/ui/chat.dart';
-import '../pages/settings/ui/settings_ui.dart';
+import 'package:flutter_boilerplate/pages/account/signin/ui/login.dart';
+import 'package:flutter_boilerplate/pages/account/signin/ui/password_reset.dart';
+import 'package:flutter_boilerplate/pages/counter/ui/counter_ui.dart';
+import 'package:flutter_boilerplate/pages/home/ui/home.dart';
+import 'package:flutter_boilerplate/pages/users/ui/users_ui.dart';
+import 'package:flutter_boilerplate/pages/groups/ui/groups_ui.dart';
+import 'package:flutter_boilerplate/pages/city/ui/city_ui.dart';
+import 'package:flutter_boilerplate/pages/dashboard/ui/dashboard.dart';
+import 'package:flutter_boilerplate/pages/chat/ui/chat.dart';
+import 'package:flutter_boilerplate/pages/settings/ui/settings_ui.dart';
 
 const transitionMS = 500;
 

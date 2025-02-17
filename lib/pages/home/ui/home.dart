@@ -2,13 +2,13 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 
-import '../../drawer/controller/drawer_controller.dart';
-import '../../drawer/ui/drawer_ui.dart';
+import 'package:flutter_boilerplate/pages/drawer/controller/drawer_controller.dart';
+import 'package:flutter_boilerplate/pages/drawer/ui/drawer_ui.dart';
 
-// import '../../../widgets/app_bar.dart';
-// import '../../../widgets/textfield.dart';
-import '../../../widgets/custom_button.dart';
-import '../../../widgets/buttons/default.dart';
+// import 'package:flutter_boilerplate/widgets/app_bar.dart';
+// import 'package:flutter_boilerplate/widgets/textfield.dart';
+import 'package:flutter_boilerplate/widgets/custom_button.dart';
+import 'package:flutter_boilerplate/widgets/buttons/default.dart';
 
 class HomePage extends StatelessWidget {
   HomePage({super.key});
@@ -46,32 +46,7 @@ class HomePage extends StatelessWidget {
               height: 50,
               child: (Center(
                 child: (DefaultButton(
-                  text: 'Settings'.tr,
-                  onPressed: () {
-                    Get.toNamed('/settings');
-                  },
-                )),
-              )),
-            ),
-            const SizedBox(height: 20),
-            SizedBox(
-              height: 50,
-              child: (Center(
-                child: (ElevatedButton(
-                  style: ElevatedButton.styleFrom(
-                    // minimumSize: const Size(120, 50),
-                    shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
-                    backgroundColor: Theme.of(context).colorScheme.secondary,
-                    foregroundColor: Theme.of(context).colorScheme.primary,
-                  ),
-                  child: Text(
-                    'Counter'.tr,
-                    style: GoogleFonts.roboto(
-                      fontWeight: FontWeight.bold,
-                      // color: Colors.white,
-                      fontSize: 16,
-                    ),
-                  ),
+                  text: 'Counter'.tr,
                   onPressed: () {
                     Get.toNamed('/counter');
                   },
