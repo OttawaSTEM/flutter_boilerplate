@@ -140,3 +140,8 @@ flutter clean && flutter pub get
 
 # Flutter ColorScheme
 https://api.flutter.dev/flutter/material/ColorScheme-class.html
+
+# Recreate Device
+delete android
+flutter create .
+flutter create --platforms=android,ios --project-name=flutter_boilerplate .
