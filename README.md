@@ -136,3 +136,7 @@ flutter clean && flutter pub get
 ```
 
 # F5 to run Flutter Debug
+
+
+# Flutter ColorScheme
+https://api.flutter.dev/flutter/material/ColorScheme-class.html

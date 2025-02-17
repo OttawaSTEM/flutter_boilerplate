@@ -24,7 +24,7 @@ class CustomButton extends StatelessWidget {
               ScaffoldMessenger.of(context).showSnackBar(
                 SnackBar(
                   content: Text("Pressed Follow on $platform button"),
-                  duration: const Duration(seconds: 5),
+                  duration: const Duration(seconds: 3),
                 ),
               );
               onPressed();

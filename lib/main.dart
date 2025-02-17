@@ -8,6 +8,7 @@ import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
 
 import 'lang/languages.dart';
+import 'theme/theme.dart';
 import 'routes/app_routes.dart';
 
 Future main() async {
@@ -27,16 +28,9 @@ class App extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return GetMaterialApp(
-      // https://flutter.github.io/samples/web/material_3_demo/#/
-      // theme: ThemeData(
-      //   colorScheme: ColorScheme.fromSwatch(primarySwatch: Colors.blue),
-      //   useMaterial3: true,
-
-      //   brightness: Brightness.light,
-      //   primarySwatch: Colors.blue,
-      //   colorSchemeSeed: Colors.blue,
-      // ),
       debugShowCheckedModeBanner: false,
+      theme: lightMode,
+      darkTheme: darkMode,
       translations: Languages(),
       locale: Get.deviceLocale,
       fallbackLocale: const Locale('en', 'US'),

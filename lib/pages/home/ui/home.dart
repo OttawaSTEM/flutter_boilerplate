@@ -45,12 +45,17 @@ class HomePage extends StatelessWidget {
               height: 50,
               child: (Center(
                 child: (ElevatedButton(
-                  style: ElevatedButton.styleFrom(minimumSize: const Size(120, 50), shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10))),
+                  style: ElevatedButton.styleFrom(
+                    minimumSize: const Size(120, 50),
+                    shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
+                    backgroundColor: Theme.of(context).colorScheme.secondary,
+                    foregroundColor: Theme.of(context).colorScheme.primary,
+                  ),
                   child: Text(
                     'Counter'.tr,
                     style: GoogleFonts.roboto(
                       fontWeight: FontWeight.bold,
-                      color: Colors.white,
+                      // color: Colors.white,
                       fontSize: 16,
                     ),
                   ),
@@ -70,7 +75,7 @@ class HomePage extends StatelessWidget {
                     'Login'.tr,
                     style: GoogleFonts.roboto(
                       fontWeight: FontWeight.bold,
-                      color: Colors.white,
+                      // color: Colors.white,
                       fontSize: 16,
                     ),
                   ),
@@ -90,7 +95,7 @@ class HomePage extends StatelessWidget {
                     'Users Page (Auth)'.tr,
                     style: GoogleFonts.roboto(
                       fontWeight: FontWeight.bold,
-                      color: Colors.white,
+                      // color: Colors.white,
                       fontSize: 16,
                     ),
                   ),
@@ -110,7 +115,7 @@ class HomePage extends StatelessWidget {
                     'Groups Page (No Auth)'.tr,
                     style: GoogleFonts.roboto(
                       fontWeight: FontWeight.bold,
-                      color: Colors.white,
+                      // color: Colors.white,
                       fontSize: 16,
                     ),
                   ),
@@ -130,7 +135,7 @@ class HomePage extends StatelessWidget {
                     'City Page'.tr,
                     style: GoogleFonts.roboto(
                       fontWeight: FontWeight.bold,
-                      color: Colors.white,
+                      // color: Colors.white,
                       fontSize: 16,
                     ),
                   ),
@@ -150,7 +155,7 @@ class HomePage extends StatelessWidget {
                     'Dashboard Page'.tr,
                     style: GoogleFonts.roboto(
                       fontWeight: FontWeight.bold,
-                      color: Colors.white,
+                      // color: Colors.white,
                       fontSize: 16,
                     ),
                   ),
@@ -170,7 +175,7 @@ class HomePage extends StatelessWidget {
                     'Websocket Chat'.tr,
                     style: GoogleFonts.roboto(
                       fontWeight: FontWeight.bold,
-                      color: Colors.white,
+                      // color: Colors.white,
                       fontSize: 16,
                     ),
                   ),
