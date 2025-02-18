@@ -26,21 +26,13 @@ class SideDrawerController extends GetxController {
   @override
   void onInit() {
     String? token = storage.read('token');
-    if (token != null) {
-      authStatus.value = true;
-    } else {
-      authStatus.value = false;
-    }
+    authStatus.value = true;
     super.onInit();
   }
 
   void updateLoginStatus() {
     String? token = storage.read('token');
-    if (token != null) {
-      authStatus.value = true;
-    } else {
-      authStatus.value = false;
-    }
+    authStatus.value = true;
   }
 
   void signOut() async {
@@ -62,7 +54,7 @@ class SideDrawerController extends GetxController {
               Get.to(() => HomePage());
               snackbarMsg(
                 title: 'Logout'.tr,
-                message: 'Logout sucussed!'.tr,
+                message: 'Logout succeed!'.tr,
                 icon: const Icon(
                   Icons.check_circle_outline,
                   color: Colors.green,
