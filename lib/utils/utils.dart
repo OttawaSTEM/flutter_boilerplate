@@ -1,7 +1,11 @@
 import 'dart:io' show Platform;
+import 'package:device_info_plus/device_info_plus.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:get_storage/get_storage.dart';
+import 'package:logger/logger.dart';
+
+var logger = Logger();
 
 /// Helper class for device related operations.
 class DeviceUtils {
@@ -40,16 +44,14 @@ bool validateEmail(String value) {
 }
 
 Future<String> detectOS() async {
-  if (kDebugMode) {
-    print('Platform: ${Platform.operatingSystem}');
-  }
-
   var platformName = '';
+
   if (kIsWeb) {
     platformName = 'Web';
   } else {
     if (Platform.isAndroid) {
-      platformName = 'Android';
+      AndroidDeviceInfo androidDeviceInfo = await DeviceInfoPlugin().androidInfo;
+      platformName = androidDeviceInfo.systemFeatures.contains('android.software.leanback') ? 'Android TV' : 'Android';
     } else if (Platform.isIOS) {
       platformName = 'IOS';
     } else if (Platform.isLinux) {
@@ -61,6 +63,10 @@ Future<String> detectOS() async {
     } else {
       platformName = 'Unknown';
     }
+  }
+
+  if (kDebugMode) {
+    logger.i('Platform: $platformName');
   }
   return (platformName.toString());
 }

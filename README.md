@@ -149,3 +149,12 @@ flutter create --platforms=android,ios --project-name=flutter_boilerplate .
 # Flutter add package
 flutter pub add settings_ui
 flutter pub get
+
+# Flutter Plugins & Packages
+https://github.com/flutter/packages
+https://github.com/fluttercommunity/plus_plugins
+* Packages
+At a minimum, a Dart package is a directory containing a pubspec.yaml file. Additionally, a package can contain dependencies (listed in the pubspec), Dart libraries, apps, resources, tests, images, fonts, and examples. The pub.dev site lists many packages—developed by Google engineers and generous members of the Flutter and Dart community— that you can use in your app.
+
+* Plugins
+A plugin package is a special kind of package that makes platform functionality available to the app. Plugin packages can be written for Android (using Kotlin or Java), iOS (using Swift or Objective-C), web, macOS, Windows, Linux, or any combination thereof. For example, a plugin might provide Flutter apps with the ability to use a device's camera.
