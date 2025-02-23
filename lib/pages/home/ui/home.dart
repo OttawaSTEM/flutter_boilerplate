@@ -178,7 +178,7 @@ class HomePage extends StatelessWidget {
             ),
             const SizedBox(height: 16),
             CustomButton(
-              platform: 'Ottawa STEM Club',
+              title: 'Ottawa STEM Club',
               onPressed: () {
                 // Button on pressed action
               },
