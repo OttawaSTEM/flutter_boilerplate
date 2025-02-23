@@ -1,3 +1,5 @@
+import 'dart:io' show Platform;
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:get_storage/get_storage.dart';
 
@@ -35,4 +37,30 @@ double screenPosition(var axis, double position) {
 
 bool validateEmail(String value) {
   return RegExp(r'^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$').hasMatch(value);
+}
+
+Future<String> detectOS() async {
+  if (kDebugMode) {
+    print('Platform: ${Platform.operatingSystem}');
+  }
+
+  var platformName = '';
+  if (kIsWeb) {
+    platformName = 'Web';
+  } else {
+    if (Platform.isAndroid) {
+      platformName = 'Android';
+    } else if (Platform.isIOS) {
+      platformName = 'IOS';
+    } else if (Platform.isLinux) {
+      platformName = 'Linux';
+    } else if (Platform.isMacOS) {
+      platformName = 'MacOS';
+    } else if (Platform.isWindows) {
+      platformName = 'Windows';
+    } else {
+      platformName = 'Unknown';
+    }
+  }
+  return (platformName.toString());
 }

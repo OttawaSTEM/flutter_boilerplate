@@ -1,6 +1,3 @@
-// import 'dart:io' show Platform;
-
-// import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 // import 'package:flutter/services.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
@@ -10,6 +7,7 @@ import 'package:get_storage/get_storage.dart';
 import 'package:flutter_boilerplate/lang/languages.dart';
 import 'package:flutter_boilerplate/theme/theme.dart';
 import 'package:flutter_boilerplate/routes/app_routes.dart';
+import 'package:flutter_boilerplate/utils/utils.dart';
 
 Future main() async {
   // Let's Encrypt Certificate Handshake Expired Error
@@ -19,6 +17,8 @@ Future main() async {
 
   await GetStorage.init();
   await dotenv.load(fileName: 'assets/local.env');
+  await detectOS();
+
   runApp(const App());
 }
 
