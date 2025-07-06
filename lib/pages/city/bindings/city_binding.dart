@@ -1,7 +1,7 @@
 import 'package:get/get.dart';
 
-import '../controller/city_controller.dart';
-import '../data/city_provider.dart';
+import 'package:flutter_boilerplate/pages/city/controller/city_controller.dart';
+import 'package:flutter_boilerplate/pages/city/data/city_provider.dart';
 
 class CityBinding extends Bindings {
   @override

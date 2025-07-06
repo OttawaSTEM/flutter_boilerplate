@@ -1,27 +1,35 @@
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
-import 'package:google_fonts/google_fonts.dart';
 
-// import 'package:flutter_boilerplate/constants/colors.dart';
+class AppBarWidget extends StatelessWidget implements PreferredSizeWidget {
+  const AppBarWidget({
+    super.key,
+    required this.title,
+    this.backgroundColor,
+    this.actions = const [],
+    this.fontSize = 20,
+  });
 
-class AppBarWidget extends StatelessWidget {
-  const AppBarWidget({super.key});
-
-  // final Function onChange;
-
-  // const AppBarWidget({Key? key}) : super(key: key);
+  final String title;
+  final Color? backgroundColor;
+  final List<Widget> actions;
+  final double fontSize;
 
   @override
   Widget build(BuildContext context) {
     return AppBar(
+      centerTitle: false,
       title: Text(
-        'Home Page'.tr,
-        style: GoogleFonts.roboto(
+        title,
+        style: TextStyle(
           fontWeight: FontWeight.bold,
-          color: Colors.white,
-          fontSize: 20,
+          fontSize: fontSize,
         ),
       ),
+      backgroundColor: backgroundColor ?? Theme.of(context).colorScheme.secondary,
+      actions: actions,
     );
   }
+
+  @override
+  Size get preferredSize => Size.fromHeight(kToolbarHeight);
 }

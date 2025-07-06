@@ -2,9 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
 
-import '../../../pages/home/ui/home.dart';
-import '../../../utils/rest_api.dart';
-import '../../../../widgets/snack_bar_msg.dart';
+import 'package:flutter_boilerplate/pages/home/ui/home_ui.dart';
+import 'package:flutter_boilerplate/utils/rest_api.dart';
+import 'package:flutter_boilerplate/widgets/snack_bar_msg.dart';
 
 import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:logger/logger.dart';

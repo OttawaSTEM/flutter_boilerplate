@@ -1,7 +1,7 @@
 import 'package:get/get.dart';
 
-import '../data/city_provider.dart';
-import '../model/city_model.dart';
+import 'package:flutter_boilerplate/pages/city/data/city_provider.dart';
+import 'package:flutter_boilerplate/pages/city/model/city_model.dart';
 
 import 'package:flutter/foundation.dart';
 import 'package:logger/logger.dart';

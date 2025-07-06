@@ -32,17 +32,20 @@ dependencies:
 
   # The following adds the Cupertino Icons font to your application.
   # Use with the CupertinoIcons class for iOS style icons.
+  carousel_slider: ^5.0.0
   cupertino_icons: ^1.0.5
   device_info_plus: ^11.3.0
   flutter_dotenv: ^5.0.2
   flutter_launcher_icons: ^0.14.3
   flutter_native_splash: ^2.2.16
+  flutter_rating: ^2.0.2
   flutter_settings_ui: ^3.0.1
   flutter_svg: ^2.0.7
   get: ^4.6.5
   get_storage: ^2.0.3
   google_fonts: ^6.2.1
   google_sign_in: ^6.1.4
+  gradient_borders: ^1.0.0
   http: ^1.1.0
   logger: ^2.5.0
   # sleek_circular_slider: ^2.0.1
@@ -88,12 +91,14 @@ flutter_icons:
 
 # Update splash: dart run flutter_native_splash:create
 flutter_native_splash:
-  color: "#ffffff"
+  color: "#F5ECE1"
   color_dark: "#121212" # For OS dark mode
   # color_dark: "#ffffff"     # For OS dark mode
   image: assets/launcher/splash.png
   image_dark: assets/launcher/splash.png
   android: true
+  android_12:
+    image: "assets/launcher/launcher.png"
   ios: true
 
 # The following section is specific to Flutter.
@@ -107,10 +112,9 @@ flutter:
   assets:
     - assets/
     - assets/ca/
+    - assets/google_fonts/
     - assets/images/
     - assets/images/core/
-    - assets/images/robot/
-    - assets/google_fonts/
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware.

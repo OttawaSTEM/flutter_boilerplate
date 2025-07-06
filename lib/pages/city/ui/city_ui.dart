@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-import '../controller/city_controller.dart';
+import 'package:flutter_boilerplate/pages/city/controller/city_controller.dart';
 
 class CityPage extends GetView<CityController> {
   const CityPage({super.key});

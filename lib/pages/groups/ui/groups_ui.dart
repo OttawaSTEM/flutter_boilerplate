@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-import '../controller/groups_controller.dart';
+import 'package:flutter_boilerplate/pages/groups/controller/groups_controller.dart';
 
 class GroupsPage extends StatefulWidget {
   const GroupsPage({super.key});

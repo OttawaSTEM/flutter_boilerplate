@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-import '../controller/counter_controller.dart';
+import 'package:flutter_boilerplate/pages/counter/controller/counter_controller.dart';
 
 class CounterPage extends GetView<CounterController> {
 // class CounterPage extends StatelessWidget {              // Support Multiple controller

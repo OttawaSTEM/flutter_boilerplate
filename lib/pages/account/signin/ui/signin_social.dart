@@ -1,13 +1,13 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
 
-import 'signup.dart';
-import '../controller/auth_controller.dart';
+import 'package:flutter_boilerplate/constants/styles.dart';
+import 'package:flutter_boilerplate/pages/account/signin/ui/signup.dart';
+import 'package:flutter_boilerplate/pages/account/signin/controller/auth_controller.dart';
 
-class LoginSocial extends StatelessWidget {
-  const LoginSocial({
-    super.key,
-  });
+class SignInSocial extends StatelessWidget {
+  const SignInSocial({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -26,16 +26,13 @@ class LoginSocial extends StatelessWidget {
         SizedBox(
           width: double.infinity,
           height: 50,
-          child: OutlinedButton.icon(
-            // icon: SvgPicture.asset('assets/images/core/google-logo.svg'),
-            icon: const Image(
-              image: AssetImage('assets/images/core/google-logo.png'),
-              width: 20,
-            ),
+          child: ElevatedButton.icon(
+            icon: SvgPicture.asset('assets/images/core/google.svg'),
+            style: defaultElevatedButtonStyle(context),
             onPressed: () {
-              authController.googleLogin();
+              authController.googleSignIn();
             },
-            label: Text('Login with Google'.tr),
+            label: Text('Sign In with Google'.tr),
           ),
         ),
         const SizedBox(
@@ -51,8 +48,8 @@ class LoginSocial extends StatelessWidget {
                 children: [
                   TextSpan(
                     text: 'Sign up'.tr,
-                    style: const TextStyle(
-                      color: Colors.blue,
+                    style: TextStyle(
+                      color: Theme.of(context).colorScheme.primary,
                       fontWeight: FontWeight.bold,
                     ),
                   ),

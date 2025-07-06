@@ -1,19 +1,20 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-import '../ui/password_reset.dart';
-import '../controller/auth_controller.dart';
+import 'package:flutter_boilerplate/constants/sizes.dart';
+import 'package:flutter_boilerplate/pages/account/signin/ui/password_reset.dart';
+import 'package:flutter_boilerplate/pages/account/signin/controller/auth_controller.dart';
 
-class ObscuredLoginController extends GetxController {
+class ObscuredSignInController extends GetxController {
   RxBool isObscured = true.obs;
 }
 
-class LoginForm extends StatelessWidget {
-  const LoginForm({super.key});
+class SignInForm extends StatelessWidget {
+  const SignInForm({super.key});
 
   @override
   Widget build(BuildContext context) {
-    final ObscuredLoginController obscuredLoginController = Get.put(ObscuredLoginController());
+    final ObscuredSignInController obscuredSignInController = Get.put(ObscuredSignInController());
     final AuthController authController = Get.put(AuthController());
     final usernameController = TextEditingController();
     final passwordController = TextEditingController();
@@ -42,16 +43,16 @@ class LoginForm extends StatelessWidget {
             const SizedBox(height: 20),
             TextFormField(
               controller: passwordController,
-              obscureText: obscuredLoginController.isObscured.value,
+              obscureText: obscuredSignInController.isObscured.value,
               decoration: InputDecoration(
                 prefixIcon: const Icon(Icons.password),
                 labelText: 'Password'.tr,
                 hintText: 'Password'.tr,
                 border: const OutlineInputBorder(),
                 suffixIcon: IconButton(
-                  icon: obscuredLoginController.isObscured.value ? const Icon(Icons.visibility_off) : const Icon(Icons.visibility),
+                  icon: obscuredSignInController.isObscured.value ? const Icon(Icons.visibility_off) : const Icon(Icons.visibility),
                   onPressed: () {
-                    obscuredLoginController.isObscured.value = !obscuredLoginController.isObscured.value;
+                    obscuredSignInController.isObscured.value = !obscuredSignInController.isObscured.value;
                   },
                 ),
               ),
@@ -78,14 +79,19 @@ class LoginForm extends StatelessWidget {
               child: ElevatedButton(
                 onPressed: () {
                   if (formGlobalKey.currentState!.validate()) {
-                    authController.userLogin(
+                    authController.signIn(
                       username: usernameController.text,
                       password: passwordController.text,
                     );
                   }
                 },
+                style: ElevatedButton.styleFrom(
+                  shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(radiusCircularSize)),
+                  backgroundColor: Theme.of(context).colorScheme.primary, // background
+                  foregroundColor: Theme.of(context).colorScheme.secondary, // foreground
+                ),
                 child: Text(
-                  'Login'.tr,
+                  'Sign In'.tr,
                   style: const TextStyle(fontSize: 18),
                 ),
               ),

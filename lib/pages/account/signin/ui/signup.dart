@@ -2,10 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:logger/logger.dart';
 
-import '../../../../widgets/snack_bar_msg.dart';
-import '../../../../utils/utils.dart';
-import '../controller/auth_controller.dart';
-import 'login_header.dart';
+import 'package:flutter_boilerplate/widgets/snack_bar_msg.dart';
+import 'package:flutter_boilerplate/utils/utils.dart';
+import 'package:flutter_boilerplate/pages/account/signin/controller/auth_controller.dart';
+import 'package:flutter_boilerplate/pages/account/signin/ui/signin_header.dart';
 
 var logger = Logger();
 
@@ -34,7 +34,7 @@ class SignupPage extends StatelessWidget {
           padding: const EdgeInsets.all(30),
           child: Column(
             children: [
-              const LoginHeader(),
+              const SignInHeader(),
               Form(
                 key: formGlobalKey,
                 child: Obx(

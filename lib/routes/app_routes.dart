@@ -2,10 +2,10 @@ import 'package:get/get.dart';
 
 import 'package:flutter_boilerplate/pages/city/bindings/city_binding.dart';
 
-import 'package:flutter_boilerplate/pages/account/signin/ui/login.dart';
+import 'package:flutter_boilerplate/pages/account/signin/ui/signin.dart';
 import 'package:flutter_boilerplate/pages/account/signin/ui/password_reset.dart';
 import 'package:flutter_boilerplate/pages/counter/ui/counter_ui.dart';
-import 'package:flutter_boilerplate/pages/home/ui/home.dart';
+import 'package:flutter_boilerplate/pages/home/ui/home_ui.dart';
 import 'package:flutter_boilerplate/pages/users/ui/users_ui.dart';
 import 'package:flutter_boilerplate/pages/groups/ui/groups_ui.dart';
 import 'package:flutter_boilerplate/pages/city/ui/city_ui.dart';
@@ -45,7 +45,7 @@ class AppPages {
     ),
     GetPage(
       name: AppRoutes.login,
-      page: () => const LoginPage(),
+      page: () => const SignInPage(),
       transition: Transition.leftToRightWithFade,
       transitionDuration: const Duration(milliseconds: transitionMS),
     ),

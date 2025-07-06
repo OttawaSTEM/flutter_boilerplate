@@ -2,9 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
 
-import '../controller/drawer_controller.dart';
-import '../../account/signin/ui/login.dart';
-import '../../home/ui/home.dart';
+import 'package:flutter_boilerplate/pages/drawer/controller/drawer_controller.dart';
+import 'package:flutter_boilerplate/pages/account/signin/ui/signin.dart';
+import 'package:flutter_boilerplate/pages/home/ui/home_ui.dart';
 
 class NavDrawer extends StatelessWidget {
   NavDrawer({super.key});
@@ -28,7 +28,7 @@ class NavDrawer extends StatelessWidget {
         child: InkWell(
           onTap: () {},
           child: Container(
-            color: Colors.blue[600],
+            color: Theme.of(context).colorScheme.primary,
             padding: EdgeInsets.only(
               top: MediaQuery.of(context).padding.top,
               bottom: 24,
@@ -37,26 +37,26 @@ class NavDrawer extends StatelessWidget {
               children: [
                 CircleAvatar(
                   backgroundColor: Colors.white,
-                  radius: 55,
+                  radius: 65,
                   child: CircleAvatar(
-                    radius: 50,
+                    radius: 45,
                     backgroundColor: Colors.white,
                     child: SvgPicture.asset('assets/images/core/logo.svg'),
                   ),
                 ),
                 const SizedBox(height: 12),
                 Text(
-                  'Flutter Project',
+                  'flutter_boilerplate',
                   style: Theme.of(context).textTheme.headlineSmall?.merge(
                         const TextStyle(color: Colors.white),
                       ),
                 ),
-                Text(
-                  'Ottawa STEM Club',
-                  style: Theme.of(context).textTheme.titleMedium?.merge(
-                        const TextStyle(color: Colors.white),
-                      ),
-                ),
+                // Text(
+                //   'flutter_boilerplate',
+                //   style: Theme.of(context).textTheme.titleMedium?.merge(
+                //         const TextStyle(color: Colors.white),
+                //       ),
+                // ),
               ],
             ),
           ),
@@ -98,7 +98,7 @@ class NavDrawer extends StatelessWidget {
                   : ListTile(
                       leading: const Icon(Icons.login_outlined),
                       title: Text(
-                        'Login'.tr,
+                        'Sign In'.tr,
                         style: const TextStyle(
                           fontSize: 18.0,
                         ),
@@ -107,7 +107,7 @@ class NavDrawer extends StatelessWidget {
                         // Close navigation drawer first
                         Navigator.pop(context);
                         Navigator.of(context).push(MaterialPageRoute(
-                          builder: (context) => const LoginPage(),
+                          builder: (context) => const SignInPage(),
                         ));
                       },
                     ),

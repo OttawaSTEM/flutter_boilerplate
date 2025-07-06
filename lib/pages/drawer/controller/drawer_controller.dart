@@ -3,9 +3,9 @@ import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 
-import '../../../../utils/rest_api.dart';
-import '../../home/ui/home.dart';
-import '../../../../widgets/snack_bar_msg.dart';
+import 'package:flutter_boilerplate/utils/rest_api.dart';
+import 'package:flutter_boilerplate/pages/home/ui/home_ui.dart';
+import 'package:flutter_boilerplate/widgets/snack_bar_msg.dart';
 
 import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:logger/logger.dart';
@@ -25,13 +25,13 @@ class SideDrawerController extends GetxController {
 
   @override
   void onInit() {
-    String? token = storage.read('token');
+    // String? token = storage.read('token');
     authStatus.value = true;
     super.onInit();
   }
 
-  void updateLoginStatus() {
-    String? token = storage.read('token');
+  void updateSignInStatus() {
+    // String? token = storage.read('token');
     authStatus.value = true;
   }
 

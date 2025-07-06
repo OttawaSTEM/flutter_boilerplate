@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-import '../controller/user_controller.dart';
+import 'package:flutter_boilerplate/pages/users/controller/user_controller.dart';
 
 class UserPage extends StatefulWidget {
   const UserPage({super.key});

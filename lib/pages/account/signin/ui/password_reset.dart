@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:logger/logger.dart';
 
-import '../controller/auth_controller.dart';
-import 'login_header.dart';
+import 'package:flutter_boilerplate/pages/account/signin/controller/auth_controller.dart';
+import 'package:flutter_boilerplate/pages/account/signin/ui/signin_header.dart';
 
 var logger = Logger();
 
@@ -23,7 +23,7 @@ class PasswordResetPage extends StatelessWidget {
           padding: const EdgeInsets.all(30),
           child: Column(
             children: [
-              const LoginHeader(),
+              const SignInHeader(),
               Text(
                 'Reset Password Hints'.tr,
                 style: const TextStyle(fontSize: 18),

@@ -31,7 +31,7 @@ class HomePage extends StatelessWidget {
         ),
         leading: IconButton(
             onPressed: () {
-              controller.updateLoginStatus();
+              controller.updateSignInStatus();
               _scaffoldKey.currentState!.openDrawer();
             },
             icon: const Icon(Icons.menu)),

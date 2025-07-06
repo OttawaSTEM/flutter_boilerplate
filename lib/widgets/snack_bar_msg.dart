@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-import '../constants/timeout.dart';
+import 'package:flutter_boilerplate/constants/timeout.dart';
 
 Future<void> snackbarMsg({required String title, required String message, required Icon icon}) async {
   Get.snackbar(
