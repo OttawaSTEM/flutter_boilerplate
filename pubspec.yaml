@@ -48,8 +48,6 @@ dependencies:
   gradient_borders: ^1.0.0
   http: ^1.1.0
   logger: ^2.5.0
-  # sleek_circular_slider: ^2.0.1
-  # sidebarx: ^0.17.1
   web_socket_channel: ^3.0.2
 
 dev_dependencies:
