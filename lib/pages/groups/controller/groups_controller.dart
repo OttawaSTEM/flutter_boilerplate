@@ -17,7 +17,7 @@ class GroupsController extends GetxController {
   final storage = GetStorage();
   final String url = '${env['BASE_URL']}/api/groups/';
 
-  getGroups() async {
+  Future<dynamic> getGroups() async {
     var response = await RestAPI().getData(url);
     if (kDebugMode) {
       logger.i(url);

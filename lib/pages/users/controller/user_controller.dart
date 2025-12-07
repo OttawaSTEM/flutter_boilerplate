@@ -17,7 +17,7 @@ class UserController extends GetxController {
 
   final String url = '${env['BASE_URL']}/api/users/';
 
-  getUsers() async {
+  Future<dynamic> getUsers() async {
     String? token = storage.read('token');
 
     var response = await RestAPI().getData(url, token);

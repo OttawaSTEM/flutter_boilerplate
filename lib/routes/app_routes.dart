@@ -73,13 +73,13 @@ class AppPages {
       transition: Transition.leftToRightWithFade,
       transitionDuration: const Duration(milliseconds: transitionMS),
     ),
-    GetPage(
-      name: AppRoutes.city,
-      page: () => const CityPage(),
-      binding: CityBinding(),
-      transition: Transition.leftToRightWithFade,
-      transitionDuration: const Duration(milliseconds: transitionMS),
-    ),
+    // GetPage(
+    //   name: AppRoutes.city,
+    //   page: () => const CityPage(),
+    //   binding: CityBinding(),
+    //   transition: Transition.leftToRightWithFade,
+    //   transitionDuration: const Duration(milliseconds: transitionMS),
+    // ),
     GetPage(
       name: AppRoutes.dashboard,
       page: () => const DashboardPage(),

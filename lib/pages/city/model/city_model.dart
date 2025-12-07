@@ -12,6 +12,5 @@ class CityModel {
         name: json['nome'],
       );
 
-  static List<CityModel> listFromJson(list) =>
-      List<CityModel>.from(list.map((x) => CityModel.fromJson(x)));
+  static List<CityModel> listFromJson(dynamic list) => List<CityModel>.from(list.map((x) => CityModel.fromJson(x)));
 }

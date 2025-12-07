@@ -10,7 +10,7 @@ var logger = Logger();
 /// Helper class for device related operations.
 class DeviceUtils {
   /// hides the keyboard if its already open
-  static hideKeyboard(BuildContext context) {
+  static void hideKeyboard(BuildContext context) {
     FocusScope.of(context).unfocus();
   }
 
@@ -24,7 +24,7 @@ class DeviceUtils {
   static double getScaledHeight(BuildContext context, double scale) => scale * MediaQuery.of(context).size.height;
 }
 
-double screenPosition(var axis, double position) {
+double screenPosition(dynamic axis, double position) {
   // From center of the screen position
   GetStorage storage = GetStorage();
   var screenWidth = storage.read('screeWidth');
