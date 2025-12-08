@@ -3,53 +3,87 @@ import 'package:get/get.dart';
 
 import 'package:flutter_boilerplate/pages/groups/controller/groups_controller.dart';
 
-class GroupsPage extends StatefulWidget {
+class GroupsPage extends GetView<GroupsController> {
   const GroupsPage({super.key});
 
   @override
-  State<GroupsPage> createState() => _GroupsPageState();
-}
-
-class _GroupsPageState extends State<GroupsPage> {
-  final Future controller = GroupsController().getGroups();
-
-  @override
   Widget build(BuildContext context) {
+    final GroupsController controller = Get.put(GroupsController());
+
     return Scaffold(
-      appBar: AppBar(
-        title: Text('Groups Page'.tr),
-      ),
-      body: FutureBuilder(
-        future: controller,
-        builder: (BuildContext context, AsyncSnapshot snapshot) {
-          if (snapshot.hasError) {
-            return Center(child: Text('Some error occurred ${snapshot.error}'));
-          } else if (snapshot.hasData) {
-            final groups = snapshot.data;
-            return ListView.builder(
-              itemCount: groups.length,
-              itemBuilder: (context, index) {
-                Map group = groups[index];
-                return ListTile(
-                  title: Text('${group['name']}'),
-                  subtitle: Text('${group['age']}'),
-                  // onTap: () {
-                  //   Navigator.of(context).push(MaterialPageRoute(builder: (context) => PostDetails(thisItem['id'].toString())));
-                  // },
-                );
-              },
-            );
-          } else {
-            return const Center(child: CircularProgressIndicator());
-          }
-        },
-      ),
-      floatingActionButton: FloatingActionButton(
-        child: const Icon(Icons.add),
-        onPressed: () {
-          // controller.sendPost();
-        },
-      ),
+      appBar: AppBar(title: const Text('Groups Page')),
+      body: Obx(() {
+        if (controller.isLoading.value) {
+          return const Center(child: CircularProgressIndicator());
+        } else if (controller.groupList.isEmpty) {
+          return const Center(child: Text('No data found.'));
+        } else {
+          return ListView.builder(
+            itemCount: controller.groupList.length,
+            itemBuilder: (context, index) {
+              Map group = controller.groupList[index];
+              return ListTile(
+                title: Text('${group['name']}'),
+                subtitle: Text('${group['age']}'),
+                // onTap: () {
+                //   Navigator.of(context).push(MaterialPageRoute(builder: (context) => PostDetails(thisItem['id'].toString())));
+                // },
+              );
+            },
+          );
+        }
+      }),
     );
   }
 }
+
+// class GroupsPage extends StatefulWidget {
+//   const GroupsPage({super.key});
+
+//   @override
+//   State<GroupsPage> createState() => _GroupsPageState();
+// }
+
+// class _GroupsPageState extends State<GroupsPage> {
+//   final Future controller = GroupsController().getGroups();
+
+//   @override
+//   Widget build(BuildContext context) {
+//     return Scaffold(
+//       appBar: AppBar(
+//         title: Text('Groups Page'.tr),
+//       ),
+//       body: FutureBuilder(
+//         future: controller,
+//         builder: (BuildContext context, AsyncSnapshot snapshot) {
+//           if (snapshot.hasError) {
+//             return Center(child: Text('Some error occurred ${snapshot.error}'));
+//           } else if (snapshot.hasData) {
+//             final groups = snapshot.data;
+//             return ListView.builder(
+//               itemCount: groups.length,
+//               itemBuilder: (context, index) {
+//                 Map group = groups[index];
+//                 return ListTile(
+//                   title: Text('${group['name']}'),
+//                   subtitle: Text('${group['age']}'),
+//                   // onTap: () {
+//                   //   Navigator.of(context).push(MaterialPageRoute(builder: (context) => PostDetails(thisItem['id'].toString())));
+//                   // },
+//                 );
+//               },
+//             );
+//           } else {
+//             return const Center(child: CircularProgressIndicator());
+//           }
+//         },
+//       ),
+//       floatingActionButton: FloatingActionButton(
+//         child: const Icon(Icons.add),
+//         onPressed: () {
+//           // controller.sendPost();
+//         },
+//       ),
+//     );
+//   }
+// }

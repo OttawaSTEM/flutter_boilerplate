@@ -1,14 +1,11 @@
 import 'package:get/get.dart';
 
-import 'package:flutter_boilerplate/pages/city/bindings/city_binding.dart';
-
 import 'package:flutter_boilerplate/pages/account/signin/ui/signin.dart';
 import 'package:flutter_boilerplate/pages/account/signin/ui/password_reset.dart';
 import 'package:flutter_boilerplate/pages/counter/ui/counter_ui.dart';
 import 'package:flutter_boilerplate/pages/home/ui/home_ui.dart';
 import 'package:flutter_boilerplate/pages/users/ui/users_ui.dart';
 import 'package:flutter_boilerplate/pages/groups/ui/groups_ui.dart';
-import 'package:flutter_boilerplate/pages/city/ui/city_ui.dart';
 import 'package:flutter_boilerplate/pages/dashboard/ui/dashboard.dart';
 import 'package:flutter_boilerplate/pages/chat/ui/chat.dart';
 import 'package:flutter_boilerplate/pages/settings/ui/settings_ui.dart';
@@ -23,7 +20,6 @@ abstract class AppRoutes {
   static const String passwordReset = '/passwordReset';
   static const String users = '/users';
   static const String groups = '/groups';
-  static const String city = '/city';
   static const String dashboard = '/dashboard';
   static const String chat = '/chat';
   static const String settings = '/settings';
@@ -73,13 +69,6 @@ class AppPages {
       transition: Transition.leftToRightWithFade,
       transitionDuration: const Duration(milliseconds: transitionMS),
     ),
-    // GetPage(
-    //   name: AppRoutes.city,
-    //   page: () => const CityPage(),
-    //   binding: CityBinding(),
-    //   transition: Transition.leftToRightWithFade,
-    //   transitionDuration: const Duration(milliseconds: transitionMS),
-    // ),
     GetPage(
       name: AppRoutes.dashboard,
       page: () => const DashboardPage(),
