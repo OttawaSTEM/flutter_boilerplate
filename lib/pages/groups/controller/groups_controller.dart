@@ -21,8 +21,8 @@ class GroupsController extends GetxController {
 
   @override
   void onInit() {
-    getGroups();
     super.onInit();
+    getGroups();
   }
 
   Future<dynamic> getGroups() async {
