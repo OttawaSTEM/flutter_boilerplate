@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
-import 'package:google_sign_in/google_sign_in.dart';
+// import 'package:google_sign_in/google_sign_in.dart';
 
 import 'package:flutter_boilerplate/utils/rest_api.dart';
 import 'package:flutter_boilerplate/pages/home/ui/home_ui.dart';
@@ -13,11 +13,11 @@ import 'package:logger/logger.dart';
 var logger = Logger();
 final env = dotenv.env;
 
-GoogleSignIn _googleSignIn = GoogleSignIn(
-  scopes: <String>[
-    'email',
-  ],
-);
+// GoogleSignIn _googleSignIn = GoogleSignIn(
+//   scopes: <String>[
+//     'email',
+//   ],
+// );
 
 class SideDrawerController extends GetxController {
   final storage = GetStorage();
@@ -48,7 +48,7 @@ class SideDrawerController extends GetxController {
             onPressed: () async {
               storage.remove('token');
               await RestAPI().postData(djangoLogoutURL);
-              await _googleSignIn.signOut();
+              // await _googleSignIn.signOut();
               authStatus.value = false;
               Get.back();
               Get.to(() => HomePage());

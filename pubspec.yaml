@@ -41,10 +41,10 @@ dependencies:
   flutter_rating: ^2.0.2
   flutter_settings_ui: ^3.0.1
   flutter_svg: ^2.0.7
-  get: ^5.0.0-release-candidate-9.3.2
+  get: ^4.7.3
   get_storage: ^2.0.3
   google_fonts: ^6.3.3
-  google_sign_in: ^6.3.0
+  google_sign_in: ^7.2.0
   gradient_borders: ^1.0.0
   http: ^1.1.0
   logger: ^2.5.0
