@@ -37,7 +37,7 @@ android {
         // Google Sign-In configuration.Uncomment the following line and replace with your own client ID.
         // Todo: Replace with your own client ID.
         manifestPlaceholders += [
-            "appAuthRedirectScheme": "616461986489-k7bam9apf6cnpl7h9kmb0vuq6it8e6m0.apps.googleusercontent.com"
+            "appAuthRedirectScheme": "490783945852-oh7ljrs852eikoqtefs57mt9nc9oveu4.apps.googleusercontent.com"
         ]
     }
 

@@ -4,5 +4,6 @@
         "editor.rulers": [
             240
         ],
-    }
+    },
+    "java.configuration.updateBuildConfiguration": "interactive"
 }

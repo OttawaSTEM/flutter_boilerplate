@@ -162,3 +162,57 @@ A plugin package is a special kind of package that makes platform functionality 
 
 # Google Fonts Icons
 [Google Fonts](https://fonts.google.com/icons)
+
+
+
+# Flutter ColorScheme
+https://api.flutter.dev/flutter/material/ColorScheme-class.html
+
+# Recreate Device
+delete android
+flutter create .
+flutter create --platforms=android,ios --project-name=com.lhchub.app .
+
+# Flutter add package
+flutter pub add settings_ui
+flutter pub get
+
+# Flutter Plugins & Packages
+https://github.com/flutter/packages
+https://github.com/fluttercommunity/plus_plugins
+* Packages
+At a minimum, a Dart package is a directory containing a pubspec.yaml file. Additionally, a package can contain dependencies (listed in the pubspec), Dart libraries, apps, resources, tests, images, fonts, and examples. The pub.dev site lists many packages—developed by Google engineers and generous members of the Flutter and Dart community— that you can use in your app.
+
+* Plugins
+A plugin package is a special kind of package that makes platform functionality available to the app. Plugin packages can be written for Android (using Kotlin or Java), iOS (using Swift or Objective-C), web, macOS, Windows, Linux, or any combination thereof. For example, a plugin might provide Flutter apps with the ability to use a device's camera.
+
+# AndroidDebugKey
+MacBook Pro (Intel): 73:CA:54:DC:B9:1A:1B:46:BD:A6:16:92:D6:CA:F7:DB:C5:D0:7D:14
+MacBook Pro (M4): 47:2F:CC:E0:DC:8B:77:CB:D7:22:2F:F3:D1:60:47:B0:86:2D:FD:A4
+
+# Flutter Default Config
+C:\Tools\Flutter\packages\flutter_tools\gradle\flutter.gradle
+[Gradle Distributions](https://services.gradle.org/distributions/)
+# Android
+```bash
+For the system Java wrappers to find this JDK, symlink it with
+  sudo ln -sfn /opt/homebrew/opt/openjdk@21/libexec/openjdk.jdk /Library/Java/JavaVirtualMachines/openjdk-21.jdk
+
+openjdk@21 is keg-only, which means it was not symlinked into /opt/homebrew,
+because this is an alternate version of another formula.
+
+If you need to have openjdk@21 first in your PATH, run:
+  echo 'export PATH="/opt/homebrew/opt/openjdk@21/bin:$PATH"' >> ~/.zshrc
+
+For compilers to find openjdk@21 you may need to set:
+  export CPPFLAGS="-I/opt/homebrew/opt/openjdk@21/include"
+
+
+
+
+cd android/
+./gradlew clean
+./gradlew wrapper
+./gradlew signingReport
+
+```

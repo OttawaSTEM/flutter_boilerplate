@@ -44,7 +44,7 @@ dependencies:
   get: ^4.7.3
   get_storage: ^2.0.3
   google_fonts: ^6.3.3
-  google_sign_in: ^7.2.0
+  google_sign_in: ^6.3.0
   gradient_borders: ^1.0.0
   http: ^1.1.0
   logger: ^2.5.0
