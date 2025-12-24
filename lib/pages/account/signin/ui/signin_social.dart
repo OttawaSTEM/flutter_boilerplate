@@ -27,7 +27,8 @@ class SignInSocial extends StatelessWidget {
           width: double.infinity,
           height: 50,
           child: ElevatedButton.icon(
-            icon: SvgPicture.asset('assets/images/core/google.svg'),
+            // icon: SvgPicture.asset('assets/images/core/google.svg'),
+            icon: Image.asset('assets/images/core/google.png', height: 24, width: 24),
             style: defaultElevatedButtonStyle(context),
             onPressed: () {
               authController.googleSignIn();

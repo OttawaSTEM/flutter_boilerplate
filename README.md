@@ -216,3 +216,24 @@ cd android/
 ./gradlew signingReport
 
 ```
+
+# iOS CocoaPods compatibility issues
+Download ios from Xcode -> Settings -> Components
+```bash
+# 1. Navigate to the ios directory:
+cd ios
+
+# 2. Remove existing Pod files:
+rm Podfile.lock
+rm -rf Pods
+
+# 3. Clean the CocoaPods cache (optional but recommended):
+pod cache clean --all
+
+# 4. Install/Update pods with a repo update:
+pod install --repo-update
+
+# 5. Run flutter clean and flutter pub get:
+cd ../
+flutter clean && flutter pub get
+```
