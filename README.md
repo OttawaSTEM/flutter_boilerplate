@@ -87,6 +87,7 @@ Mac OS: Command + .
 [PNG to SVG](https://www.adobe.com/express/feature/image/convert/png-to-svg)
 [SVG Cleaner Online](https://iconly.io/tools/svg-cleaner)
 [SVG Compressor](https://vecta.io/nano)
+[Iconify](https://iconify.design/docs/usage/)
 
 # Flutter Default Config
 C:\Tools\Flutter\packages\flutter_tools\gradle\flutter.gradle
