@@ -43,7 +43,8 @@ bool validateEmail(String value) {
   return RegExp(r'^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$').hasMatch(value);
 }
 
-Future<String> detectOS() async {
+Future<String> detectDevice() async {
+  final settings = GetStorage();
   var platformName = '';
 
   if (kIsWeb) {
@@ -53,7 +54,7 @@ Future<String> detectOS() async {
       AndroidDeviceInfo androidDeviceInfo = await DeviceInfoPlugin().androidInfo;
       platformName = androidDeviceInfo.systemFeatures.contains('android.software.leanback') ? 'Android TV' : 'Android';
     } else if (Platform.isIOS) {
-      platformName = 'IOS';
+      platformName = 'iOS';
     } else if (Platform.isLinux) {
       platformName = 'Linux';
     } else if (Platform.isMacOS) {
@@ -68,5 +69,6 @@ Future<String> detectOS() async {
   if (kDebugMode) {
     logger.i('Platform: $platformName');
   }
+  settings.write('device', platformName);
   return (platformName.toString());
 }

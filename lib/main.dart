@@ -22,7 +22,7 @@ Future main() async {
 
   await GetStorage.init();
   await dotenv.load(fileName: 'assets/local.env');
-  await detectOS();
+  await detectDevice();
 
   runApp(const App());
 

@@ -1,11 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:get_storage/get_storage.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 import 'package:flutter_boilerplate/pages/drawer/controller/drawer_controller.dart';
 import 'package:flutter_boilerplate/pages/drawer/ui/drawer_ui.dart';
 
-// import 'package:flutter_boilerplate/widgets/app_bar.dart';
+import 'package:flutter_boilerplate/widgets/app_bar.dart';
 // import 'package:flutter_boilerplate/widgets/textfield.dart';
 import 'package:flutter_boilerplate/widgets/custom_button.dart';
 import 'package:flutter_boilerplate/widgets/buttons/default.dart';
@@ -14,29 +15,32 @@ class HomePage extends StatelessWidget {
   HomePage({super.key});
   final GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey<ScaffoldState>();
   final SideDrawerController controller = Get.put(SideDrawerController());
+  final settings = GetStorage();
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       key: _scaffoldKey,
       // appBar: const AppBarWidget(),
-      appBar: AppBar(
-        title: Text(
-          'Home Page'.tr,
-          style: GoogleFonts.roboto(
-            fontWeight: FontWeight.bold,
-            // color: Colors.white,
-            fontSize: 20,
-          ),
-        ),
-        leading: IconButton(
-            onPressed: () {
-              controller.updateSignInStatus();
-              _scaffoldKey.currentState!.openDrawer();
-            },
-            icon: const Icon(Icons.menu)),
-      ),
-      drawer: NavDrawer(),
+      appBar: settings.read('device') == 'Web'
+          ? AppBarWidget(title: 'Home Page'.tr)
+          : AppBar(
+              title: Text(
+                'Home Page'.tr,
+                style: GoogleFonts.roboto(
+                  fontWeight: FontWeight.bold,
+                  // color: Colors.white,
+                  fontSize: 20,
+                ),
+              ),
+              leading: IconButton(
+                  onPressed: () {
+                    controller.updateSignInStatus();
+                    _scaffoldKey.currentState!.openDrawer();
+                  },
+                  icon: const Icon(Icons.menu)),
+            ),
+      drawer: settings.read('device') == 'Web' ? null : NavDrawer(),
       backgroundColor: Theme.of(context).colorScheme.surface,
       body: SingleChildScrollView(
         child: Column(
