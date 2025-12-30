@@ -25,7 +25,7 @@ class HomePage extends StatelessWidget {
           'Home Page'.tr,
           style: GoogleFonts.roboto(
             fontWeight: FontWeight.bold,
-            color: Colors.white,
+            // color: Colors.white,
             fontSize: 20,
           ),
         ),

@@ -89,6 +89,9 @@ Mac OS: Command + .
 [SVG Compressor](https://vecta.io/nano)
 [Iconify](https://iconify.design/docs/usage/)
 
+iconify_design
+iconify_flutter
+
 # Flutter Default Config
 C:\Tools\Flutter\packages\flutter_tools\gradle\flutter.gradle
 
